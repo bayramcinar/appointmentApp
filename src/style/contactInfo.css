@@ -1,0 +1,23 @@
+.contactComponent{
+    width: 48rem;
+    height: auto;
+}
+input,
+textarea{
+    width: 30rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .contactComponent{
+        width: 24rem;
+        height: auto;
+    }
+    input,
+    textArea{
+        width: 22rem;
+    }
+    .buttons{
+        width: 10rem ;
+    }
+  }
+  

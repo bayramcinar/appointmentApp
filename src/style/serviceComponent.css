@@ -1,0 +1,26 @@
+.serviceArea{
+    width: 48rem;
+    height: 20rem;
+}
+.serviceBoxes{
+    width: 48rem;
+    height: 16rem;
+}
+.swiper{
+    height: 16rem ;
+}
+
+@media only screen and (max-width: 768px) {
+    .serviceArea{
+        width: 24rem;
+        height: auto;
+    }
+    .swiper{
+        height: 100%;
+    }
+    .serviceBoxes{
+        width: 25rem;
+        height: 35rem;
+    }
+  }
+  

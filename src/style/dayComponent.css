@@ -1,0 +1,22 @@
+.dayComponent{
+    width: 48rem;
+    height: 20rem;
+}
+.react-calendar{
+    border: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .dayComponent{
+        width: 24rem;
+        height: 40rem;
+    }
+    .rightArea{
+        width: 24rem;
+        height: 20rem;
+    }
+    .appointmentTimes{
+        width: 25rem;
+    }
+  }
+  
