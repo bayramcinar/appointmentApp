@@ -44,7 +44,7 @@ function MyAppointments() {
   return (
     <div className='myAppointments bg-dayComponentBg flex flex-col items-center justify-center p-3'>
       <h1 className='text-center text-2xl font-semibold text-buttonColor p-3'>Randevularım</h1>
-      <div className='swipperAppointments h-96'>
+      <div className='swipperAppointments h-96 '>
         {formData.length > 3 ? (
             renderSwiper(formData)
         ) : (

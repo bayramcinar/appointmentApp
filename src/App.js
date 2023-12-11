@@ -12,7 +12,7 @@ function App() {
       <>
       <Navbar/>
       <Routes>
-        <Route path='/appointment' element={<AppointmentComponent/>} />
+        <Route path='/' element={<AppointmentComponent/>} />
         <Route path='/setAppointmentTime' element={<SetAppointmentTime/>} />
         <Route path='/myAppointments' element={<MyAppointments/>} />
       </Routes>
