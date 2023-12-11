@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../style/contactInfo.css';
 
 function ContactForm({ onFormSubmit, formData, onOptionSelect,service,time }) {
-  const [formData1, setFormData1] = useState({
+  const [formData1, setFormData1] = useState({  //forOwn formu
     kimIçin :"kendim",
     time:time,
     service:service,
     notes: '',
   });
 
-  const [selectedOption, setSelectedOption] = useState('forOwn');
+  const [selectedOption, setSelectedOption] = useState('forOwn');  // kimin için olduğunu tuttuğumuz değişken
 
-  const [formData2, setFormData2] = useState({
+  const [formData2, setFormData2] = useState({  //forSomeone formu
     kimIçin :"başkası",
     time:time,
     service:service,
@@ -38,8 +38,10 @@ function ContactForm({ onFormSubmit, formData, onOptionSelect,service,time }) {
       onFormSubmit({ ...formData2, [name]: value });
     }
   };
+  
+  
 
-  const handleOptionChange = (option) => {
+  const handleOptionChange = (option) => {  // kendim için ve başkası için değişkenleri arasında geçişi sağlayan
     setSelectedOption(option);
     onOptionSelect(option);
   };

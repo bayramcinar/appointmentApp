@@ -8,7 +8,7 @@ function ServiceBox({ title, selectedService, onServiceClick,image }) {
     }
   };
 
-  const isSelected = selectedService === title;
+  const isSelected = selectedService === title;   // seçtiğimiz service i tuttuğumuz değişken
 
   return (
     <div>

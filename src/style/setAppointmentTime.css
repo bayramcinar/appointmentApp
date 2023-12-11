@@ -1,13 +1,15 @@
-.generalDiv{
-    width: 48rem;
+.setAppointmentTime{
+    width: 56rem;
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
-  }
+    height: 515px;
+}
 
 @media only screen and (max-width: 768px) {
-    .generalDiv{
+    .setAppointmentTime{
         width: 24rem;
         height: auto;
     }
   }
+  

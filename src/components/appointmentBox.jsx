@@ -11,7 +11,7 @@ function AppointmentBox({ time, date, selectedTime, onTimeClick, active }) {
     }
   };                                                              
 
-  const isSelected = selectedTime === time;
+  const isSelected = selectedTime === time;     // seçtiğimiz saati atadığımız değişken
 
   return (
     <div>

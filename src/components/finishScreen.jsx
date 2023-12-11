@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 function FinishScreen({time,service,name,job,surname}) {
   return (
     <div className='animate__animated animate__fadeInLeft'>
-      <div className='finishScreen w-96 bg-dayComponentBg p-5 '>
+      <div className='finishScreen w-96 bg-dayComponentBg p-5  ml-auto mr-auto mt-8'>
             <div className="title p-4">
                 <h2 className="text-buttonColor text-center text-3xl font-bold p-3">Randevu Bilgileri</h2>
             </div>
@@ -22,7 +22,7 @@ function FinishScreen({time,service,name,job,surname}) {
                     <h1 className="text-buttonColor text-center text-3xl font-bold p-3">Teşekkürler !</h1>
                     <h2 className='text-stepBorder1 text-center text-xl font-semibold p-4'>
                         Sizinle buluşmayı büyük bir heyecan ile bekliyoruz.
-                        <Link className='text-buttonColor text-xl font-semibold' to="/"> Randevularım </Link>
+                        <Link className='text-buttonColor text-xl font-semibold' to="/myAppointments"> Randevularım </Link>
                         bölümünden randevunuzun detaylarını inceleyebilir ve yönetebilirsiniz. 
                     </h2>
                 </div>

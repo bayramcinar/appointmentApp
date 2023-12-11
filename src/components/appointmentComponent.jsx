@@ -5,17 +5,18 @@ import ContactForm from './contactInfo';
 import ServiceComponent from './serviceComponent';
 import serviceImage from '../images/service.png';
 import FinishScreen from './finishScreen';
-import "../style/appointmentComponent.css"
+import "../style/appointmentComponent.css";
+import { useAppointmentContext } from "./appointmentContext";
 
 function AppointmentComponent() {
-  const [step, setStep] = useState(1);
-  const [returnDate, setReturnDate] = useState("");
-  const [returnService, setReturnService] = useState("");
-  const [showFinishScreen, setShowFinishScreen] = useState(false);
+  const [step, setStep] = useState(1);      // en üstte gözüken stepleri tutan değişken
+  const [returnDate, setReturnDate] = useState("");       // seçtiğimiz saat ve tarihi tutan değişken
+  const [returnService, setReturnService] = useState("");   // seçtiğimiz service i tutan değişken
+  const [showFinishScreen, setShowFinishScreen] = useState(false);   // finishScreen i göstereceğimiz değişken
 
-  const [selectedOption, setSelectedOption] = useState('forOwn');
+  const [selectedOption, setSelectedOption] = useState('forOwn');   // kendim için ve başkası için değişkenlerini tutan değişken
 
-  const handleNext = () => {
+  const handleNext = () => {       // ileri butonu fonksiyonu (seçim yapmadan ileri gitmeye çalıştığımızda hata veriyor)
     if (step === 2) {
       if (!returnService) {
         alert("Please select a service before proceeding to the next step.");
@@ -30,10 +31,14 @@ function AppointmentComponent() {
     }
     setStep((prevStep) => prevStep + 1);
   };
-
-  const handleBack = () => {
+   
+  const handleBack = () => {   //back butonu fonksiyonu 
     setStep((prevStep) => prevStep - 1);
   };
+
+
+  const { selectedTimes } = useAppointmentContext();
+
 
   const obje = [   //örnek services datası
     {
@@ -74,112 +79,26 @@ function AppointmentComponent() {
     }
   ];
 
-  const times = [ //örnek time datası
-    {
-      time:"09:00",
-      date: "2023-12-7",
-      active: true
-    },
-    {
-      time:"10:00",
-      date: "2023-12-7",
-      active: false
-    },
-    {
-      time:"11:00",
-      date: "2023-12-7",
-      active: true
-    },
-    {
-      time:"12:00",
-      date: "2023-12-7",
-      active: false
-    },
-    {
-      time:"13:00",
-      date: "2023-12-7",
-      active: false
-    },
-    {
-      time:"14:00",
-      date: "2023-12-7",
-      active: true
-    },
-    {
-      time:"15:00",
-      date: "2023-12-7",
-      active: true
-    },
-    {
-      time:"16:00",
-      date: "2023-12-7",
-      active: true
-    },
-    {
-      time:"17:00",
-      date: "2023-12-7",
-      active: true
-    },
-    {
-      time:"18:00",
-      date: "2023-12-7",
-      active: true
-    },
-    {
-      time:"19:00",
-      date: "2023-12-7",
-      active: true
-    },
-    {
-      time:"09:00",
-      date: "2023-12-8",
-      active: false
-    },
-    {
-      time:"10:00",
-      date: "2023-12-8",
-      active: false
-    },
-    {
-      time:"11:00",
-      date: "2023-12-8",
-      active: true
-    },
-    {
-      time:"12:00",
-      date: "2023-12-8",
-      active: false
-    },
-    {
-      time:"13:00",
-      date: "2023-12-8",
-      active: false
-    },
-    {
-      time:"14:00",
-      date: "2023-12-8",
-      active: true
-    },
-    {
-      time:"15:00",
-      date: "2023-12-8",
-      active: true
-    },
-    {
-      time:"16:00",
-      date: "2023-12-8",
-      active: true
-    },
-  ];
 
-  const handleFinish = () => {
+  const handleFinish = () => {   // eğer 3. step de isek çağırılan fonksiyon showFinish screen değerini true yapıp finishScreen i gösteriyor ve form bilgilerini forOwn veya forSomeone şeklinde submitliyor
     if (step === 3) {
+      const currentFormData = selectedOption === 'forOwn' ? formData1 : formData2;
+  
+      let existingFormData = sessionStorage.getItem('formData');
+  
+      if (!existingFormData) {
+        existingFormData = [];
+      } else {
+        existingFormData = JSON.parse(existingFormData);
+      }
+      existingFormData.push(currentFormData);
+      sessionStorage.setItem('formData', JSON.stringify(existingFormData));
       setShowFinishScreen(true);
-      handleFormSubmit(selectedOption === 'forOwn' ? formData1 : formData2);
+      handleFormSubmit(currentFormData);
     }
   };
 
-  const handleOptionChange = (option) => {
+  const handleOptionChange = (option) => {    // forOwn ve forSomeone ögeleri arasında değişimi sağlıyor
     setSelectedOption(option);
   };
 
@@ -211,8 +130,8 @@ function AppointmentComponent() {
     } else {
       setFormData2(formData);
     }
-    console.log('Form Data from AppointmentComponent:', formData);
   };
+  
 
   return (
     <>
@@ -221,7 +140,7 @@ function AppointmentComponent() {
         <div className='bg-dayComponentBg generalDiv'>
           <Steps active={step} />
           {step === 2 && <ServiceComponent services={obje} setReturnService={setReturnService} />}
-          {step === 1 && <TimeAndDate setReturnDate={setReturnDate} times={times}/>}
+          {step === 1 && <TimeAndDate setReturnDate={setReturnDate} times={selectedTimes}/>}
           {step === 3 && (
             <>
               <ContactForm

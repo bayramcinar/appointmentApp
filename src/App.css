@@ -1,9 +1,4 @@
-.App{
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 *{
   font-family: 'Rubik', sans-serif;
 }

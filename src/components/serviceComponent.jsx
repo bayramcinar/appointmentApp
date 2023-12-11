@@ -6,13 +6,13 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-import { Pagination, Navigation } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
 import ServiceBox from './serviceBox';
 
 function ServiceComponent({ services, setReturnService }) {
-  const [selectedService, setSelectedService] = useState(null);
+  const [selectedService, setSelectedService] = useState(null);  //seçilen service si tutan değişken 
 
-  const handleAppointmentBoxClick = (clickedService) => {
+  const handleAppointmentBoxClick = (clickedService) => {  // service e tıklandığında seçilen service e atayan fonksiyon
     const formattedReturnService = `${clickedService}`;
     setReturnService(formattedReturnService);
     setSelectedService(clickedService);
@@ -50,7 +50,8 @@ function ServiceComponent({ services, setReturnService }) {
     );
   };
 
-  const servicesArray = services;
+  const servicesArray = services;   // gösterilecek servisleri props olarak atadığımız değişken
+  
 
   return (
     <div>

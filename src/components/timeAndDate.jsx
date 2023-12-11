@@ -8,38 +8,38 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-import { Pagination, Navigation } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
 
 function TimeAndDate({ setReturnDate, times }) {
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [currentDateDisplay, setCurrentDateDisplay] = useState("");
-  const [selectedTime, setSelectedTime] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(new Date());   // seçtiğimiz date i tutan değişken
+  const [currentDateDisplay, setCurrentDateDisplay] = useState("");   // güncel tarihi saatlerin üstünde göstermemizi sağlayan değişken
+  const [selectedTime, setSelectedTime] = useState(null); // seçtiğimiz saati tuttuğumuz değişken
 
-  useEffect(() => {
+  useEffect(() => {   // güncel olarak tarih değiştiğimizde gösterilen tarihide değiştiren useEffect
     const formattedDate = formatDateDisplay(selectedDate);
     setCurrentDateDisplay(formattedDate);
   }, [selectedDate]);
 
-  const handleDateChange = (value) => {
+  const handleDateChange = (value) => {  // tarihi değiştirdiğimizde selected date i değiştiren fonksiyon
     setSelectedDate(value);
     setSelectedTime(null);
   };
 
-  const formatDateDisplay = (date) => {
+  const formatDateDisplay = (date) => {  // takvimden dönen tarih değerini gün ay yıl ve gün ismi formatına çeviren fonksiyon
     const tarihNesnesi = new Date(date);
     const options = { weekday: 'long', day: 'numeric', month: 'numeric', year: 'numeric' };
     const formattedDate = tarihNesnesi.toLocaleDateString('tr-TR', options);
     return formattedDate;
   };
 
-  const formatDate = (date) => {
+  const formatDate = (date) => {  // takvimden dönen değeri gün ay yıl a çeviren fonksiyon
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
     return `${day}-${month}-${year}`;
   };
 
-  const handleAppointmentBoxClick = (clickedTime) => {
+  const handleAppointmentBoxClick = (clickedTime) => {  // seçtiğimiz saat ve tarihi selectedtime a atayan fonksiyon
     const formattedReturnDate = `${currentDateDisplay} ${clickedTime}`;
     setReturnDate(formattedReturnDate);
     setSelectedTime(clickedTime);
@@ -74,7 +74,7 @@ function TimeAndDate({ setReturnDate, times }) {
     );
   };
 
-  const appointmentTimesForSelectedDate = times.filter((time) => {
+  const appointmentTimesForSelectedDate = times.filter((time) => {  // sadece seçtiğimiz tarihdeki randevu saatlerini göstermeye yarayan fonksiyon
     const formattedSelectedDate = formatDate(selectedDate);
     return formatDate(new Date(time.date)) === formattedSelectedDate;
   });
