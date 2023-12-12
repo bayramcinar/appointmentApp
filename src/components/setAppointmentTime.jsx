@@ -9,18 +9,35 @@ function SetAppointmentTime({ onSetTime }) {
 
   const { addSelectedTime } = useAppointmentContext();  //useContext ile sessionStorage a gönderdiğimiz time lar
   
-  const handleSetTime = () => {  //form submit fonksionu
+  const handleSetTime = () => {
+    if (!hour || !minute || !chosenDate) {
+      alert('Please fill in all fields'); // Show an alert for empty inputs
+      return;
+    }
+  
     const selectedTime = `${hour}:${minute}`;
     const dateTimeObject = {
       time: selectedTime,
       date: chosenDate,
       active: true,
     };
+  
+    // Check if the selected time already exists in sessionStorage
+    const existingTimes = JSON.parse(sessionStorage.getItem('selectedTimes')) || [];
+    const isDuplicate = existingTimes.some((item) => item.time === selectedTime);
+  
+    if (isDuplicate) {
+      alert('This appointment time already exists. Please choose a different time.');
+      return;
+    }
+  
+    // Add the selected time to sessionStorage
     addSelectedTime(dateTimeObject);
-
+  
     setHour('');
     setMinute('');
     setChosenDate('');
+    alert('Appointment time is added');
   };
 
   const today = new Date().toISOString().split('T')[0]; // Bugünkü tarihi al
