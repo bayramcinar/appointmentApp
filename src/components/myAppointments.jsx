@@ -11,6 +11,12 @@ import { Navigation } from 'swiper/modules';
 function MyAppointments() {
   const [formData, setFormData] = useState([]);
 
+  const handleDelete = (selectedAppointment) => {
+    const updatedFormData = formData.filter(appointment => appointment !== selectedAppointment);
+    setFormData(updatedFormData);
+    sessionStorage.setItem('formData', JSON.stringify(updatedFormData));
+  };
+
   useEffect(() => {
     const storedFormData = sessionStorage.getItem('formData');
     if (storedFormData) {
@@ -27,7 +33,7 @@ function MyAppointments() {
         <SwiperSlide key={i}>
           <div className="flex flex-col items-center justify-center h-96  appointmentBoxArea">
             {currentAppointments.map((appointmentData, index) => (
-              <MyAppointmentBox key={index} image={resim} infos={appointmentData} />
+              <MyAppointmentBox key={index} image={resim} infos={appointmentData} onDelete={handleDelete} />
             ))}
           </div>
         </SwiperSlide>
@@ -57,7 +63,7 @@ function MyAppointments() {
         ) : (
           <>
             {formData.map((appointmentData, index) => (
-              <MyAppointmentBox key={index} image={resim} infos={appointmentData} />
+              <MyAppointmentBox key={index} image={resim} infos={appointmentData} onDelete={handleDelete} />
             ))}
           </>
         )}

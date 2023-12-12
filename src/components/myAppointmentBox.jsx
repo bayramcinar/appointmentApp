@@ -1,18 +1,13 @@
 import React from 'react'
 import "../style/myAppointments.css"
 
-function MyAppointmentBox({image,infos}) {
+function MyAppointmentBox({image,infos,onDelete}) {
 
-    const handleDelete = () => { // seçilen randevuyu silme fonksiyonu
-        const selectedAppointment = JSON.stringify(infos);
-        const existingFormData = sessionStorage.getItem('formData');
-        const formDataArray = existingFormData ? JSON.parse(existingFormData) : [];
-        const updatedFormDataArray = formDataArray.filter(appointment => JSON.stringify(appointment) !== selectedAppointment);
-    
-        sessionStorage.setItem('formData', JSON.stringify(updatedFormDataArray));
-        window.location.reload();
+    const handleDelete = () => {
+        // Call the onDelete function passed as a prop
+        onDelete(infos);
       };
-
+    
   return (
     <div className='bg-white myAppointmentBox m-3 rounded-lg ml-auto mr-auto'>
         <div className='p-2 flex'>
