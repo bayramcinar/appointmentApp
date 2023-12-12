@@ -16,28 +16,33 @@ function SetAppointmentTime({ onSetTime }) {
     }
   
     const selectedTime = `${hour}:${minute}`;
+    const selectedDateTime = `${chosenDate} ${selectedTime}`;
+  
+    // Check if the selected date and time already exist in sessionStorage
+    const existingTimes = JSON.parse(sessionStorage.getItem('selectedTimes')) || [];
+    const isDuplicate = existingTimes.some((item) => {
+      const existingDateTime = `${item.date} ${item.time}`;
+      return existingDateTime === selectedDateTime;
+    });
+  
+    if (isDuplicate) {
+      alert('This appointment date and time already exist. Please choose a different date or time.');
+      return;
+    }
+  
+    // Add the selected date and time to sessionStorage
     const dateTimeObject = {
       time: selectedTime,
       date: chosenDate,
       active: true,
     };
   
-    // Check if the selected time already exists in sessionStorage
-    const existingTimes = JSON.parse(sessionStorage.getItem('selectedTimes')) || [];
-    const isDuplicate = existingTimes.some((item) => item.time === selectedTime);
-  
-    if (isDuplicate) {
-      alert('This appointment time already exists. Please choose a different time.');
-      return;
-    }
-  
-    // Add the selected time to sessionStorage
     addSelectedTime(dateTimeObject);
   
     setHour('');
     setMinute('');
     setChosenDate('');
-    alert('Appointment time is added');
+    alert('Appointment date and time are added');
   };
 
   const today = new Date().toISOString().split('T')[0]; // Bugünkü tarihi al

@@ -84,19 +84,28 @@ function AppointmentComponent() {
     if (step === 3) {
       const currentFormData = selectedOption === 'forOwn' ? formData1 : formData2;
   
-      // Find and update the selected time in sessionStorage
+      // Find the index of the selected time in sessionStorage
       const existingSelectedTimes = JSON.parse(sessionStorage.getItem('selectedTimes')) || [];
-      const updatedSelectedTimes = existingSelectedTimes.map((timeObj) => {
-        if (timeObj.time === returnDate) {
-          return { ...timeObj, active: false };
-        }
-        return timeObj;
-      });
+      
   
-      console.log('existingSelectedTimes:', existingSelectedTimes);
-      console.log('updatedSelectedTimes:', updatedSelectedTimes);
+      const selectedDateTime = returnDate.split(' ')[2]; // Extract the time part
+      const selectedDate = returnDate.split(' ')[0];
+
+      const parts = selectedDate.split('.');
+      const formattedDate = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`).toISOString().split('T')[0];
+      
   
-      sessionStorage.setItem('selectedTimes', JSON.stringify(updatedSelectedTimes));
+      const timeIndex = existingSelectedTimes.findIndex(
+        (timeObj) => timeObj.time === selectedDateTime && timeObj.date === formattedDate
+      );
+  
+      console.log('timeIndex:', timeIndex);
+  
+      if (timeIndex !== -1) {
+        // Update the active property to false for the selected time
+        existingSelectedTimes[timeIndex].active = false;
+        sessionStorage.setItem('selectedTimes', JSON.stringify(existingSelectedTimes));
+      }
   
       let existingFormData = sessionStorage.getItem('formData');
   
@@ -107,10 +116,8 @@ function AppointmentComponent() {
       }
   
       existingFormData.push(currentFormData);
-  
-      console.log('existingFormData:', existingFormData);
-  
       sessionStorage.setItem('formData', JSON.stringify(existingFormData));
+  
       setShowFinishScreen(true);
       handleFormSubmit(currentFormData);
     }
