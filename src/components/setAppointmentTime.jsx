@@ -42,23 +42,14 @@ function SetAppointmentTime({ onSetTime }) {
         <div className='m-3'>
           <input
             className='p-3 focus:border-none outline-none'
-            type="number"
+            type="time"
             placeholder='Saat'
-            min="0"
-            max="23"
-            value={hour}
-            onChange={(e) => setHour(e.target.value)}
-          />
-        </div>
-        <div className='m-3'>
-          <input
-            className='p-3 focus:border-none outline-none'
-            type="number"
-            placeholder='Dakika'
-            min="0"
-            max="59"
-            value={minute}
-            onChange={(e) => setMinute(e.target.value)}
+            value={hour + ':' + minute} 
+            onChange={(e) => {
+              const [newHour, newMinute] = e.target.value.split(':');
+              setHour(newHour);
+              setMinute(newMinute);
+            }}
           />
         </div>
         <div className='w-full flex items-center justify-center'>
