@@ -82,7 +82,7 @@ function ContactForm({ onFormSubmit, formData, onOptionSelect,service,time }) {
                   rows='4'
                   cols='50'
                   className='p-3 focus:border-none outline-none'
-                  placeholder='Notlar (Bu hizmeti alırken ihtiyacım olan belgeleri tarafıma e-mail yoluyla gönderilmesini rica ediyorum.)'
+                  placeholder='Notlar (Size daha iyi bir hizmet verebilmemiz için lütfen almak istediğiniz hizmetin içeriğini birkaç cümleyle açıklayınız.)'
                   name='notes'
                   value={formData1.notes}
                   onChange={handleChange}
@@ -116,6 +116,7 @@ function ContactForm({ onFormSubmit, formData, onOptionSelect,service,time }) {
               </div>
               <div className='m-3'>
                 <input
+                  id='birthdaypicker'
                   type="date"
                   className='p-3 focus:border-none outline-none text-stepBorder1'
                   name='dateOfBirth'

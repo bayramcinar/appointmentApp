@@ -1,4 +1,5 @@
 import React from 'react';
+import "../style/serviceBox.css"
 
 function ServiceBox({ title, selectedService, onServiceClick,image }) {
 

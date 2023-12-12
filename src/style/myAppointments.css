@@ -15,6 +15,11 @@
 .swipperAppointments .swiper{
     height: 24rem;
 }
+.custom-swiper-button-prev,
+.custom-swiper-button-next{
+    z-index: 2;
+    cursor: pointer;
+}
 
 @media only screen and (max-width: 768px) {
     .myAppointments{

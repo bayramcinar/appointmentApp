@@ -6,6 +6,19 @@
     height: 515px;
 }
 
+#timepicker:before {
+    content: 'Saat:';
+    margin-right: .6em;
+    color: #9d9d9d;
+ }
+
+ #datepicker:before {
+    content: 'Tarih:';
+    margin-right: .6em;
+    color: #9d9d9d;
+ }
+
+
 @media only screen and (max-width: 768px) {
     .setAppointmentTime{
         width: 24rem;

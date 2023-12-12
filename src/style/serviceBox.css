@@ -1,0 +1,8 @@
+@media only screen and (max-width: 768px) {
+    .imgArea{
+        display: none;
+    }
+    .textArea{
+        border-radius: 1rem;
+    }
+  }

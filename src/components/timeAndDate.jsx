@@ -3,14 +3,14 @@ import AppointmentBox from './appointmentBox';
 import CalendarBox from './calendar';
 import '../style/dayComponent.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import { Link } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 import { Navigation } from 'swiper/modules';
 
-function TimeAndDate({ setReturnDate, times }) {
+function TimeAndDate({ setReturnDate, times,live }) {
   const [selectedDate, setSelectedDate] = useState(new Date());   // seçtiğimiz date i tutan değişken
   const [currentDateDisplay, setCurrentDateDisplay] = useState("");   // güncel tarihi saatlerin üstünde göstermemizi sağlayan değişken
   const [selectedTime, setSelectedTime] = useState(null); // seçtiğimiz saati tuttuğumuz değişken
@@ -68,7 +68,11 @@ function TimeAndDate({ setReturnDate, times }) {
       swiperSlides.push(swiperSlide);
     }
     return (
-      <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+      <Swiper 
+      navigation={{
+        prevEl: '.custom-swiper-button-prev', // Class or element for the back button
+        nextEl: '.custom-swiper-button-next', // Class or element for the next button
+      }} modules={[Navigation]} className="mySwiper">
         {swiperSlides}
       </Swiper>
     );
@@ -84,6 +88,9 @@ function TimeAndDate({ setReturnDate, times }) {
       <div className="title">
         <h2 className="text-buttonColor text-center text-3xl font-bold p-3">Tarih ve Zaman Seçiniz</h2>
       </div>
+      {live &&
+        <div className='hemenGorus w-full flex items-center justify-center'> <Link to={"/"} className='py-1 px-5 rounded-3xl bg-appoinmentBox text-white text-mb text-center'>Hemen Görüş</Link></div>
+      }
       <div className="bg-dayComponentBg dayComponent flex flex-col md:flex-row">
         <div className='flex flex-col items-center justify-between md:order-1 md:w-1/2'>
           <div className="choosenDate mb-6">
@@ -92,7 +99,13 @@ function TimeAndDate({ setReturnDate, times }) {
             </div>
           </div>
           <div className="leftArea flex-1">
-            <div className="appointmentTimes w-96 h-52">
+            <div className="appointmentTimes w-96 h-52 relative">
+              <div className="custom-swiper-button-prev absolute left-3 top-2/4 text-xl text-buttonColor">
+                <i className="fa-solid fa-arrow-left" alt="Previous"></i>
+              </div>
+              <div className="custom-swiper-button-next absolute right-3 top-2/4 text-xl text-buttonColor">
+                <i className="fa-solid fa-arrow-right" alt="Next"></i>
+              </div>
               {appointmentTimesForSelectedDate.length > 0 ? (
                 renderSwiper(appointmentTimesForSelectedDate)
               ) : (

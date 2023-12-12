@@ -7,6 +7,12 @@ textarea{
     width: 30rem;
 }
 
+#birthdaypicker:before {
+    content: 'Doğum Tarihi:';
+    margin-right: .6em;
+    color: #9d9d9d;
+ }
+
 @media only screen and (max-width: 768px) {
     .contactComponent{
         width: 24rem;

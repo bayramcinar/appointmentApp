@@ -84,7 +84,8 @@ function AppointmentComponent() {
     if (step === 3) {
       const currentFormData = selectedOption === 'forOwn' ? formData1 : formData2;
   
-      // Find the index of the selected time in sessionStorage
+      if(handleFormSubmit(currentFormData) !== "invalid"){
+        // Find the index of the selected time in sessionStorage
       const existingSelectedTimes = JSON.parse(sessionStorage.getItem('selectedTimes')) || [];
       
   
@@ -120,6 +121,9 @@ function AppointmentComponent() {
   
       setShowFinishScreen(true);
       handleFormSubmit(currentFormData);
+      }else{
+        alert('Please fill out all required fields');
+      }
     }
   };
 
@@ -150,12 +154,20 @@ function AppointmentComponent() {
 
 
   const handleFormSubmit = (formData) => {
-    if (selectedOption === 'forOwn') {
-      setFormData1(formData);
+    // Check if any required field is empty
+    const isFormValid = Object.values(formData).every((value) => value !== '');
+  
+    if (isFormValid) {
+      if (selectedOption === 'forOwn') {
+        setFormData1(formData);
+      } else {
+        setFormData2(formData);
+      }
     } else {
-      setFormData2(formData);
+      return "invalid";
     }
   };
+  
   
 
   return (
@@ -165,7 +177,7 @@ function AppointmentComponent() {
         <div className='bg-dayComponentBg generalDiv'>
           <Steps active={step} />
           {step === 2 && <ServiceComponent services={obje} setReturnService={setReturnService} />}
-          {step === 1 && <TimeAndDate setReturnDate={setReturnDate} times={selectedTimes}/>}
+          {step === 1 && <TimeAndDate setReturnDate={setReturnDate} times={selectedTimes} live={true}/>}
           {step === 3 && (
             <>
               <ContactForm

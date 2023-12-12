@@ -9,7 +9,7 @@ import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 
 function MyAppointments() {
-  const [formData, setFormData] = useState([]);  // sessionStorage daki formları tuttuğumuz değişken
+  const [formData, setFormData] = useState([]);
 
   useEffect(() => {
     const storedFormData = sessionStorage.getItem('formData');
@@ -19,7 +19,7 @@ function MyAppointments() {
     }
   }, []);
 
-  const renderSwiper = (appointments) => {   //en fazla 3 tane alt alta randevu gelmesini sağlayan kod
+  const renderSwiper = (appointments) => {
     const swiperSlides = [];
     for (let i = 0; i < appointments.length; i += 3) {
       const currentAppointments = appointments.slice(i, i + 3);
@@ -35,25 +35,40 @@ function MyAppointments() {
       swiperSlides.push(swiperSlide);
     }
     return (
-      <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+      <Swiper
+        navigation={{
+          prevEl: '.custom-swiper-button-prev', // Class or element for the back button
+          nextEl: '.custom-swiper-button-next', // Class or element for the next button
+        }}
+        modules={[Navigation]}
+        className="mySwiper"
+      >
         {swiperSlides}
       </Swiper>
     );
   };
 
   return (
-    <div className='myAppointments bg-dayComponentBg flex flex-col items-center justify-center p-3'>
+    <div className='myAppointments bg-dayComponentBg flex flex-col items-center justify-center p-3 relative'>
       <h1 className='text-center text-2xl font-semibold text-buttonColor p-3'>Randevularım</h1>
       <div className='swipperAppointments h-96 '>
         {formData.length > 3 ? (
-            renderSwiper(formData)
+          renderSwiper(formData)
         ) : (
-            <>
+          <>
             {formData.map((appointmentData, index) => (
-                <MyAppointmentBox key={index} image={resim} infos={appointmentData} />
+              <MyAppointmentBox key={index} image={resim} infos={appointmentData} />
             ))}
-            </>
+          </>
         )}
+      </div>
+
+      {/* Custom navigation buttons */}
+      <div className="custom-swiper-button-prev absolute left-3 text-xl text-buttonColor">
+        <i className="fa-solid fa-arrow-left" alt="Previous"></i>
+      </div>
+      <div className="custom-swiper-button-next absolute right-3 text-xl text-buttonColor">
+        <i className="fa-solid fa-arrow-right" alt="Next"></i>
       </div>
     </div>
   );

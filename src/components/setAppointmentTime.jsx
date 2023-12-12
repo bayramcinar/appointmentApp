@@ -53,6 +53,7 @@ function SetAppointmentTime({ onSetTime }) {
       <div>
         <div className='m-3'>
           <input
+            id="datepicker"
             className='p-3 focus:border-none outline-none'
             placeholder='Tarih'
             type="date"
@@ -63,6 +64,7 @@ function SetAppointmentTime({ onSetTime }) {
         </div>
         <div className='m-3'>
           <input
+            id="timepicker"
             className='p-3 focus:border-none outline-none'
             type="time"
             placeholder='Saat'
