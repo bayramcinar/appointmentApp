@@ -88,7 +88,7 @@ function TimeAndDate({ setReturnDate, times,live }) {
       <div className="title">
         <h2 className="text-buttonColor text-center text-3xl font-bold p-3">Tarih ve Zaman Seçiniz</h2>
       </div>
-      <div className="bg-dayComponentBg dayComponent flex flex-col md:flex-row border-2 border-appoinmentBox rounded-2xl shadow-xl m-3">
+      <div className="bg-white dayComponent flex flex-col md:flex-row border-2 border-appoinmentBox rounded-2xl shadow-xl m-3">
         <div className='flex flex-col items-center justify-between md:order-1 md:w-1/2 '>
           <div className="choosenDate mb-2">
             <div className="dateText m-2">
