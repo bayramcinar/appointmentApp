@@ -9,7 +9,7 @@ function MyAppointmentBox({image,infos,onDelete}) {
       };
     
   return (
-    <div className=' myAppointmentBox m-3 rounded-lg ml-auto mr-auto'>
+    <div className='bg-white myAppointmentBox m-3 rounded-lg ml-auto mr-auto'>
         <div className='p-2 flex'>
             <div className='imgArea1 w-1/3 flex items-center justify-center'>
                 <img src={image} className='w-20' alt=""/>
