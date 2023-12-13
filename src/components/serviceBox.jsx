@@ -14,7 +14,7 @@ function ServiceBox({ title, selectedService, onServiceClick,image }) {
   return (
     <div>
       <div className='service cursor-pointer flex rounded-2xl w-84 m-2' onClick={handleServiceClick}>
-        <div className={`imgArea p-3 ${isSelected ? 'bg-buttonColor' : 'bg-white'} rounded-s-2xl w-20 bg-white flex items-center justify-center`}>
+        <div className={`imgArea p-3 ${isSelected ? 'bg-white' : 'bg-buttonColor'} rounded-s-2xl w-20 bg-white flex items-center justify-center`}>
           <img src={image} className='w-10' alt='' />
         </div>
         <div className={`textArea bg-buttonColor ${isSelected ? 'bg-white' : 'bg-buttonColor'} w-64 p-2 rounded-e-2xl flex items-center justify-center`}>
