@@ -88,8 +88,8 @@ function TimeAndDate({ setReturnDate, times,live }) {
       <div className="title">
         <h2 className="text-buttonColor text-center text-3xl font-bold p-3">Tarih ve Zaman Seçiniz</h2>
       </div>
-      <div className="bg-white dayComponent flex flex-col md:flex-row border-2 border-appoinmentBox rounded-2xl shadow-xl m-3">
-        <div className='flex flex-col items-center justify-between md:order-1 md:w-1/2 '>
+      <div className="bg-white dayComponent flex flex-col md:flex-row  m-3">
+        <div className='flex flex-col items-center justify-between md:order-1 md:w-1/2 border-2 border-appoinmentBox rounded-2xl shadow-xl'>
           <div className="choosenDate mb-2">
             <div className="dateText m-2">
               <h2 className="text-center text-buttonColor text-lg font-semibold">{currentDateDisplay}</h2>
@@ -116,7 +116,7 @@ function TimeAndDate({ setReturnDate, times,live }) {
             </div>
           </div>
         </div>
-        <div className="rightArea flex-1 h-full flex items-center justify-center md:order-2">
+        <div className="rightArea flex-1 h-full flex items-center justify-center md:order-2 border-2 border-appoinmentBox rounded-2xl shadow-xl ">
           <CalendarBox selectedDate={selectedDate} onDateChange={handleDateChange} />
         </div>
       </div>
