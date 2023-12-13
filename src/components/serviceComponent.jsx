@@ -38,7 +38,7 @@ function ServiceComponent({ services, setReturnService }) {
       const currentTimes = times.slice(i, i + itemsPerSlide);
       const swiperSlide = (
         <SwiperSlide key={i}>
-          <div className="flex flex-wrap items-center justify-center h-52 appointmentBoxArea">
+          <div className="flex flex-wrap items-center justify-center h-52 appointmentBoxArea border-2 border-appoinmentBox rounded-2xl shadow-xl m-3">
             {currentTimes.map((title, index) => (
               <ServiceBox
                 key={index}
@@ -84,7 +84,7 @@ function ServiceComponent({ services, setReturnService }) {
 
   return (
     <div>
-      <div className='serviceArea animate__animated animate__fadeInLeft border-2 border-appoinmentBox rounded-2xl shadow-xl m-3'>
+      <div className='serviceArea animate__animated animate__fadeInLeft '>
         <div className="title">
           <h2 className="text-buttonColor text-center text-3xl font-bold p-3">Hizmet Seçiniz</h2>
         </div>
