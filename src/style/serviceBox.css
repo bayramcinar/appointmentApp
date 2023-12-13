@@ -1,4 +1,6 @@
-
+.omg area{
+  background-color:#112469;
+}
 @media only screen and (max-width: 768px) {
     .imgArea{
         display: none;
