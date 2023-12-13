@@ -88,7 +88,7 @@ function ServiceComponent({ services, setReturnService }) {
         <div className="title">
           <h2 className="text-buttonColor text-center text-3xl font-bold p-3">Hizmet Seçiniz</h2>
         </div>
-        <div className="serviceBoxes relative">
+        <div className="serviceBoxes relative border-2 border-appoinmentBox rounded-2xl shadow-xl m-3">
           {!isMobile &&
             <>
                   <div className="custom-swiper-button-prev absolute left-3 text-xl text-buttonColor">
