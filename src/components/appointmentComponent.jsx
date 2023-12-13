@@ -187,7 +187,7 @@ function AppointmentComponent() {
               />
             </>
           )}
-          <div className='flex items-center justify-center buttonArea'>
+          <div className='flex items-center justify-center buttonArea mt-4'>
             {step > 1 && (
               <div className="nextStep flex items-center justify-center m-3 mb-5">
                 <button onClick={handleBack} className="bg-buttonColor rounded-3xl flex items-center justify-center w-44 buttons" >
