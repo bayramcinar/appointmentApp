@@ -64,17 +64,19 @@ function SetAppointmentTime({ onSetTime }) {
         </div>
         <div className='m-3'>
           <input
-            id="timepicker"
-            className='p-3 focus:border-none outline-none'
-            type="time"
-            placeholder='Saat'
-            value={hour + ':' + minute} 
-            onChange={(e) => {
-              const [newHour, newMinute] = e.target.value.split(':');
-              setHour(newHour);
-              setMinute(newMinute);
-            }}
-          />
+  id="timepicker"
+  className='p-3 focus:border-none outline-none'
+  type="time"
+  placeholder='Saat'
+  value={hour + ':' + minute} 
+  onChange={(e) => {
+    const [newHour, newMinute] = e.target.value.split(':');
+    setHour(newHour);
+    setMinute(newMinute);
+  }}
+  min={new Date().toLocaleTimeString('en-US', { hour12: false })}
+/>
+
         </div>
         <div className='w-full flex items-center justify-center'>
           <button onClick={handleSetTime} className="bg-buttonColor rounded-3xl flex items-center justify-center w-56 buttons mt-4">
