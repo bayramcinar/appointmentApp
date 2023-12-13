@@ -190,7 +190,7 @@ function AppointmentComponent() {
           <div className='flex items-center justify-center buttonArea'>
             {step > 1 && (
               <div className="nextStep flex items-center justify-center m-3 mb-5">
-                <button onClick={handleBack} className="bg-backButtonColor rounded-3xl flex items-center justify-center w-44 buttons" >
+                <button onClick={handleBack} className="bg-buttonColor rounded-3xl flex items-center justify-center w-44 buttons" >
                   <h4 className="text-text p-2 text-lg tracking-wider"><i className="mr-16 fa-solid fa-arrow-left"></i> Geri</h4>
                 </button>
               </div>
