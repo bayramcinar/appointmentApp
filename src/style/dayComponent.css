@@ -8,10 +8,11 @@
 
 @media only screen and (max-width: 768px) {
     .dayComponent{
-        width: 24rem;
+        width: 23rem;
         height: 40rem;
     }
     .rightArea{
+        margin-top: 7px;
         width: 24rem;
         height: 20rem;
     }
