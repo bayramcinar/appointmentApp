@@ -88,17 +88,17 @@ function TimeAndDate({ setReturnDate, times,live }) {
       <div className="title">
         <h2 className="text-buttonColor text-center text-3xl font-bold p-3">Tarih ve Zaman Seçiniz</h2>
       </div>
-      {live &&
-        <div className='hemenGorus w-full flex items-center justify-center'> <Link to={"/"} className='py-1 px-5 rounded-3xl bg-appoinmentBox text-white text-mb text-center'>Hemen Görüş</Link></div>
-      }
-      <div className="bg-dayComponentBg dayComponent flex flex-col md:flex-row">
-        <div className='flex flex-col items-center justify-between md:order-1 md:w-1/2'>
-          <div className="choosenDate mb-6">
+      <div className="bg-dayComponentBg dayComponent flex flex-col md:flex-row border-2 border-appoinmentBox rounded-2xl shadow-xl m-3">
+        <div className='flex flex-col items-center justify-between md:order-1 md:w-1/2 '>
+          <div className="choosenDate mb-2">
             <div className="dateText m-2">
               <h2 className="text-center text-buttonColor text-lg font-semibold">{currentDateDisplay}</h2>
             </div>
           </div>
-          <div className="leftArea flex-1">
+          {live &&
+            <div className='hemenGorus w-full flex items-center justify-center'> <Link to={"/"} className='py-1 px-5 rounded-3xl bg-appoinmentBox text-white text-mb text-center'>Hemen Görüş</Link></div>
+          }
+          <div className="leftArea flex-1 mt-3">
             <div className="appointmentTimes w-96 h-52 relative">
               <div className="custom-swiper-button-prev absolute left-3 top-2/4 text-xl text-buttonColor">
                 <i className="fa-solid fa-arrow-left" alt="Previous"></i>

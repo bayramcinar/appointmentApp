@@ -84,7 +84,7 @@ function ServiceComponent({ services, setReturnService }) {
 
   return (
     <div>
-      <div className='serviceArea animate__animated animate__fadeInLeft'>
+      <div className='serviceArea animate__animated animate__fadeInLeft border-2 border-appoinmentBox rounded-2xl shadow-xl m-3'>
         <div className="title">
           <h2 className="text-buttonColor text-center text-3xl font-bold p-3">Hizmet Seçiniz</h2>
         </div>
