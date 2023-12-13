@@ -14,6 +14,13 @@ function SetAppointmentTime({ onSetTime }) {
       alert('Please fill in all fields'); // Show an alert for empty inputs
       return;
     }
+
+function getCurrentTime() {
+  const now = new Date();
+  const currentHour = now.getHours().toString().padStart(2, '0');
+  const currentMinute = now.getMinutes().toString().padStart(2, '0');
+  return `${currentHour}:${currentMinute}`;
+}
   
     const selectedTime = `${hour}:${minute}`;
     const selectedDateTime = `${chosenDate} ${selectedTime}`;
@@ -74,7 +81,7 @@ function SetAppointmentTime({ onSetTime }) {
     setHour(newHour);
     setMinute(newMinute);
   }}
-  min={new Date().toLocaleTimeString('en-US', { hour12: false })}
+  min={getCurrentTime()}
 />
 
         </div>
