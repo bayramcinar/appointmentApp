@@ -18,12 +18,13 @@
     .serviceArea{
         width: 24rem;
         height: auto;
+        margin-right:0px;
     }
     .swiper{
         height: 100%;
     }
     .serviceBoxes{
-        width: 23rem;
+        width: 24rem;
         height: 35rem;
     }
   }
