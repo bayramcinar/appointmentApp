@@ -19,5 +19,9 @@
     .appointmentTimes{
         width: 25rem;
     }
+    .leftArea{
+       margin-right:0px;
+       width:24rem;
+    }
   }
   
