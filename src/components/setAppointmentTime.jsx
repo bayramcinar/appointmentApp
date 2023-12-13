@@ -15,12 +15,7 @@ function SetAppointmentTime({ onSetTime }) {
       return;
     }
 
-function getCurrentTime() {
-  const now = new Date();
-  const currentHour = now.getHours().toString().padStart(2, '0');
-  const currentMinute = now.getMinutes().toString().padStart(2, '0');
-  return `${currentHour}:${currentMinute}`;
-}
+
   
     const selectedTime = `${hour}:${minute}`;
     const selectedDateTime = `${chosenDate} ${selectedTime}`;
@@ -93,6 +88,14 @@ function getCurrentTime() {
       </div>
     </div>
   );
+}
+
+
+function getCurrentTime() {
+  const now = new Date();
+  const currentHour = now.getHours().toString().padStart(2, '0');
+  const currentMinute = now.getMinutes().toString().padStart(2, '0');
+  return `${currentHour}:${currentMinute}`;
 }
 
 export default SetAppointmentTime;
