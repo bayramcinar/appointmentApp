@@ -37,7 +37,7 @@ function AppointmentComponent() {
   };
 
 
-  const { selectedTimes } = useAppointmentContext();
+  const { selectedTimes } = useAppointmentContext();   //useContext den saatleri alıyoruz
 
 
   const obje = [   //örnek services datası
@@ -84,8 +84,7 @@ function AppointmentComponent() {
     if (step === 3) {
       const currentFormData = selectedOption === 'forOwn' ? formData1 : formData2;
   
-      if(handleFormSubmit(currentFormData) !== "invalid"){
-        // Find the index of the selected time in sessionStorage
+      if(handleFormSubmit(currentFormData) !== "invalid"){  // tüm form dolmadıysa invalid değeri dönüyor ve randevu tamamlanmıyor
       const existingSelectedTimes = JSON.parse(sessionStorage.getItem('selectedTimes')) || [];
       
   
@@ -102,8 +101,7 @@ function AppointmentComponent() {
   
       console.log('timeIndex:', timeIndex);
   
-      if (timeIndex !== -1) {
-        // Update the active property to false for the selected time
+      if (timeIndex !== -1) {                      //randevu alınan saatin active değerini false yapıyor ve ona göre sessionStorage deki verileri güncelliyor
         existingSelectedTimes[timeIndex].active = false;
         sessionStorage.setItem('selectedTimes', JSON.stringify(existingSelectedTimes));
       }

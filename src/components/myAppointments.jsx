@@ -11,13 +11,13 @@ import { Navigation } from 'swiper/modules';
 function MyAppointments() {
   const [formData, setFormData] = useState([]);
 
-  const handleDelete = (selectedAppointment) => {
+  const handleDelete = (selectedAppointment) => {  // seçilen randevuyu silme fonksiyonu
     const updatedFormData = formData.filter(appointment => appointment !== selectedAppointment);
     setFormData(updatedFormData);
     sessionStorage.setItem('formData', JSON.stringify(updatedFormData));
   };
 
-  useEffect(() => {
+  useEffect(() => {    // kaydedilen randevuları sessionStorage dan alan hooks
     const storedFormData = sessionStorage.getItem('formData');
     if (storedFormData) {
       const parsedFormData = JSON.parse(storedFormData);
@@ -25,7 +25,7 @@ function MyAppointments() {
     }
   }, []);
 
-  const renderSwiper = (appointments) => {
+  const renderSwiper = (appointments) => {  //en fazla alt alta 3 tane randevu görüntülememizi sağlayan kod
     const swiperSlides = [];
     for (let i = 0; i < appointments.length; i += 3) {
       const currentAppointments = appointments.slice(i, i + 3);

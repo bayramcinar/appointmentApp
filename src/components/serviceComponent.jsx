@@ -91,10 +91,10 @@ function ServiceComponent({ services, setReturnService }) {
         <div className="serviceBoxes relative">
           {!isMobile &&
             <>
-                  <div className="custom-swiper-button-prev absolute left-3 text-xl text-buttonColor top-2/4">
+                  <div className="custom-swiper-button-prev absolute left-3 text-xl text-buttonColor">
                       <i className="fa-solid fa-arrow-left" alt="Previous"></i>
                     </div>
-                    <div className="custom-swiper-button-next absolute right-3 text-xl text-buttonColor top-2/4">
+                    <div className="custom-swiper-button-next absolute right-3 text-xl text-buttonColor">
                       <i className="fa-solid fa-arrow-right" alt="Next"></i>
                     </div>
             </>
