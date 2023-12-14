@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import "../style/contactInfo.css"
 import { Field, Form, Formik } from 'formik';
 
-function ContactForm({ onFormSubmit, formData, onOptionSelect,service,time }) {
+function ContactForm({ onFormSubmit, onOptionSelect,service,time }) {
 
   const [isOwn, setIsOwn] = useState(true);  // kimin için olduğunu tuttuğumuz değişken
 
@@ -97,7 +98,7 @@ function ContactForm({ onFormSubmit, formData, onOptionSelect,service,time }) {
                   name='lastName'
                 />
               </div>
-              <div className='m-3'>
+              <div className='m-3 relative birthDay'>
                 <Field
                   id='birthdaypicker'
                   type="date"

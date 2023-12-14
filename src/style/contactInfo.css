@@ -1,0 +1,14 @@
+.birthDay input[type="date"]:before{
+    content: 'Doğrum Tarihi:';
+    position: absolute;
+    top: 52%;
+    left: 0.5rem;
+    transform: translateY(-50%);
+    color: #b1babf;
+    font-size: 1rem;
+    background-color: white;
+  }
+
+  .birthDay input[type="date"] {
+    padding-left: 7.5rem; 
+  }  
