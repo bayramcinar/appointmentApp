@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../style/contactInfo.css';
 
 function ContactForm({ onFormSubmit, formData, onOptionSelect,service,time }) {
   const [formData1, setFormData1] = useState({  //forOwn formu
@@ -9,7 +8,7 @@ function ContactForm({ onFormSubmit, formData, onOptionSelect,service,time }) {
     notes: '',
   });
 
-  const [selectedOption, setSelectedOption] = useState('forOwn');  // kimin için olduğunu tuttuğumuz değişken
+  const [isOwn, setIsOwn] = useState(true);  // kimin için olduğunu tuttuğumuz değişken
 
   const [formData2, setFormData2] = useState({  //forSomeone formu
     kimIçin :"başkası",
@@ -24,7 +23,7 @@ function ContactForm({ onFormSubmit, formData, onOptionSelect,service,time }) {
 
   const handleChange = (e) => {       //formdaki değişiklikleri algılayan fonksiyon
     const { name, value } = e.target;
-    if (selectedOption === 'forOwn') {
+    if (isOwn === true) {
       setFormData1((prevData) => ({
         ...prevData,
         [name]: value,
@@ -42,46 +41,46 @@ function ContactForm({ onFormSubmit, formData, onOptionSelect,service,time }) {
   
 
   const handleOptionChange = (option) => {  // kendim için ve başkası için değişkenleri arasında geçişi sağlayan
-    setSelectedOption(option);
+    setIsOwn(option);
     onOptionSelect(option);
   };
 
   return (
-    <div className='contactComponent animate__animated animate__fadeInLeft'>
+    <div className='contactComponent animate__animated animate__fadeInLeft lg:w-[48rem] lg:h-auto md:w-[24rem] sm:w-[24rem] md:h-auto sm:h-auto'>
       <div className='title'>
         <h2 className='text-buttonColor text-center text-3xl font-bold p-3'>Ön Bilgi Formu</h2>
       </div>
       <div className='flex flex-col items-center justify-center h-auto'>
         <div className='choosePerson'>
           <button
-            onClick={() => handleOptionChange('forOwn')}
+            onClick={() => handleOptionChange(true)}
             className={`bg-appoinmentBox p-2 text-white tex-sm rounded-3xl m-3 px-7 ${
-              selectedOption === 'forOwn' ? 'selected' : ''
+              isOwn === true ? 'selected' : ''
             } ${
-              selectedOption === 'forOwn' ? 'bg-appoinmentBox' : 'bg-backButtonColor'
+              isOwn === true ? 'bg-appoinmentBox' : 'bg-backButtonColor'
             }`}
           >
             Kendim İçin
           </button>
           <button
-            onClick={() => handleOptionChange('forSomeOne')}
+            onClick={() => handleOptionChange(false)}
             className={`bg-appoinmentBox p-2 text-white tex-sm rounded-3xl m-3 px-7 ${
-              selectedOption === 'forSomeOne' ? 'selected' : ''
+              isOwn === false ? 'selected' : ''
             } ${
-              selectedOption === 'forSomeOne' ? 'bg-appoinmentBox' : 'bg-backButtonColor'
+              isOwn === false ? 'bg-appoinmentBox' : 'bg-backButtonColor'
             }`}
           >
             Başkası İçin
           </button>
         </div>
-        {selectedOption === 'forOwn' && (
+        {isOwn === true && (
           <div className='forOwn'>
             <form onSubmit={onFormSubmit} className='flex flex-col items-center justify-center'>
               <div className='m-3'>
                 <textarea
                   rows='4'
                   cols='50'
-                  className='p-3 focus:border-none outline-none'
+                  className='lg:w-[30rem] max-[768px]:w-[22rem] p-3 focus:border-none outline-none'
                   placeholder='Notlar (Size daha iyi bir hizmet verebilmemiz için lütfen almak istediğiniz hizmetin içeriğini birkaç cümleyle açıklayınız.)'
                   name='notes'
                   value={formData1.notes}
@@ -91,22 +90,22 @@ function ContactForm({ onFormSubmit, formData, onOptionSelect,service,time }) {
             </form>
           </div>
         )}
-        {selectedOption === 'forSomeOne' && (
+        {isOwn === false && (
           <div className='forSomeOne'>
             <form onSubmit={onFormSubmit} className='flex flex-col items-center justify-center'>
               <div className='m-3'>
                 <input
-                  className='p-3 focus:border-none outline-none'
+                  className='lg:w-[30rem] max-[768px]:w-[22rem] p-3 focus:border-none outline-none'
                   type='text'
                   placeholder='İsim'
                   name='firstName'
                   value={formData2.firstName}
                   onChange={handleChange}
                 />
-              </div>
+              </div> 
               <div className='m-3'>
                 <input
-                  className='p-3 focus:border-none outline-none'
+                  className='lg:w-[30rem] max-[768px]:w-[22rem] p-3 focus:border-none outline-none'
                   type='text'
                   placeholder='Soyisim'
                   name='lastName'
@@ -118,7 +117,7 @@ function ContactForm({ onFormSubmit, formData, onOptionSelect,service,time }) {
                 <input
                   id='birthdaypicker'
                   type="date"
-                  className='p-3 focus:border-none outline-none text-stepBorder1'
+                  className={`before:bg-gray-300 before:content-'Doğum Tarihi:' before:mr-1 before:text-gray-600 p-3 focus:border-none outline-none text-stepBorder1 lg:w-[30rem] max-[768px]:w-[22rem] `}
                   name='dateOfBirth'
                   value={formData2.dateOfBirth}
                   onChange={handleChange}
@@ -128,7 +127,7 @@ function ContactForm({ onFormSubmit, formData, onOptionSelect,service,time }) {
                 <textarea
                   rows='4'
                   cols='50'
-                  className='p-3 focus:border-none outline-none'
+                  className='p-3 focus:border-none outline-none lg:w-[30rem] max-[768px]:w-[22rem]'
                   placeholder='Notlar (Size daha iyi bir hizmet verebilmemiz için lütfen almak istediğiniz hizmetin içeriğini birkaç cümleyle açıklayınız.)'
                   name='notes'
                   value={formData2.notes}
@@ -138,7 +137,7 @@ function ContactForm({ onFormSubmit, formData, onOptionSelect,service,time }) {
               <div className='m-3 flex w-44'>
                 <input
                   type="radio"
-                  className='text-stepBorder1'
+                  className='text-stepBorder1 lg:w-[30rem] max-[768px]:w-[22rem]'
                   id="erkek"
                   name="gender"
                   value="erkek"
@@ -147,7 +146,7 @@ function ContactForm({ onFormSubmit, formData, onOptionSelect,service,time }) {
                 <label htmlFor="erkek" className='text-stepBorder1'>Erkek</label>
                 <input
                   type="radio"
-                  className='text-stepBorder1'
+                  className='text-stepBorder1 lg:w-[30rem] max-[768px]:w-[22rem]'
                   id="kadın"
                   name="gender"
                   value="kadın"

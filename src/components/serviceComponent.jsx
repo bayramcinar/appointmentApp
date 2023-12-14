@@ -32,13 +32,13 @@ function ServiceComponent({ services, setReturnService }) {
   };
 
   const renderSwiper = (times) => {
-    const itemsPerSlide = isMobile ? 8 : 6; // Change this to 9 for mobile screens
+    const itemsPerSlide = isMobile ? 8 : 8; // Change this to 9 for mobile screens
     const swiperSlides = [];
     for (let i = 0; i < times.length; i += itemsPerSlide) {
       const currentTimes = times.slice(i, i + itemsPerSlide);
       const swiperSlide = (
         <SwiperSlide key={i}>
-          <div className="flex flex-wrap items-center justify-center h-52 appointmentBoxArea ">
+          <div className="flex flex-wrap items-center justify-center h-[15rem] serviceBoxArea ">
             {currentTimes.map((title, index) => (
               <ServiceBox
                 key={index}
@@ -84,17 +84,17 @@ function ServiceComponent({ services, setReturnService }) {
 
   return (
     <div>
-      <div className='serviceArea animate__animated animate__fadeInLeft '>
+      <div className='serviceArea animate__animated animate__fadeInLeft lg:w-[48rem] lg:h-[20rem] md:w-[24rem] md:h-auto md:mr-[0px]'>
         <div className="title">
           <h2 className="text-buttonColor text-center text-3xl font-bold p-3">Hizmet Seçiniz</h2>
         </div>
-        <div className="serviceBoxes relative border-2 border-appoinmentBox rounded-2xl shadow-xl m-3 bg-white mb-5">
+        <div className="serviceBoxes relative border-2 border-buttonColor rounded-2xl shadow-xl m-3 bg-white mb-5 lg:w-[48rem] lg:h-[16rem] md:w-[24rem] max-[768px]:h-[35rem]">
           {!isMobile &&
             <>
-                  <div className="custom-swiper-button-prev absolute left-3 text-xl text-buttonColor">
+                  <div className="custom-swiper-button-prev absolute left-2 text-xl text-buttonColor top-[45%] z-[2] cursor-pointer">
                       <i className="fa-solid fa-arrow-left" alt="Previous"></i>
                     </div>
-                    <div className="custom-swiper-button-next absolute right-3 text-xl text-buttonColor">
+                    <div className="custom-swiper-button-next top-[45%] absolute right-2 text-xl text-buttonColor z-[2] cursor-pointer">
                       <i className="fa-solid fa-arrow-right" alt="Next"></i>
                     </div>
             </>

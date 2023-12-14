@@ -1,5 +1,4 @@
 import React from 'react';
-import "../style/serviceBox.css"
 
 function ServiceBox({ title, selectedService, onServiceClick,image }) {
 
@@ -13,11 +12,11 @@ function ServiceBox({ title, selectedService, onServiceClick,image }) {
 
   return (
     <div>
-      <div className='service cursor-pointer flex rounded-2xl w-84 m-2' onClick={handleServiceClick}>
-        <div className={`imgAreaService p-3 ${isSelected ? 'bg-white border-2 border-buttonColor border-r-0' : 'bg-buttonColor'} rounded-s-2xl w-20 flex items-center justify-center`}>
+      <div className='service max-[768px]:m-[13px] cursor-pointer flex rounded-2xl w-84 m-1' onClick={handleServiceClick}>
+        {/* <div className={`imgAreaService max-[768px]:hidden p-3 ${isSelected ? 'bg-white border-2 border-buttonColor border-r-0' : 'bg-buttonColor'} rounded-s-2xl w-20 flex items-center justify-center`}>
           <img src={image} className='w-10' alt='' />
-        </div>
-        <div className={`textArea bg-buttonColor ${isSelected ? 'bg-white border-2 border-buttonColor border-l-0' : 'bg-buttonColor'} w-64 p-2 rounded-e-2xl flex items-center justify-center`}>
+        </div> */}
+        <div className={`textArea md:rounded-r-2xl bg-buttonColor ${isSelected ? 'bg-white border-2 border-buttonColor border-l-0' : 'bg-buttonColor'} w-80 p-2 rounded-2xl flex items-center justify-center max-[768px]:rounded-2xl`}>
           <h3 className={`text-mb ${isSelected ? 'text-buttonColor' : 'text-white'} text-center`}>{title}</h3>
         </div>
       </div>

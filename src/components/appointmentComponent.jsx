@@ -5,7 +5,6 @@ import ContactForm from './contactInfo';
 import ServiceComponent from './serviceComponent';
 import serviceImage from '../images/service.png';
 import FinishScreen from './finishScreen';
-import "../style/appointmentComponent.css";
 import { useAppointmentContext } from "./appointmentContext";
 
 function AppointmentComponent() {
@@ -14,7 +13,7 @@ function AppointmentComponent() {
   const [returnService, setReturnService] = useState("");   // seçtiğimiz service i tutan değişken
   const [showFinishScreen, setShowFinishScreen] = useState(false);   // finishScreen i göstereceğimiz değişken
 
-  const [selectedOption, setSelectedOption] = useState('forOwn');   // kendim için ve başkası için değişkenlerini tutan değişken
+  const [isOwn, setIsOwn] = useState(true);   // kendim için ve başkası için değişkenlerini tutan değişken (true false yapısı)
 
   const handleNext = () => {       // ileri butonu fonksiyonu (seçim yapmadan ileri gitmeye çalıştığımızda hata veriyor)
     if (step === 2) {
@@ -33,7 +32,9 @@ function AppointmentComponent() {
   };
    
   const handleBack = () => {   //back butonu fonksiyonu 
-    setStep((prevStep) => prevStep - 1);
+    if(step > 1){
+      setStep((prevStep) => prevStep - 1);
+    }
   };
 
 
@@ -82,7 +83,7 @@ function AppointmentComponent() {
 
   const handleFinish = () => {   // eğer 3. step de isek çağırılan fonksiyon showFinish screen değerini true yapıp finishScreen i gösteriyor ve form bilgilerini forOwn veya forSomeone şeklinde submitliyor
     if (step === 3) {
-      const currentFormData = selectedOption === 'forOwn' ? formData1 : formData2;
+      const currentFormData = isOwn === true ? formData1 : formData2;
   
       if(handleFormSubmit(currentFormData) !== "invalid"){  // tüm form dolmadıysa invalid değeri dönüyor ve randevu tamamlanmıyor
       const existingSelectedTimes = JSON.parse(sessionStorage.getItem('selectedTimes')) || [];
@@ -126,7 +127,7 @@ function AppointmentComponent() {
   };
 
   const handleOptionChange = (option) => {    // forOwn ve forSomeone ögeleri arasında değişimi sağlıyor
-    setSelectedOption(option);
+    setIsOwn(option);
   };
 
 
@@ -156,7 +157,7 @@ function AppointmentComponent() {
     const isFormValid = Object.values(formData).every((value) => value !== '');
   
     if (isFormValid) {
-      if (selectedOption === 'forOwn') {
+      if (isOwn === true) {
         setFormData1(formData);
       } else {
         setFormData2(formData);
@@ -172,7 +173,7 @@ function AppointmentComponent() {
     <>
       {showFinishScreen && <FinishScreen time={returnDate} service={returnService} name={formData2.firstName} surname={formData2.lastName} />}
       {!showFinishScreen && (
-        <div className='bg-dayComponentBg generalDiv'>
+        <div className='bg-dayComponentBg generalDiv lg:w-[50rem] ml-auto mr-auto mt-[50px] sm:w-[26rem] md:w-[26rem] md:h-auto sm:h-auto'>
           <Steps active={step} />
           {step === 2 && <ServiceComponent services={obje} setReturnService={setReturnService} />}
           {step === 1 && <TimeAndDate setReturnDate={setReturnDate} times={selectedTimes} live={true}/>}
@@ -182,7 +183,7 @@ function AppointmentComponent() {
                 time={returnDate}
                 service={returnService}
                 onFormSubmit={handleFormSubmit}
-                formData={selectedOption === 'forOwn' ? formData1 : formData2}
+                formData={isOwn === true ? formData1 : formData2}
                 onOptionSelect={handleOptionChange}
               />
             </>

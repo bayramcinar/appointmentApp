@@ -11,11 +11,46 @@ import { Navigation } from 'swiper/modules';
 function MyAppointments() {
   const [formData, setFormData] = useState([]);
 
-  const handleDelete = (selectedAppointment) => {  // seçilen randevuyu silme fonksiyonu
+  const handleDelete = (selectedAppointment) => {
+    const selectedTimes = JSON.parse(sessionStorage.getItem('selectedTimes')) || [];
+  
+    const dateParts = selectedAppointment.time.split(" ");
+    const datePart = dateParts[0].split(".");
+    const timePart = dateParts[2];
+  
+    const year = parseInt(datePart[2], 10);
+    const month = parseInt(datePart[1], 10) - 1;
+    const day = parseInt(datePart[0], 10);
+  
+    const timeParts = timePart.split(":");
+    const hours = parseInt(timeParts[0], 10);
+    const minutes = parseInt(timeParts[1], 10);
+  
+    const originalDate = new Date(year, month, day, hours, minutes);
+  
+    const formattedDate = originalDate.toISOString().split("T")[0];
+    const formattedTime = originalDate.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  
+    const result = {
+      date: formattedDate,
+      time: formattedTime
+    };
+
+    const updatedSelectedTimes = selectedTimes.map(appointment => {
+      if (appointment.date === result.date && appointment.time === result.time) {
+        return { ...appointment, active: true };
+      }
+      return appointment;
+    });
+  
+    sessionStorage.setItem('selectedTimes', JSON.stringify(updatedSelectedTimes));
+  
+    // Form datayı güncelle
     const updatedFormData = formData.filter(appointment => appointment !== selectedAppointment);
     setFormData(updatedFormData);
     sessionStorage.setItem('formData', JSON.stringify(updatedFormData));
   };
+  
 
   useEffect(() => {    // kaydedilen randevuları sessionStorage dan alan hooks
     const storedFormData = sessionStorage.getItem('formData');
@@ -31,7 +66,7 @@ function MyAppointments() {
       const currentAppointments = appointments.slice(i, i + 3);
       const swiperSlide = (
         <SwiperSlide key={i}>
-          <div className="flex flex-col items-center justify-center h-96  appointmentBoxArea">
+          <div className="flex flex-col items-center justify-center appointmentBoxArea">
             {currentAppointments.map((appointmentData, index) => (
               <MyAppointmentBox key={index} image={resim} infos={appointmentData} onDelete={handleDelete} />
             ))}
@@ -55,9 +90,9 @@ function MyAppointments() {
   };
 
   return (
-    <div className='myAppointments bg-dayComponentBg flex flex-col items-center justify-center p-3 relative'>
+    <div className='myAppointments bg-dayComponentBg flex flex-col items-center justify-center p-3 relative lg:w-[56rem] mr-auto ml-auto mt-[50px] lg:h-[515px]'>
       <h1 className='text-center text-2xl font-semibold text-buttonColor p-3'>Randevularım</h1>
-      <div className='swipperAppointments h-96 '>
+      <div className='swipperAppointments h-96 lg:w-[56rem] lg:h-[27rem]'>
         {formData.length > 3 ? (
           renderSwiper(formData)
         ) : (
@@ -70,12 +105,17 @@ function MyAppointments() {
       </div>
 
       {/* Custom navigation buttons */}
-      <div className="custom-swiper-button-prev absolute left-3 text-xl text-buttonColor">
+      {formData.length > 3 &&
+      <>
+      <div className="custom-swiper-button-prev absolute left-3 text-xl text-buttonColor cursor-pointer z-[2]">
         <i className="fa-solid fa-arrow-left" alt="Previous"></i>
       </div>
-      <div className="custom-swiper-button-next absolute right-3 text-xl text-buttonColor">
+      <div className="custom-swiper-button-next absolute right-3 text-xl text-buttonColor cursor-pointer z-[2]">
         <i className="fa-solid fa-arrow-right" alt="Next"></i>
       </div>
+      </>
+      }
+
     </div>
   );
 }

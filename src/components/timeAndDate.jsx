@@ -51,7 +51,7 @@ function TimeAndDate({ setReturnDate, times,live }) {
       const currentTimes = times.slice(i, i + 9);
       const swiperSlide = (
         <SwiperSlide key={i}>
-          <div className="flex flex-wrap items-center justify-center w-96 h-52 appointmentBoxArea">
+          <div className="flex flex-wrap items-center justify-center w-96 h-52 appointmentBoxArea mr-auto ml-auto">
             {currentTimes.map((time, index) => (
               <AppointmentBox
                 key={index}
@@ -88,8 +88,8 @@ function TimeAndDate({ setReturnDate, times,live }) {
       <div className="title">
         <h2 className="text-buttonColor text-center text-3xl font-bold p-3">Tarih ve Zaman Seçiniz</h2>
       </div>
-      <div className="bg-dayComponentBg dayComponent flex flex-col md:flex-row  m-3">
-        <div className='flex flex-col items-center justify-between md:order-1 md:w-1/2 border-2 border-appoinmentBox rounded-2xl shadow-xl mr-3 bg-white'>
+      <div className="bg-dayComponentBg dayComponent flex flex-col md:flex-row  m-3 lg:w-[48rem] lg:h-[20rem] md:w-[25rem] sm:w-[25rem] md:h-[40rem] sm:h-[40rem]">
+        <div className='flex flex-col items-center justify-between lg:order-1 lg:w-1/2 border-2 border-buttonColor rounded-2xl shadow-xl lg:mr-3 bg-white rightMobile md:w-[25rem]'>
           <div className="choosenDate mb-2">
             <div className="dateText m-2">
               <h2 className="text-center text-buttonColor text-lg font-semibold">{currentDateDisplay}</h2>
@@ -98,25 +98,25 @@ function TimeAndDate({ setReturnDate, times,live }) {
           {live &&
             <div className='hemenGorus w-full flex items-center justify-center'> <Link to={"/"} className='py-1 px-5 rounded-3xl bg-appoinmentBox text-white text-mb text-center'>Hemen Görüş</Link></div>
           }
-          <div className="leftArea flex-1 mt-3">
-            <div className="appointmentTimes w-96 h-52 relative">
-              <div className="custom-swiper-button-prev absolute left-3 top-2/4 text-xl text-buttonColor">
+          <div className="leftArea flex-1 mt-3 md:w-[25rem] md:mr-[0px]">
+            <div className="appointmentTimes w-96 h-52 relative md:w-[25rem]">
+              <div className="custom-swiper-button-prev absolute left-4 top-[43%] text-xl text-buttonColor z-[2] cursor-pointer">
                 <i className="fa-solid fa-arrow-left" alt="Previous"></i>
               </div>
-              <div className="custom-swiper-button-next absolute right-3 top-2/4 text-xl text-buttonColor">
+              <div className="custom-swiper-button-next absolute right-4 top-[43%] text-xl text-buttonColor z-[2] cursor-pointer">
                 <i className="fa-solid fa-arrow-right" alt="Next"></i>
               </div>
               {appointmentTimesForSelectedDate.length > 0 ? (
                 renderSwiper(appointmentTimesForSelectedDate)
               ) : (
-                <div className="flex flex-wrap items-center justify-center w-96 h-52 appointmentBoxArea">
+                <div className="flex flex-wrap items-center justify-center w-96 h-52 appointmentBoxArea mr-auto ml-auto">
                   <p className="text-red-500">Uygun saatler bulunamadı.</p>
                 </div>
               )}
             </div>
           </div>
         </div>
-        <div className="rightArea flex-1 h-full flex items-center justify-center md:order-2 border-2 border-appoinmentBox rounded-2xl shadow-xl bg-white ">
+        <div className="max-[768px]:mt-[10px] rightArea flex-1 h-full flex items-center justify-center md:order-2 border-2 border-buttonColor rounded-2xl shadow-xl bg-white md:w-[25rem] sm:w-[25rem] md:h-[20rem]">
           <CalendarBox selectedDate={selectedDate} onDateChange={handleDateChange} />
         </div>
       </div>

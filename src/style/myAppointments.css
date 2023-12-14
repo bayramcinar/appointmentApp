@@ -1,39 +1,9 @@
-.myAppointments{
-    width: 56rem;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
-    height: 515px;
-}
-.myAppointmentBox{
-    width: 500px;
-}
-.swipperAppointments{
-    width: 56rem;
+.myAppointments .swiper{
     height: 24rem;
+    
 }
-.swipperAppointments .swiper{
-    height: 24rem;
-}
-.custom-swiper-button-prev,
-.custom-swiper-button-next{
-    z-index: 2;
-    cursor: pointer;
-}
-
 @media only screen and (max-width: 768px) {
-    .myAppointments{
-        width: 25rem;
-        height: auto;
-    }
-    .myAppointmentBox{
-        width:300px;
-    }
-    .swipperAppointments{
+    .myAppointments .swiper {
         width: 24rem;
-        height: 24rem;
-    }
-    .swiper{
-        height: 100%;
     }
   }

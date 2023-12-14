@@ -4,7 +4,7 @@ import "../style/navbar.css"
 
 function Navbar() {
   return (
-    <div className='sticky flex items-center justify-center top-0 bg-dayComponentBg'>
+    <div className='sticky flex items-center justify-center top-0 bg-dayComponentBg w-full'>
         <nav>
             <ul className='flex flex-row'>
                 <li className='text-mb text-buttonColor font-semibold text-center m-5 nav-item'>
