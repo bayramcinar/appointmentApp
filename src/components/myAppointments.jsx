@@ -7,6 +7,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
+import Swal from 'sweetalert2';
 
 function MyAppointments() {
   const [formData, setFormData] = useState([]);
@@ -35,6 +36,13 @@ function MyAppointments() {
       date: formattedDate,
       time: formattedTime
     };
+
+    Swal.fire({
+      title: 'Başarılı !',
+      text: 'Randevu başarılı bir şekilde silindi.',
+      icon: 'success',
+      confirmButtonText: 'Kapat'
+    })
 
     const updatedSelectedTimes = selectedTimes.map(appointment => {
       if (appointment.date === result.date && appointment.time === result.time) {

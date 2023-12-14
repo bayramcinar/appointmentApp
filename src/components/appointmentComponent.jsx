@@ -6,6 +6,7 @@ import ServiceComponent from './serviceComponent';
 import serviceImage from '../images/service.png';
 import FinishScreen from './finishScreen';
 import { useAppointmentContext } from "./appointmentContext";
+import Swal from 'sweetalert2';
 
 function AppointmentComponent() {
   const [step, setStep] = useState(1);      // en üstte gözüken stepleri tutan değişken
@@ -18,13 +19,23 @@ function AppointmentComponent() {
   const handleNext = () => {       // ileri butonu fonksiyonu (seçim yapmadan ileri gitmeye çalıştığımızda hata veriyor)
     if (step === 2) {
       if (!returnService) {
-        alert("Please select a service before proceeding to the next step.");
+        Swal.fire({
+          title: 'Hata !',
+          text: 'Lütfen bir servis seçin.',
+          icon: 'error',
+          confirmButtonText: 'Kapat'
+        })
         return;
       }
     }
     if (step === 1) {
       if (!returnDate) {
-        alert("Please select a Date before proceeding to the next step.");
+        Swal.fire({
+          title: 'Hata !',
+          text: 'Devam etmeden önce lütfen randevu saati seçiniz.',
+          icon: 'error',
+          confirmButtonText: 'Kapat'
+        })
         return;
       }
     }
@@ -127,10 +138,20 @@ function AppointmentComponent() {
   
         // Update the 'formData' in sessionStorage using the replacer function
         sessionStorage.setItem('formData', JSON.stringify(existingFormData, circularReplacer()));
-  
+        Swal.fire({
+          title: 'Başarılı',
+          text: 'Randevunuz başarılı bir şekilde oluşturuldu.',
+          icon: 'success',
+          confirmButtonText: 'Kapat'
+        })
         setShowFinishScreen(true);
       } else {
-        alert('Please fill out all required fields');
+        Swal.fire({
+          title: 'Hata !',
+          text: 'Lütfen tüm alanları doldurunuz.',
+          icon: 'error',
+          confirmButtonText: 'Kapat'
+        })
       }
     }
   };

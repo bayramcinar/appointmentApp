@@ -2,6 +2,7 @@ import React from 'react';
 import { useAppointmentContext } from "./appointmentContext";
 import { Field, Form, Formik } from 'formik';
 import "../style/setAppointmentTime.css"
+import Swal from 'sweetalert2';
 
 function SetAppointmentTime() {
   const { addSelectedTime } = useAppointmentContext();
@@ -12,7 +13,12 @@ function SetAppointmentTime() {
     console.log(values);
   
     if (!time || !chosenDate) {
-      alert('Please fill in all fields');
+      Swal.fire({
+        title: 'Hata !',
+        text: 'Lütfen tüm bilgileri doldurun.',
+        icon: 'error',
+        confirmButtonText: 'Kapat'
+      })
       return;
     }
 
@@ -29,7 +35,12 @@ function SetAppointmentTime() {
     });
   
     if (isDuplicate) {
-      alert('This appointment date and time already exist. Please choose a different date or time.');
+      Swal.fire({
+        title: 'Hata !',
+        text: 'Bu randevu saati zaten mevcut.',
+        icon: 'error',
+        confirmButtonText: 'Kapat'
+      })
       return;
     }
   
@@ -42,8 +53,13 @@ function SetAppointmentTime() {
     addSelectedTime(dateTimeObject);
 
     resetForm();
-  
-    alert('Appointment date and time are added');
+
+    Swal.fire({
+      title: 'Başarılı',
+      text: 'Randevu saati başarılı bir şekilde eklendi.',
+      icon: 'success',
+      confirmButtonText: 'Kapat'
+    })
   };
   
 
