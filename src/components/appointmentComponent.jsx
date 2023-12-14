@@ -80,93 +80,78 @@ function AppointmentComponent() {
     }
   ];
 
-
-  const handleFinish = () => {   // eğer 3. step de isek çağırılan fonksiyon showFinish screen değerini true yapıp finishScreen i gösteriyor ve form bilgilerini forOwn veya forSomeone şeklinde submitliyor
+  const handleFinish = (formDataa) => {
     if (step === 3) {
-      const currentFormData = isOwn === true ? formData1 : formData2;
   
-      if(handleFormSubmit(currentFormData) !== "invalid"){  // tüm form dolmadıysa invalid değeri dönüyor ve randevu tamamlanmıyor
-      const existingSelectedTimes = JSON.parse(sessionStorage.getItem('selectedTimes')) || [];
-      
+      // Check if any required field is empty except for "kendim" or "başkası"
+      const isFormValid = Object.keys(formDataa)
+        .every((key) => formDataa[key] !== "");
   
-      const selectedDateTime = returnDate.split(' ')[2]; // Extract the time part
-      const selectedDate = returnDate.split(' ')[0];
+      if (isFormValid) {
+        const existingSelectedTimes = JSON.parse(sessionStorage.getItem('selectedTimes')) || [];
 
-      const parts = selectedDate.split('.');
-      const formattedDate = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`).toISOString().split('T')[0];
-      
   
-      const timeIndex = existingSelectedTimes.findIndex(
-        (timeObj) => timeObj.time === selectedDateTime && timeObj.date === formattedDate
-      );
+        const selectedDateTime = returnDate.split(' ')[2];
+        const selectedDate = returnDate.split(' ')[0];
   
-      console.log('timeIndex:', timeIndex);
+        const parts = selectedDate.split('.');
+        const formattedDate = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`).toISOString().split('T')[0];
   
-      if (timeIndex !== -1) {                      //randevu alınan saatin active değerini false yapıyor ve ona göre sessionStorage deki verileri güncelliyor
-        existingSelectedTimes[timeIndex].active = false;
-        sessionStorage.setItem('selectedTimes', JSON.stringify(existingSelectedTimes));
-      }
+        const timeIndex = existingSelectedTimes.findIndex(
+          (timeObj) => timeObj.time === selectedDateTime && timeObj.date === formattedDate
+        );
+
   
-      let existingFormData = sessionStorage.getItem('formData');
+        if (timeIndex !== -1) {
+          existingSelectedTimes[timeIndex].active = false;
+          sessionStorage.setItem('selectedTimes', JSON.stringify(existingSelectedTimes));
+        }
   
-      if (!existingFormData) {
-        existingFormData = [];
+        let existingFormData = JSON.parse(sessionStorage.getItem('formData')) || [];
+  
+        const circularReplacer = () => {
+          const seen = new WeakSet();
+          return (_, value) => {
+            if (typeof value === 'object' && value !== null) {
+              if (seen.has(value)) {
+                return; 
+              }
+              seen.add(value);
+            }
+            return value;
+          };
+        };
+  
+  
+        existingFormData.push(formDataa);
+  
+        // Update the 'formData' in sessionStorage using the replacer function
+        sessionStorage.setItem('formData', JSON.stringify(existingFormData, circularReplacer()));
+  
+        setShowFinishScreen(true);
       } else {
-        existingFormData = JSON.parse(existingFormData);
-      }
-  
-      existingFormData.push(currentFormData);
-      sessionStorage.setItem('formData', JSON.stringify(existingFormData));
-  
-      setShowFinishScreen(true);
-      handleFormSubmit(currentFormData);
-      }else{
         alert('Please fill out all required fields');
       }
     }
   };
+  
+
 
   const handleOptionChange = (option) => {    // forOwn ve forSomeone ögeleri arasında değişimi sağlıyor
     setIsOwn(option);
   };
 
-
-  const [formData1, setFormData1] = useState(
-    { 
-      kimIçin :"",
-      time:"",
-      service:"",
-      notes: '' 
-    }
-  
-    ); // forOwn form datası
-  const [formData2, setFormData2] = useState({ // forSomeOne form datası
-    kimIçin :"",
-    time:"",
-    service:"",
-    firstName: '',
-    lastName: '',
-    dateOfBirth: '',
-    notes: '',
-    gender: '',
+  const [formData2, setFormData2] = useState({
+    kimIçin: "başkası",
+    time: "",
+    service: "",
+    firstName: "",
+    lastName: "",
+    dateOfBirth: "",
+    notes: "",
+    gender: "",
   });
-
-
-  const handleFormSubmit = (formData) => {
-    // Check if any required field is empty
-    const isFormValid = Object.values(formData).every((value) => value !== '');
-  
-    if (isFormValid) {
-      if (isOwn === true) {
-        setFormData1(formData);
-      } else {
-        setFormData2(formData);
-      }
-    } else {
-      return "invalid";
-    }
-  };
-  
+   
   
 
   return (
@@ -182,8 +167,7 @@ function AppointmentComponent() {
               <ContactForm
                 time={returnDate}
                 service={returnService}
-                onFormSubmit={handleFormSubmit}
-                formData={isOwn === true ? formData1 : formData2}
+                onFormSubmit={handleFinish}
                 onOptionSelect={handleOptionChange}
               />
             </>
@@ -215,7 +199,7 @@ function AppointmentComponent() {
             {step === 3 && (
               <>
                 <div className="nextStep flex items-center justify-center m-3 mb-5">
-                  <button type='submit' onClick={handleFinish} className="bg-buttonColor rounded-3xl flex items-center justify-center w-44 buttons">
+                  <button value="Submit" form='myform' type='submit' className="bg-buttonColor rounded-3xl flex items-center justify-center w-44 buttons">
                     <h4 className="text-text p-2 text-lg tracking-wider">Bitir<i className="ml-14 fa-solid fa-check"></i></h4>
                   </button>
                 </div>

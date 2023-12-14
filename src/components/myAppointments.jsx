@@ -49,7 +49,7 @@ function MyAppointments() {
     const updatedFormData = formData.filter(appointment => appointment !== selectedAppointment);
     setFormData(updatedFormData);
     sessionStorage.setItem('formData', JSON.stringify(updatedFormData));
-  };
+  };  
   
 
   useEffect(() => {    // kaydedilen randevuları sessionStorage dan alan hooks
