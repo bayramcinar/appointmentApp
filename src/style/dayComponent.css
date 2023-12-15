@@ -7,7 +7,7 @@
 @media only screen and (max-width: 768px) {
     .appointmentTimes .swiper{
         height: auto;
-        width: 26rem;
+        width: 24rem;
         margin-bottom: 10px;
     }
     .swiper-wrapper{

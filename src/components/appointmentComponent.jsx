@@ -53,7 +53,7 @@ function AppointmentComponent() {
     const storedTimes = sessionStorage.getItem('selectedTimes');
     const parsedTimes = storedTimes ? JSON.parse(storedTimes) : [];
     setSelectedTimes(parsedTimes);
-  }, [selectedTimes]); 
+  }, []); 
 
 
   const obje = [   //örnek services datası

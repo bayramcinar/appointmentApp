@@ -110,7 +110,10 @@ function TimeAndDate({ setReturnDate, times,live }) {
     return (
       <Swiper
         direction={isMobile ? 'horizontal' : 'vertical'}
-        pagination={{
+        pagination={isMobile ? {
+          clickable: true,
+          dynamicBullets: true,
+        } : {
           clickable: true,
           dynamicBullets: true,
         }}
@@ -118,7 +121,7 @@ function TimeAndDate({ setReturnDate, times,live }) {
           prevEl: '.custom-swiper-button-prev', // Class or element for the back button
           nextEl: '.custom-swiper-button-next', // Class or element for the next button
         } : ""}
-        modules={isMobile ? [Pagination] : [Pagination,Navigation]}
+        modules={isMobile ? [Pagination,Navigation] : [Pagination]}
         className="mySwiper"
       >
         {swiperSlides}
@@ -150,8 +153,8 @@ function TimeAndDate({ setReturnDate, times,live }) {
           {live &&
             <div className='hemenGorus w-full flex items-center justify-center'> <Link to={"/"} className='py-1 px-5 rounded-3xl bg-callNowButtonColor text-white text-sm text-center'>Hemen Görüş</Link></div>
           }
-          <div className="leftArea flex-1 mt-3 md:mr-[0px] lg:w-[10rem] lg:h-[10rem] max-[768px]:w-[26rem] max-[768px]:h-auto">
-            <div className="appointmentTimes relative lg:w-[10rem] lg:h-[12rem] flex flex-col items-center justify-center max-[768px]:w-[26rem] max-[768px]:h-auto">
+          <div className="leftArea flex-1 mt-3 md:mr-[0px] lg:w-[10rem] lg:h-[10rem] max-[768px]:w-[24rem] max-[768px]:h-auto">
+            <div className="appointmentTimes relative lg:w-[10rem] lg:h-[12rem] flex flex-col items-center justify-center max-[768px]:w-[24rem] max-[768px]:h-auto">
               {isMobile && appointmentTimesForSelectedDate.length > 9 &&
                 <>
                   <div className="custom-swiper-button-prev absolute left-2 top-[43%] text-xl text-buttonColor z-[2] cursor-pointer">
