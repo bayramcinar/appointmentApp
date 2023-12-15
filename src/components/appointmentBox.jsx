@@ -22,7 +22,7 @@ function AppointmentBox({ time, date, selectedTime, onTimeClick, active }) {
   return (
     <div>
       <div
-        className={`timeBox w-[145px] max-[768px]:w-[110px] ${
+        className={`timeBox w-[145px] max-[768px]:w-[100px] ${
           isSelected ? 'bg-red-600' : 'bg-appoinmentBox'
         } ${active ? 'bg-appoinmentBox' : 'bg-stepBorder1'} rounded-3xl mb-[5px] p-[2px] max-[768px]:m-[5px] cursor-pointer`}
         onClick={handleTimeClick}
