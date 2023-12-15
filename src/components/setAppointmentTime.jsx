@@ -66,7 +66,7 @@ function SetAppointmentTime() {
   const today = new Date().toISOString().split('T')[0];
 
   return (
-    <div className='ml-auto mr-auto bg-dayComponentBg mt-10 setAppointmentTime flex items-center justify-center flex-col lg:w-[56rem] md:w-[24rem] lg:h-[515px] sm:h-auto'>
+    <div className='ml-auto mr-auto bg-dayComponentBg mt-10 setAppointmentTime flex items-center justify-center flex-col lg:w-[35rem] md:w-[24rem] lg:h-[515px] sm:h-auto'>
       <h2 className='text-buttonColor text-2xl m-3 font-semibold'>Randevu Zamanı Belirle</h2>
       <Formik
       initialValues={{ chosenDate: '', time: '' }}

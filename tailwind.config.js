@@ -10,6 +10,7 @@ module.exports = {
         buttonColor:"#112469",
         dayComponentBg:"#f1f2f6",
         backButtonColor:"#c8d0dd",
+        callNowButtonColor:"#1dbab5",
       }
     },
   },

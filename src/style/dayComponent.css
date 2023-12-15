@@ -1,3 +1,16 @@
 .react-calendar{
     border: none;
 }
+.appointmentTimes .swiper{
+    height: 12rem;
+}
+@media only screen and (max-width: 768px) {
+    .appointmentTimes .swiper{
+        height: auto;
+        width: 26rem;
+        margin-bottom: 10px;
+    }
+    .swiper-wrapper{
+        margin-bottom: 20px;
+    }
+  }

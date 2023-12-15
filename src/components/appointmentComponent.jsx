@@ -88,7 +88,19 @@ function AppointmentComponent() {
     {
       title:"Kilo Verme",
       image:serviceImage
-    }
+    },
+    {
+      title:"Fitness",
+      image:serviceImage
+    },
+    {
+      title:"Futbol Antremanı",
+      image:serviceImage
+    },
+    {
+      title:"Basketbol Antremanı",
+      image:serviceImage
+    },
   ];
 
   const handleFinish = (formDataa) => {
@@ -179,7 +191,7 @@ function AppointmentComponent() {
     <>
       {showFinishScreen && <FinishScreen time={returnDate} service={returnService} name={formData2.firstName} surname={formData2.lastName} />}
       {!showFinishScreen && (
-        <div className='bg-dayComponentBg generalDiv lg:w-[50rem] ml-auto mr-auto mt-[50px] sm:w-[26rem] md:w-[26rem] md:h-auto sm:h-auto'>
+        <div className='bg-dayComponentBg generalDiv lg:w-[35rem] ml-auto mr-auto mt-[50px] sm:w-[26rem] md:w-[26rem] md:h-auto sm:h-auto'>
           <Steps active={step} />
           {step === 2 && <ServiceComponent services={obje} setReturnService={setReturnService} />}
           {step === 1 && <TimeAndDate setReturnDate={setReturnDate} times={selectedTimes} live={true}/>}

@@ -1,10 +1,10 @@
 
-.swiper{
+.serviceBoxes .swiper{
     height: 16rem ;
 }
 
 @media only screen and (max-width: 768px) {
-    .swiper{
+    .serviceBoxes .swiper{
         height: 100%;
     }
   }
