@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Steps from './steps';
 import TimeAndDate from './timeAndDate';
 import ContactForm from './contactInfo';
 import ServiceComponent from './serviceComponent';
 import serviceImage from '../images/service.png';
 import FinishScreen from './finishScreen';
-import { useAppointmentContext } from "./appointmentContext";
 import Swal from 'sweetalert2';
 
 function AppointmentComponent() {
@@ -48,8 +47,13 @@ function AppointmentComponent() {
     }
   };
 
+  const [selectedTimes, setSelectedTimes] = useState([]); //saatleri atadığımız değişken
 
-  const { selectedTimes } = useAppointmentContext();   //useContext den saatleri alıyoruz
+  useEffect(() => {                             //DATABASE DEN OKUCAAK SAATLER
+    const storedTimes = sessionStorage.getItem('selectedTimes');
+    const parsedTimes = storedTimes ? JSON.parse(storedTimes) : [];
+    setSelectedTimes(parsedTimes);
+  }, [selectedTimes]); 
 
 
   const obje = [   //örnek services datası

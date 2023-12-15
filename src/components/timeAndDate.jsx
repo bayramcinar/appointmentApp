@@ -114,7 +114,11 @@ function TimeAndDate({ setReturnDate, times,live }) {
           clickable: true,
           dynamicBullets: true,
         }}
-        modules={[Pagination]}
+        navigation={isMobile ? {
+          prevEl: '.custom-swiper-button-prev', // Class or element for the back button
+          nextEl: '.custom-swiper-button-next', // Class or element for the next button
+        } : ""}
+        modules={isMobile ? [Pagination] : [Pagination,Navigation]}
         className="mySwiper"
       >
         {swiperSlides}
@@ -148,12 +152,16 @@ function TimeAndDate({ setReturnDate, times,live }) {
           }
           <div className="leftArea flex-1 mt-3 md:mr-[0px] lg:w-[10rem] lg:h-[10rem] max-[768px]:w-[26rem] max-[768px]:h-auto">
             <div className="appointmentTimes relative lg:w-[10rem] lg:h-[12rem] flex flex-col items-center justify-center max-[768px]:w-[26rem] max-[768px]:h-auto">
-              {/* <div className="custom-swiper-button-prev absolute left-2 top-[43%] text-xl text-buttonColor z-[2] cursor-pointer">
-                <i className="fa-solid fa-arrow-left" alt="Previous"></i>
-              </div>
-              <div className="custom-swiper-button-next absolute right-2 top-[43%] text-xl text-buttonColor z-[2] cursor-pointer">
-                <i className="fa-solid fa-arrow-right" alt="Next"></i>
-              </div> */}
+              {isMobile && appointmentTimesForSelectedDate.length > 9 &&
+                <>
+                  <div className="custom-swiper-button-prev absolute left-2 top-[43%] text-xl text-buttonColor z-[2] cursor-pointer">
+                    <i className="fa-solid fa-arrow-left" alt="Previous"></i>
+                  </div>
+                  <div className="custom-swiper-button-next absolute right-2 top-[43%] text-xl text-buttonColor z-[2] cursor-pointer">
+                    <i className="fa-solid fa-arrow-right" alt="Next"></i>
+                  </div>
+                </>
+              }
               {appointmentTimesForSelectedDate.length > 0 ? (
                 renderSwiper(appointmentTimesForSelectedDate)
               ) : (

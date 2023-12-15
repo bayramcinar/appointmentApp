@@ -1,4 +1,5 @@
 import React from 'react';
+import Swal from 'sweetalert2';
 
 function AppointmentBox({ time, date, selectedTime, onTimeClick, active }) {
   const handleTimeClick = () => {                //seçtiğimiz saati geri döndürüyor ve background renk ayarlamarını yapıyor
@@ -7,7 +8,12 @@ function AppointmentBox({ time, date, selectedTime, onTimeClick, active }) {
         onTimeClick(time, date);
       }
     } else {
-      alert("This time is selected from someone");
+      Swal.fire({
+        title: 'Hata !',
+        text: 'Bu saat başkası tarafından alındı.',
+        icon: 'error',
+        confirmButtonText: 'Kapat'
+      })
     }
   };                                                              
 

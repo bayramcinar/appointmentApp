@@ -3,15 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { AppointmentProvider } from "./components/appointmentContext";
 import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
-        <AppointmentProvider>
-            <App />
-        </AppointmentProvider>
+        <App />
     </BrowserRouter>
 );
 
