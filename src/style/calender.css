@@ -1,4 +1,6 @@
-
+.react-calendar{
+  width: auto;
+}
 .react-calendar__tile--now {
     background-color: #1bce94;
     color: #fff;

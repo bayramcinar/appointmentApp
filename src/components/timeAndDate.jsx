@@ -157,10 +157,10 @@ function TimeAndDate({ setReturnDate, times,live }) {
             <div className="appointmentTimes relative lg:w-[10rem] lg:h-[12rem] flex flex-col items-center justify-center max-[768px]:w-[24rem] max-[768px]:h-auto">
               {isMobile && appointmentTimesForSelectedDate.length > 9 &&
                 <>
-                  <div className="custom-swiper-button-prev absolute left-3 top-[42%] text-xl text-buttonColor z-[2] cursor-pointer">
+                  <div className="custom-swiper-button-prev absolute left-3 top-[41%] text-xl text-buttonColor z-[2] cursor-pointer">
                     <i className="fa-solid fa-arrow-left" alt="Previous"></i>
                   </div>
-                  <div className="custom-swiper-button-next absolute right-3 top-[42%] text-xl text-buttonColor z-[2] cursor-pointer">
+                  <div className="custom-swiper-button-next absolute right-3 top-[41%] text-xl text-buttonColor z-[2] cursor-pointer">
                     <i className="fa-solid fa-arrow-right" alt="Next"></i>
                   </div>
                 </>
