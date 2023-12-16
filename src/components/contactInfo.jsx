@@ -34,7 +34,7 @@ function ContactForm({ onFormSubmit, onOptionSelect, service, time, languages })
           <div className='forOwn'>
             <Formik
               initialValues={{
-                kimIçin: 'kendim',
+                kimIçin: 'Kendim',
                 time: time,
                 service: service,
                 notes: '',
@@ -78,7 +78,7 @@ function ContactForm({ onFormSubmit, onOptionSelect, service, time, languages })
           <div className='forSomeOne'>
             <Formik
               initialValues={{
-                kimIçin: 'başkası',
+                kimIçin: 'Başkası',
                 firstName: '',
                 lastName: '',
                 dateOfBirth: '',

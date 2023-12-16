@@ -16,7 +16,7 @@ function AppointmentView({img,serviceProviderName,serviceProviderJob,service,dat
     <>
     <div className={modalClass} onClick={handleOverlayClick}>
       <div className="absolute w-full h-full flex items-center justify-center">
-        <div className="modalDiv max-[768px]:w-[400px] relative w-[430px] p-5 bg-white rounded-lg animate__animated animate__fadeInDown">
+        <div className="relative w-[430px] max-[768px]:w-[375px] p-5 bg-white rounded-lg animate__animated animate__fadeInDown">
           <div className="flex items-center justify-center relative">
             <div className='titleModal m-3'>
                 <h1 className='text-center text-xl mr-auto ml-auto w-full mb-0'>Online Randevu Özeti</h1> 
@@ -50,68 +50,68 @@ function AppointmentView({img,serviceProviderName,serviceProviderJob,service,dat
                     <div className='dateArea mr-5'>
                         <div className='textLogoArea flex'>
                             <i class="fa-solid fa-calendar text-callNowButtonColor flex items-center justify-center"></i>
-                            <h5 className='text-sm font-semibold ml-[8px] mt-auto mb-auto'>Tarih</h5>
+                            <h5 className='text-sm font-semibold ml-[8px] mt-auto mb-auto text-center'>Tarih</h5>
                         </div>
                         <div className='appointmentDate mt-[5px]'>
-                            <h2 className='text-xs'>{date}</h2>
+                            <h2 className='text-xs text-center'>{date}</h2>
                         </div>
                     </div>
                     <div className='timeArea mr-5'>
                         <div className='textLogoArea flex'>
                             <i class="fa-solid fa-clock text-callNowButtonColor flex items-center justify-center"></i>
-                            <h5 className='text-sm font-semibold ml-[8px] mt-auto mb-auto'>Saat</h5>
+                            <h5 className='text-sm font-semibold ml-[8px] mt-auto mb-auto text-center'>Saat</h5>
                         </div>
                         <div className='appointmentTime mt-[5px]'>
-                            <h2 className='text-xs'>{time}</h2>
+                            <h2 className='text-xs text-center'>{time}</h2>
                         </div>
                     </div>
                     <div className='languageArea mr-5'>
                         <div className='textLogoArea flex'>
                             <i class="fa-solid fa-earth-americas text-callNowButtonColor flex items-center justify-center"></i>
-                            <h5 className='text-sm font-semibold ml-[8px] mt-auto mb-auto'>Dil</h5>
+                            <h5 className='text-sm font-semibold ml-[8px] mt-auto mb-auto text-center'>Dil</h5>
                         </div>
                         <div className='appointmentLanguage mt-[5px]'>
-                            <h2 className='text-xs'>{language}</h2>
+                            <h2 className='text-xs text-center'>{language}</h2>
                         </div>
                     </div>
                     <div className='moneyArea mr-5'>
                         <div className='textLogoArea flex'>
                             <i class="fa-regular fa-money-bill-1 text-callNowButtonColor flex items-center justify-center"></i>
-                            <h5 className='text-sm font-semibold ml-[8px] mt-auto mb-auto'>Ücret</h5>
+                            <h5 className='text-sm font-semibold ml-[8px] mt-auto mb-auto text-center'>Ücret</h5>
                         </div>
                         <div className='appointmentLanguage mt-[5px]'>
-                            <h2 className='text-xs'>{price} TL</h2>
+                            <h2 className='text-xs text-center'>{price} TL</h2>
                         </div>
                     </div>
                 </div>
                 <div className='appointmentNotes'>
-                {forWho === "başkası" &&
-                    <div className='forSomeone flex mt-2'>
+                {forWho === "Başkası" &&
+                    <div className='forSomeone flex mt-3'>
                                     <div className='generalNameAreaSomeOne mr-5'>
                                         <div className='nameAreaSomeone flex'>
                                             <i class="fa-solid fa-user text-callNowButtonColor flex items-center justify-center"></i>
-                                            <h2 className='text-sm font-bold ml-[8px]'>İsim Soyisim</h2>
+                                            <h2 className='text-sm font-bold ml-[8px] text-center' >İsim Soyisim</h2>
                                         </div>
                                         <div>
-                                            <h2 className='text-sm'>{firstName} {lastName}</h2>
+                                            <h2 className='text-sm text-center'>{firstName} {lastName}</h2>
                                         </div>
                                     </div>
                                     <div className='generalGenderAreaSomeOne mr-5'>
                                         <div className='genderAreaSomeone flex'>
                                             <i class="fa-solid fa-venus-mars text-callNowButtonColor flex items-center justify-center"></i>
-                                            <h2 className='text-sm font-bold ml-[8px]'>Cinsiyet</h2>
+                                            <h2 className='text-sm font-bold ml-[8px] text-center'>Cinsiyet</h2>
                                         </div>
                                         <div>
-                                            <h2 className='text-sm'>{gender}</h2>
+                                            <h2 className='text-sm text-center'>{gender}</h2>
                                         </div>
                                     </div>
                                     <div className='generalGenderAreaSomeOne mr-5'>
                                         <div className='birthdayAreaSomeone flex'>
                                             <i class="fa-solid fa-cake-candles text-callNowButtonColor flex items-center justify-center"></i>
-                                            <h2 className='text-base font-bold ml-[8px]'>Doğum Tarihi</h2>
+                                            <h2 className='text-base font-bold ml-[8px] text-center'>Doğum Tarihi</h2>
                                         </div>
                                         <div>
-                                            <h2 className='text-sm'>{birthday}</h2>
+                                            <h2 className='text-sm text-center'>{birthday}</h2>
                                         </div>
                                     </div>
                     </div>

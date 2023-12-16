@@ -285,7 +285,7 @@ function AppointmentComponent() {
 
   return (
     <>
-      {showFinishScreen && <AppointmentView isOpen={isModalOpen} confirmButton={openAlert} onClose={closeModal} time={time} service={returnService} date={date} forWho={forWho} language={language} notes={notes} gender={gender} birthday={birthDay} firstName={firstName} lastName={lastName} price={"100"} serviceProviderName={"Bayram Çınar"} serviceProviderJob={"Öğrenci"} />}
+      {showFinishScreen && <AppointmentView isOpen={isModalOpen} confirmButton={openAlert} onClose={closeModal} time={time} service={returnService} date={date} forWho={forWho} language={language} notes={notes} gender={gender} birthday={birthDay} firstName={firstName} lastName={lastName} price={"100"} serviceProviderName={"Bayram Çınar"} serviceProviderJob={"Uzman, Klinik Psikoloji"} />}
       {!showFinishScreen && (
         <div className='bg-dayComponentBg generalDiv lg:w-[35rem] ml-auto mr-auto mt-[50px] sm:w-[26rem] md:w-[26rem] md:h-auto sm:h-auto'>
           <Steps active={step} />
