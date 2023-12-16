@@ -47,13 +47,46 @@ function AppointmentComponent() {
     }
   };
 
-  const [selectedTimes, setSelectedTimes] = useState([]); //saatleri atadığımız değişken
+  const {selectedTimes} = [  
+    {time: "10:02", date: "2023-12-20", active: true},
+    {time: "10:03", date: "2023-12-20", active: true},
+    {time: "10:02", date: "2023-12-21", active: true},
+    {time: "10:03", date: "2023-12-21", active: true},
+    {time: "10:04", date: "2023-12-21", active: true},
+    {time: "10:05", date: "2023-12-21", active: true},
+    {time: "10:02", date: "2023-12-22", active: true},
+    {time: "10:03", date: "2023-12-22", active: true},
+    {time: "10:04", date: "2023-12-22", active: true},
+    {time: "10:05", date: "2023-12-22", active: true},
+    {time: "10:06", date: "2023-12-22", active: true},
+    {time: "10:07", date: "2023-12-22", active: true},
+    {time: "10:02", date: "2023-12-23", active: true},
+    {time: "10:03", date: "2023-12-23", active: true},
+    {time: "10:04", date: "2023-12-23", active: true},
+    {time: "10:05", date: "2023-12-23", active: true},
+    {time: "10:06", date: "2023-12-23", active: true},
+    {time: "10:07", date: "2023-12-23", active: true},
+    {time: "10:08", date: "2023-12-23", active: true},
+    {time: "10:09", date: "2023-12-23", active: true},
+    {time: "10:02", date: "2023-12-24", active: true},
+    {time: "10:03", date: "2023-12-24", active: true},
+    {time: "10:04", date: "2023-12-24", active: true},
+    {time: "10:05", date: "2023-12-24", active: true},
+    {time: "10:06", date: "2023-12-24", active: true},
+    {time: "10:07", date: "2023-12-24", active: true},
+    {time: "10:08", date: "2023-12-24", active: true},
+    {time: "10:09", date: "2023-12-24", active: true},
+    {time: "10:12", date: "2023-12-24", active: true},
+    {time: "10:22", date: "2023-12-24", active: true},
+  ]
 
-  useEffect(() => {                             //DATABASE DEN OKUCAAK SAATLER
-    const storedTimes = sessionStorage.getItem('selectedTimes');
-    const parsedTimes = storedTimes ? JSON.parse(storedTimes) : [];
-    setSelectedTimes(parsedTimes);
-  }, []); 
+  // const [selectedTimes, setSelectedTimes] = useState([]); //saatleri atadığımız değişken
+
+  // useEffect(() => {                             //DATABASE DEN OKUCAAK SAATLER
+  //   const storedTimes = sessionStorage.getItem('selectedTimes');
+  //   const parsedTimes = storedTimes ? JSON.parse(storedTimes) : [];
+  //   setSelectedTimes(parsedTimes);
+  // }, []); 
 
 
   const obje = [   //örnek services datası
