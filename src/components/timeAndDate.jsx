@@ -8,7 +8,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination,Mousewheel } from 'swiper/modules';
 
 function TimeAndDate({ setReturnDate, times,live }) {
   const [selectedDate, setSelectedDate] = useState(new Date());   // seçtiğimiz date i tutan değişken
@@ -58,6 +58,8 @@ function TimeAndDate({ setReturnDate, times,live }) {
     setReturnDate(formattedReturnDate);
     setSelectedTime(clickedTime);
   };
+
+
 
   const renderSwiper = (times) => {
     const swiperSlides = [];
@@ -109,6 +111,7 @@ function TimeAndDate({ setReturnDate, times,live }) {
   
     return (
       <Swiper
+        mousewheel={!isMobile ? true : false}
         direction={isMobile ? 'horizontal' : 'vertical'}
         pagination={isMobile ? {
           clickable: true,
@@ -118,15 +121,16 @@ function TimeAndDate({ setReturnDate, times,live }) {
           dynamicBullets: true,
         }}
         navigation={isMobile ? {
-          prevEl: '.custom-swiper-button-prev', // Class or element for the back button
-          nextEl: '.custom-swiper-button-next', // Class or element for the next button
+          prevEl: '.custom-swiper-button-prev',
+          nextEl: '.custom-swiper-button-next',
         } : ""}
-        modules={isMobile ? [Pagination,Navigation] : [Pagination]}
+        modules={isMobile ? [Pagination, Navigation] : [Pagination,Mousewheel]}
         className="mySwiper"
       >
         {swiperSlides}
       </Swiper>
     );
+    
   };
   
   
@@ -145,9 +149,9 @@ function TimeAndDate({ setReturnDate, times,live }) {
       </div>
       <div className="bg-dayComponentBg dayComponent flex flex-col md:flex-row  m-3 lg:w-[34rem] lg:h-[20rem] md:w-[25rem] sm:w-[25rem] md:h-[40rem] sm:h-[40rem]">
         <div className='flex flex-col items-center justify-between lg:order-1  max-[768px]:order-2 lg:w-[10rem] border-2 border-buttonColor rounded-2xl shadow-xl lg:mr-3 bg-white rightMobile md:w-[25rem] max-[768px]:h-auto'>
-          <div className="choosenDate mb-2">
+          <div className="choosenDate mb-2 h-[72px]">
             <div className="dateText m-2">
-              <h2 className="text-center text-buttonColor text-lg font-semibold">{currentDateDisplay}</h2>
+              <h2 className="text-center text-buttonColor text-lg font-semibold  w-[120px]">{currentDateDisplay}</h2>
             </div>
           </div>
           {live &&
