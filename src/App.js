@@ -7,6 +7,8 @@ import SetAppointmentTime from './components/setAppointmentTime';
 import { Route, Routes } from "react-router-dom";
 import MyAppointments from './components/myAppointments';
 
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {  
   return (
       <>

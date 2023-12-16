@@ -4,16 +4,37 @@ import TimeAndDate from './timeAndDate';
 import ContactForm from './contactInfo';
 import ServiceComponent from './serviceComponent';
 import serviceImage from '../images/service.png';
+import turkish from '../images/turkish.png';
+import english from '../images/english.png';
 import FinishScreen from './finishScreen';
 import Swal from 'sweetalert2';
+import AppointmentView from './appointmentView';
 
 function AppointmentComponent() {
   const [step, setStep] = useState(1);      // en üstte gözüken stepleri tutan değişken
   const [returnDate, setReturnDate] = useState("");       // seçtiğimiz saat ve tarihi tutan değişken
   const [returnService, setReturnService] = useState("");   // seçtiğimiz service i tutan değişken
   const [showFinishScreen, setShowFinishScreen] = useState(false);   // finishScreen i göstereceğimiz değişken
-
+  const [forWho,setForWho] = useState("");
+  const [notes,setNotes] = useState("");
+  const [language,setLanguage] = useState("");
+  const [firstName,setFirstName] = useState("");
+  const [lastName,setLastName] = useState("");
+  const [gender,setGender] = useState("");
+  const [birthDay,setBirthday] = useState("");
   const [isOwn, setIsOwn] = useState(true);   // kendim için ve başkası için değişkenlerini tutan değişken (true false yapısı)
+
+     
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
 
   const handleNext = () => {       // ileri butonu fonksiyonu (seçim yapmadan ileri gitmeye çalıştığımızda hata veriyor)
     if (step === 2) {
@@ -141,6 +162,14 @@ function AppointmentComponent() {
   ];
 
   const handleFinish = (formDataa) => {
+    console.log(formDataa)
+    setForWho(formDataa.kimIçin)
+    setNotes(formDataa.notes)
+    setLanguage(formDataa.language)
+    setGender(formDataa.gender)
+    setBirthday(formDataa.dateOfBirth)
+    setFirstName(formDataa.firstName)
+    setLastName(formDataa.lastName)
     if (step === 3) {
   
       // Check if any required field is empty except for "kendim" or "başkası"
@@ -187,13 +216,8 @@ function AppointmentComponent() {
   
         // Update the 'formData' in sessionStorage using the replacer function
         sessionStorage.setItem('formData', JSON.stringify(existingFormData, circularReplacer()));
-        Swal.fire({
-          title: 'Başarılı',
-          text: 'Randevunuz başarılı bir şekilde oluşturuldu.',
-          icon: 'success',
-          confirmButtonText: 'Kapat'
-        })
         setShowFinishScreen(true);
+        openModal();
       } else {
         Swal.fire({
           title: 'Hata !',
@@ -205,7 +229,20 @@ function AppointmentComponent() {
     }
   };
   
-
+  const openAlert = () => {
+    Swal.fire({
+      title: 'Başarılı',
+      html: '<h2 class="text-stepBorder1 text-center text-base font-semibold p-4">' +
+        'Sizinle buluşmayı büyük bir heyecan ile bekliyoruz.' +
+        '<a class="text-buttonColor text-lg font-semibold" href="/myAppointments"> Randevularım </a>' +
+        'bölümünden randevunuzun detaylarını inceleyebilir ve yönetebilirsiniz.' +
+        '</h2>',
+      icon: 'success',
+      confirmButtonText: 'Kapat'
+    });
+    closeModal();
+  };
+  
 
   const handleOptionChange = (option) => {    // forOwn ve forSomeone ögeleri arasında değişimi sağlıyor
     setIsOwn(option);
@@ -221,12 +258,34 @@ function AppointmentComponent() {
     notes: "",
     gender: "",
   });
-   
+
+  const parseDateTime = (returnDate) => {
+    const dateTimeParts = returnDate.split(' ');
   
+    if (dateTimeParts.length === 3) {
+      const [day, month, year] = dateTimeParts[0].split('.');
+      const dateFormatted = `${day}.${month}.${year} ${dateTimeParts[1]}`;
+  
+      return {
+        date: dateFormatted,
+        time: dateTimeParts[2]
+      };
+    }
+  
+    // Varsayılan olarak returnDate'i direkt olarak date prop'una ekleyebilirsiniz
+    return {
+      date: returnDate,
+      time: '',
+    };
+  };
+  
+  // Kullanım
+  const returnDateFinal = returnDate;
+  const { date, time } = parseDateTime(returnDateFinal);
 
   return (
     <>
-      {showFinishScreen && <FinishScreen time={returnDate} service={returnService} name={formData2.firstName} surname={formData2.lastName} />}
+      {showFinishScreen && <AppointmentView isOpen={isModalOpen} confirmButton={openAlert} onClose={closeModal} time={time} service={returnService} date={date} forWho={forWho} language={language} notes={notes} gender={gender} birthday={birthDay} firstName={firstName} lastName={lastName} price={"100"} serviceProviderName={"Bayram Çınar"} serviceProviderJob={"Öğrenci"} />}
       {!showFinishScreen && (
         <div className='bg-dayComponentBg generalDiv lg:w-[35rem] ml-auto mr-auto mt-[50px] sm:w-[26rem] md:w-[26rem] md:h-auto sm:h-auto'>
           <Steps active={step} />
@@ -239,6 +298,16 @@ function AppointmentComponent() {
                 service={returnService}
                 onFormSubmit={handleFinish}
                 onOptionSelect={handleOptionChange}
+                languages={[
+                  {
+                    language:"English",
+                    flagImg:english
+                  },
+                  {
+                    language:"Turkish",
+                    flagImg:turkish
+                  }
+                ]}
               />
             </>
           )}
