@@ -6,7 +6,7 @@
     transform: translateY(-50%);
     color: #b1babf;
     font-size: 1rem;
-    background-color: white;
+    background-color: none;
   }
 
   .birthDay input[type="date"] {
