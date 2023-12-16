@@ -44,7 +44,7 @@ function AppointmentView({img,serviceProviderName,serviceProviderJob,service,dat
                         <h2 className='text-sm font-semibold'>({service})</h2>
                     </div>
                     <div className='forWho flex'>
-                        <i class="fa-solid fa-circle text-[15px] text-callNowButtonColor"></i>
+                        <i class="fa-solid fa-circle mt-[4px] text-[15px] text-callNowButtonColor"></i>
                         <h2 className='text-[15px] font-bold ml-2'>{forWho} İçin</h2>
                     </div>
                 </div>
