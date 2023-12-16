@@ -31,7 +31,7 @@ function AppointmentView({img,serviceProviderName,serviceProviderJob,service,dat
 
             <div className='serviceProviderArea w-auto flex m-3'>
                 <div className='profileImg w-1/4 bg-cover h-[100px]'>
-                    <img src={serviceImage} className='p-[5px] rounded-2xl w-full object-cover h-full'/>
+                    <img src={serviceImage} alt='' className='p-[5px] rounded-2xl w-full object-cover h-full'/>
                 </div>
                 <div className='detailInfos w-3/4 ml-[8px] flex flex-col justify-center'>
                     <div className='nameArea'>

@@ -67,7 +67,7 @@ function MyAppointments() {
       setFormData(parsedFormData);
     }
   }, []);
-
+ 
   const renderSwiper = (appointments) => {  //en fazla alt alta 3 tane randevu görüntülememizi sağlayan kod
     const swiperSlides = [];
     for (let i = 0; i < appointments.length; i += 3) {
