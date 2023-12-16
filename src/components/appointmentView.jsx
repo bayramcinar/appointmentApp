@@ -43,6 +43,10 @@ function AppointmentView({img,serviceProviderName,serviceProviderJob,service,dat
                     <div className='serviceType'>
                         <h2 className='text-sm font-semibold'>({service})</h2>
                     </div>
+                    <div className='forWho flex'>
+                        <i class="fa-solid fa-circle text-base text-callNowButtonColor"></i>
+                        <h2 className='text-base font-bold ml-2'>{forWho} İçin</h2>
+                    </div>
                 </div>
             </div>
             <div className='m-3'>
@@ -83,10 +87,6 @@ function AppointmentView({img,serviceProviderName,serviceProviderJob,service,dat
                             <h2 className='text-xs text-center'>{price} TL / DK</h2>
                         </div>
                     </div>
-                </div>
-                <div className='forWho flex mt-2'>
-                    <i class="fa-solid fa-circle text-base text-callNowButtonColor"></i>
-                    <h2 className='text-base font-bold ml-2'>{forWho} İçin</h2>
                 </div>
                 <div className='appointmentNotes'>
                 {forWho === "Başkası" &&
