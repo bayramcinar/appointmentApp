@@ -145,22 +145,7 @@ function AppointmentComponent() {
     // Check if any required field is empty except for "kendim" or "başkası"
     const isFormValid = Object.keys(formDataa).every((key) => formDataa[key] !== "");
 
-    if (isFormValid) {
-      const existingSelectedTimes = [...selectedTimes]; // Directly use the provided selectedTimes
-
-      const selectedDateTime = returnDate.split(' ')[2];
-      const selectedDate = returnDate.split(' ')[0];
-
-      const parts = selectedDate.split('.');
-      const formattedDate = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`).toISOString().split('T')[0];
-
-      const timeIndex = existingSelectedTimes.findIndex(
-        (timeObj) => timeObj.time === selectedDateTime && timeObj.date === formattedDate
-      );
-
-      if (timeIndex !== -1) {
-        existingSelectedTimes[timeIndex].active = false;
-      }
+  
 
       let existingFormData = JSON.parse(sessionStorage.getItem('formData')) || [];
 
