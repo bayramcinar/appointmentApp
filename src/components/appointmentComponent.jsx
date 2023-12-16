@@ -237,7 +237,7 @@ function AppointmentComponent() {
               <ContactForm
                 time={returnDate}
                 service={returnService}
-                onFormSubmit={handleFinish}
+                
                 onOptionSelect={handleOptionChange}
               />
             </>
