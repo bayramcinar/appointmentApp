@@ -112,7 +112,7 @@ function AppointmentView({img,serviceProviderName,serviceProviderJob,service,dat
                                     <div className='generalGenderAreaSomeOne mr-5'>
                                         <div className='birthdayAreaSomeone flex'>
                                             <i class="fa-solid fa-cake-candles text-callNowButtonColor flex items-center justify-center"></i>
-                                            <h2 className='text-base font-bold ml-[8px] text-center'>Doğum Tarihi</h2>
+                                            <h2 className='text-sm font-bold ml-[8px] text-center'>Doğum Tarihi</h2>
                                         </div>
                                         <div>
                                             <h2 className='text-sm text-center'>{birthday}</h2>
