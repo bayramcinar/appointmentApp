@@ -237,7 +237,7 @@ function AppointmentComponent() {
               <ContactForm
                 time={returnDate}
                 service={returnService}
-                
+                onFormSubmit={handleFinish}
                 onOptionSelect={handleOptionChange}
               />
             </>
@@ -269,7 +269,7 @@ function AppointmentComponent() {
             {step === 3 && (
               <>
                 <div className="nextStep flex items-center justify-center m-3 mb-5">
-                  <button  className="bg-buttonColor rounded-3xl flex items-center justify-center w-44 buttons">
+                  <button value="Submit" form='myform' type='submit' className="bg-buttonColor rounded-3xl flex items-center justify-center w-44 buttons">
                     <h4 className="text-text p-2 text-lg tracking-wider">Bitir<i className="ml-14 fa-solid fa-check"></i></h4>
                   </button>
                 </div>
@@ -282,4 +282,4 @@ function AppointmentComponent() {
   );
 }
 
-export default AppointmentComponent
+export default AppointmentComponent;
