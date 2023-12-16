@@ -77,12 +77,16 @@ function AppointmentView({img,serviceProviderName,serviceProviderJob,service,dat
                     <div className='moneyArea mr-5'>
                         <div className='textLogoArea flex'>
                             <i class="fa-regular fa-money-bill-1 text-callNowButtonColor flex items-center justify-center"></i>
-                            <h5 className='text-sm font-semibold ml-[8px] mt-auto mb-auto text-center'>Ücret</h5>
+                            <h5 className='text-sm font-semibold ml-[8px] mt-auto mb-auto text-center'>Ücret/Dakika</h5>
                         </div>
                         <div className='appointmentLanguage mt-[5px]'>
-                            <h2 className='text-xs text-center'>{price} TL</h2>
+                            <h2 className='text-xs text-center'>{price} TL / DK</h2>
                         </div>
                     </div>
+                </div>
+                <div className='forWho flex mt-2'>
+                    <i class="fa-solid fa-circle text-base text-callNowButtonColor"></i>
+                    <h2 className='text-base font-bold ml-2'>{forWho} İçin</h2>
                 </div>
                 <div className='appointmentNotes'>
                 {forWho === "Başkası" &&
@@ -116,11 +120,14 @@ function AppointmentView({img,serviceProviderName,serviceProviderJob,service,dat
                                     </div>
                     </div>
                 }
-                <div className='forWho'>
-                    <h2 className='text-base font-bold'>{forWho}</h2>
-                </div>
-                <div className='notesArea'>
-                    <p className='text-sm'>{notes}</p>
+                <div className='notesArea border-2 border-callNowButtonColor rounded-xl'>
+                    <div className='p-3'>
+                        <div className='flex'>
+                            <i className="fa-solid fa-book text-xl text-callNowButtonColor"></i>
+                                <h2 className="text-xl ml-2 text-callNowButtonColor">Notlar</h2>
+                        </div>
+                        <p className='text-sm'>{notes}</p>
+                    </div>
                 </div>
                 </div>
             </div>
