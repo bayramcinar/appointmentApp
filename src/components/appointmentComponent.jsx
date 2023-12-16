@@ -47,7 +47,7 @@ function AppointmentComponent() {
     }
   };
 
-  const {selectedTimes} = [  
+  const selectedTimes = [  
     {time: "10:02", date: "2023-12-20", active: true},
     {time: "10:03", date: "2023-12-20", active: true},
     {time: "10:02", date: "2023-12-21", active: true},
