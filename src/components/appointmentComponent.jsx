@@ -141,69 +141,64 @@ function AppointmentComponent() {
   ];
 
   const handleFinish = (formDataa) => {
-    if (step === 3) {
-  
-      // Check if any required field is empty except for "kendim" or "başkası"
-      const isFormValid = Object.keys(formDataa)
-        .every((key) => formDataa[key] !== "");
-  
-      if (isFormValid) {
-        const existingSelectedTimes = selectedTimes || []
+  if (step === 3) {
+    // Check if any required field is empty except for "kendim" or "başkası"
+    const isFormValid = Object.keys(formDataa).every((key) => formDataa[key] !== "");
 
-  
-        const selectedDateTime = returnDate.split(' ')[2];
-        const selectedDate = returnDate.split(' ')[0];
-  
-        const parts = selectedDate.split('.');
-        const formattedDate = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`).toISOString().split('T')[0];
-  
-        const timeIndex = existingSelectedTimes.findIndex(
-          (timeObj) => timeObj.time === selectedDateTime && timeObj.date === formattedDate
-        );
+    if (isFormValid) {
+      const existingSelectedTimes = [...selectedTimes]; // Directly use the provided selectedTimes
 
-  
-        if (timeIndex !== -1) {
-          existingSelectedTimes[timeIndex].active = false;
-          sessionStorage.setItem('selectedTimes', JSON.stringify(existingSelectedTimes));
-        }
-  
-        let existingFormData = JSON.parse(sessionStorage.getItem('formData')) || [];
-  
-        const circularReplacer = () => {
-          const seen = new WeakSet();
-          return (_, value) => {
-            if (typeof value === 'object' && value !== null) {
-              if (seen.has(value)) {
-                return; 
-              }
-              seen.add(value);
-            }
-            return value;
-          };
-        };
-  
-  
-        existingFormData.push(formDataa);
-  
-        // Update the 'formData' in sessionStorage using the replacer function
-        sessionStorage.setItem('formData', JSON.stringify(existingFormData, circularReplacer()));
-        Swal.fire({
-          title: 'Başarılı',
-          text: 'Randevunuz başarılı bir şekilde oluşturuldu.',
-          icon: 'success',
-          confirmButtonText: 'Kapat'
-        })
-        setShowFinishScreen(true);
-      } else {
-        Swal.fire({
-          title: 'Hata !',
-          text: 'Lütfen tüm alanları doldurunuz.',
-          icon: 'error',
-          confirmButtonText: 'Kapat'
-        })
+      const selectedDateTime = returnDate.split(' ')[2];
+      const selectedDate = returnDate.split(' ')[0];
+
+      const parts = selectedDate.split('.');
+      const formattedDate = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`).toISOString().split('T')[0];
+
+      const timeIndex = existingSelectedTimes.findIndex(
+        (timeObj) => timeObj.time === selectedDateTime && timeObj.date === formattedDate
+      );
+
+      if (timeIndex !== -1) {
+        existingSelectedTimes[timeIndex].active = false;
       }
+
+      let existingFormData = JSON.parse(sessionStorage.getItem('formData')) || [];
+
+      const circularReplacer = () => {
+        const seen = new WeakSet();
+        return (_, value) => {
+          if (typeof value === 'object' && value !== null) {
+            if (seen.has(value)) {
+              return;
+            }
+            seen.add(value);
+          }
+          return value;
+        };
+      };
+
+      existingFormData.push(formDataa);
+
+      // Update the 'formData' in sessionStorage using the replacer function
+      sessionStorage.setItem('formData', JSON.stringify(existingFormData, circularReplacer()));
+
+      Swal.fire({
+        title: 'Başarılı',
+        text: 'Randevunuz başarılı bir şekilde oluşturuldu.',
+        icon: 'success',
+        confirmButtonText: 'Kapat',
+      });
+      setShowFinishScreen(true);
+    } else {
+      Swal.fire({
+        title: 'Hata !',
+        text: 'Lütfen tüm alanları doldurunuz.',
+        icon: 'error',
+        confirmButtonText: 'Kapat',
+      });
     }
-  };
+  }
+};
   
 
 
