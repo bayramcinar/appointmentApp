@@ -16,7 +16,7 @@ function AppointmentView({img,serviceProviderName,serviceProviderJob,service,dat
     <>
     <div className={modalClass} onClick={handleOverlayClick}>
       <div className="absolute w-full h-full flex items-center justify-center">
-        <div className="relative w-[430px] p-5 bg-white rounded-lg animate__animated animate__fadeInDown">
+        <div className="modalDiv relative w-[430px] p-5 bg-white rounded-lg animate__animated animate__fadeInDown">
           <div className="flex items-center justify-center relative">
             <div className='titleModal m-3'>
                 <h1 className='text-center text-xl mr-auto ml-auto w-full mb-0'>Online Randevu Özeti</h1> 
