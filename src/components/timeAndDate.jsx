@@ -68,43 +68,59 @@ function TimeAndDate({ setReturnDate, times,live }) {
     if (!isMobile) {
       for (let i = 0; i < times.length; i += slidesPerRow) {
         const currentTimes = times.slice(i, i + slidesPerRow);
-        const swiperSlide = (
-          <SwiperSlide key={i}>
-            <div className="flex flex-wrap items-center justify-center appointmentBoxArea mr-auto ml-auto">
-              {currentTimes.map((time, index) => (
-                <AppointmentBox
-                  key={index}
-                  time={time.time}
-                  onTimeClick={handleAppointmentBoxClick}
-                  selectedTime={selectedTime}
-                  active={time.active}
-                  date={time.date}
-                />
-              ))}
-            </div>
-          </SwiperSlide>
-        );
+        // Sort currentTimes array by time in ascending order
+const sortedTimes = currentTimes.sort((a, b) => {
+  const timeA = a.time.split(':').join('');
+  const timeB = b.time.split(':').join('');
+  return parseInt(timeA) - parseInt(timeB);
+});
+
+const swiperSlide = (
+  <SwiperSlide key={i}>
+    <div className="flex flex-wrap items-center justify-center appointmentBoxArea mr-auto ml-auto">
+      {sortedTimes.map((time, index) => (
+        <AppointmentBox
+          key={index}
+          time={time.time}
+          onTimeClick={handleAppointmentBoxClick}
+          selectedTime={selectedTime}
+          active={time.active}
+          date={time.date}
+        />
+      ))}
+    </div>
+  </SwiperSlide>
+);
+
         swiperSlides.push(swiperSlide);
       }
     } else {
       for (let i = 0; i < times.length; i += 9) {
         const currentTimes = times.slice(i, i + 9);
-        const swiperSlide = (
-          <SwiperSlide key={i}>
-            <div className="flex flex-wrap items-center justify-center appointmentBoxArea mr-auto ml-auto">
-              {currentTimes.map((time, index) => (
-                <AppointmentBox
-                  key={index}
-                  time={time.time}
-                  onTimeClick={handleAppointmentBoxClick}
-                  selectedTime={selectedTime}
-                  active={time.active}
-                  date={time.date}
-                />
-              ))}
-            </div>
-          </SwiperSlide>
-        );
+        // Sort currentTimes array by time in ascending order
+const sortedTimes = currentTimes.sort((a, b) => {
+  const timeA = a.time.split(':').join('');
+  const timeB = b.time.split(':').join('');
+  return parseInt(timeA) - parseInt(timeB);
+});
+
+const swiperSlide = (
+  <SwiperSlide key={i}>
+    <div className="flex flex-wrap items-center justify-center appointmentBoxArea mr-auto ml-auto">
+      {sortedTimes.map((time, index) => (
+        <AppointmentBox
+          key={index}
+          time={time.time}
+          onTimeClick={handleAppointmentBoxClick}
+          selectedTime={selectedTime}
+          active={time.active}
+          date={time.date}
+        />
+      ))}
+    </div>
+  </SwiperSlide>
+);
+
         swiperSlides.push(swiperSlide);
       }
     }
