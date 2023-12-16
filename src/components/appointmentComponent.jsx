@@ -148,7 +148,7 @@ function AppointmentComponent() {
         .every((key) => formDataa[key] !== "");
   
       if (isFormValid) {
-        const existingSelectedTimes = JSON.parse(sessionStorage.getItem('selectedTimes')) || [];
+        const existingSelectedTimes = selectedTimes || []
 
   
         const selectedDateTime = returnDate.split(' ')[2];
