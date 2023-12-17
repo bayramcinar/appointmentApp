@@ -1,89 +1,98 @@
-import React from 'react';
+// SetAppointmentTime.js
+
+import React, { useState } from 'react';
 import { Field, Form, Formik } from 'formik';
-import "../style/setAppointmentTime.css"
+import "../style/setAppointmentTime.css";
 import Swal from 'sweetalert2';
+import SetDateAndTime from './setDateAndTime';
 
 function SetAppointmentTime() {
-  const handleSetTime = (values, { resetForm }) => { //verileri kaydettiğimiz fonksiyon
-    const { chosenDate, time } = values;
+  const [datesData, setDatesData] = useState([]);
 
-    if (!time || !chosenDate) {
+  const getSelectedDate = (selectedDate) => {
+    setDatesData(selectedDate);
+    console.log('Seçilen Tarih:', selectedDate);
+  };
+
+  const handleSetTime = (values, { resetForm }) => {
+    const { time } = values;
+  
+    if (!time || !datesData.length) {
       Swal.fire({
         title: 'Hata !',
         text: 'Lütfen tüm bilgileri doldurun.',
         icon: 'error',
         confirmButtonText: 'Kapat'
-      })
+      });
       return;
     }
-
-    // Extracting hour and minute from the time string
-    const [hour, minute] = time.split(':');
-
-    const selectedTime = `${hour}:${minute}`;
-    const selectedDateTime = `${chosenDate} ${selectedTime}`;
-
-    const existingTimes = JSON.parse(sessionStorage.getItem('selectedTimes')) || [];  // sessionStorage ı okuyup üstüne kelediğimiz yer
-    const isDuplicate = existingTimes.some((item) => {
-      const existingDateTime = `${item.date} ${item.time}`;
-      return existingDateTime === selectedDateTime;
+  
+    const existingTimes = JSON.parse(sessionStorage.getItem('selectedTimes')) || [];
+  
+    // Her bir tarihi, seçilen saatle birlikte ekleyin
+    datesData.forEach(chosenDate => {
+      // Extracting hour and minute from the time string
+      const [hour, minute] = time.split(':');
+      const selectedTime = `${hour}:${minute}`;
+      const selectedDateTime = `${chosenDate} ${selectedTime}`;
+  
+      const isDuplicate = existingTimes.some((item) => {
+        const existingDateTime = `${item.date} ${item.time}`;
+        return existingDateTime === selectedDateTime;
+      });
+  
+      if (!isDuplicate) {
+        const dateTimeObject = {
+          time: selectedTime,
+          date: chosenDate,
+          active: true,
+        };
+  
+        existingTimes.push(dateTimeObject);
+      }
     });
-
-    if (isDuplicate) {
-      Swal.fire({
-        title: 'Hata !',
-        text: 'Bu randevu saati zaten mevcut.',
-        icon: 'error',
-        confirmButtonText: 'Kapat'
-      })
-      return;
-    }
-
-    const dateTimeObject = {
-      time: selectedTime,
-      date: chosenDate,
-      active: true,
-    };
-
+  
     // Save to sessionStorage
-    const updatedTimes = [...existingTimes, dateTimeObject];  //DATABASE E SAATLERİ EKLEYCEĞİMİZ YER
-    sessionStorage.setItem('selectedTimes', JSON.stringify(updatedTimes));
-
+    sessionStorage.setItem('selectedTimes', JSON.stringify(existingTimes));
+  
     resetForm();
-
+  
     Swal.fire({
       title: 'Başarılı',
-      text: 'Randevu saati başarılı bir şekilde eklendi.',
+      text: 'Randevu saatleri başarılı bir şekilde eklenmiştir.',
       icon: 'success',
       confirmButtonText: 'Kapat'
-    })
+    });
+  };
+  
+  
+  
+
+  const getCurrentTime = () => {
+    const now = new Date();
+    now.setMinutes(now.getMinutes() + 1);
+    const currentHour = now.getHours().toString().padStart(2, '0');
+    const currentMinute = now.getMinutes().toString().padStart(2, '0');
+    return `${currentHour}:${currentMinute}`;
   };
 
-  const today = new Date().toISOString().split('T')[0];
-
   return (
-    <div className='ml-auto mr-auto bg-dayComponentBg mt-10 setAppointmentTime flex items-center justify-center flex-col lg:w-[35rem] md:w-[24rem] lg:h-[515px] sm:h-auto'>
-      <h2 className='text-buttonColor text-2xl m-3 font-semibold'>Randevu Zamanı Belirle</h2>
+    <div className='ml-auto mr-auto bg-dayComponentBg mt-10 setAppointmentTime flex items-center justify-center flex-col lg:w-[35rem] md:w-[24rem] lg:h-[575px] sm:h-auto'>
+      <h2 className='text-buttonColor text-2xl m-3 font-semibold mb-0'>Randevu Zamanı Belirle</h2>
       <Formik
         initialValues={{ chosenDate: '', time: '' }}
         onSubmit={handleSetTime}
       >
         <Form>
-          <div className='m-3 field-container'>
-            <Field
-              name="chosenDate"
-              type="date"
-              min={today}
-              className={`p-3 lg:w-[30rem] max-[768px]:w-[22rem] focus:border-none outline-none`}
-              placeholder='Tarih'
-            />
+          <div className='m-3 field-container flex items-center justify-center'>
+            <SetDateAndTime onDateChange={getSelectedDate} />
           </div>
-          <div className='m-3 field-container'>
+          <div className='m-3 field-container lg:w-[21rem]'>
             <Field
               name="time"
               type="time"
               min={getCurrentTime()}
-              className={`p-3 lg:w-[30rem] max-[768px]:w-[22rem] focus:border-none outline-none`}
+              className={`p-3 lg:w-[21rem] max-[768px]:w-[22rem] focus:border-none outline-none bg-white`}
               placeholder='Saat'
             />
           </div>
@@ -96,14 +105,6 @@ function SetAppointmentTime() {
       </Formik>
     </div>
   );
-}
-
-function getCurrentTime() {
-  const now = new Date();
-  now.setMinutes(now.getMinutes() + 1);
-  const currentHour = now.getHours().toString().padStart(2, '0');
-  const currentMinute = now.getMinutes().toString().padStart(2, '0');
-  return `${currentHour}:${currentMinute}`;
 }
 
 export default SetAppointmentTime;

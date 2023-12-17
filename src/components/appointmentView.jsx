@@ -120,7 +120,7 @@ function AppointmentView({img,serviceProviderName,serviceProviderJob,service,dat
                                     </div>
                     </div>
                 }
-                <div className='notesArea border-2 border-callNowButtonColor rounded-xl'>
+                <div className='notesArea mt-[8px] border-2 border-callNowButtonColor rounded-xl'>
                     <div className='p-3'>
                         <div className='flex'>
                             <i className="fa-solid fa-book text-xl text-callNowButtonColor"></i>
