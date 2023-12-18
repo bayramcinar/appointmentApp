@@ -10,7 +10,7 @@ function RequestTimeBox({ time, date, selectedTime, onTimeClick }) {
   const isSelected = selectedTime === time;     // seçtiğimiz saati atadığımız değişken
 
   return (
-    <div>
+    <div className='flex items-center justify-center'>
       <div
         className={`timeBox w-[125px] max-[768px]:w-[100px] ${
           isSelected ? 'bg-red-600' : 'bg-callNowButtonColor'

@@ -179,7 +179,7 @@ function TimeAndDate({ setReturnDate, times,setAppointmentRequest, appointmentRe
               {appointmentTimesForSelectedDate.length > 0 ? (
                 renderSwiper(appointmentTimesForSelectedDate)
               ) : (
-                <div className="flex flex-wrap items-center justify-center lg:w-[10rem] appointmentBoxArea mr-auto ml-auto">
+                <div className={`${selectedRequestTime !== "" ? 'block' : 'flex'} flex-wrap items-center justify-center lg:w-[10rem] appointmentBoxArea mr-auto ml-auto`}>
                   {selectedRequestTime === ""  && 
                      <>
                        <p className="text-red-500 text-center text-sm">Uygun saatler bulunamadı.</p>
