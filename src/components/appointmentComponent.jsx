@@ -162,7 +162,6 @@ function AppointmentComponent() {
   ];
 
   const handleFinish = (formDataa) => {
-    console.log(formDataa)
     setForWho(formDataa.kimIçin)
     setNotes(formDataa.notes)
     setLanguage(formDataa.language)
@@ -268,10 +267,9 @@ function AppointmentComponent() {
 
   const parseDateTime = (returnDate) => {
     const dateTimeParts = returnDate.split(' ');
-  
-    if (dateTimeParts.length === 3) {
+    if (dateTimeParts.length === 4) {
       const [day, month, year] = dateTimeParts[0].split('.');
-      const dateFormatted = `${day}.${month}.${year} ${dateTimeParts[1]}`;
+      const dateFormatted = `${day}.${month}.${year}`;
   
       return {
         date: dateFormatted,
