@@ -2,13 +2,12 @@ import serviceImage from '../images/person.jpg';
 import "../style/appointmentView.css"
 import '../style/appointmentView.css';
 
-function AppointmentView({img,serviceProviderName,serviceProviderJob,service,date,time,language,price,forWho,notes,isOpen,onClose,show,confirmButton,firstName,lastName,gender,birthday}) {
+function AppointmentView({img,serviceProviderName,serviceProviderJob,service,date,time,language,price,forWho,notes,isOpen,onClose,show,confirmButton,firstName,lastName,gender,birthday,isRequest}) {
     const modalClass = isOpen  ? 'fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-gray-600 bg-opacity-50'
     : 'hidden';
 
     const handleOverlayClick = (e) => {
         if (e.target === e.currentTarget) {
-            console.log(31)
             onClose();
         }
       };
@@ -19,7 +18,12 @@ function AppointmentView({img,serviceProviderName,serviceProviderJob,service,dat
         <div className="relative w-[430px] max-[768px]:w-[375px] p-5 bg-white rounded-2xl animate__animated animate__fadeInDown">
           <div className="flex items-center justify-center relative">
             <div className='titleModal m-3'>
-                <h1 className='text-center text-xl mr-auto ml-auto w-full mb-0'>Online Randevu Özeti</h1> 
+                {isRequest === false &&
+                    <h1 className='text-center text-xl mr-auto ml-auto w-full mb-0'>Online Randevu Özeti</h1> 
+                }
+                {isRequest === true &&
+                    <h1 className='text-center text-xl mr-auto ml-auto w-full mb-0'>Online Randevu Talebi Özeti</h1> 
+                }
             </div>
             <button onClick={onClose} className="text-gray-500 hover:text-gray-700 absolute right-1">
               <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

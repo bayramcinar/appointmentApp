@@ -3,18 +3,17 @@ import AppointmentBox from './appointmentBox';
 import CalendarBox from './calendar';
 import '../style/dayComponent.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Link } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 import { Navigation, Pagination,Mousewheel } from 'swiper/modules';
+import RequestTimeBox from './requestTimeBox';
 
-function TimeAndDate({ setReturnDate, times,live }) {
+function TimeAndDate({ setReturnDate, times,setAppointmentRequest, appointmentRequest,selectedRequestTime,request,setRequest }) {
   const [selectedDate, setSelectedDate] = useState(new Date());   // seçtiğimiz date i tutan değişken
   const [currentDateDisplay, setCurrentDateDisplay] = useState("");   // güncel tarihi saatlerin üstünde göstermemizi sağlayan değişken
   const [selectedTime, setSelectedTime] = useState(null); // seçtiğimiz saati tuttuğumuz değişken
-
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -54,7 +53,7 @@ function TimeAndDate({ setReturnDate, times,live }) {
   };
 
   const handleAppointmentBoxClick = (clickedTime) => {  // seçtiğimiz saat ve tarihi selectedtime a atayan fonksiyon
-    const formattedReturnDate = `${currentDateDisplay} ${clickedTime}`;
+    const formattedReturnDate = `${currentDateDisplay} ${clickedTime} ${request}`;
     setReturnDate(formattedReturnDate);
     setSelectedTime(clickedTime);
   };
@@ -147,9 +146,6 @@ function TimeAndDate({ setReturnDate, times,live }) {
     
   };
   
-  
-  
-  
 
   const appointmentTimesForSelectedDate = times.filter((time) => {  // sadece seçtiğimiz tarihdeki randevu saatlerini göstermeye yarayan fonksiyon
     const formattedSelectedDate = formatDate(selectedDate);
@@ -168,9 +164,6 @@ function TimeAndDate({ setReturnDate, times,live }) {
               <h2 className="text-center text-buttonColor text-lg font-semibold  w-[120px]">{currentDateDisplay}</h2>
             </div>
           </div>
-          {live &&
-            <div className='hemenGorus w-full flex items-center justify-center'> <Link to={"/"} className='py-1 px-5 rounded-3xl bg-callNowButtonColor text-white text-sm text-center'>Hemen Görüş</Link></div>
-          }
           <div className="leftArea flex-1 mt-3 md:mr-[0px] lg:w-[10rem] lg:h-[10rem] max-[768px]:w-[24rem] max-[768px]:h-auto">
             <div className="appointmentTimes relative lg:w-[10rem] lg:h-[12rem] flex flex-col items-center justify-center max-[768px]:w-[24rem] max-[768px]:h-auto">
               {isMobile && appointmentTimesForSelectedDate.length > 9 &&
@@ -187,10 +180,40 @@ function TimeAndDate({ setReturnDate, times,live }) {
                 renderSwiper(appointmentTimesForSelectedDate)
               ) : (
                 <div className="flex flex-wrap items-center justify-center lg:w-[10rem] appointmentBoxArea mr-auto ml-auto">
-                  <p className="text-red-500 text-center text-sm">Uygun saatler bulunamadı.</p>
+                  {selectedRequestTime === ""  && 
+                     <>
+                       <p className="text-red-500 text-center text-sm">Uygun saatler bulunamadı.</p>
+                      <p className="text-red-500 text-center text-sm">(İsterseniz randevu talebi oluşturabilirsiniz)</p>
+                     </>
+                   }
+                  {selectedRequestTime === "" && (
+                    <button
+                      className='bg-callNowButtonColor rounded-2xl p-1 px-6 text-white text-sm mt-[15px]'
+                      onClick={() => {
+                        setRequest(!request) 
+                        setAppointmentRequest(!appointmentRequest); // setRequest(!request) korunuyor
+                      }}
+                    >
+                      Talep oluştur
+                    </button>
+                  )}
+                  {selectedRequestTime !== "" && (
+                    <>
+                      <h2 className='text-sm text-buttonColor text-center font-semibold mt-[8px]'>Seçtiğiniz randevu talebi saati</h2>
+                      <h2 className='text-sm text-buttonColor text-center font-semibold mb-[8px] ml-2'>(Lütfen aşağıdan seçiniz ! )</h2>
+                      <RequestTimeBox time={selectedRequestTime} date={formatDate(selectedDate)} selectedTime={selectedTime} onTimeClick={handleAppointmentBoxClick}/>
+                    </>
+                  )}
                 </div>
               )}
             </div>
+            {selectedRequestTime !== "" && (
+              <> 
+                <div className='flex items-center justify-center'>
+                <button  onClick={() => setAppointmentRequest(!appointmentRequest)} className='bg-appoinmentBox font-semibold text-sm text-white p-1 px-6 rounded-2xl '><i class="fa-solid fa-file-pen"></i> Düzenle</button>
+                </div>
+              </>
+            )}
           </div>
         </div>
         <div className="max-[768px]:mb-[10px] rightArea max-[768px]:flex-1 flex items-center justify-center md:order-2 border-2 border-buttonColor rounded-2xl shadow-xl bg-white md:h-[20rem]">

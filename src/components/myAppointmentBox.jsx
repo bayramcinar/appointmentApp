@@ -1,11 +1,26 @@
-import React from 'react'
+import React, { useState,useEffect } from 'react'
 import "../style/myAppointments.css"
 
 function MyAppointmentBox({image,infos,onDelete}) {
+    const [request,setRequest] = useState(false)
     const handleDelete = () => {
         // Call the onDelete function passed as a prop
         onDelete(infos);
       };
+    const isRequestFunction = () => {
+        const lastSpaceIndex = infos["time"].lastIndexOf(' ');
+        const trueValue = infos["time"].substring(lastSpaceIndex + 1);
+    
+        if (trueValue.toLowerCase() === 'true') {
+          setRequest(true);
+        } else {
+          setRequest(false);
+        }
+      };
+    
+      useEffect(() => {
+        isRequestFunction();
+      }, [infos]);
     
   return (
     <div className='bg-white myAppointmentBox lg:w-[500px] max-[768px]:w-[320px] mb-5 rounded-lg ml-auto mr-auto'>
@@ -15,6 +30,9 @@ function MyAppointmentBox({image,infos,onDelete}) {
             </div>
             {infos["kimIçin"] === "Kendim" &&
                 <div className='infoAreaForOwn w-2/3'>
+                    {request &&
+                        <h1 className='text-sm text-red-600 p-1 text-center font-semibold m-1'>Bu bir randevu talebidir.</h1>
+                    }
                     <h1 className='text-xs text-buttonColor p-1 text-left font-medium m-1'>{infos["kimIçin"]} için ({infos["notes"]})</h1>
                     <h1 className='text-xs text-buttonColor p-1 text-left font-medium m-1'>{infos["time"]}</h1>
                     <h1 className='text-xs text-buttonColor p-1 text-left font-medium m-1'>{infos["service"]}</h1>

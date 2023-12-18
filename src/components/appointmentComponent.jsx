@@ -8,6 +8,7 @@ import turkish from '../images/turkish.png';
 import english from '../images/english.png';
 import Swal from 'sweetalert2';
 import AppointmentView from './appointmentView';
+import AppointmentRequest from './appointmentRequest';
 
 function AppointmentComponent() {
   const [step, setStep] = useState(1);      // en üstte gözüken stepleri tutan değişken
@@ -22,7 +23,7 @@ function AppointmentComponent() {
   const [gender,setGender] = useState("");
   const [birthDay,setBirthday] = useState("");
   const [isOwn, setIsOwn] = useState(true);   // kendim için ve başkası için değişkenlerini tutan değişken (true false yapısı)
-
+  const [request,setRequest] = useState(false)
      
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -231,16 +232,23 @@ function AppointmentComponent() {
   const openAlert = () => {
     Swal.fire({
       title: 'Başarılı',
-      html: '<h2 class="text-stepBorder1 text-center text-base font-semibold p-4">' +
-        'Sizinle buluşmayı büyük bir heyecan ile bekliyoruz.' +
-        '<a class="text-buttonColor text-lg font-semibold" href="/myAppointments"> Randevularım </a>' +
-        'bölümünden randevunuzun detaylarını inceleyebilir ve yönetebilirsiniz.' +
-        '</h2>',
+      html: request
+        ? '<h2 class="text-stepBorder1 text-center text-base font-semibold p-4">' +
+          'Randevu talebiniz başarılı bir şekilde oluşturuldu.' +
+          '<a class="text-buttonColor text-lg font-semibold" href="/myAppointments"> Randevularım </a>' +
+          'bölümünden randevunuzun detaylarını inceleyebilir ve yönetebilirsiniz.' +
+          '</h2>'
+        : '<h2 class="text-stepBorder1 text-center text-base font-semibold p-4">' +
+          'Sizinle buluşmayı büyük bir heyecan ile bekliyoruz.' +
+          '<a class="text-buttonColor text-lg font-semibold" href="/myAppointments"> Randevularım </a>' +
+          'bölümünden randevunuzun detaylarını inceleyebilir ve yönetebilirsiniz.' +
+          '</h2>',
       icon: 'success',
-      confirmButtonText: 'Kapat'
+      confirmButtonText: 'Kapat',
     });
     closeModal();
   };
+  
   
 
   const handleOptionChange = (option) => {    // forOwn ve forSomeone ögeleri arasında değişimi sağlıyor
@@ -282,14 +290,38 @@ function AppointmentComponent() {
   const returnDateFinal = returnDate;
   const { date, time } = parseDateTime(returnDateFinal);
 
+  const [appointmentRequest,setAppointmentRequest] = useState(false);
+  const [requestSelectedTime, setRequestSelectedTime] = useState("");
+  
+  const handleFormSubmit = (values) => {
+    setRequestSelectedTime(values.time);
+    closeModalRequest();
+  };
+
+  useEffect(() => {
+    console.log(requestSelectedTime); // This will log the updated state value
+  }, [requestSelectedTime]);
+
+
+  const openModalRequest = () => {
+    setAppointmentRequest(true);
+  };
+
+  const closeModalRequest = () => {
+    setAppointmentRequest(false);
+  };
+
   return (
     <>
-      {showFinishScreen && <AppointmentView isOpen={isModalOpen} confirmButton={openAlert} onClose={closeModal} time={time} service={returnService} date={date} forWho={forWho} language={language} notes={notes} gender={gender} birthday={birthDay} firstName={firstName} lastName={lastName} price={"100"} serviceProviderName={"Bayram Çınar"} serviceProviderJob={"Uzman, Klinik Psikoloji"} />}
+      {showFinishScreen && <AppointmentView isRequest={request} isOpen={isModalOpen} confirmButton={openAlert} onClose={closeModal} time={time} service={returnService} date={date} forWho={forWho} language={language} notes={notes} gender={gender} birthday={birthDay} firstName={firstName} lastName={lastName} price={"100"} serviceProviderName={"Bayram Çınar"} serviceProviderJob={"Uzman, Klinik Psikoloji"} />}
       {!showFinishScreen && (
         <div className='bg-dayComponentBg generalDiv lg:w-[35rem] ml-auto mr-auto mt-[50px] sm:w-[26rem] md:w-[26rem] md:h-auto sm:h-auto'>
+            {appointmentRequest === true &&
+              <AppointmentRequest  isOpen={openModalRequest} onClose={closeModalRequest} handleFormSubmit={handleFormSubmit}/>
+            }
           <Steps active={step} />
           {step === 2 && <ServiceComponent services={obje} setReturnService={setReturnService} />}
-          {step === 1 && <TimeAndDate setReturnDate={setReturnDate} times={selectedTimes} live={true}/>}
+          {step === 1 && <TimeAndDate request={request} setRequest={setRequest} selectedRequestTime={requestSelectedTime} appointmentRequest={appointmentRequest} setAppointmentRequest={setAppointmentRequest} setReturnDate={setReturnDate} times={selectedTimes} live={true}/>}
           {step === 3 && (
             <>
               <ContactForm
