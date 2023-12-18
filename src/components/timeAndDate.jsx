@@ -200,7 +200,7 @@ function TimeAndDate({ setReturnDate, times,setAppointmentRequest, appointmentRe
                   {selectedRequestTime !== "" && (
                     <>
                       <h2 className='text-sm text-buttonColor text-center font-semibold mt-[8px]'>Seçtiğiniz randevu talebi saati</h2>
-                      <h2 className='text-sm text-buttonColor text-center font-semibold mb-[8px] ml-2'>(Lütfen aşağıdan seçiniz ! )</h2>
+                      <h2 className='text-sm text-buttonColor text-center font-semibold mb-[8px] ml-auto mr-auto'>(Lütfen aşağıdan seçiniz ! )</h2>
                       <RequestTimeBox time={selectedRequestTime} date={formatDate(selectedDate)} selectedTime={selectedTime} onTimeClick={handleAppointmentBoxClick}/>
                     </>
                   )}
