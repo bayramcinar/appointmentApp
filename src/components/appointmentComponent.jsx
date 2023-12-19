@@ -88,7 +88,7 @@ function AppointmentComponent() {
     { time: "10:05", date: "2023-12-23", active: true },
     { time: "10:06", date: "2023-12-23", active: true },
     { time: "10:07", date: "2023-12-23", active: true },
-    { time: "10:08", date: "2023-12-23", active: true },
+    { time: "20:30", date: "2023-12-23", active: true },
     { time: "10:09", date: "2023-12-23", active: true },
     { time: "10:02", date: "2023-12-24", active: true },
     { time: "10:03", date: "2023-12-24", active: true },
@@ -192,6 +192,14 @@ function AppointmentComponent() {
           (timeObj) =>
             timeObj.time === selectedDateTime && timeObj.date === formattedDate
         );
+
+        if (timeIndex !== -1) {
+          // Show a warning or handle the situation where the time is already booked
+          console.warn(
+            "Selected time is already booked. Please choose another time."
+          );
+          return;
+        }
 
         if (timeIndex !== -1) {
           existingSelectedTimes[timeIndex].active = false;
@@ -301,6 +309,23 @@ function AppointmentComponent() {
 
   const [timedRequestSelectedDate, setTimesRequestSelectedDate] = useState("");
   const handleFormSubmit = (values) => {
+    // Check if there is an existing appointment for the selected date and time
+    const isTimeAlreadyBooked = selectedTimes.some((timeObj) => {
+      const selectedTime = values.time;
+      return timeObj.time === selectedTime;
+    });
+    if (isTimeAlreadyBooked) {
+      // Show a warning or handle the situation where the time is already booked
+      Swal.fire({
+        title: "Hata !",
+        text: "Bu randevu saati zaten randevu listesinde var.",
+        icon: "error",
+        confirmButtonText: "Kapat",
+      });
+      return;
+    }
+
+    // Rest of your code for handling the form submission
     setRequestSelectedTime(values.time);
     setTimesRequestSelectedTime(values.time);
     closeModalRequest();

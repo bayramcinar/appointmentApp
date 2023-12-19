@@ -221,6 +221,7 @@ function TimeAndDate({
                   <button
                     className="bg-callNowButtonColor rounded-2xl p-1 px-6 text-white text-sm mt-[5px] mb-[10px]"
                     onClick={() => {
+                      setRequest(!request);
                       setRequestForTimedDays(!requestForTimedDays);
                       setAppointmentRequest(!appointmentRequest); // setRequest(!request) korunuyor
                     }}
