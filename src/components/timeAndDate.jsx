@@ -12,7 +12,13 @@ import { Navigation, Pagination, Mousewheel } from "swiper/modules";
 import RequestTimeBox from "./requestTimeBox";
 import AppointmentRequest from "./appointmentRequest";
 
-function TimeAndDate({ setReturnDate, times, selectedTimes, setRequest }) {
+function TimeAndDate({
+  setReturnDate,
+  times,
+  selectedTimes,
+  setRequest,
+  request,
+}) {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [currentDateDisplay, setCurrentDateDisplay] = useState("");
   const [currentDateDisplayNotDay, setCurrentDateDisplayNotDay] = useState("");
@@ -209,7 +215,6 @@ function TimeAndDate({ setReturnDate, times, selectedTimes, setRequest }) {
       });
       return;
     }
-    setRequest(true);
     setRequestSelectedTime(values.time);
     setTimesRequestSelectedTime(values.time);
     closeModalRequest();
@@ -250,6 +255,7 @@ function TimeAndDate({ setReturnDate, times, selectedTimes, setRequest }) {
                     <button
                       className="bg-callNowButtonColor rounded-2xl p-1 px-6 text-white text-sm mt-[5px] mb-[10px]"
                       onClick={() => {
+                        setRequest(true);
                         setAppointmentRequest(!appointmentRequest);
                         setRequestForTimedDays(!requestForTimedDays);
                         setAppointmentRequest(!appointmentRequest); // setRequest(!request) korunuyor
@@ -316,7 +322,9 @@ function TimeAndDate({ setReturnDate, times, selectedTimes, setRequest }) {
                 ) : (
                   <>
                     <div
-                      className={`flex flex-wrap items-center justify-center lg:w-[10rem] appointmentBoxArea mr-auto ml-auto`}
+                      className={`${
+                        requestSelectedTime === "" ? "flex" : "block"
+                      } flex-wrap items-center justify-center lg:w-[10rem] appointmentBoxArea mr-auto ml-auto`}
                     >
                       {requestSelectedTime === "" && (
                         <>
@@ -334,6 +342,7 @@ function TimeAndDate({ setReturnDate, times, selectedTimes, setRequest }) {
                           onClick={() => {
                             setAppointmentRequest(!appointmentRequest);
                             setAppointmentRequest(!appointmentRequest);
+                            setRequest(true);
                           }}
                         >
                           Talep oluştur

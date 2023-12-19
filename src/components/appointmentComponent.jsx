@@ -8,7 +8,6 @@ import turkish from "../images/turkish.png";
 import english from "../images/english.png";
 import Swal from "sweetalert2";
 import AppointmentView from "./appointmentView";
-import AppointmentRequest from "./appointmentRequest";
 
 function AppointmentComponent() {
   const [step, setStep] = useState(1); // en üstte gözüken stepleri tutan değişken
@@ -293,7 +292,6 @@ function AppointmentComponent() {
   // Kullanım
   const returnDateFinal = returnDate;
   const { date, time } = parseDateTime(returnDateFinal);
-
   return (
     <>
       {showFinishScreen && (
@@ -328,6 +326,7 @@ function AppointmentComponent() {
           )}
           {step === 1 && (
             <TimeAndDate
+              request={request}
               setRequest={setRequest}
               selectedTimes={selectedTimes}
               setReturnDate={setReturnDate}
