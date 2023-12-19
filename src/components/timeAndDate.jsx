@@ -12,7 +12,7 @@ import { Navigation, Pagination, Mousewheel } from "swiper/modules";
 import RequestTimeBox from "./requestTimeBox";
 import AppointmentRequest from "./appointmentRequest";
 
-function TimeAndDate({ setReturnDate, times, selectedTimes }) {
+function TimeAndDate({ setReturnDate, times, selectedTimes, setRequest }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [currentDateDisplay, setCurrentDateDisplay] = useState("");
   const [currentDateDisplayNotDay, setCurrentDateDisplayNotDay] = useState("");
@@ -209,7 +209,7 @@ function TimeAndDate({ setReturnDate, times, selectedTimes }) {
       });
       return;
     }
-
+    setRequest(true);
     setRequestSelectedTime(values.time);
     setTimesRequestSelectedTime(values.time);
     closeModalRequest();

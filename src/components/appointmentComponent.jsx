@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Steps from "./steps";
 import TimeAndDate from "./timeAndDate";
 import ContactForm from "./contactInfo";
@@ -293,46 +293,7 @@ function AppointmentComponent() {
   // Kullanım
   const returnDateFinal = returnDate;
   const { date, time } = parseDateTime(returnDateFinal);
-  const [appointmentRequest, setAppointmentRequest] = useState(false);
 
-  const [timedRequestSelectedDate, setTimesRequestSelectedDate] = useState("");
-  // const handleFormSubmit = (values) => {
-  //   const isTimeAlreadyBooked = selectedTimes.some((timeObj) => {
-  //     const selectedTime = values.time;
-  //     const selectedDate = timedRequestSelectedDate; // Use the selected date from your state
-
-  //     // Check if the time is already booked on the selected date
-  //     return (
-  //       timeObj.time === selectedTime &&
-  //       timeObj.date === selectedDate &&
-  //       timeObj.active === true
-  //     );
-  //   });
-
-  //   if (isTimeAlreadyBooked) {
-  //     Swal.fire({
-  //       title: "Hata !",
-  //       text: "Bu randevu saati zaten randevu listesinde var.",
-  //       icon: "error",
-  //       confirmButtonText: "Kapat",
-  //     });
-  //     return;
-  //   }
-
-  //   setRequestSelectedTime(values.time);
-  //   setTimesRequestSelectedTime(values.time);
-  //   closeModalRequest();
-  // };
-
-  // useEffect(() => {}, [requestSelectedTime]);
-
-  // const openModalRequest = () => {
-  //   setAppointmentRequest(true);
-  // };
-
-  // const closeModalRequest = () => {
-  //   setAppointmentRequest(false);
-  // };
   return (
     <>
       {showFinishScreen && (
@@ -358,14 +319,6 @@ function AppointmentComponent() {
       )}
       {!showFinishScreen && (
         <div className="bg-dayComponentBg generalDiv lg:w-[35rem] ml-auto mr-auto mt-[50px] sm:w-[26rem] md:w-[26rem] md:h-auto sm:h-auto">
-          {/* {appointmentRequest === true && (
-            <AppointmentRequest
-              date={returnDate}
-              isOpen={openModalRequest}
-              onClose={closeModalRequest}
-              handleFormSubmit={handleFormSubmit}
-            />
-          )} */}
           <Steps active={step} />
           {step === 2 && (
             <ServiceComponent
@@ -375,6 +328,7 @@ function AppointmentComponent() {
           )}
           {step === 1 && (
             <TimeAndDate
+              setRequest={setRequest}
               selectedTimes={selectedTimes}
               setReturnDate={setReturnDate}
               times={selectedTimes}
