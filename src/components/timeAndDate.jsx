@@ -216,7 +216,7 @@ function TimeAndDate({
               {timedSelectedRequestTime === "" && (
                 <>
                   <h1 className="text-xs text-red-600 font-semibold text-center">
-                    Size uyan bir saat yoksa randevu talebi oluşurabilirsiniz
+                    Size uyan bir saat yoksa randevu talebi oluşturabilirsiniz
                   </h1>
                   <button
                     className="bg-callNowButtonColor rounded-2xl p-1 px-6 text-white text-sm mt-[5px] mb-[10px]"
