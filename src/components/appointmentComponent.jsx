@@ -194,14 +194,6 @@ function AppointmentComponent() {
         );
 
         if (timeIndex !== -1) {
-          // Show a warning or handle the situation where the time is already booked
-          console.warn(
-            "Selected time is already booked. Please choose another time."
-          );
-          return;
-        }
-
-        if (timeIndex !== -1) {
           existingSelectedTimes[timeIndex].active = false;
           sessionStorage.setItem(
             "selectedTimes",
@@ -285,7 +277,6 @@ function AppointmentComponent() {
     if (dateTimeParts.length === 4) {
       const [day, month, year] = dateTimeParts[0].split(".");
       const dateFormatted = `${day}.${month}.${year}`;
-
       return {
         date: dateFormatted,
         time: dateTimeParts[2],
@@ -303,44 +294,45 @@ function AppointmentComponent() {
   const returnDateFinal = returnDate;
   const { date, time } = parseDateTime(returnDateFinal);
   const [appointmentRequest, setAppointmentRequest] = useState(false);
-  const [requestSelectedTime, setRequestSelectedTime] = useState("");
-
-  const [timedRequestSelectedTime, setTimesRequestSelectedTime] = useState("");
 
   const [timedRequestSelectedDate, setTimesRequestSelectedDate] = useState("");
-  const handleFormSubmit = (values) => {
-    // Check if there is an existing appointment for the selected date and time
-    const isTimeAlreadyBooked = selectedTimes.some((timeObj) => {
-      const selectedTime = values.time;
-      return timeObj.time === selectedTime;
-    });
-    if (isTimeAlreadyBooked) {
-      // Show a warning or handle the situation where the time is already booked
-      Swal.fire({
-        title: "Hata !",
-        text: "Bu randevu saati zaten randevu listesinde var.",
-        icon: "error",
-        confirmButtonText: "Kapat",
-      });
-      return;
-    }
+  // const handleFormSubmit = (values) => {
+  //   const isTimeAlreadyBooked = selectedTimes.some((timeObj) => {
+  //     const selectedTime = values.time;
+  //     const selectedDate = timedRequestSelectedDate; // Use the selected date from your state
 
-    // Rest of your code for handling the form submission
-    setRequestSelectedTime(values.time);
-    setTimesRequestSelectedTime(values.time);
-    closeModalRequest();
-  };
+  //     // Check if the time is already booked on the selected date
+  //     return (
+  //       timeObj.time === selectedTime &&
+  //       timeObj.date === selectedDate &&
+  //       timeObj.active === true
+  //     );
+  //   });
 
-  useEffect(() => {}, [requestSelectedTime]);
+  //   if (isTimeAlreadyBooked) {
+  //     Swal.fire({
+  //       title: "Hata !",
+  //       text: "Bu randevu saati zaten randevu listesinde var.",
+  //       icon: "error",
+  //       confirmButtonText: "Kapat",
+  //     });
+  //     return;
+  //   }
 
-  const openModalRequest = () => {
-    setAppointmentRequest(true);
-  };
+  //   setRequestSelectedTime(values.time);
+  //   setTimesRequestSelectedTime(values.time);
+  //   closeModalRequest();
+  // };
 
-  const closeModalRequest = () => {
-    setAppointmentRequest(false);
-  };
+  // useEffect(() => {}, [requestSelectedTime]);
 
+  // const openModalRequest = () => {
+  //   setAppointmentRequest(true);
+  // };
+
+  // const closeModalRequest = () => {
+  //   setAppointmentRequest(false);
+  // };
   return (
     <>
       {showFinishScreen && (
@@ -366,13 +358,14 @@ function AppointmentComponent() {
       )}
       {!showFinishScreen && (
         <div className="bg-dayComponentBg generalDiv lg:w-[35rem] ml-auto mr-auto mt-[50px] sm:w-[26rem] md:w-[26rem] md:h-auto sm:h-auto">
-          {appointmentRequest === true && (
+          {/* {appointmentRequest === true && (
             <AppointmentRequest
+              date={returnDate}
               isOpen={openModalRequest}
               onClose={closeModalRequest}
               handleFormSubmit={handleFormSubmit}
             />
-          )}
+          )} */}
           <Steps active={step} />
           {step === 2 && (
             <ServiceComponent
@@ -382,18 +375,9 @@ function AppointmentComponent() {
           )}
           {step === 1 && (
             <TimeAndDate
-              selectedDateRequest={timedRequestSelectedDate}
-              setSelectedDateRequest={setTimesRequestSelectedDate}
-              request={request}
-              setRequest={setRequest}
-              selectedRequestTime={requestSelectedTime}
-              appointmentRequest={appointmentRequest}
-              setAppointmentRequest={setAppointmentRequest}
-              timedSelectedRequestTime={timedRequestSelectedTime}
+              selectedTimes={selectedTimes}
               setReturnDate={setReturnDate}
               times={selectedTimes}
-              setTimesRequestSelectedTime={setTimesRequestSelectedTime}
-              setSelectedRequestTime={setRequestSelectedTime}
               live={true}
             />
           )}

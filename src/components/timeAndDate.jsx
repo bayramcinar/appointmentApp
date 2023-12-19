@@ -6,30 +6,23 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import Swal from "sweetalert2";
 
 import { Navigation, Pagination, Mousewheel } from "swiper/modules";
 import RequestTimeBox from "./requestTimeBox";
+import AppointmentRequest from "./appointmentRequest";
 
-function TimeAndDate({
-  setReturnDate,
-  times,
-  setAppointmentRequest,
-  appointmentRequest,
-  selectedRequestTime,
-  request,
-  setRequest,
-  selectedDateRequest,
-  timedSelectedRequestTime,
-  setSelectedDateRequest,
-  setTimesRequestSelectedTime,
-  setSelectedRequestTime,
-}) {
-  const [selectedDate, setSelectedDate] = useState(new Date()); // seçtiğimiz date i tutan değişken
-  const [currentDateDisplay, setCurrentDateDisplay] = useState(""); // güncel tarihi saatlerin üstünde göstermemizi sağlayan değişken
-  const [currentDateDisplayNotDay, setCurrentDateDisplayNotDay] = useState(""); // güncel tarihi saatlerin üstünde göstermemizi sağlayan değişken
-  const [selectedTime, setSelectedTime] = useState(null); // seçtiğimiz saati tuttuğumuz değişken
+function TimeAndDate({ setReturnDate, times, selectedTimes }) {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [currentDateDisplay, setCurrentDateDisplay] = useState("");
+  const [currentDateDisplayNotDay, setCurrentDateDisplayNotDay] = useState("");
+  const [selectedTime, setSelectedTime] = useState(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [requestForTimedDays, setRequestForTimedDays] = useState(false);
+  const [appointmentRequest, setAppointmentRequest] = useState(false);
+  const [requestSelectedTime, setRequestSelectedTime] = useState("");
+  const [timedRequestSelectedTime, setTimesRequestSelectedTime] = useState("");
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -43,22 +36,19 @@ function TimeAndDate({
   }, []);
 
   useEffect(() => {
-    // güncel olarak tarih değiştiğimizde gösterilen tarihide değiştiren useEffect
     const formattedDate = formatDateDisplay(selectedDate);
     setCurrentDateDisplayNotDay(formatDate(selectedDate));
     setCurrentDateDisplay(formattedDate);
   }, [selectedDate]);
 
   const handleDateChange = (value) => {
-    // tarihi değiştirdiğimizde selected date i değiştiren fonksiyon
     setSelectedDate(value);
     setSelectedTime(null);
-    setSelectedRequestTime("");
+    setRequestSelectedTime("");
     setTimesRequestSelectedTime("");
   };
 
   const formatDateDisplay = (date) => {
-    // takvimden dönen tarih değerini gün ay yıl ve gün ismi formatına çeviren fonksiyon
     const tarihNesnesi = new Date(date);
     const options = {
       weekday: "long",
@@ -71,7 +61,6 @@ function TimeAndDate({
   };
 
   const formatDate = (date) => {
-    // takvimden dönen değeri gün ay yıl a çeviren fonksiyon
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
@@ -79,8 +68,7 @@ function TimeAndDate({
   };
 
   const handleAppointmentBoxClick = (clickedTime) => {
-    // seçtiğimiz saat ve tarihi selectedtime a atayan fonksiyon
-    const formattedReturnDate = `${currentDateDisplay} ${clickedTime} ${request}`;
+    const formattedReturnDate = `${currentDateDisplay} ${clickedTime} ${appointmentRequest}`;
     setReturnDate(formattedReturnDate);
     setSelectedTime(clickedTime);
   };
@@ -103,7 +91,7 @@ function TimeAndDate({
           <SwiperSlide key={i}>
             <div
               className={`flex flex-wrap items-center justify-center ${
-                timedSelectedRequestTime !== "" ? "hidden" : "block"
+                timedRequestSelectedTime !== "" ? "hidden" : "block"
               }  appointmentBoxArea mr-auto ml-auto`}
             >
               {sortedTimes.map((time, index) => (
@@ -137,7 +125,7 @@ function TimeAndDate({
           <SwiperSlide key={i}>
             <div
               className={`flex flex-wrap items-center justify-center ${
-                timedSelectedRequestTime !== "" ? "hidden" : "block"
+                timedRequestSelectedTime !== "" ? "hidden" : "block"
               }  appointmentBoxArea mr-auto ml-auto`}
             >
               {sortedTimes.map((time, index) => (
@@ -191,10 +179,53 @@ function TimeAndDate({
   };
 
   const appointmentTimesForSelectedDate = times.filter((time) => {
-    // sadece seçtiğimiz tarihdeki randevu saatlerini göstermeye yarayan fonksiyon
     const formattedSelectedDate = formatDate(selectedDate);
     return formatDate(new Date(time.date)) === formattedSelectedDate;
   });
+
+  function convertDateFormat(inputDate) {
+    // Split the inputDate into day, month, and year
+    const [day, month, year] = inputDate.split("-");
+
+    // Create a new date in "YYYY-MM-DD" format
+    const formattedDate = `${year}-${month}-${day}`;
+
+    return formattedDate;
+  }
+
+  const handleFormSubmit = (values) => {
+    const isTimeAlreadyBooked = selectedTimes.some((timeObj) => {
+      const selectedTime = values.time;
+      const selectedDateReuest = selectedDate;
+      return (
+        timeObj.time === selectedTime &&
+        timeObj.date === convertDateFormat(formatDate(selectedDateReuest))
+      );
+    });
+    console.log(isTimeAlreadyBooked);
+    if (isTimeAlreadyBooked) {
+      Swal.fire({
+        title: "Hata !",
+        text: "Bu randevu saati zaten randevu listesinde var.",
+        icon: "error",
+        confirmButtonText: "Kapat",
+      });
+      return;
+    }
+
+    setRequestSelectedTime(values.time);
+    setTimesRequestSelectedTime(values.time);
+    closeModalRequest();
+  };
+
+  const openModalRequest = () => {
+    setAppointmentRequest(true);
+  };
+
+  const closeModalRequest = () => {
+    setAppointmentRequest(false);
+  };
+
   return (
     <div className="animate__animated animate__fadeInLeft">
       <div className="title">
@@ -213,7 +244,7 @@ function TimeAndDate({
           </div>
           {appointmentTimesForSelectedDate.length > 0 && (
             <div className="flex flex-col items-center justify-center">
-              {timedSelectedRequestTime === "" && (
+              {timedRequestSelectedTime === "" && (
                 <>
                   <h1 className="text-xs text-red-600 font-semibold text-center">
                     Size uyan bir saat yoksa randevu talebi oluşturabilirsiniz
@@ -221,7 +252,7 @@ function TimeAndDate({
                   <button
                     className="bg-callNowButtonColor rounded-2xl p-1 px-6 text-white text-sm mt-[5px] mb-[10px]"
                     onClick={() => {
-                      setRequest(!request);
+                      setAppointmentRequest(!appointmentRequest);
                       setRequestForTimedDays(!requestForTimedDays);
                       setAppointmentRequest(!appointmentRequest); // setRequest(!request) korunuyor
                     }}
@@ -230,7 +261,7 @@ function TimeAndDate({
                   </button>
                 </>
               )}
-              {timedSelectedRequestTime !== "" &&
+              {timedRequestSelectedTime !== "" &&
                 formatDate(selectedDate) === currentDateDisplayNotDay && (
                   <>
                     <h2 className="text-sm text-buttonColor text-center font-semibold mt-[8px]">
@@ -241,14 +272,14 @@ function TimeAndDate({
                     </h2>
                     <RequestTimeBox
                       key={formatDate(selectedDate)}
-                      time={selectedRequestTime}
+                      time={requestSelectedTime}
                       date={formatDate(selectedDate)}
                       selectedTime={selectedTime}
                       onTimeClick={handleAppointmentBoxClick}
                     />
                   </>
                 )}
-              {timedSelectedRequestTime !== "" && (
+              {timedRequestSelectedTime !== "" && (
                 <>
                   <div className="flex items-center justify-center">
                     <button
@@ -287,7 +318,7 @@ function TimeAndDate({
                   <div
                     className={`flex flex-wrap items-center justify-center lg:w-[10rem] appointmentBoxArea mr-auto ml-auto`}
                   >
-                    {selectedRequestTime === "" && (
+                    {requestSelectedTime === "" && (
                       <>
                         <p className="text-red-500 text-center text-sm">
                           Uygun saatler bulunamadı.
@@ -297,18 +328,18 @@ function TimeAndDate({
                         </p>
                       </>
                     )}
-                    {selectedRequestTime === "" && (
+                    {requestSelectedTime === "" && (
                       <button
                         className="bg-callNowButtonColor rounded-2xl p-1 px-6 text-white text-sm mt-[15px]"
                         onClick={() => {
-                          setRequest(!request);
+                          setAppointmentRequest(!appointmentRequest);
                           setAppointmentRequest(!appointmentRequest);
                         }}
                       >
                         Talep oluştur
                       </button>
                     )}
-                    {selectedRequestTime !== "" &&
+                    {requestSelectedTime !== "" &&
                       formatDate(selectedDate) === currentDateDisplayNotDay && (
                         <>
                           <h2 className="text-sm text-buttonColor text-center font-semibold mt-[8px]">
@@ -319,14 +350,14 @@ function TimeAndDate({
                           </h2>
                           <RequestTimeBox
                             key={formatDate(selectedDate)}
-                            time={selectedRequestTime}
+                            time={requestSelectedTime}
                             date={formatDate(selectedDate)}
                             selectedTime={selectedTime}
                             onTimeClick={handleAppointmentBoxClick}
                           />
                         </>
                       )}
-                    {selectedRequestTime !== "" && (
+                    {requestSelectedTime !== "" && (
                       <>
                         <div className="flex items-center justify-center">
                           <button
@@ -345,13 +376,20 @@ function TimeAndDate({
               )}
             </div>
           </div>
+          {appointmentRequest === true && (
+            <AppointmentRequest
+              date={selectedDate}
+              isOpen={openModalRequest}
+              onClose={closeModalRequest}
+              handleFormSubmit={handleFormSubmit}
+            />
+          )}
         </div>
         <div className="max-[768px]:mb-[10px] rightArea max-[768px]:flex-1 flex items-center justify-center md:order-2 border-2 border-buttonColor rounded-2xl shadow-xl bg-white md:h-[20rem]">
           <CalendarBox
             selectedDate={selectedDate}
             onDateChange={(value) => {
-              handleDateChange(value);
-              setSelectedDateRequest(value); // Call the prop to update selectedDate
+              handleDateChange(value); // Call the prop to update selectedDate
             }}
           />
         </div>

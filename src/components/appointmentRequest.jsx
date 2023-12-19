@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 
-function AppointmentRequest({ isOpen, onClose, handleFormSubmit }) {
+function AppointmentRequest({ isOpen, onClose, handleFormSubmit, date }) {
   const modalClass = isOpen
     ? "fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-gray-600 bg-opacity-50 "
     : "hidden";
@@ -12,6 +12,15 @@ function AppointmentRequest({ isOpen, onClose, handleFormSubmit }) {
     const currentHour = now.getHours().toString().padStart(2, "0");
     const currentMinute = now.getMinutes().toString().padStart(2, "0");
     return `${currentHour}:${currentMinute}`;
+  };
+
+  const isToday = (someDate) => {
+    const today = new Date();
+    return (
+      someDate.getDate() === today.getDate() &&
+      someDate.getMonth() === today.getMonth() &&
+      someDate.getFullYear() === today.getFullYear()
+    );
   };
 
   return (
@@ -37,9 +46,9 @@ function AppointmentRequest({ isOpen, onClose, handleFormSubmit }) {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M6 18L18 6M6 6l12 12"
                   ></path>
                 </svg>
@@ -63,7 +72,7 @@ function AppointmentRequest({ isOpen, onClose, handleFormSubmit }) {
                   >
                     <div className="m-3">
                       <Field
-                        min={getCurrentTime()}
+                        min={isToday(date) ? getCurrentTime() : ""}
                         type="time"
                         className="lg:w-[22rem] max-[768px]:w-[22rem] p-3 focus:border-none outline-none bg-dayComponentBg"
                         name="time"
