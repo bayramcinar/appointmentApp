@@ -105,6 +105,7 @@ function TimeAndDate({
                   <AppointmentBox
                     key={index}
                     time={time.time}
+                    duration={time.duration}
                     onTimeClick={handleAppointmentBoxClick}
                     selectedTime={selectedTime}
                     active={time.active}
@@ -196,27 +197,62 @@ function TimeAndDate({
     return formattedDate;
   }
 
+  const isDurationTime = (selectedTime, duration) => {
+    const [selectedHour, selectedMinute] = selectedTime.split(":");
+    const selectedDateTime = new Date(selectedDate);
+    selectedDateTime.setHours(selectedHour, selectedMinute);
+
+    for (const existingTime of selectedTimes) {
+      const existingDateTime = new Date(existingTime.date);
+      existingDateTime.setHours(
+        existingTime.time.split(":")[0],
+        existingTime.time.split(":")[1]
+      );
+      const endTime = new Date(
+        existingDateTime.getTime() + existingTime.duration * 60000
+      );
+      if (selectedDateTime >= existingDateTime && selectedDateTime < endTime) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   const handleFormSubmit = (values) => {
+    const selectedTime = values.time;
+
     const isTimeAlreadyBooked = selectedTimes.some((timeObj) => {
-      const selectedTime = values.time;
       const selectedDateReuest = selectedDate;
       return (
         timeObj.time === selectedTime &&
         timeObj.date === convertDateFormat(formatDate(selectedDateReuest))
       );
     });
-    console.log(isTimeAlreadyBooked);
+
     if (isTimeAlreadyBooked) {
       Swal.fire({
-        title: "Hata !",
+        title: "Hata!",
         text: "Bu randevu saati zaten randevu listesinde var.",
         icon: "error",
         confirmButtonText: "Kapat",
       });
       return;
     }
-    setRequestSelectedTime(values.time);
-    setTimesRequestSelectedTime(values.time);
+
+    const hasDurationConflict = isDurationTime(selectedTime, values.duration);
+
+    if (hasDurationConflict) {
+      Swal.fire({
+        title: "Hata!",
+        text: "Bu saat aralığı zaten bir randevu ile çakışıyor.",
+        icon: "error",
+        confirmButtonText: "Kapat",
+      });
+      return;
+    }
+
+    setRequestSelectedTime(selectedTime);
+    setTimesRequestSelectedTime(selectedTime);
     closeModalRequest();
   };
 

@@ -1,7 +1,14 @@
 import React from "react";
 import Swal from "sweetalert2";
 
-function AppointmentBox({ time, date, selectedTime, onTimeClick, active }) {
+function AppointmentBox({
+  time,
+  date,
+  selectedTime,
+  onTimeClick,
+  active,
+  duration,
+}) {
   const handleTimeClick = () => {
     //seçtiğimiz saati geri döndürüyor ve background renk ayarlamarını yapıyor
     if (active) {
@@ -30,7 +37,9 @@ function AppointmentBox({ time, date, selectedTime, onTimeClick, active }) {
         } rounded-3xl mb-[5px] p-[2px] max-[768px]:m-[5px] cursor-pointer`}
         onClick={handleTimeClick}
       >
-        <h4 className="text-sm text-text p-1 text-center">{time}</h4>
+        <h4 className="text-sm text-text p-1 text-center">
+          {time} ({duration} Dakika)
+        </h4>
       </div>
     </div>
   );
