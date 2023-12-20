@@ -57,12 +57,13 @@ function AppointmentRequest({ isOpen, onClose, handleFormSubmit, date }) {
             <div>
               <div className="appointmentRequestArea">
                 <h1 className="text-buttonColor text-sm text-center font-semibold">
-                  Lütfen Aşağıdan oluşturmak istediğiniz randevu talebi saati
-                  seçiniz
+                  Lütfen Aşağıdan oluşturmak istediğiniz randevu talebin saatini
+                  ve süresini seçiniz
                 </h1>
                 <Formik
                   initialValues={{
                     time: "",
+                    duration: "",
                   }}
                   onSubmit={handleFormSubmit}
                 >
@@ -76,6 +77,14 @@ function AppointmentRequest({ isOpen, onClose, handleFormSubmit, date }) {
                         type="time"
                         className="lg:w-[22rem] max-[768px]:w-[22rem] p-3 focus:border-none outline-none bg-dayComponentBg"
                         name="time"
+                      />
+                    </div>
+                    <div className="m-3">
+                      <Field
+                        name="duration"
+                        type="number"
+                        className={`p-3 lg:w-[22rem] max-[768px]:w-[22rem] focus:border-none outline-none bg-dayComponentBg`}
+                        placeholder="Randevu Süresi (örn: 30 dk)"
                       />
                     </div>
                     <button

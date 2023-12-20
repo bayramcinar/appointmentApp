@@ -25,9 +25,16 @@ function TimeAndDate({
   const [selectedTime, setSelectedTime] = useState(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [requestForTimedDays, setRequestForTimedDays] = useState(false);
+
+  const [appointmentRequestNormal, setAppointmentRequestNormal] =
+    useState(false);
   const [appointmentRequest, setAppointmentRequest] = useState(false);
   const [requestSelectedTime, setRequestSelectedTime] = useState("");
   const [timedRequestSelectedTime, setTimesRequestSelectedTime] = useState("");
+
+  const [requestSelectedDuration, setRequestSelectedDuration] = useState("");
+  const [timedRequestSelectedDuration, setTimesRequestSelectedDuration] =
+    useState("");
 
   useEffect(() => {
     const handleResize = () => {
@@ -52,6 +59,8 @@ function TimeAndDate({
     setSelectedTime(null);
     setRequestSelectedTime("");
     setTimesRequestSelectedTime("");
+    setRequestSelectedDuration("");
+    setTimesRequestSelectedDuration("");
   };
 
   const formatDateDisplay = (date) => {
@@ -73,8 +82,14 @@ function TimeAndDate({
     return `${day}-${month}-${year}`;
   };
 
+  const handleAppointmentBoxClickTimed = (clickedTime) => {
+    const formattedReturnDate = `${currentDateDisplay} ${clickedTime} ${requestForTimedDays}`;
+    setReturnDate(formattedReturnDate);
+    setSelectedTime(clickedTime);
+  };
+
   const handleAppointmentBoxClick = (clickedTime) => {
-    const formattedReturnDate = `${currentDateDisplay} ${clickedTime} ${appointmentRequest}`;
+    const formattedReturnDate = `${currentDateDisplay} ${clickedTime} ${appointmentRequestNormal}`;
     setReturnDate(formattedReturnDate);
     setSelectedTime(clickedTime);
   };
@@ -223,40 +238,52 @@ function TimeAndDate({
 
   const handleFormSubmit = (values) => {
     const selectedTime = values.time;
+    const selectedDuration = values.duration;
 
-    const isTimeAlreadyBooked = selectedTimes.some((timeObj) => {
-      const selectedDateReuest = selectedDate;
-      return (
-        timeObj.time === selectedTime &&
-        timeObj.date === convertDateFormat(formatDate(selectedDateReuest))
-      );
-    });
-
-    if (isTimeAlreadyBooked) {
+    if (selectedTime === "" || selectedDuration === "") {
       Swal.fire({
         title: "Hata!",
-        text: "Bu randevu saati zaten randevu listesinde var.",
+        text: "Lütfen tüm alanları doldurunuz.",
         icon: "error",
         confirmButtonText: "Kapat",
       });
-      return;
-    }
-
-    const hasDurationConflict = isDurationTime(selectedTime, values.duration);
-
-    if (hasDurationConflict) {
-      Swal.fire({
-        title: "Hata!",
-        text: "Bu saat aralığı zaten bir randevu ile çakışıyor.",
-        icon: "error",
-        confirmButtonText: "Kapat",
+    } else {
+      const isTimeAlreadyBooked = selectedTimes.some((timeObj) => {
+        const selectedDateReuest = selectedDate;
+        return (
+          timeObj.time === selectedTime &&
+          timeObj.date === convertDateFormat(formatDate(selectedDateReuest))
+        );
       });
-      return;
-    }
 
-    setRequestSelectedTime(selectedTime);
-    setTimesRequestSelectedTime(selectedTime);
-    closeModalRequest();
+      if (isTimeAlreadyBooked) {
+        Swal.fire({
+          title: "Hata!",
+          text: "Bu randevu saati zaten randevu listesinde var.",
+          icon: "error",
+          confirmButtonText: "Kapat",
+        });
+        return;
+      }
+
+      const hasDurationConflict = isDurationTime(selectedTime, values.duration);
+
+      if (hasDurationConflict) {
+        Swal.fire({
+          title: "Hata!",
+          text: "Bu saat aralığı zaten bir randevu ile çakışıyor.",
+          icon: "error",
+          confirmButtonText: "Kapat",
+        });
+        return;
+      }
+
+      setRequestSelectedDuration(selectedDuration);
+      setTimesRequestSelectedDuration(selectedDuration);
+      setRequestSelectedTime(selectedTime);
+      setTimesRequestSelectedTime(selectedTime);
+      closeModalRequest();
+    }
   };
 
   const openModalRequest = () => {
@@ -295,9 +322,8 @@ function TimeAndDate({
                       className="bg-callNowButtonColor rounded-2xl p-1 px-6 text-white text-sm mt-[5px] mb-[10px]"
                       onClick={() => {
                         setRequest(true);
-                        setAppointmentRequest(!appointmentRequest);
-                        setRequestForTimedDays(!requestForTimedDays);
-                        setAppointmentRequest(!appointmentRequest); // setRequest(!request) korunuyor
+                        setAppointmentRequest(true);
+                        setRequestForTimedDays(true);
                       }}
                     >
                       Talep oluştur
@@ -314,11 +340,13 @@ function TimeAndDate({
                         (Lütfen aşağıdan seçiniz ! )
                       </h2>
                       <RequestTimeBox
+                        isMobile={isMobile}
                         key={formatDate(selectedDate)}
+                        duration={timedRequestSelectedDuration}
                         time={requestSelectedTime}
                         date={formatDate(selectedDate)}
                         selectedTime={selectedTime}
-                        onTimeClick={handleAppointmentBoxClick}
+                        onTimeClick={handleAppointmentBoxClickTimed}
                       />
                     </>
                   )}
@@ -326,9 +354,7 @@ function TimeAndDate({
                   <>
                     <div className="flex items-center justify-center">
                       <button
-                        onClick={() =>
-                          setAppointmentRequest(!appointmentRequest)
-                        }
+                        onClick={() => setAppointmentRequest(true)}
                         className="bg-appoinmentBox font-semibold text-sm text-white p-1 px-6 rounded-2xl"
                       >
                         <i class="fa-solid fa-file-pen"></i> Düzenle
@@ -348,10 +374,10 @@ function TimeAndDate({
               >
                 {isMobile && appointmentTimesForSelectedDate.length > 9 && (
                   <>
-                    <div className="custom-swiper-button-prev absolute left-3 top-[41%] text-xl text-buttonColor z-[2] cursor-pointer">
+                    <div className="custom-swiper-button-prev absolute left-1 top-[41%] text-xl text-buttonColor z-[2] cursor-pointer">
                       <i className="fa-solid fa-arrow-left" alt="Previous"></i>
                     </div>
-                    <div className="custom-swiper-button-next absolute right-3 top-[41%] text-xl text-buttonColor z-[2] cursor-pointer">
+                    <div className="custom-swiper-button-next absolute right-1 top-[41%] text-xl text-buttonColor z-[2] cursor-pointer">
                       <i className="fa-solid fa-arrow-right" alt="Next"></i>
                     </div>
                   </>
@@ -379,9 +405,9 @@ function TimeAndDate({
                         <button
                           className="bg-callNowButtonColor rounded-2xl p-1 px-6 text-white text-sm mt-[15px]"
                           onClick={() => {
-                            setAppointmentRequest(!appointmentRequest);
-                            setAppointmentRequest(!appointmentRequest);
+                            setAppointmentRequestNormal(true);
                             setRequest(true);
+                            setAppointmentRequest(true);
                           }}
                         >
                           Talep oluştur
@@ -398,6 +424,8 @@ function TimeAndDate({
                               (Lütfen aşağıdan seçiniz ! )
                             </h2>
                             <RequestTimeBox
+                              isMobile={isMobile}
+                              duration={requestSelectedDuration}
                               key={formatDate(selectedDate)}
                               time={requestSelectedTime}
                               date={formatDate(selectedDate)}
@@ -410,9 +438,7 @@ function TimeAndDate({
                         <>
                           <div className="flex items-center justify-center">
                             <button
-                              onClick={() =>
-                                setAppointmentRequest(!appointmentRequest)
-                              }
+                              onClick={() => setAppointmentRequest(true)}
                               className="bg-appoinmentBox font-semibold text-sm text-white p-1 px-6 rounded-2xl"
                             >
                               <i class="fa-solid fa-file-pen"></i> Düzenle

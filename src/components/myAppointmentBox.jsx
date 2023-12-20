@@ -10,7 +10,6 @@ function MyAppointmentBox({ image, infos, onDelete }) {
   const isRequestFunction = () => {
     const lastSpaceIndex = infos["time"].lastIndexOf(" ");
     const trueValue = infos["time"].substring(lastSpaceIndex + 1);
-
     if (trueValue.toLowerCase() === "true") {
       setRequest(true);
     } else {
