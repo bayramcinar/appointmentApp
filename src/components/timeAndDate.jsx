@@ -103,6 +103,7 @@ function TimeAndDate({
               {sortedTimes.map((time, index) => (
                 <>
                   <AppointmentBox
+                    isMobile={isMobile}
                     key={index}
                     time={time.time}
                     duration={time.duration}
@@ -138,8 +139,10 @@ function TimeAndDate({
               {sortedTimes.map((time, index) => (
                 <>
                   <AppointmentBox
+                    isMobile={isMobile}
                     key={index}
                     time={time.time}
+                    duration={time.duration}
                     onTimeClick={handleAppointmentBoxClick}
                     selectedTime={selectedTime}
                     active={time.active}
