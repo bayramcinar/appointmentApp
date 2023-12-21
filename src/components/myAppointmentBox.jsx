@@ -3,26 +3,35 @@ import "../style/myAppointments.css";
 
 function MyAppointmentBox({ image, infos, onDelete }) {
   const [request, setRequest] = useState(false);
+
   const handleDelete = () => {
-    // Call the onDelete function passed as a prop
     onDelete(infos);
   };
+
   const isRequestFunction = () => {
-    const lastSpaceIndex = infos["time"].lastIndexOf(" ");
-    const trueValue = infos["time"].substring(lastSpaceIndex + 1);
-    if (trueValue.toLowerCase() === "true") {
-      setRequest(true);
-    } else {
-      setRequest(false);
-    }
+    const timeArray = infos["time"].split(" ");
+    const trueValue = timeArray[timeArray.length - 2];
+    const isRequest = trueValue.toLowerCase() === "true";
+    return isRequest;
   };
 
   useEffect(() => {
-    isRequestFunction();
-  }, [infos]);
+    const isRequest = isRequestFunction();
+    if (isRequest !== request) {
+      setRequest(true);
+    }
+  }, [infos, request]);
 
   const removeTrueValue = (timeString) => {
-    return timeString.replace("true", "");
+    const stringWithoutTrue = timeString.includes("true")
+      ? timeString.replace("true", "")
+      : timeString;
+
+    const stringWithoutFalse = stringWithoutTrue.includes("false")
+      ? stringWithoutTrue.replace("false", "")
+      : stringWithoutTrue;
+
+    return stringWithoutFalse;
   };
 
   return (
@@ -41,9 +50,14 @@ function MyAppointmentBox({ image, infos, onDelete }) {
             <h1 className="text-xs text-buttonColor p-1 text-left font-medium m-1">
               {infos["kimIçin"]} için ({infos["notes"]})
             </h1>
-            <h1 className="text-xs text-buttonColor p-1 text-left font-medium m-1">
-              {removeTrueValue(infos["time"])}
-            </h1>
+            <div className="flex ">
+              <h1 className="text-xs text-buttonColor p-1 text-left font-medium m-1">
+                {removeTrueValue(infos["time"])}
+              </h1>
+              <h1 className="text-xs text-buttonColor py-1  text-left font-medium my-1">
+                ({infos["duration"]} Dakika)
+              </h1>
+            </div>
             <h1 className="text-xs text-buttonColor p-1 text-left font-medium m-1">
               {infos["service"]}
             </h1>

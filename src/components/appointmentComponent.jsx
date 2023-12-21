@@ -23,7 +23,7 @@ function AppointmentComponent() {
   const [birthDay, setBirthday] = useState("");
   const [isOwn, setIsOwn] = useState(true); // kendim için ve başkası için değişkenlerini tutan değişken (true false yapısı)
   const [request, setRequest] = useState(false);
-
+  const [duration, setDuration] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -69,36 +69,36 @@ function AppointmentComponent() {
   };
 
   const selectedTimes = [
-    { time: "10:02", date: "2023-12-21", duration: "45", active: true },
-    { time: "10:03", date: "2023-12-21", duration: "45", active: true },
-    { time: "10:02", date: "2023-12-22", duration: "45", active: true },
-    { time: "10:03", date: "2023-12-22", duration: "45", active: true },
-    { time: "10:30", date: "2023-12-22", duration: "45", active: true },
-    { time: "10:05", date: "2023-12-22", duration: "45", active: true },
-    { time: "10:30", date: "2023-12-23", duration: "45", active: true },
-    { time: "13:00", date: "2023-12-23", duration: "45", active: true },
-    { time: "14:15", date: "2023-12-23", duration: "30", active: true },
-    { time: "15:30", date: "2023-12-23", duration: "30", active: true },
-    { time: "16:30", date: "2023-12-23", duration: "60", active: true },
-    { time: "18:00", date: "2023-12-23", duration: "45", active: true },
+    { time: "10:02", date: "2023-12-23", duration: "45", active: true },
+    { time: "10:03", date: "2023-12-23", duration: "45", active: true },
     { time: "10:02", date: "2023-12-24", duration: "45", active: true },
     { time: "10:03", date: "2023-12-24", duration: "45", active: true },
-    { time: "10:04", date: "2023-12-24", duration: "45", active: true },
+    { time: "10:30", date: "2023-12-24", duration: "45", active: true },
     { time: "10:05", date: "2023-12-24", duration: "45", active: true },
-    { time: "10:06", date: "2023-12-24", duration: "45", active: true },
-    { time: "10:07", date: "2023-12-24", duration: "45", active: true },
-    { time: "20:30", date: "2023-12-24", duration: "45", active: true },
-    { time: "10:09", date: "2023-12-24", duration: "45", active: true },
+    { time: "10:30", date: "2023-12-25", duration: "45", active: true },
+    { time: "13:00", date: "2023-12-25", duration: "45", active: true },
+    { time: "14:15", date: "2023-12-25", duration: "30", active: true },
+    { time: "15:30", date: "2023-12-25", duration: "30", active: true },
+    { time: "16:30", date: "2023-12-25", duration: "60", active: true },
+    { time: "18:00", date: "2023-12-25", duration: "45", active: true },
     { time: "10:02", date: "2023-12-25", duration: "45", active: true },
-    { time: "10:03", date: "2023-12-25", duration: "45", active: true },
-    { time: "10:04", date: "2023-12-25", duration: "45", active: true },
-    { time: "10:05", date: "2023-12-25", duration: "45", active: true },
-    { time: "10:06", date: "2023-12-25", duration: "45", active: true },
-    { time: "10:07", date: "2023-12-25", duration: "45", active: true },
-    { time: "10:08", date: "2023-12-25", duration: "45", active: true },
-    { time: "10:09", date: "2023-12-25", duration: "45", active: true },
-    { time: "10:12", date: "2023-12-25", duration: "45", active: true },
-    { time: "10:22", date: "2023-12-25", duration: "45", active: true },
+    { time: "10:03", date: "2023-12-26", duration: "45", active: true },
+    { time: "10:04", date: "2023-12-26", duration: "45", active: true },
+    { time: "10:05", date: "2023-12-26", duration: "45", active: true },
+    { time: "10:06", date: "2023-12-26", duration: "45", active: true },
+    { time: "10:07", date: "2023-12-26", duration: "45", active: true },
+    { time: "20:30", date: "2023-12-26", duration: "45", active: true },
+    { time: "10:09", date: "2023-12-26", duration: "45", active: true },
+    { time: "10:02", date: "2023-12-27", duration: "45", active: true },
+    { time: "10:03", date: "2023-12-27", duration: "45", active: true },
+    { time: "10:04", date: "2023-12-27", duration: "45", active: true },
+    { time: "10:05", date: "2023-12-27", duration: "45", active: true },
+    { time: "10:06", date: "2023-12-27", duration: "45", active: true },
+    { time: "10:07", date: "2023-12-27", duration: "45", active: true },
+    { time: "10:08", date: "2023-12-27", duration: "45", active: true },
+    { time: "10:09", date: "2023-12-27", duration: "45", active: true },
+    { time: "10:12", date: "2023-12-27", duration: "45", active: true },
+    { time: "10:22", date: "2023-12-27", duration: "45", active: true },
   ];
 
   // const [selectedTimes, setSelectedTimes] = useState([]); //saatleri atadığımız değişken
@@ -273,7 +273,7 @@ function AppointmentComponent() {
 
   const parseDateTime = (returnDate) => {
     const dateTimeParts = returnDate.split(" ");
-    if (dateTimeParts.length === 4) {
+    if (dateTimeParts.length === 5) {
       const [day, month, year] = dateTimeParts[0].split(".");
       const dateFormatted = `${day}.${month}.${year}`;
       return {
@@ -292,6 +292,30 @@ function AppointmentComponent() {
   // Kullanım
   const returnDateFinal = returnDate;
   const { date, time } = parseDateTime(returnDateFinal);
+
+  const parseDateTimeString = (dateTimeString) => {
+    const dateTimeParts = dateTimeString.split(" ");
+    if (dateTimeParts.length === 5) {
+      const [day, month, year] = dateTimeParts[0].split(".");
+      const dateFormatted = `${year}-${month}-${day}`;
+      const time = dateTimeParts[2];
+      return { date: dateFormatted, time };
+    }
+    // Hata durumu için boş bir obje döndürebilirsiniz.
+    return { date: "", time: "" };
+  };
+
+  const findDuration = (date) => {
+    const values = parseDateTimeString(date);
+    const timeValue = values.time;
+    const dateValue = values.date;
+    return (
+      selectedTimes.find(
+        (timeObj) => timeObj.time === timeValue && timeObj.date === dateValue
+      )?.duration || duration
+    );
+  };
+
   return (
     <>
       {showFinishScreen && (
@@ -310,6 +334,7 @@ function AppointmentComponent() {
           birthday={birthDay}
           firstName={firstName}
           lastName={lastName}
+          duration={findDuration(returnDate)}
           price={"100"}
           serviceProviderName={"Bayram Çınar"}
           serviceProviderJob={"Uzman, Klinik Psikoloji"}
@@ -331,12 +356,14 @@ function AppointmentComponent() {
               selectedTimes={selectedTimes}
               setReturnDate={setReturnDate}
               times={selectedTimes}
+              setDuration1={setDuration}
               live={true}
             />
           )}
           {step === 3 && (
             <>
               <ContactForm
+                duration={findDuration(returnDate)}
                 time={returnDate}
                 service={returnService}
                 onFormSubmit={handleFinish}

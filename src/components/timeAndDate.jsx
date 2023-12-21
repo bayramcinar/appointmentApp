@@ -18,6 +18,7 @@ function TimeAndDate({
   selectedTimes,
   setRequest,
   request,
+  setDuration1,
 }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [currentDateDisplay, setCurrentDateDisplay] = useState("");
@@ -31,7 +32,7 @@ function TimeAndDate({
   const [appointmentRequest, setAppointmentRequest] = useState(false);
   const [requestSelectedTime, setRequestSelectedTime] = useState("");
   const [timedRequestSelectedTime, setTimesRequestSelectedTime] = useState("");
-
+  const [duration, setDuration] = useState("");
   const [requestSelectedDuration, setRequestSelectedDuration] = useState("");
   const [timedRequestSelectedDuration, setTimesRequestSelectedDuration] =
     useState("");
@@ -83,13 +84,13 @@ function TimeAndDate({
   };
 
   const handleAppointmentBoxClickTimed = (clickedTime) => {
-    const formattedReturnDate = `${currentDateDisplay} ${clickedTime} ${requestForTimedDays}`;
+    const formattedReturnDate = `${currentDateDisplay} ${clickedTime} ${requestForTimedDays} ${duration}`;
     setReturnDate(formattedReturnDate);
     setSelectedTime(clickedTime);
   };
 
   const handleAppointmentBoxClick = (clickedTime) => {
-    const formattedReturnDate = `${currentDateDisplay} ${clickedTime} ${appointmentRequestNormal}`;
+    const formattedReturnDate = `${currentDateDisplay} ${clickedTime} ${appointmentRequestNormal} ${duration}`;
     setReturnDate(formattedReturnDate);
     setSelectedTime(clickedTime);
   };
@@ -239,6 +240,7 @@ function TimeAndDate({
   const handleFormSubmit = (values) => {
     const selectedTime = values.time;
     const selectedDuration = values.duration;
+    setDuration1(selectedDuration);
 
     if (selectedTime === "" || selectedDuration === "") {
       Swal.fire({
@@ -277,6 +279,8 @@ function TimeAndDate({
         });
         return;
       }
+
+      console.log("Duration:", selectedDuration);
 
       setRequestSelectedDuration(selectedDuration);
       setTimesRequestSelectedDuration(selectedDuration);
