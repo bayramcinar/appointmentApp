@@ -76,7 +76,7 @@ function SetAppointmentTime() {
   };
 
   return (
-    <div className="ml-auto mr-auto bg-dayComponentBg mt-10 setAppointmentTime flex items-center justify-center flex-col lg:w-[35rem] md:w-[24rem] lg:h-[655px] sm:h-auto">
+    <div className="ml-auto mr-auto bg-dayComponentBg mt-10 setAppointmentTime flex items-center justify-center flex-col lg:w-[33rem] md:w-[24rem] lg:h-[700px] sm:h-auto shadow-xl border-stepBorder1 border-2 rounded-xl">
       <h2 className="text-buttonColor text-2xl m-3 font-semibold mb-0">
         Randevu Zamanı Belirle
       </h2>

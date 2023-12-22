@@ -1,0 +1,15 @@
+/* .rbc-today {
+  background-color: #1dbab5;
+  border-radius: 10px;
+  color: white;
+} */
+/* Replace your existing CSS with this */
+/* Replace your existing CSS with this */
+.rbc-btn-group button {
+  background-color: #112469;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
