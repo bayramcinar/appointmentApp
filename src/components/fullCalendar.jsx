@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "moment/locale/tr";
@@ -9,7 +9,7 @@ import EventModal from "./eventModal";
 
 const localizer = momentLocalizer(moment);
 
-const convertToISOFormat = (inputDate) => {
+const convertToISOFormat = (inputDate, onRequestChange) => {
   // Gelen tarihi boşluktan ve noktadan ayır
   const dateComponents = inputDate.split(/[.\s]/);
 
@@ -23,6 +23,10 @@ const convertToISOFormat = (inputDate) => {
   const hour = timeComponents[0];
   const minute = timeComponents[1];
 
+  // Set request based on the condition
+  const request = dateComponents[5] === "true";
+  onRequestChange(request);
+
   // Tarihi ISO 8601 formata dönüştür ve moment nesnesine çevir
   const isoFormattedDate = moment(
     `${year}-${month}-${day}T${hour - 3}:${minute}:00.000Z`,
@@ -34,45 +38,62 @@ const convertToISOFormat = (inputDate) => {
 };
 
 // localStorage'den alınan veriyi events dizisine dönüştüren fonksiyon
-const getSessionStorageData = () => {
-  const formDataString = localStorage.getItem("formData");
-  const formData = JSON.parse(formDataString);
-
+const getSessionStorageData = (formData, setRequest) => {
   if (!formData || !Array.isArray(formData)) {
     return [];
   }
 
-  // Tüm formData elemanlarını dolaş ve yazdır
-  formData.forEach((formEntry, index) => {
-    const convertedDate = convertToISOFormat(formEntry.time);
-  });
-
-  // events dizisine dönüştürme
-  const events = formData.map((formEntry) => ({
-    //BURDAKİ DEĞERLER KENDİM İÇİN OLURSA SESSİON STORAGE DAN ALINACAK (İSİM,DOĞUM TARİHİ,CİNSİYET)
-    name:
+  return formData.map((formEntry) => {
+    const title =
       formEntry.firstName && formEntry.lastName
         ? formEntry.firstName + " " + formEntry.lastName
-        : "Bayram Çınar",
-    gender: formEntry.gender || "erkek",
-    birthday: formEntry.dateOfBirth || "2023-02-13",
-    language: formEntry.language,
-    notes: formEntry.notes,
-    title: formEntry.service,
-    start: convertToISOFormat(formEntry.time).toDate(),
-    end: convertToISOFormat(formEntry.time)
-      .add(formEntry.duration, "minutes")
-      .toDate(),
-  }));
+        : "Bayram Çınar";
 
-  return events;
+    const gender = formEntry.gender || "erkek";
+    const birthday = formEntry.dateOfBirth || "2023-02-13";
+    const language = formEntry.language;
+    const notes = formEntry.notes;
+    const service = formEntry.service;
+
+    let request = false;
+
+    const start = convertToISOFormat(formEntry.time, (value) => {
+      request = value;
+    }).toDate();
+
+    const end = convertToISOFormat(formEntry.time, () => {})
+      .add(formEntry.duration, "minutes")
+      .toDate();
+
+    return {
+      name: title,
+      gender: gender,
+      birthday: birthday,
+      language: language,
+      notes: notes,
+      title: service + " " + (request ? "(Randevu Talebi)" : ""),
+      start: start,
+      end: end,
+    };
+  });
 };
 
 function FullCalendarComponent() {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [formData, setFormData] = useState([]);
+  const [request, setRequest] = useState(false);
 
-  const eventsFromSessionStorage = getSessionStorageData();
+  useEffect(() => {
+    // kaydedilen randevuları localStorage dan alan hooks
+    const storedFormData = localStorage.getItem("formData");
+    if (storedFormData) {
+      const parsedFormData = JSON.parse(storedFormData);
+      setFormData(parsedFormData);
+    }
+  }, []);
+
+  const eventsFromSessionStorage = getSessionStorageData(formData, setRequest);
 
   const handleEventClick = (event) => {
     setSelectedEvent(event);
