@@ -11,10 +11,9 @@ import Swal from "sweetalert2";
 
 function MyAppointments() {
   const [formData, setFormData] = useState([]);
-
   const handleDelete = (selectedAppointment) => {
     const selectedTimes =
-      JSON.parse(sessionStorage.getItem("selectedTimes")) || [];
+      JSON.parse(localStorage.getItem("selectedTimes")) || [];
 
     const dateParts = selectedAppointment.time.split(" ");
     const datePart = dateParts[0].split(".");
@@ -58,22 +57,21 @@ function MyAppointments() {
       return appointment;
     });
 
-    sessionStorage.setItem(
-      "selectedTimes",
-      JSON.stringify(updatedSelectedTimes)
-    );
+    localStorage.setItem("selectedTimes", JSON.stringify(updatedSelectedTimes));
 
     // Form datayı güncelle
     const updatedFormData = formData.filter(
-      (appointment) => appointment !== selectedAppointment
+      (appointment) =>
+        appointment.date !== selectedAppointment.date ||
+        appointment.time !== selectedAppointment.time
     );
     setFormData(updatedFormData);
-    sessionStorage.setItem("formData", JSON.stringify(updatedFormData));
+    localStorage.setItem("formData", JSON.stringify(updatedFormData));
   };
 
   useEffect(() => {
-    // kaydedilen randevuları sessionStorage dan alan hooks
-    const storedFormData = sessionStorage.getItem("formData");
+    // kaydedilen randevuları localStorage dan alan hooks
+    const storedFormData = localStorage.getItem("formData");
     if (storedFormData) {
       const parsedFormData = JSON.parse(storedFormData);
       setFormData(parsedFormData);

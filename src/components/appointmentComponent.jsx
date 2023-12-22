@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Steps from "./steps";
 import TimeAndDate from "./timeAndDate";
 import ContactForm from "./contactInfo";
@@ -68,46 +68,47 @@ function AppointmentComponent() {
     }
   };
 
-  const selectedTimes = [
-    { time: "10:02", date: "2023-12-23", duration: "45", active: true },
-    { time: "10:03", date: "2023-12-23", duration: "45", active: true },
-    { time: "10:02", date: "2023-12-24", duration: "45", active: true },
-    { time: "10:03", date: "2023-12-24", duration: "45", active: true },
-    { time: "10:30", date: "2023-12-24", duration: "45", active: true },
-    { time: "10:05", date: "2023-12-24", duration: "45", active: true },
-    { time: "10:30", date: "2023-12-25", duration: "45", active: true },
-    { time: "13:00", date: "2023-12-25", duration: "45", active: true },
-    { time: "14:15", date: "2023-12-25", duration: "30", active: true },
-    { time: "15:30", date: "2023-12-25", duration: "30", active: true },
-    { time: "16:30", date: "2023-12-25", duration: "60", active: true },
-    { time: "18:00", date: "2023-12-25", duration: "45", active: true },
-    { time: "10:02", date: "2023-12-25", duration: "45", active: true },
-    { time: "10:03", date: "2023-12-26", duration: "45", active: true },
-    { time: "10:04", date: "2023-12-26", duration: "45", active: true },
-    { time: "10:05", date: "2023-12-26", duration: "45", active: true },
-    { time: "10:06", date: "2023-12-26", duration: "45", active: true },
-    { time: "10:07", date: "2023-12-26", duration: "45", active: true },
-    { time: "20:30", date: "2023-12-26", duration: "45", active: true },
-    { time: "10:09", date: "2023-12-26", duration: "45", active: true },
-    { time: "10:02", date: "2023-12-27", duration: "45", active: true },
-    { time: "10:03", date: "2023-12-27", duration: "45", active: true },
-    { time: "10:04", date: "2023-12-27", duration: "45", active: true },
-    { time: "10:05", date: "2023-12-27", duration: "45", active: true },
-    { time: "10:06", date: "2023-12-27", duration: "45", active: true },
-    { time: "10:07", date: "2023-12-27", duration: "45", active: true },
-    { time: "10:08", date: "2023-12-27", duration: "45", active: true },
-    { time: "10:09", date: "2023-12-27", duration: "45", active: true },
-    { time: "10:12", date: "2023-12-27", duration: "45", active: true },
-    { time: "10:22", date: "2023-12-27", duration: "45", active: true },
-  ];
+  // const selectedTimes = [
+  //   { time: "10:02", date: "2023-12-23", duration: "45", active: true },
+  //   { time: "10:03", date: "2023-12-23", duration: "45", active: true },
+  //   { time: "10:02", date: "2023-12-24", duration: "45", active: true },
+  //   { time: "10:03", date: "2023-12-24", duration: "45", active: true },
+  //   { time: "10:30", date: "2023-12-24", duration: "45", active: true },
+  //   { time: "10:05", date: "2023-12-24", duration: "45", active: true },
+  //   { time: "10:30", date: "2023-12-25", duration: "45", active: true },
+  //   { time: "13:00", date: "2023-12-25", duration: "45", active: true },
+  //   { time: "14:15", date: "2023-12-25", duration: "30", active: true },
+  //   { time: "15:30", date: "2023-12-25", duration: "30", active: true },
+  //   { time: "16:30", date: "2023-12-25", duration: "60", active: true },
+  //   { time: "18:00", date: "2023-12-25", duration: "45", active: true },
+  //   { time: "10:02", date: "2023-12-25", duration: "45", active: true },
+  //   { time: "10:03", date: "2023-12-26", duration: "45", active: true },
+  //   { time: "10:04", date: "2023-12-26", duration: "45", active: true },
+  //   { time: "10:05", date: "2023-12-26", duration: "45", active: true },
+  //   { time: "10:06", date: "2023-12-26", duration: "45", active: true },
+  //   { time: "10:07", date: "2023-12-26", duration: "45", active: true },
+  //   { time: "20:30", date: "2023-12-26", duration: "45", active: true },
+  //   { time: "10:09", date: "2023-12-26", duration: "45", active: true },
+  //   { time: "10:02", date: "2023-12-27", duration: "45", active: true },
+  //   { time: "10:03", date: "2023-12-27", duration: "45", active: true },
+  //   { time: "10:04", date: "2023-12-27", duration: "45", active: true },
+  //   { time: "10:05", date: "2023-12-27", duration: "45", active: true },
+  //   { time: "10:06", date: "2023-12-27", duration: "45", active: true },
+  //   { time: "10:07", date: "2023-12-27", duration: "45", active: true },
+  //   { time: "10:08", date: "2023-12-27", duration: "45", active: true },
+  //   { time: "10:09", date: "2023-12-27", duration: "45", active: true },
+  //   { time: "10:12", date: "2023-12-27", duration: "45", active: true },
+  //   { time: "10:22", date: "2023-12-27", duration: "45", active: true },
+  // ];
 
-  // const [selectedTimes, setSelectedTimes] = useState([]); //saatleri atadığımız değişken
+  const [selectedTimes, setSelectedTimes] = useState([]); //saatleri atadığımız değişken
 
-  // useEffect(() => {                             //DATABASE DEN OKUCAAK SAATLER
-  //   const storedTimes = sessionStorage.getItem('selectedTimes');
-  //   const parsedTimes = storedTimes ? JSON.parse(storedTimes) : [];
-  //   setSelectedTimes(parsedTimes);
-  // }, []);
+  useEffect(() => {
+    //DATABASE DEN OKUCAAK SAATLER
+    const storedTimes = localStorage.getItem("selectedTimes");
+    const parsedTimes = storedTimes ? JSON.parse(storedTimes) : [];
+    setSelectedTimes(parsedTimes);
+  }, []);
 
   const obje = [
     //örnek services datası
@@ -169,6 +170,7 @@ function AppointmentComponent() {
     setBirthday(formDataa.dateOfBirth);
     setFirstName(formDataa.firstName);
     setLastName(formDataa.lastName);
+
     if (step === 3) {
       // Check if any required field is empty except for "kendim" or "başkası"
       const isFormValid = Object.keys(formDataa).every(
@@ -177,7 +179,7 @@ function AppointmentComponent() {
 
       if (isFormValid) {
         const existingSelectedTimes =
-          JSON.parse(sessionStorage.getItem("selectedTimes")) || [];
+          JSON.parse(localStorage.getItem("selectedTimes")) || [];
 
         const selectedDateTime = returnDate.split(" ")[2];
         const selectedDate = returnDate.split(" ")[0];
@@ -194,14 +196,14 @@ function AppointmentComponent() {
 
         if (timeIndex !== -1) {
           existingSelectedTimes[timeIndex].active = false;
-          sessionStorage.setItem(
+          localStorage.setItem(
             "selectedTimes",
             JSON.stringify(existingSelectedTimes)
           );
         }
 
         let existingFormData =
-          JSON.parse(sessionStorage.getItem("formData")) || [];
+          JSON.parse(localStorage.getItem("formData")) || [];
 
         const circularReplacer = () => {
           const seen = new WeakSet();
@@ -217,11 +219,13 @@ function AppointmentComponent() {
         };
 
         existingFormData.push(formDataa);
-        // Update the 'formData' in sessionStorage using the replacer function
-        sessionStorage.setItem(
+
+        // Update the 'formData' in localStorage using the replacer function
+        localStorage.setItem(
           "formData",
           JSON.stringify(existingFormData, circularReplacer())
         );
+
         setShowFinishScreen(true);
         openModal();
       } else {

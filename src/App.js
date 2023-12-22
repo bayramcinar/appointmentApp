@@ -20,7 +20,6 @@ function App() {
         <Route path="/" element={<AppointmentComponent />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/myAppointments" element={<MyAppointments />} />
-        <Route path="/fullCalendar" element={<FullCalendarComponent />} />
       </Routes>
     </>
   );

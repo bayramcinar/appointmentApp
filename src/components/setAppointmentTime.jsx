@@ -28,7 +28,7 @@ function SetAppointmentTime() {
     }
 
     const existingTimes =
-      JSON.parse(sessionStorage.getItem("selectedTimes")) || [];
+      JSON.parse(localStorage.getItem("selectedTimes")) || [];
 
     // Her bir tarihi, seçilen saatle birlikte ekleyin
     datesData.forEach((chosenDate) => {
@@ -54,8 +54,8 @@ function SetAppointmentTime() {
       }
     });
 
-    // Save to sessionStorage
-    sessionStorage.setItem("selectedTimes", JSON.stringify(existingTimes));
+    // Save to localStorage
+    localStorage.setItem("selectedTimes", JSON.stringify(existingTimes));
 
     resetForm();
 
@@ -92,7 +92,6 @@ function SetAppointmentTime() {
             <Field
               name="time"
               type="time"
-              min={getCurrentTime()}
               className={`p-3 lg:w-[21rem] max-[768px]:w-[22rem] focus:border-none outline-none bg-white`}
               placeholder="Saat"
             />

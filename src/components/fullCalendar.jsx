@@ -33,9 +33,9 @@ const convertToISOFormat = (inputDate) => {
   return isoFormattedDate;
 };
 
-// sessionStorage'den alınan veriyi events dizisine dönüştüren fonksiyon
+// localStorage'den alınan veriyi events dizisine dönüştüren fonksiyon
 const getSessionStorageData = () => {
-  const formDataString = sessionStorage.getItem("formData");
+  const formDataString = localStorage.getItem("formData");
   const formData = JSON.parse(formDataString);
 
   if (!formData || !Array.isArray(formData)) {
@@ -49,9 +49,13 @@ const getSessionStorageData = () => {
 
   // events dizisine dönüştürme
   const events = formData.map((formEntry) => ({
-    name: formEntry.firstName + " " + formEntry.lastName,
-    gender: formEntry.gender,
-    birthday: formEntry.dateOfBirth,
+    //BURDAKİ DEĞERLER KENDİM İÇİN OLURSA SESSİON STORAGE DAN ALINACAK (İSİM,DOĞUM TARİHİ,CİNSİYET)
+    name:
+      formEntry.firstName && formEntry.lastName
+        ? formEntry.firstName + " " + formEntry.lastName
+        : "Bayram Çınar",
+    gender: formEntry.gender || "erkek",
+    birthday: formEntry.dateOfBirth || "2023-02-13",
     language: formEntry.language,
     notes: formEntry.notes,
     title: formEntry.service,

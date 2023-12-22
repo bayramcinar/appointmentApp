@@ -22,11 +22,6 @@ function Navbar() {
               My Appointments
             </Link>
           </li>
-          <li className="text-mb text-dayComponentBg font-semibold text-center m-5 nav-item">
-            <Link className="nav-link relative" to={"fullCalendar"}>
-              Full Calendar
-            </Link>
-          </li>
         </ul>
       </nav>
     </div>
