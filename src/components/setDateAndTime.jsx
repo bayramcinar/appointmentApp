@@ -5,7 +5,7 @@ import { DateRange } from "react-date-range";
 
 function SetDateAndTime({ onDateChange }) {
   const currentDate = new Date();
-
+  // RANDEVU SAATİ EKLEME YERİNDEKİ TAKVİM COMPONENTİ
   const [state, setState] = useState([
     {
       startDate: currentDate,
@@ -15,6 +15,7 @@ function SetDateAndTime({ onDateChange }) {
   ]);
 
   const handleDateChange = (item) => {
+    //BİRDEN ÇOK TARİH SEÇTİĞİMİZDE ÇALIŞAN FONKSİYON (SADECE İLK VE SONU ALIYOR)
     const startDateString = formatDate(item.selection.startDate);
     const endDateString = item.selection.endDate
       ? formatDate(item.selection.endDate)
@@ -27,6 +28,7 @@ function SetDateAndTime({ onDateChange }) {
   };
 
   const getDates = (startDate, endDate) => {
+    //SEÇLEN TARİHLER ARASINDAKİ (İLK VE SON TARİH) ARASINDAKİ TARİHLERİ BULUP ARRAY E ATIYOR
     const dates = [];
     let currentDate = new Date(startDate);
 
@@ -40,6 +42,7 @@ function SetDateAndTime({ onDateChange }) {
   };
 
   const formatDate = (date) => {
+    //DATE İ YEAR-MONTH-DAY FORMATINA ÇEVİRİYOR
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");

@@ -5,6 +5,7 @@ function MyAppointmentBox({ image, infos, onDelete }) {
   const [request, setRequest] = useState(false);
 
   const handleDelete = () => {
+    // randevulari silmeye yarayan fonksiyon
     onDelete(infos);
   };
 

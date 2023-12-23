@@ -14,15 +14,15 @@ function AppointmentComponent() {
   const [returnDate, setReturnDate] = useState(""); // seçtiğimiz saat ve tarihi tutan değişken
   const [returnService, setReturnService] = useState(""); // seçtiğimiz service i tutan değişken
   const [showFinishScreen, setShowFinishScreen] = useState(false); // finishScreen i göstereceğimiz değişken
-  const [forWho, setForWho] = useState("");
-  const [notes, setNotes] = useState("");
-  const [language, setLanguage] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [gender, setGender] = useState("");
-  const [birthDay, setBirthday] = useState("");
+  const [forWho, setForWho] = useState(""); //Appointment view ekranında kullandığımız kim için i atadığımız değişkern
+  const [notes, setNotes] = useState(""); //Appointment view ekranında kullandığımız notları i atadığımız değişkern
+  const [language, setLanguage] = useState(""); //Appointment view ekranında kullandığımız dili i atadığımız değişkern
+  const [firstName, setFirstName] = useState(""); //Appointment view ekranında kullandığımız ilk ismi i atadığımız değişkern
+  const [lastName, setLastName] = useState(""); //Appointment view ekranında kullandığımız soyismi i atadığımız değişkern
+  const [gender, setGender] = useState(""); //Appointment view ekranında kullandığımız cinsiyet i atadığımız değişkern
+  const [birthDay, setBirthday] = useState(""); //Appointment view ekranında kullandığımız doğum datiri i atadığımız değişkern
   const [isOwn, setIsOwn] = useState(true); // kendim için ve başkası için değişkenlerini tutan değişken (true false yapısı)
-  const [request, setRequest] = useState(false);
+  const [request, setRequest] = useState(false); //Appointment view ekranında kullandığımız talep olup olmadığını i atadığımız değişkern
   const [duration, setDuration] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -114,55 +114,44 @@ function AppointmentComponent() {
     //örnek services datası
     {
       title: "İlişki Terapisi",
-      image: serviceImage,
     },
     {
       title: "Kaygı (Anksiyete)",
-      image: serviceImage,
     },
     {
       title: "Depresyon",
-      image: serviceImage,
     },
     {
       title: "Travma Sonrası Stres Bozukluğu",
-      image: serviceImage,
     },
     {
       title: "Uyum Bozuklukları",
-      image: serviceImage,
     },
     {
       title: "Bireysel Terapi",
-      image: serviceImage,
     },
     {
       title: "Aile ve Çift Terapisi",
-      image: serviceImage,
     },
     {
       title: "Varoluşsal Problemler",
-      image: serviceImage,
     },
     {
       title: "Kilo Verme",
-      image: serviceImage,
     },
     {
       title: "Fitness",
-      image: serviceImage,
     },
     {
       title: "Futbol Antremanı",
-      image: serviceImage,
     },
     {
       title: "Basketbol Antremanı",
-      image: serviceImage,
     },
   ];
 
   const handleFinish = (formDataa) => {
+    // randevuyu tamamlamamızı sağlayan fonksiyon
     setForWho(formDataa.kimIçin);
     setNotes(formDataa.notes);
     setLanguage(formDataa.language);
@@ -240,6 +229,7 @@ function AppointmentComponent() {
   };
 
   const openAlert = () => {
+    //onaylama alerti
     Swal.fire({
       title: "Başarılı",
       html: request
@@ -276,6 +266,7 @@ function AppointmentComponent() {
   });
 
   const parseDateTime = (returnDate) => {
+    // date i day.month.year formuna dönüştüren fonksiyon
     const dateTimeParts = returnDate.split(" ");
     if (dateTimeParts.length === 5) {
       const [day, month, year] = dateTimeParts[0].split(".");
@@ -298,6 +289,7 @@ function AppointmentComponent() {
   const { date, time } = parseDateTime(returnDateFinal);
 
   const parseDateTimeString = (dateTimeString) => {
+    // date i year-month-day formuna dönüştüren fonksiyon
     const dateTimeParts = dateTimeString.split(" ");
     if (dateTimeParts.length === 5) {
       const [day, month, year] = dateTimeParts[0].split(".");

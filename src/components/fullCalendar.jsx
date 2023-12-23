@@ -10,6 +10,7 @@ import EventModal from "./eventModal";
 const localizer = momentLocalizer(moment);
 
 const convertToISOFormat = (inputDate, onRequestChange) => {
+  // date i YYYY-MM-DDTHH:mm:ss.SSSZ formatına çeviren fonksiyon
   // Gelen tarihi boşluktan ve noktadan ayır
   const dateComponents = inputDate.split(/[.\s]/);
 
@@ -44,13 +45,14 @@ const getSessionStorageData = (formData, setRequest) => {
   }
 
   return formData.map((formEntry) => {
+    // VEYA YAZAN YERE (BAYRAM ÇINAR) YAZAN YERE SESSİON STORAGE DAN GİRİŞ YAPMIŞ KULLANICI BİLGİLERİN EKLEYECEĞİZ (KENDİM İÇİN ALINAN RANDEVULER)
     const title =
       formEntry.firstName && formEntry.lastName
         ? formEntry.firstName + " " + formEntry.lastName
         : "Bayram Çınar";
 
-    const gender = formEntry.gender || "erkek";
-    const birthday = formEntry.dateOfBirth || "2023-02-13";
+    const gender = formEntry.gender || "erkek"; // VEYA YAZAN YERE (erkek) YAZAN YERE SESSİON STORAGE DAN GİRİŞ YAPMIŞ KULLANICI BİLGİLERİN EKLEYECEĞİZ (KENDİM İÇİN ALINAN RANDEVULER)
+    const birthday = formEntry.dateOfBirth || "2023-02-13"; // VEYA YAZAN YERE (2023-02-13) YAZAN YERE SESSİON STORAGE DAN GİRİŞ YAPMIŞ KULLANICI BİLGİLERİN EKLEYECEĞİZ (KENDİM İÇİN ALINAN RANDEVULER)
     const language = formEntry.language;
     const notes = formEntry.notes;
     const service = formEntry.service;

@@ -1,38 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import '../style/serviceComponent.css';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React, { useState, useEffect } from "react";
+import "../style/serviceComponent.css";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
-import { Navigation, Pagination } from 'swiper/modules';
-import ServiceBox from './serviceBox';
+import { Navigation, Pagination } from "swiper/modules";
+import ServiceBox from "./serviceBox";
 
 function ServiceComponent({ services, setReturnService }) {
   const [selectedService, setSelectedService] = useState(null);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); //ekranın mobil olup olmadığını kontrol ettiğimiz değişken
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   const handleAppointmentBoxClick = (clickedService) => {
+    //service e tıkladığımızda çalışan fonksiyon
     const formattedReturnService = `${clickedService}`;
     setReturnService(formattedReturnService);
     setSelectedService(clickedService);
   };
 
   const renderSwiper = (times) => {
-    const itemsPerSlide = isMobile ? 8 : 10; // Change this to 9 for mobile screens
+    const itemsPerSlide = isMobile ? 8 : 10;
     const swiperSlides = [];
     for (let i = 0; i < times.length; i += itemsPerSlide) {
       const currentTimes = times.slice(i, i + itemsPerSlide);
@@ -68,8 +69,8 @@ function ServiceComponent({ services, setReturnService }) {
       return (
         <Swiper
           navigation={{
-            prevEl: '.custom-swiper-button-prev',
-            nextEl: '.custom-swiper-button-next',
+            prevEl: ".custom-swiper-button-prev",
+            nextEl: ".custom-swiper-button-next",
           }}
           modules={[Navigation]}
           className="mySwiper"
@@ -84,21 +85,23 @@ function ServiceComponent({ services, setReturnService }) {
 
   return (
     <div>
-      <div className='serviceArea animate__animated animate__fadeInLeft lg:w-[35rem] lg:h-[20rem] md:w-[24rem] md:h-auto md:mr-[0px]'>
+      <div className="serviceArea animate__animated animate__fadeInLeft lg:w-[35rem] lg:h-[20rem] md:w-[24rem] md:h-auto md:mr-[0px]">
         <div className="title">
-          <h2 className="text-buttonColor text-center text-3xl font-bold p-3">Hizmet Seçiniz</h2>
+          <h2 className="text-buttonColor text-center text-3xl font-bold p-3">
+            Hizmet Seçiniz
+          </h2>
         </div>
         <div className="serviceBoxes lg:w-[33.5rem] relative border-2 border-buttonColor rounded-2xl shadow-xl m-3 bg-white mb-5 lg:h-[16rem] md:w-[24rem] max-[768px]:h-[35rem]">
-          {!isMobile &&
+          {!isMobile && (
             <>
-                  <div className="custom-swiper-button-prev absolute left-2 text-xl text-buttonColor top-[45%] z-[2] cursor-pointer">
-                      <i className="fa-solid fa-arrow-left" alt="Previous"></i>
-                    </div>
-                    <div className="custom-swiper-button-next top-[45%] absolute right-2 text-xl text-buttonColor z-[2] cursor-pointer">
-                      <i className="fa-solid fa-arrow-right" alt="Next"></i>
-                    </div>
+              <div className="custom-swiper-button-prev absolute left-2 text-xl text-buttonColor top-[45%] z-[2] cursor-pointer">
+                <i className="fa-solid fa-arrow-left" alt="Previous"></i>
+              </div>
+              <div className="custom-swiper-button-next top-[45%] absolute right-2 text-xl text-buttonColor z-[2] cursor-pointer">
+                <i className="fa-solid fa-arrow-right" alt="Next"></i>
+              </div>
             </>
-          }
+          )}
           {renderSwiper(servicesArray)}
         </div>
       </div>

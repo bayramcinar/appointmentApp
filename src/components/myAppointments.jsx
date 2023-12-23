@@ -10,10 +10,10 @@ import { Navigation } from "swiper/modules";
 import Swal from "sweetalert2";
 
 function MyAppointments() {
-  const [formData, setFormData] = useState([]);
+  const [formData, setFormData] = useState([]); // tüm randevuleri atadığımız array
   const handleDelete = (selectedAppointment) => {
     const selectedTimes =
-      JSON.parse(localStorage.getItem("selectedTimes")) || [];
+      JSON.parse(localStorage.getItem("selectedTimes")) || []; // BU İŞLEMİ DATABASE DEN YAPACAĞIZ BEN BURDA RANDEVUYU SİLERKEN AYNI ZAMANDA selectedTimes (randevu saatleri) ögesindeki o saatin active değerini false dan true ya çeviriyorum randevu silindiği için
 
     const dateParts = selectedAppointment.time.split(" ");
     const datePart = dateParts[0].split(".");
@@ -57,7 +57,7 @@ function MyAppointments() {
       return appointment;
     });
 
-    localStorage.setItem("selectedTimes", JSON.stringify(updatedSelectedTimes));
+    localStorage.setItem("selectedTimes", JSON.stringify(updatedSelectedTimes)); // GÜNCELLENMİŞ SAATLERİ YENİDEN DATABASE E GÖNDERECEĞİZ
 
     // Form datayı güncelle
     const updatedFormData = formData.filter(
@@ -66,12 +66,12 @@ function MyAppointments() {
         appointment.time !== selectedAppointment.time
     );
     setFormData(updatedFormData);
-    localStorage.setItem("formData", JSON.stringify(updatedFormData));
+    localStorage.setItem("formData", JSON.stringify(updatedFormData)); // GÜNCELLENMİŞ RANDEVULERİ formData (randevular) DATABASE İNE GÖNDERECEĞİZ
   };
 
   useEffect(() => {
     // kaydedilen randevuları localStorage dan alan hooks
-    const storedFormData = localStorage.getItem("formData");
+    const storedFormData = localStorage.getItem("formData"); //RANDEVULARI DATEBASE DEN ALIĞIMIZ HOOKS
     if (storedFormData) {
       const parsedFormData = JSON.parse(storedFormData);
       setFormData(parsedFormData);

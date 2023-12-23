@@ -21,17 +21,17 @@ function TimeAndDate({
   setDuration1,
 }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [currentDateDisplay, setCurrentDateDisplay] = useState("");
-  const [currentDateDisplayNotDay, setCurrentDateDisplayNotDay] = useState("");
+  const [currentDateDisplay, setCurrentDateDisplay] = useState(""); //GÜNCEL DATE İ ATADIĞIMIZ DEĞİŞKEN
+  const [currentDateDisplayNotDay, setCurrentDateDisplayNotDay] = useState(""); //GÜNCEL DATE İ GÜN OLMADAN ATADIĞIMIZ DEĞİŞKEN
   const [selectedTime, setSelectedTime] = useState(null);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [requestForTimedDays, setRequestForTimedDays] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); // EKRANIN MOBİL OLUP OLMADIĞINI ATADIĞIMIZ DEĞİŞKEN
+  const [requestForTimedDays, setRequestForTimedDays] = useState(false); // RANDEVU SAATİ OLAN GÜNLERDE TALEP OLUŞUTURUP OLUŞTURMADIĞMIZI ATADIĞIMIZ DEĞİŞKEN
 
   const [appointmentRequestNormal, setAppointmentRequestNormal] =
-    useState(false);
+    useState(false); // RANDEVU SAATİ OLMAYAN GÜNCE RANDEVU TALEP OLUŞUTURUP OLUŞTURMADIĞMIZI ATADIĞIMIZ DEĞİŞKEN
   const [appointmentRequest, setAppointmentRequest] = useState(false);
-  const [requestSelectedTime, setRequestSelectedTime] = useState("");
-  const [timedRequestSelectedTime, setTimesRequestSelectedTime] = useState("");
+  const [requestSelectedTime, setRequestSelectedTime] = useState(""); //TALEP OLUŞTURURKEN SEÇTİĞİMİZ SAATİ ATADIĞIMIZ DEĞİŞKEN
+  const [timedRequestSelectedTime, setTimesRequestSelectedTime] = useState(""); //RANDEVU SAATİ OLAN GÜNLERDE TALEP OLUŞTURURKEN SEÇTİĞİMİZ SAATİ ATADIĞIMIZ DEĞİŞKEN
   const [duration, setDuration] = useState("");
   const [requestSelectedDuration, setRequestSelectedDuration] = useState("");
   const [timedRequestSelectedDuration, setTimesRequestSelectedDuration] =
@@ -56,6 +56,7 @@ function TimeAndDate({
   }, [selectedDate]);
 
   const handleDateChange = (value) => {
+    // TARİH DEĞİŞTİRDİĞİMİZDE ÖNCEKİ BİLGİLERİN SİLİNMESİNİ SAĞLAYAN FONKSİYON
     setSelectedDate(value);
     setSelectedTime(null);
     setRequestSelectedTime("");
@@ -65,6 +66,7 @@ function TimeAndDate({
   };
 
   const formatDateDisplay = (date) => {
+    // DATE İ TÜRKÇE FORMATA ÇEVİREN FONKSİYON
     const tarihNesnesi = new Date(date);
     const options = {
       weekday: "long",
@@ -77,6 +79,7 @@ function TimeAndDate({
   };
 
   const formatDate = (date) => {
+    // DATE İ DAY-MONTH-YEAR FORMATINA ÇEVİREN FONKSİYON
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
@@ -84,12 +87,14 @@ function TimeAndDate({
   };
 
   const handleAppointmentBoxClickTimed = (clickedTime) => {
+    //SAAT BUTONUNA TIKLADIĞIMIZDA ÇALIŞAN FONKSİYON
     const formattedReturnDate = `${currentDateDisplay} ${clickedTime} ${requestForTimedDays} ${duration}`;
     setReturnDate(formattedReturnDate);
     setSelectedTime(clickedTime);
   };
 
   const handleAppointmentBoxClick = (clickedTime) => {
+    //SAAT BUTONUNA TIKLADIĞIMIZDA ÇALIŞAN FONKSİYON
     const formattedReturnDate = `${currentDateDisplay} ${clickedTime} ${appointmentRequestNormal} ${duration}`;
     setReturnDate(formattedReturnDate);
     setSelectedTime(clickedTime);
@@ -97,12 +102,11 @@ function TimeAndDate({
 
   const renderSwiper = (times) => {
     const swiperSlides = [];
-    const slidesPerRow = isMobile ? 9 : 4; // Set the number of slides per row based on the screen size
+    const slidesPerRow = isMobile ? 9 : 4;
 
     if (!isMobile) {
       for (let i = 0; i < times.length; i += slidesPerRow) {
         const currentTimes = times.slice(i, i + slidesPerRow);
-        // Sort currentTimes array by time in ascending order
         const sortedTimes = currentTimes.sort((a, b) => {
           const timeA = a.time.split(":").join("");
           const timeB = b.time.split(":").join("");
@@ -138,7 +142,6 @@ function TimeAndDate({
     } else {
       for (let i = 0; i < times.length; i += 9) {
         const currentTimes = times.slice(i, i + 9);
-        // Sort currentTimes array by time in ascending order
         const sortedTimes = currentTimes.sort((a, b) => {
           const timeA = a.time.split(":").join("");
           const timeB = b.time.split(":").join("");
@@ -217,6 +220,7 @@ function TimeAndDate({
   }
 
   const isDurationTime = (selectedTime, duration) => {
+    // SEÇİLEN RANDEVU TALEBİ SAATİ EĞER ZATEN NORMAL RANDEVU SAATLERİ İÇİNDE VARSA TRUE DÖNDÜREN FONKSİYON
     const [selectedHour, selectedMinute] = selectedTime.split(":");
     const selectedDateTime = new Date(selectedDate);
     selectedDateTime.setHours(selectedHour, selectedMinute);
@@ -238,6 +242,7 @@ function TimeAndDate({
   };
 
   const handleFormSubmit = (values) => {
+    //RANDEVUYU TAMAMLADIĞIMIZ FONKSİYON
     const selectedTime = values.time;
     const selectedDuration = values.duration;
     setDuration1(selectedDuration);

@@ -7,31 +7,29 @@ import SavedDurations from "./savedDurationBox";
 import moment from "moment";
 
 function SetAppointmentTime() {
-  const [datesData, setDatesData] = useState([]);
-  const [selectedTimes, setSelectedTimes] = useState([]);
-  const [selectedDuration, setSelectedDuration] = useState("");
-  const [savedTimesArray, setSavedTimesArray] = useState([]);
-  const [savedDurationsArray, setSavedDurationsArray] = useState([]);
-  const [savedTimes, setSavedTimes] = useState(true);
+  const [datesData, setDatesData] = useState([]); // TAKVİMDEN SEÇTİĞİMİZ TARİHLERİ TUTAN ARRAY
+  const [selectedTimes, setSelectedTimes] = useState([]); // SEÇTİĞİMİZ SAATLERİ TUTAN DEĞİŞKEN
+  const [selectedDuration, setSelectedDuration] = useState(""); //SEÇTİĞİMİZ RANDEVU SÜRESİNİ TUTAN DEĞİŞKEN
+  const [savedTimesArray, setSavedTimesArray] = useState([]); // KAYITLI SAATLER BÖLGESİNDE GÖSTERİLEN SAATLERİ TUTAN ARRAY
+  const [savedDurationsArray, setSavedDurationsArray] = useState([]); // KAYITLI SÜRELER BÖLGESİNDE GÖSTERİLEN SÜRELERİ TUTAN ARRAY
+  const [savedTimes, setSavedTimes] = useState(true); // KAYITLI SAATLER VEYA SAAT SEÇ EKRANINDA GİDİP GELMEMİZİ SĞLAYAN DEĞİŞKEN
   useEffect(() => {
-    // Read savedTimes from localStorage and update state
     const localStorageSavedTimes =
-      JSON.parse(localStorage.getItem("savedTimes")) || [];
+      JSON.parse(localStorage.getItem("savedTimes")) || []; // DATABASE DEN RANDEVU SAATİ OLUŞTURMAK İÇİN KULLANDIĞIMIZ KAYITLI SAATLERİ ALACAĞIMIZ YER BEN BURDA DİREK LOCALDEN ALDIM(savedTimes) ADINDA TABLODAN ALACAĞIZ
     setSavedTimesArray(localStorageSavedTimes);
     const localStorageSavedDurations =
-      JSON.parse(localStorage.getItem("savedDurations")) || [];
+      JSON.parse(localStorage.getItem("savedDurations")) || []; // DATABASE DEN RANDEVU SAATİ OLUŞTURMAK İÇİN KULLANDIĞIMIZ KAYITLI SÜRELERİ ALACAĞIMIZ YER BEN BURDA DİREK LOCALDEN ALDIM(savedDurations) ADINDA TABLODAN ALACAĞIZ
     setSavedDurationsArray(localStorageSavedDurations);
   }, []);
 
   const getSelectedDate = (selectedDate) => {
+    // TAKVİMDEKİ DEĞİŞİKLİKLERE GÖRE SEÇİLEN TARİHLERİ AYARLAYAN FONKSİYON
     setDatesData(selectedDate);
-    console.log(selectedDate);
-    setSelectedTimes([]); // Reset selected times when the date changes
+    setSelectedTimes([]);
   };
 
-  console.log(datesData);
   const handleSetTime = (values, { resetForm }) => {
-    console.log(values);
+    // RANDEVU SAATİ EKLEMEMİZİ SAĞLAYAN FONKSİYON
     if (savedTimes === true) {
       const { duration } = values;
 
@@ -46,7 +44,7 @@ function SetAppointmentTime() {
       }
 
       const existingTimes =
-        JSON.parse(localStorage.getItem("selectedTimes")) || [];
+        JSON.parse(localStorage.getItem("selectedTimes")) || []; // DATABASE DEN RANDEVU SAATLERİNİ ALACAĞIZ (selectedTimes) BEN BURDA DİREK LOCAL DEN ALDIM
 
       // Check for conflicts
       const conflictingAppointments = existingTimes.some((item) => {
@@ -56,7 +54,6 @@ function SetAppointmentTime() {
           .add(item.duration, "minutes");
 
         return selectedTimes.some((selectedTime) => {
-          const [hour, minute] = selectedTime.split(":");
           const selectedDateTime = moment(`${datesData[0]} ${selectedTime}`);
           const selectedEndDateTime = selectedDateTime
             .clone()
@@ -84,9 +81,6 @@ function SetAppointmentTime() {
       // Continue with adding the appointment if no conflicts
       datesData.forEach((selectedDate) => {
         selectedTimes.forEach((selectedTime) => {
-          const [hour, minute] = selectedTime.split(":");
-          const selectedDateTime = `${selectedDate} ${selectedTime}`;
-
           const dateTimeObject = {
             time: selectedTime,
             date: selectedDate,
@@ -98,10 +92,10 @@ function SetAppointmentTime() {
         });
       });
 
-      localStorage.setItem("selectedTimes", JSON.stringify(existingTimes));
+      localStorage.setItem("selectedTimes", JSON.stringify(existingTimes)); //DATABASE E GÜNCELLENMİŞ RANDEVU SAATLERİNİ GÖNDERECEĞİMİZ YER
 
       resetForm();
-      setSelectedTimes([]); // Reset selected times after successful submission
+      setSelectedTimes([]);
 
       Swal.fire({
         title: "Başarılı",
@@ -123,11 +117,10 @@ function SetAppointmentTime() {
       }
 
       const existingTimes =
-        JSON.parse(localStorage.getItem("selectedTimes")) || [];
+        JSON.parse(localStorage.getItem("selectedTimes")) || []; // DATABASE DEN RANDEVU SAATLERİNİ ALACAĞIZ (selectedTimes) BEN BURDA DİREK LOCAL DEN ALDIM
 
       // Her bir tarihi, seçilen saatle birlikte ekleyin
       datesData.forEach((chosenDate) => {
-        // Extracting hour and minute from the time string
         const [hour, minute] = time.split(":");
         const selectedTime = `${hour}:${minute}`;
         const selectedDateTime = `${chosenDate} ${selectedTime}`;
@@ -149,8 +142,7 @@ function SetAppointmentTime() {
         }
       });
 
-      // Save to localStorage
-      localStorage.setItem("selectedTimes", JSON.stringify(existingTimes));
+      localStorage.setItem("selectedTimes", JSON.stringify(existingTimes)); //DATABASE E GÜNCELLENMİŞ RANDEVU SAATLERİNİ GÖNDERECEĞİMİZ YER
 
       resetForm();
 
@@ -164,10 +156,12 @@ function SetAppointmentTime() {
   };
 
   const handleOptionChange = (option) => {
+    //KAYITLI SAATLER VEYA SAAT SEÇ EKRANLARINDA GEZİNMEMEİZİ SAĞLAYAN FONKSİYON
     setSavedTimes(option);
   };
 
   const handleAppointmentBoxClick = (
+    // KAYITLI SAATLERDE BİRDEN ÇOK SAAT SEÇEBİLMEMİZİ SAĞLAYAN FONKSİYON
     clickedTime,
     selectedDate,
     setFieldValue
@@ -176,7 +170,6 @@ function SetAppointmentTime() {
     const selectedTime = `${hour}:${minute}`;
     setFieldValue("chosenDate", selectedDate);
 
-    // Toggle the selected time
     setSelectedTimes((prevSelectedTimes) => {
       if (prevSelectedTimes.includes(selectedTime)) {
         return prevSelectedTimes.filter((time) => time !== selectedTime);
@@ -187,6 +180,7 @@ function SetAppointmentTime() {
   };
 
   const handleAppointmentDurationBoxClick = (
+    //SÜREYİ SEÇTİĞİMİZDE BUNU SEÇİLEN SÜREYE ATAYAN FONKSİYON
     clickedDuration,
     setFieldValue
   ) => {

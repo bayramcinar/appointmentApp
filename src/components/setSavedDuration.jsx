@@ -16,11 +16,9 @@ const SetSavedDuration = () => {
       return;
     }
 
-    // Get existing saved times from local storage or initialize an empty array
     const existingSavedDurations =
-      JSON.parse(localStorage.getItem("savedDurations")) || [];
+      JSON.parse(localStorage.getItem("savedDurations")) || []; //DATABASE DEN savedDuration TABLOSUNU OKUYACAĞIMIZ YER BEN BURDA DİREK LOCAL DEN ALDIM
 
-    // Check if the selected time already exists in the saved times
     const isDuplicate = existingSavedDurations.some(
       (savedDurations) => savedDurations === duration
     );
@@ -35,11 +33,10 @@ const SetSavedDuration = () => {
       return;
     }
 
-    // Save the new time to local storage
     existingSavedDurations.push(duration);
     localStorage.setItem(
       "savedDurations",
-      JSON.stringify(existingSavedDurations)
+      JSON.stringify(existingSavedDurations) // GÜNCELLEMİŞ SÜRELERİ DATABASE E GÖNDERECEĞİMİZ YER BEN BURDA DİREK LOCAL A GÖNDERDİM
     );
 
     Swal.fire({

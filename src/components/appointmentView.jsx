@@ -3,7 +3,6 @@ import "../style/appointmentView.css";
 import "../style/appointmentView.css";
 
 function AppointmentView({
-  img,
   serviceProviderName,
   serviceProviderJob,
   service,
@@ -15,7 +14,6 @@ function AppointmentView({
   notes,
   isOpen,
   onClose,
-  show,
   confirmButton,
   firstName,
   lastName,
@@ -24,7 +22,6 @@ function AppointmentView({
   isRequest,
   duration,
 }) {
-  console.log(duration);
   const modalClass = isOpen
     ? "fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-gray-600 bg-opacity-50"
     : "hidden";

@@ -7,7 +7,7 @@ function SavedDurations({ time, onTimeClick, selectedDuration }) {
       onTimeClick(time);
     }
   };
-  const isSelected = selectedDuration === time; // seçtiğimiz saati atadığımız değişken
+  const isSelected = selectedDuration === time; // seçtiğimiz süreyi atadığımız değişken
 
   return (
     <div>

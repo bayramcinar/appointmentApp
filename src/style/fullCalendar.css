@@ -6,10 +6,66 @@
 /* Replace your existing CSS with this */
 /* Replace your existing CSS with this */
 .rbc-btn-group button {
-  background-color: #112469;
+  background-color: #4e9bfe;
   color: #fff;
   padding: 5px 10px;
   border: none;
   cursor: pointer;
   font-weight: 600;
+}
+.rbc-day-bg {
+  margin: 8px;
+  border: 2px solid #4e9bfe;
+  border-radius: 12px;
+  background-color: #eaf6ff;
+}
+.rbc-date-cell {
+  padding-right: 15px;
+  padding-top: 10px;
+  font-weight: 600;
+}
+.rbc-month-row + .rbc-month-row {
+  border: none;
+}
+.rbc-day-bg + .rbc-day-bg {
+  border-left: 2px solid #4e9bfe;
+}
+.rbc-month-view {
+  border: 2px solid #4e9bfe;
+  border-radius: 15px;
+}
+.rbc-today {
+  background-color: #4e9bfe;
+  color: #fff;
+}
+.rbc-current {
+  color: #fff;
+}
+.rbc-header {
+  margin: 8px;
+  border-bottom: 2px solid #4e9bfe;
+}
+.rbc-header + .rbc-header {
+  border-left: none;
+}
+.rbc-off-range-bg {
+  background-color: #f8f8f8;
+}
+.rbc-off-range {
+  color: #000;
+}
+.rbc-event {
+  width: 100px;
+}
+.rbc-event-content {
+  font-size: 13px;
+  width: 100px;
+}
+.rbc-row-segment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rbc-allday-cell {
+  display: none;
 }
