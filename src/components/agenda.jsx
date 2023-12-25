@@ -253,13 +253,13 @@ function Agenda() {
 
   return (
     <>
-      <div className="w-[100%] shadow-xl border-stepBorder1 border-2 rounded-xl">
-        <h1 className="text-buttonColor text-2xl text-center font-semibold mt-5">
+      <div className="w-[100%] shadow-xl border-stepBorder1 border-2 rounded-xl overflow-auto max-h-[500px]">
+        <h1 className="text-buttonColor text-2xl text-center font-semibold mt-5 sticky">
           Ajanda
         </h1>
         <table className="rounded-xl w-[100%] my-5">
           <thead>
-            <tr className="bg-buttonColor text-white font-semibold">
+            <tr className="bg-buttonColor text-white font-semibold sticky">
               <th className="p-3">Sıra</th>
               <th className="p-3">Tarih</th>
               <th className="p-3">Saat</th>

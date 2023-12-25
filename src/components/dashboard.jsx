@@ -16,35 +16,36 @@ function Dashboard() {
           <AppointmentInfos />
         </div>
         <div className="flex items-center justify-center bg-dayComponentBg pb-8">
-          <div className="bg-dayComponentBg mr-[9rem] mt-[50px] shadow-xl border-stepBorder1 border-2 rounded-xl">
+          {/* Ekran genişliği 768 pikselden büyükse (mobil ekran değilse) FullCalendarComponent göster */}
+          <div className="bg-dayComponentBg mr-[9rem] mt-[50px] shadow-xl border-stepBorder1 border-2 rounded-xl hidden md:block">
             <FullCalendarComponent />
           </div>
           <div>
             <SetAppointmentTime />
           </div>
         </div>
-        <div className="flex ">
+        <div className="flex max-[768px]:block">
           <div className="flex justify-start bg-dayComponentBg pb-8 w-[100%]">
-            <div className="w-[750px] ml-[9rem] bg-dayComponentBg setAppointmentTime flex flex-col shadow-xl border-stepBorder1 border-2 rounded-xl">
+            <div className="w-[750px] ml-[9rem] max-[768px]:ml-[1rem] bg-dayComponentBg setAppointmentTime flex flex-col shadow-xl border-stepBorder1 border-2 rounded-xl">
               <h1 className="text-buttonColor text-2xl text-center font-semibold mt-5">
                 Kayıtlı alan ekleme
               </h1>
-              <div className="flex m-5 mt-0 justify-center">
+              <div className="flex m-5 mt-0 justify-center max-[768px]:block">
                 <SetSavedTime />
                 <SetSavedDuration />
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-center bg-dayComponentBg pb-8 w-[100%] pl-5 pr-[9rem]">
+          <div className="flex items-center justify-center bg-dayComponentBg pb-8 w-[100%] pl-5 pr-[9rem] max-[768px]:pr-[2rem]">
             <SetService />
           </div>
         </div>
-        <div className="w-[100%] flex bg-dayComponentBg">
-          <div className="flex justify-start bg-dayComponentBg pb-8 mx-[9rem] w-[100%]">
+        <div className="w-[100%] bg-dayComponentBg ">
+          <div className="flex justify-start bg-dayComponentBg pb-8 lg:mx-[9rem] max-[768px]:mx-[2rem]">
             <Agenda />
           </div>
         </div>
-        <div className="bg-dayComponentBg border-stepBorder1 border-2 rounded-xl mx-[9rem] mb-5">
+        <div className="bg-dayComponentBg border-stepBorder1 border-2 rounded-xl mx-[9rem] max-[768px]:h-[700px]  max-[768px]:mx-[2rem] b-5">
           <h1 className="text-buttonColor text-2xl text-center font-semibold mt-3">
             Randevu Talepleri
           </h1>

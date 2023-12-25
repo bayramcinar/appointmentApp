@@ -4,7 +4,7 @@ import AppointmentInfoBox from "./appointmentInfoBox";
 function AppointmentInfos() {
   return (
     <div className="w-full">
-      <div className="infosArea flex items-center justify-center">
+      <div className="infosArea flex items-center justify-center flex-wrap">
         <AppointmentInfoBox number={5} title={"Bu gün Randevu"} />
         <AppointmentInfoBox number={15} title={"Bu hafta Randevu"} />
         <AppointmentInfoBox number={45} title={"Bu ay Randevu"} />

@@ -31,19 +31,25 @@ function AppointmentRequestList() {
   };
 
   const renderSwiper = (appointments) => {
-    const swiperSlides = [];
+    const isMobile = window.innerWidth <= 768; // Örnek bir mobil ekran genişliği
 
-    for (let i = 0; i < appointments.length; i += 4) {
-      const currentAppointments = appointments.slice(i, i + 4);
+    const swiperSlides = [];
+    const visibleAppointments = isMobile ? 2 : 4; // Mobil ekranlarda sadece 2, diğerlerinde 4 görünecek
+
+    for (let i = 0; i < appointments.length; i += visibleAppointments) {
+      const currentAppointments = appointments.slice(
+        i,
+        i + visibleAppointments
+      );
       const swiperSlide = (
         <SwiperSlide key={i}>
           <div className="flex flex-wrap justify-center h-auto">
             {currentAppointments.map((data, index) => (
-              <div key={index} className=" p-2 m-5">
+              <div key={index} className="p-2 m-5">
                 <AppointmentRequestBox
                   image={pp}
                   infos={data}
-                  onDetails={() => handleOpenModal(data)} // Pass appointment data to open modal
+                  onDetails={() => handleOpenModal(data)}
                 />
               </div>
             ))}
@@ -52,6 +58,7 @@ function AppointmentRequestList() {
       );
       swiperSlides.push(swiperSlide);
     }
+
     return (
       <Swiper
         navigation={{
