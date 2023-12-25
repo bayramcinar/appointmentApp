@@ -5,54 +5,40 @@ import "moment/locale/tr";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "../style/fullCalendar.css";
 import "moment-timezone";
-import EventModal from "./eventModal";
+import FullCalendarDayModal from "./fullCalanderDayModal";
 
 const localizer = momentLocalizer(moment);
 
 const convertToISOFormat = (inputDate, onRequestChange) => {
-  // date i YYYY-MM-DDTHH:mm:ss.SSSZ formatına çeviren fonksiyon
-  // Gelen tarihi boşluktan ve noktadan ayır
   const dateComponents = inputDate.split(/[.\s]/);
-
-  // Gün, ay ve yıl bilgilerini al
   const day = dateComponents[0];
   const month = dateComponents[1];
   const year = dateComponents[2];
-
-  // Saat ve dakika bilgilerini al ve ":" karakterinden böl
   const timeComponents = dateComponents[4].split(":");
   const hour = timeComponents[0];
   const minute = timeComponents[1];
-
-  // Set request based on the condition
   const request = dateComponents[5] === "true";
   onRequestChange(request);
-
-  // Tarihi ISO 8601 formata dönüştür ve moment nesnesine çevir
   const isoFormattedDate = moment(
     `${year}-${month}-${day}T${hour - 3}:${minute}:00.000Z`,
     "YYYY-MM-DDTHH:mm:ss.SSSZ",
     "Europe/Istanbul"
   );
-
   return isoFormattedDate;
 };
 
-// localStorage'den alınan veriyi events dizisine dönüştüren fonksiyon
 const getSessionStorageData = (formData, setRequest) => {
   if (!formData || !Array.isArray(formData)) {
     return [];
   }
 
   return formData.map((formEntry) => {
-    // VEYA YAZAN YERE (BAYRAM ÇINAR) YAZAN YERE SESSİON STORAGE DAN GİRİŞ YAPMIŞ KULLANICI BİLGİLERİN EKLEYECEĞİZ (KENDİM İÇİN ALINAN RANDEVULER)
-    const title =
+    const name =
       formEntry.firstName && formEntry.lastName
         ? formEntry.firstName + " " + formEntry.lastName
         : "Bayram Çınar";
-
-    const gender = formEntry.gender || "erkek"; // VEYA YAZAN YERE (erkek) YAZAN YERE SESSİON STORAGE DAN GİRİŞ YAPMIŞ KULLANICI BİLGİLERİN EKLEYECEĞİZ (KENDİM İÇİN ALINAN RANDEVULER)
-    const birthday = formEntry.dateOfBirth || "2023-02-13"; // VEYA YAZAN YERE (2023-02-13) YAZAN YERE SESSİON STORAGE DAN GİRİŞ YAPMIŞ KULLANICI BİLGİLERİN EKLEYECEĞİZ (KENDİM İÇİN ALINAN RANDEVULER)
+    const gender = formEntry.gender || "erkek";
+    const birthday = formEntry.dateOfBirth || "2023-02-13";
     const language = formEntry.language;
     const notes = formEntry.notes;
     const service = formEntry.service;
@@ -68,12 +54,12 @@ const getSessionStorageData = (formData, setRequest) => {
       .toDate();
 
     return {
-      name: title,
+      name: name,
       gender: gender,
       birthday: birthday,
       language: language,
       notes: notes,
-      title: service + " " + (request ? "(Randevu Talebi)" : ""),
+      title: service + " " + (request ? "(Randevu Talebi)" : ""), // Düzgün bir şekilde birleştirilmiş saat aralığı
       start: start,
       end: end,
     };
@@ -81,29 +67,47 @@ const getSessionStorageData = (formData, setRequest) => {
 };
 
 function FullCalendarComponent() {
-  const [selectedEvent, setSelectedEvent] = useState(null);
-  const [isModalOpen, setModalOpen] = useState(false);
   const [formData, setFormData] = useState([]);
   const [request, setRequest] = useState(false);
+  const [selectedTimes, setSelectedTimes] = useState([]);
+  const [isFullDayModalOpen, setFullDayModalOpen] = useState(false);
+  const [selectedDay, setSelectedDay] = useState("");
 
   useEffect(() => {
-    // kaydedilen randevuları localStorage dan alan hooks
     const storedFormData = localStorage.getItem("formData");
     if (storedFormData) {
       const parsedFormData = JSON.parse(storedFormData);
       setFormData(parsedFormData);
     }
+
+    const storedSelectedTimes = localStorage.getItem("selectedTimes");
+    if (storedSelectedTimes) {
+      const parsedSelectedTimes = JSON.parse(storedSelectedTimes);
+      setSelectedTimes(parsedSelectedTimes);
+    }
   }, []);
 
   const eventsFromSessionStorage = getSessionStorageData(formData, setRequest);
 
-  const handleEventClick = (event) => {
-    setSelectedEvent(event);
-    setModalOpen(true);
+  const handleFullDayModalOpen = () => {
+    setFullDayModalOpen(true);
   };
 
-  const handleModalClose = () => {
-    setModalOpen(false);
+  const handleFullDayModalClose = () => {
+    setFullDayModalOpen(false);
+  };
+
+  const onSelectSlot = (slotInfo) => {
+    const selectedDate = moment(slotInfo.start).format("YYYY-MM-DD");
+    const isPastDate = moment(selectedDate).isBefore(moment(), "day");
+
+    if (!isPastDate) {
+      handleFullDayModalOpen();
+      const filteredTimes = selectedTimes.filter(
+        (timeObj) => timeObj.date === selectedDate
+      );
+      setSelectedDay(selectedDate);
+    }
   };
 
   return (
@@ -115,19 +119,20 @@ function FullCalendarComponent() {
         <div className="myCustomHeight">
           <Calendar
             localizer={localizer}
-            events={eventsFromSessionStorage}
             startAccessor="start"
             endAccessor="end"
             style={{ height: 600, width: 900 }}
-            onSelectEvent={handleEventClick} // Add this line
+            events={eventsFromSessionStorage}
+            onSelectEvent={onSelectSlot}
+            selectable
             popup
           />
         </div>
       </div>
-      <EventModal
-        isOpen={isModalOpen}
-        onClose={handleModalClose}
-        event={selectedEvent}
+      <FullCalendarDayModal
+        isOpen={isFullDayModalOpen}
+        onClose={handleFullDayModalClose}
+        time={selectedDay}
       />
     </>
   );

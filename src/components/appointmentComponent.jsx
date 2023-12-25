@@ -3,7 +3,6 @@ import Steps from "./steps";
 import TimeAndDate from "./timeAndDate";
 import ContactForm from "./contactInfo";
 import ServiceComponent from "./serviceComponent";
-import serviceImage from "../images/service.png";
 import turkish from "../images/turkish.png";
 import english from "../images/english.png";
 import Swal from "sweetalert2";

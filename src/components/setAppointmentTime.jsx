@@ -196,7 +196,7 @@ function SetAppointmentTime() {
       <div className="chooseSavedTimes flex items-center justify-center">
         <button
           onClick={() => handleOptionChange(true)}
-          className={`bg-appoinmentBox p-1 text-white tex-sm rounded-3xl m-3 px-7 ${
+          className={`bg-appoinmentBox p-1 text-white tex-sm rounded-3xl m-3 mb-0 px-7 ${
             savedTimes === true ? "selected" : ""
           } ${savedTimes === true ? "bg-appoinmentBox" : "bg-backButtonColor"}`}
         >
@@ -204,7 +204,7 @@ function SetAppointmentTime() {
         </button>
         <button
           onClick={() => handleOptionChange(false)}
-          className={`bg-appoinmentBox p-1 text-white tex-sm rounded-3xl m-3 px-7 ${
+          className={`bg-appoinmentBox p-1 text-white tex-sm rounded-3xl m-3 mb-0 px-7 ${
             savedTimes === false ? "selected" : ""
           } ${
             savedTimes === false ? "bg-appoinmentBox" : "bg-backButtonColor"
@@ -250,7 +250,7 @@ function SetAppointmentTime() {
                       Kayıtlı Saatler
                     </h1>
                   </div>
-                  <div className="chooseSavedTimes flex items-center justify-center">
+                  <div className="chooseSavedTimes flex items-center justify-center flex-wrap">
                     {savedTimesArray.map((savedTime, index) => (
                       <SavedTimes
                         key={index}
