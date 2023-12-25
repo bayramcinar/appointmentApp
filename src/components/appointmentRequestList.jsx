@@ -13,11 +13,24 @@ function AppointmentRequestList() {
   const [isModalOpen, setIsModalOpen] = useState(false); // State to manage modal visibility
   const [selectedAppointment, setSelectedAppointment] = useState(null);
 
+  const filterFormData = (formData) => {
+    const filteredData = formData.filter((data) => {
+      // Örnek olarak 'true' içeren öğeleri filtrele
+      const timeArray = data.time.split(" ");
+      const lastElement = timeArray[timeArray.length - 2];
+
+      return lastElement.toLowerCase() === "true";
+    });
+
+    return filteredData;
+  };
+
   useEffect(() => {
-    // localStorage'dan formData'yı al
     const storedFormData = JSON.parse(localStorage.getItem("formData"));
 
-    setFormData(storedFormData || []);
+    const filteredFormData = filterFormData(storedFormData || []);
+
+    setFormData(filteredFormData);
   }, []);
 
   const handleOpenModal = (appointment) => {
