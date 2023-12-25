@@ -87,7 +87,7 @@ function AppointmentRequestList() {
   };
 
   return (
-    <div className="h-auto relative flex items-center justify-center w-full md:block max-[768px]:block">
+    <div className="h-auto relative flex items-center justify-center w-full max-[768px]:block">
       {formData.length > 3 ? (
         renderSwiper(formData)
       ) : (
