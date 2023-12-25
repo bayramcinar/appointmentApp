@@ -193,7 +193,7 @@ function SetAppointmentTime() {
       <h2 className="text-buttonColor text-2xl m-3 font-semibold mb-0">
         Randevu Zamanı Belirle
       </h2>
-      <div className="chooseSavedTimes flex items-center justify-center">
+      <div className="chooseSavedTimes flex items-center justify-center ">
         <button
           onClick={() => handleOptionChange(true)}
           className={`bg-appoinmentBox p-1 text-white tex-sm rounded-3xl m-3 mb-0 px-7 ${
@@ -250,7 +250,7 @@ function SetAppointmentTime() {
                       Kayıtlı Saatler
                     </h1>
                   </div>
-                  <div className="chooseSavedTimes flex items-center justify-center flex-wrap">
+                  <div className="chooseSavedTimes flex items-center justify-center flex-wrap mx-[15px]">
                     {savedTimesArray.map((savedTime, index) => (
                       <SavedTimes
                         key={index}
@@ -273,7 +273,7 @@ function SetAppointmentTime() {
                       Kayıtlı Süreler
                     </h1>
                   </div>
-                  <div className="savedTimes flex flex-wrap mx-7 justify-center items-center">
+                  <div className="savedTimes flex flex-wrap justify-center items-center mx-[15px]">
                     {savedDurationsArray.map((savedDuration, index) => (
                       <SavedDurations
                         key={index}
