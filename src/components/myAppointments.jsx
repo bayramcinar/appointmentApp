@@ -117,7 +117,7 @@ function MyAppointments() {
   };
 
   return (
-    <div className="myAppointments bg-dayComponentBg flex flex-col items-center justify-center p-3 relative lg:w-[56rem] mr-auto ml-auto mt-[50px] lg:h-[515px]">
+    <div className="myAppointments bg-dayComponentBg flex flex-col items-center justify-center p-3 relative lg:w-[56rem] mr-auto ml-auto mt-[50px] h-auto">
       <h1 className="text-center text-2xl font-semibold text-buttonColor p-3">
         Randevularım
       </h1>

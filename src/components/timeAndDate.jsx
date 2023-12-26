@@ -412,7 +412,7 @@ function TimeAndDate({
                       )}
                       {requestSelectedTime === "" && (
                         <button
-                          className="bg-callNowButtonColor rounded-2xl p-1 px-6 text-white text-sm mt-[15px]"
+                          className="bg-callNowButtonColor rounded-2xl p-1 px-6 text-white text-sm my-[15px]"
                           onClick={() => {
                             setAppointmentRequestNormal(true);
                             setRequest(true);

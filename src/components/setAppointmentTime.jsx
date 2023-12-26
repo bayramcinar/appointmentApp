@@ -189,7 +189,7 @@ function SetAppointmentTime() {
   };
 
   return (
-    <div className="ml-auto mr-auto bg-dayComponentBg mt-10 setAppointmentTime flex items-center justify-center flex-col lg:w-[33rem] md:w-[24rem] lg:h-autp sm:h-auto shadow-xl border-stepBorder1 border-2 rounded-xl">
+    <div className="ml-auto mr-auto bg-dayComponentBg mt-10 setAppointmentTime flex items-center justify-center flex-col lg:w-[33rem] md:w-[24rem] max-[768px]:w-[24rem] lg:h-auto sm:h-auto shadow-xl border-stepBorder1 border-2 rounded-xl">
       <h2 className="text-buttonColor text-2xl m-3 font-semibold mb-0">
         Randevu Zamanı Belirle
       </h2>
@@ -265,6 +265,11 @@ function SetAppointmentTime() {
                         selectedTime={selectedTimes.includes(savedTime)}
                       />
                     ))}
+                    {savedTimesArray.length === 0 && (
+                      <h1 className="text-center text-sm text-red-600 font-semibold">
+                        Kayıtlı saat bulunmamaktadır.
+                      </h1>
+                    )}
                   </div>
                 </div>
                 <div className="flex items-center justify-center flex-col">
@@ -287,6 +292,11 @@ function SetAppointmentTime() {
                         selectedDuration={selectedDuration}
                       />
                     ))}
+                    {savedDurationsArray.length === 0 && (
+                      <h1 className="text-center text-sm text-red-600 font-semibold">
+                        Kayıtlı süre bulunmamaktadır.
+                      </h1>
+                    )}
                   </div>
                 </div>
               </>

@@ -81,6 +81,7 @@ function AppointmentRequest({ isOpen, onClose, handleFormSubmit, date }) {
                     </div>
                     <div className="m-3">
                       <Field
+                        min={1}
                         name="duration"
                         type="number"
                         className={`p-3 lg:w-[22rem] max-[768px]:w-[22rem] focus:border-none outline-none bg-dayComponentBg`}
