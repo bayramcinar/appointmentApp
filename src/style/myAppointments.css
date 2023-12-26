@@ -1,9 +1,22 @@
-.myAppointments .swiper{
-    height: 24rem;
-    
+.myAppointments .swiper {
+  height: 24rem;
 }
-@media only screen and (max-width: 768px) {
-    .myAppointments .swiper {
-        width: 24rem;
-    }
+@keyframes flash {
+  0%,
+  100% {
+    opacity: 0;
   }
+  50% {
+    opacity: 1;
+  }
+}
+
+.flashing-text {
+  animation: flash 1s infinite; /* Adjust the duration as needed */
+}
+
+@media only screen and (max-width: 768px) {
+  .myAppointments .swiper {
+    width: 24rem;
+  }
+}

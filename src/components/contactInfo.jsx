@@ -53,6 +53,7 @@ function ContactForm({
                 notes: "",
                 language: "", // New field for language selection
                 duration: duration,
+                confirm: "false",
               }}
               onSubmit={onFormSubmit}
             >
@@ -112,6 +113,7 @@ function ContactForm({
                 time: time,
                 duration: duration,
                 language: "",
+                confirm: "false",
               }}
               onSubmit={onFormSubmit}
             >

@@ -7,6 +7,7 @@ import SetSavedDuration from "./setSavedDuration";
 import Agenda from "./agenda";
 import SetService from "./setService";
 import AppointmentRequestList from "./appointmentRequestList";
+import NotConfirmedAppointments from "./notConfirmedAppointments";
 
 function Dashboard() {
   return (
@@ -14,6 +15,20 @@ function Dashboard() {
       <div className="bg-dayComponentBg">
         <div className="bg-dayComponentBg">
           <AppointmentInfos />
+        </div>
+        <div className="flex max-[768px]:block  lg:mx-[9rem]  ">
+          <div className="bg-dayComponentBg border-stepBorder1 border-2 rounded-xl  mr-[2rem] max-[768px]:h-auto  max-[768px]:mx-auto max-[768px]:w-[23rem] b-5 mb-5 w-[48%]">
+            <h1 className="text-buttonColor text-2xl text-center font-semibold mt-3">
+              Yeni Randevular
+            </h1>
+            <NotConfirmedAppointments />
+          </div>
+          <div className="bg-dayComponentBg border-stepBorder1 border-2 rounded-xl ml-[2rem] max-[768px]:h-auto  max-[768px]:mx-auto max-[768px]:w-[23rem] b-5 mb-5 w-[48%]">
+            <h1 className="text-buttonColor text-2xl text-center font-semibold mt-3">
+              Randevu Talepleri
+            </h1>
+            <AppointmentRequestList />
+          </div>
         </div>
         <div className="flex items-center justify-center bg-dayComponentBg pb-8">
           {/* Ekran genişliği 768 pikselden büyükse (mobil ekran değilse) FullCalendarComponent göster */}
@@ -44,12 +59,6 @@ function Dashboard() {
           <div className="flex justify-start bg-dayComponentBg pb-8 lg:mx-[9rem] max-[768px]:mx-[1.5rem]">
             <Agenda />
           </div>
-        </div>
-        <div className="bg-dayComponentBg border-stepBorder1 border-2 rounded-xl mx-[9rem] max-[768px]:h-auto  max-[768px]:mx-auto max-[768px]:w-[23rem] b-5 mb-5">
-          <h1 className="text-buttonColor text-2xl text-center font-semibold mt-3">
-            Randevu Talepleri
-          </h1>
-          <AppointmentRequestList />
         </div>
       </div>
     </>

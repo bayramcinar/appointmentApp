@@ -7,19 +7,20 @@ import "swiper/css/navigation";
 import { Navigation, Pagination } from "swiper/modules";
 import pp from "../images/pp.png";
 import RequestModal from "./requestModal"; // Import the RequestModal component
+import NotAppointmentRequestBox from "./notConfirmedAppointmentBox";
 
-function AppointmentRequestList() {
+function NotConfirmedAppointments() {
   const [formData, setFormData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false); // State to manage modal visibility
   const [selectedAppointment, setSelectedAppointment] = useState(null);
 
   const filterFormData = (formData) => {
     const filteredData = formData.filter((data) => {
-      // Örnek olarak 'true' içeren öğeleri filtrele
+      // Örnek olarak 'false' içeren öğeleri ve data.confirm değeri false olanları filtrele
       const timeArray = data.time.split(" ");
       const lastElement = timeArray[timeArray.length - 2];
 
-      return lastElement.toLowerCase() === "true";
+      return lastElement.toLowerCase() === "false" && data.confirm === "false";
     });
 
     return filteredData;
@@ -58,7 +59,7 @@ function AppointmentRequestList() {
           <div className="flex flex-wrap justify-center h-auto mb-3">
             {currentAppointments.map((data, index) => (
               <div key={index} className="p-2 mb-0 m-5">
-                <AppointmentRequestBox
+                <NotAppointmentRequestBox
                   image={pp}
                   infos={data}
                   onDetails={() => handleOpenModal(data)}
@@ -89,14 +90,14 @@ function AppointmentRequestList() {
   };
 
   return (
-    <div className="h-auto relative flex items-center flex-wrap justify-center w-full max-[768px]:block">
+    <div className="h-auto relative flex flex-wrap items-center justify-center w-full max-[768px]:block">
       {formData.length > 2 ? (
         renderSwiper(formData)
       ) : (
         <>
           {formData.map((data, index) => (
             <div key={index} className=" p-2">
-              <AppointmentRequestBox
+              <NotAppointmentRequestBox
                 image={pp}
                 infos={data}
                 onDetails={() => handleOpenModal(data)}
@@ -109,7 +110,7 @@ function AppointmentRequestList() {
         <>
           <div className="m-5">
             <h1 className="text-center text-lg text-red-600 font-semibold">
-              Randevu Talebi Bulunmamaktadır
+              Yeni Randevu Bulunmamaktadır.
             </h1>
           </div>
         </>
@@ -135,4 +136,4 @@ function AppointmentRequestList() {
   );
 }
 
-export default AppointmentRequestList;
+export default NotConfirmedAppointments;

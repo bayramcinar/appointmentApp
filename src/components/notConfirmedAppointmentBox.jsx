@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../style/myAppointments.css";
 import Swal from "sweetalert2";
 
-function AppointmentRequestBox({ image, infos, onDetails }) {
+function NotAppointmentRequestBox({ image, infos, onDetails }) {
   const timeString = infos.time;
   const timeStart = timeString.split(" ")[2];
   const requestOrNot = timeString.split(" ")[3];
@@ -48,7 +48,7 @@ function AppointmentRequestBox({ image, infos, onDetails }) {
     const originalObje = findObjectByTime(timeObject);
     Swal.fire({
       title: "Emin misiniz!",
-      text: "Randevu talebini kabul etmek istediğinize emin misiniz?",
+      text: "Randevuyu onaylamak istediğinize emin misiniz?",
       icon: "question",
       showCancelButton: true,
       confirmButtonText: "Evet",
@@ -56,22 +56,11 @@ function AppointmentRequestBox({ image, infos, onDetails }) {
     }).then((result) => {
       if (result.isConfirmed) {
         if (originalObje) {
-          const separatedValues = timeObject.split(" ");
-          const falseValue2 = originalObje.confirm;
-          const falseValue = separatedValues[separatedValues.length - 2];
+          const falseValue = originalObje.confirm;
 
-          const updatedValue = falseValue === "true" ? "false" : "true";
-          const updatedValue2 = falseValue2 === "false" ? "true" : "";
+          const updatedValue = falseValue === "false" ? "true" : "";
 
-          separatedValues[separatedValues.length - 2] = updatedValue;
-
-          const updatedTimeObject = separatedValues.join(" ");
-
-          const updatedObje = {
-            ...originalObje,
-            time: updatedTimeObject,
-            confirm: updatedValue2,
-          };
+          const updatedObje = { ...originalObje, confirm: updatedValue };
 
           const formDataString = localStorage.getItem("formData");
 
@@ -88,11 +77,11 @@ function AppointmentRequestBox({ image, infos, onDetails }) {
               localStorage.setItem("formData", JSON.stringify(formData));
               Swal.fire({
                 title: "Başarılı !",
-                text: "Randevu talebi başarılı bir şekilde onaylandı ve kullanıcıya bildirildi.",
+                text: "Randevu başarılı bir şekilde onaylandı ve kullanıcıya bildirildi. Ajanda bölümünden detayları kontrol edebilirsiniz.",
                 icon: "success",
                 confirmButtonText: "Kapat",
               });
-              return updatedTimeObject;
+              return updatedValue;
             }
           }
         }
@@ -106,7 +95,7 @@ function AppointmentRequestBox({ image, infos, onDetails }) {
     // RANDEVU TALEBİNİ RED ETME FONKSİYONUNU DİREK FORMDATA DAN O ÖGEYİ SİLİYOR
     Swal.fire({
       title: "Emin misiniz!",
-      text: "Randevu talebini silmek istediğinize emin misiniz?",
+      text: "Randevuyu silmek istediğinize emin misiniz?",
       icon: "question",
       showCancelButton: true,
       confirmButtonText: "Evet",
@@ -131,7 +120,7 @@ function AppointmentRequestBox({ image, infos, onDetails }) {
 
               Swal.fire({
                 title: "Başarılı !",
-                text: "Randevu talebi başarılı bir şekilde reddedildi.",
+                text: "Randevu başarılı bir şekilde reddedildi.",
                 icon: "success",
                 confirmButtonText: "Kapat",
               });
@@ -213,4 +202,4 @@ function AppointmentRequestBox({ image, infos, onDetails }) {
   );
 }
 
-export default AppointmentRequestBox;
+export default NotAppointmentRequestBox;
