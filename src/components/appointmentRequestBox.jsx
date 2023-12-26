@@ -154,16 +154,10 @@ function AppointmentRequestBox({ image, infos, onDetails }) {
               <img src={image} className="w-20" alt="" />
             </div>
             <div className="infoArea w-2/3">
-              {requestOrNot === "true" && (
-                <div>
-                  <FlashingText color={"red-600"} text="Yeni Randevu Talebi." />
-                </div>
-              )}
-              {requestOrNot === "false" && (
-                <div>
-                  <FlashingText color={"appoinmentBox"} text="Yeni Randevu." />
-                </div>
-              )}
+              <div>
+                <FlashingText color={"red-600"} text="Yeni Randevu Talebi." />
+              </div>
+
               <div className="forWho flex">
                 <i className="fa-solid fa-circle mt-[3px] text-[15px] text-callNowButtonColor"></i>
                 <h2 className="text-[14px] font-bold ml-2">

@@ -21,6 +21,7 @@ function NotAppointmentRequestBox({ image, infos, onDetails }) {
     return (
       <h1
         className={`flashing-text text-sm text-${color} p-1 text-center font-semibold m-1`}
+        style={{ color: "#1bce94" }}
       >
         {text}
       </h1>
@@ -143,16 +144,9 @@ function NotAppointmentRequestBox({ image, infos, onDetails }) {
               <img src={image} className="w-20" alt="" />
             </div>
             <div className="infoArea w-2/3">
-              {requestOrNot === "true" && (
-                <div>
-                  <FlashingText color={"red-600"} text="Yeni Randevu Talebi." />
-                </div>
-              )}
-              {requestOrNot === "false" && (
-                <div>
-                  <FlashingText color={"appoinmentBox"} text="Yeni Randevu." />
-                </div>
-              )}
+              <div>
+                <FlashingText color={"newAppointment1"} text="Yeni Randevu." />
+              </div>
               <div className="forWho flex">
                 <i className="fa-solid fa-circle mt-[3px] text-[15px] text-callNowButtonColor"></i>
                 <h2 className="text-[14px] font-bold ml-2">
