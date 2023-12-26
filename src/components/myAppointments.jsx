@@ -121,7 +121,7 @@ function MyAppointments() {
       <h1 className="text-center text-2xl font-semibold text-buttonColor p-3">
         Randevularım
       </h1>
-      <div className="swipperAppointments h-96 lg:w-[56rem] lg:h-[27rem]">
+      <div className="swipperAppointments h-auto lg:w-[56rem] lg:h-[27rem]">
         {formData.length > 3 ? (
           renderSwiper(formData)
         ) : (

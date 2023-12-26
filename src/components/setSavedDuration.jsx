@@ -61,6 +61,7 @@ const SetSavedDuration = () => {
             <Form>
               <div className="m-3 field-container w-[16rem]">
                 <Field
+                  min={1}
                   name="duration"
                   type="number"
                   className={`p-3 w-[16rem] focus:border-none outline-none bg-white rounded-xl`}
