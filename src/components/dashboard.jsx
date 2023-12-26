@@ -45,7 +45,7 @@ function Dashboard() {
             <Agenda />
           </div>
         </div>
-        <div className="bg-dayComponentBg border-stepBorder1 border-2 rounded-xl mx-[9rem] max-[768px]:h-auto  max-[768px]:mx-auto max-[768px]:w-[23rem] b-5">
+        <div className="bg-dayComponentBg border-stepBorder1 border-2 rounded-xl mx-[9rem] max-[768px]:h-auto  max-[768px]:mx-auto max-[768px]:w-[23rem] b-5 mb-5">
           <h1 className="text-buttonColor text-2xl text-center font-semibold mt-3">
             Randevu Talepleri
           </h1>

@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import pp from "../images/pp.png";
 import RequestModal from "./requestModal"; // Import the RequestModal component
 
@@ -58,7 +58,7 @@ function AppointmentRequestList() {
         <SwiperSlide key={i}>
           <div className="flex flex-wrap justify-center h-auto">
             {currentAppointments.map((data, index) => (
-              <div key={index} className="p-2 m-5">
+              <div key={index} className="p-2 mb-0 m-5">
                 <AppointmentRequestBox
                   image={pp}
                   infos={data}
@@ -74,11 +74,14 @@ function AppointmentRequestList() {
 
     return (
       <Swiper
+        pagination={{
+          dynamicBullets: true,
+        }}
         navigation={{
           prevEl: ".custom-swiper-button-prev4",
           nextEl: ".custom-swiper-button-next4",
         }}
-        modules={[Navigation]}
+        modules={isMobile ? [Pagination] : [Navigation]}
         className="mySwiper"
       >
         {swiperSlides}
@@ -97,7 +100,7 @@ function AppointmentRequestList() {
               <AppointmentRequestBox
                 image={pp}
                 infos={data}
-                onDetails={() => handleOpenModal(data)} // Pass appointment data to open modal
+                onDetails={() => handleOpenModal(data)}
               />
             </div>
           ))}
