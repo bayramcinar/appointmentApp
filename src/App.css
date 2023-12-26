@@ -1,8 +1,11 @@
-
-*{
-  font-family: 'Rubik', sans-serif;
-} 
-.swal2-confirm{
+* {
+  font-family: "Rubik", sans-serif;
+}
+.swal2-confirm {
   background-color: #112469 !important ;
+  border-radius: 30px !important;
+}
+
+.swal2-cancel {
   border-radius: 30px !important;
 }

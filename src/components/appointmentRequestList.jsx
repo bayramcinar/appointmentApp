@@ -103,6 +103,15 @@ function AppointmentRequestList() {
           ))}
         </>
       )}
+      {formData.length === 0 && (
+        <>
+          <div className="m-5">
+            <h1 className="text-center text-lg text-red-600 font-semibold">
+              Randevu Talebi Bulunmamaktadır
+            </h1>
+          </div>
+        </>
+      )}
       {formData.length > 4 && (
         <>
           <div className="custom-swiper-button-prev4 absolute top-[50%] left-3 text-xl text-buttonColor cursor-pointer z-[2]">

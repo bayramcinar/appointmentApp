@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import EventModal from "./eventModal";
 import Swal from "sweetalert2";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import "swiper/css";
-// import "swiper/css/pagination";
-// import "swiper/css/navigation";
-// import { Navigation } from "swiper/modules";
 function Agenda() {
   const [formData, setFormData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
@@ -14,6 +9,18 @@ function Agenda() {
   const handleOpenModal = (event) => {
     setSelectedEvent(event);
     setOpenModal(true);
+  };
+
+  const filterFormData = (formData) => {
+    const filteredData = formData.filter((data) => {
+      // Örnek olarak 'true' içeren öğeleri filtrele
+      const timeArray = data.time.split(" ");
+      const lastElement = timeArray[timeArray.length - 2];
+
+      return lastElement.toLowerCase() === "false";
+    });
+
+    return filteredData;
   };
 
   const handleCloseModal = () => {
@@ -26,22 +33,26 @@ function Agenda() {
 
     if (storedFormData) {
       const parsedFormData = JSON.parse(storedFormData);
-      const sortedFormData = parsedFormData.sort((a, b) => {
-        const dateA = new Date(
-          a.time.split(" ")[0].split(".").reverse().join("-") +
-            " " +
-            a.time.split(" ")[2]
-        );
-        const dateB = new Date(
-          b.time.split(" ")[0].split(".").reverse().join("-") +
-            " " +
-            b.time.split(" ")[2]
-        );
+      const filteredFormData = filterFormData(parsedFormData);
 
-        return dateA - dateB;
-      });
+      if (filteredFormData) {
+        const sortedFormData = filteredFormData.sort((a, b) => {
+          const dateA = new Date(
+            a.time.split(" ")[0].split(".").reverse().join("-") +
+              " " +
+              a.time.split(" ")[2]
+          );
+          const dateB = new Date(
+            b.time.split(" ")[0].split(".").reverse().join("-") +
+              " " +
+              b.time.split(" ")[2]
+          );
 
-      setFormData(sortedFormData);
+          return dateA - dateB;
+        });
+
+        setFormData(sortedFormData);
+      }
     }
   }, []);
 
@@ -51,6 +62,7 @@ function Agenda() {
   }, [formData]);
 
   function convertFormDataToTable() {
+    // TABLODA DÖNDÜRDÜĞÜMÜZ HER BİR SATIR
     return formData.map((formEntry, index) => {
       const { time, duration, service } = formEntry;
       const parsedInfos = time.split(/\s+/);
@@ -145,6 +157,7 @@ function Agenda() {
   }
 
   function getRemainingTime(start) {
+    //KALAN SAATİ HESAPLAYAN FONKSİYON
     const currentDate = new Date();
     const appointmentDate = new Date(
       start.split(" ")[0].split(".").reverse().join("-") +
@@ -184,6 +197,7 @@ function Agenda() {
   }
 
   const handleDelete = (selectedAppointment) => {
+    //SİLME FONKSİYONU
     console.log(selectedAppointment);
     const selectedTimes =
       JSON.parse(localStorage.getItem("selectedTimes")) || []; // BU İŞLEMİ DATABASE DEN YAPACAĞIZ BEN BURDA RANDEVUYU SİLERKEN AYNI ZAMANDA selectedTimes (randevu saatleri) ögesindeki o saatin active değerini false dan true ya çeviriyorum randevu silindiği için
