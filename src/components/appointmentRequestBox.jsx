@@ -143,12 +143,13 @@ function AppointmentRequestBox({ image, infos, onDetails }) {
   };
 
   const startTime = infos.time;
+  const date = infos.time.split(" ")[0];
   const endTime = addDurationToStartTime(startTime, infos.duration);
 
   return (
     <>
       <div className="bg-white myAppointmentBox lg:w-[280px] h-[205px] max-[768px]:w-[300px]  ml-auto mr-auto border-2 border-buttonColor rounded-2xl shadow-2xl">
-        <div className="p-2 flex flex-col">
+        <div className="p-2 flex flex-col pt-0">
           <div className="flex">
             <div className="imgArea1 w-1/3 flex items-center justify-center">
               <img src={image} className="w-20" alt="" />
@@ -165,11 +166,16 @@ function AppointmentRequestBox({ image, infos, onDetails }) {
                 </h2>
               </div>
               <div className="flex">
-                <i className="fa-regular fa-clock mt-[9px] text-callNowButtonColor text-[15px]"></i>
-                <h1 className="text-xs text-buttonColor p-1 text-left font-semibold m-1">
-                  {timeStart} - {endTime}
-                </h1>
-                <h1 className="text-xs text-buttonColor py-1 text-left font-semibold my-1">
+                <i className="fa-regular fa-clock mt-[15px] text-callNowButtonColor text-[15px]"></i>
+                <div className="flex flex-col items-center justify-center">
+                  <h1 className="text-xs text-buttonColor p-1 text-left font-semibold m-1 mb-0 pb-0">
+                    {date}
+                  </h1>
+                  <h1 className="text-xs text-buttonColor p-1 text-left font-semibold m-1 mt-0 pt-0">
+                    {timeStart} - {endTime}
+                  </h1>
+                </div>
+                <h1 className="text-xs text-buttonColor py-1 text-left font-semibold my-1 flex items-center justify-center">
                   ({infos.duration} Dakika)
                 </h1>
               </div>

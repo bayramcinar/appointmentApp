@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import EventModal from "./eventModal";
+import "../style/agenda.css";
 import Swal from "sweetalert2";
 function Agenda() {
   const [formData, setFormData] = useState([]);
@@ -280,23 +281,25 @@ function Agenda() {
 
   return (
     <>
-      <div className="w-[100%] shadow-xl border-stepBorder1 border-2 rounded-xl overflow-auto max-h-[500px]">
-        <h1 className="text-buttonColor text-2xl text-center font-semibold mt-5 sticky">
+      <div className="w-full shadow-xl border-stepBorder1 border-2 rounded-xl overflow-auto max-h-500">
+        <h1 className=" text-2xl text-center font-semibold mt-5 sticky top-0 text-buttonColor p-3">
           Ajanda
         </h1>
-        <table className="rounded-xl w-[100%] my-5">
-          <thead>
-            <tr className="bg-buttonColor text-white font-semibold sticky">
-              <th className="p-3">Sıra</th>
-              <th className="p-3">Tarih</th>
-              <th className="p-3">Saat</th>
-              <th className="p-3">Randevu</th>
-              <th className="p-3">İşlemler</th>
-              <th className="p-3">Kalan Süre</th>
-            </tr>
-          </thead>
-          <tbody>{convertFormDataToTable()}</tbody>
-        </table>
+        <div className="overflow-auto max-h-[400px]">
+          <table className="rounded-xl w-full my-5">
+            <thead>
+              <tr className="sticky top-0 bg-buttonColor text-white">
+                <th className="p-3">Sıra</th>
+                <th className="p-3">Tarih</th>
+                <th className="p-3">Saat</th>
+                <th className="p-3">Randevu</th>
+                <th className="p-3">İşlemler</th>
+                <th className="p-3">Kalan Süre</th>
+              </tr>
+            </thead>
+            <tbody>{convertFormDataToTable()}</tbody>
+          </table>
+        </div>
       </div>
       <EventModal
         isOpen={openModal}

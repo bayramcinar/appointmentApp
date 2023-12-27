@@ -12,7 +12,7 @@
 }
 
 .flashing-text {
-  animation: flash 1s infinite; /* Adjust the duration as needed */
+  animation: flash 1s infinite;
 }
 
 @media only screen and (max-width: 768px) {

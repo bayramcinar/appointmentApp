@@ -5,14 +5,46 @@ function AppointmentInfos() {
   return (
     <div className="w-full">
       <div className="infosArea flex items-center justify-center flex-wrap">
-        <AppointmentInfoBox number={5} title={"Bu gün Randevu"} />
-        <AppointmentInfoBox number={15} title={"Bu hafta Randevu"} />
-        <AppointmentInfoBox number={45} title={"Bu ay Randevu"} />
-        <AppointmentInfoBox number={505} title={"Bu yıl Randevu"} />
-        <AppointmentInfoBox number={7} title={"Randevu Talebi"} />
-        <AppointmentInfoBox number={8} title={"Randevu İptali"} />
-        <AppointmentInfoBox number={18} title={"Randevu Onayı"} />
-        <AppointmentInfoBox number={12} title={"Hizmet Sayısı"} />
+        <AppointmentInfoBox
+          number={5}
+          title={"Bu gün Randevu"}
+          changeRate={5}
+        />
+        <AppointmentInfoBox
+          number={15}
+          title={"Bu hafta Randevu"}
+          changeRate={5}
+        />
+        <AppointmentInfoBox
+          number={45}
+          title={"Bu ay Randevu"}
+          changeRate={-10}
+        />
+        <AppointmentInfoBox
+          number={505}
+          title={"Bu yıl Randevu"}
+          changeRate={486}
+        />
+        <AppointmentInfoBox
+          number={7}
+          title={"Randevu Talebi"}
+          changeRate={-6}
+        />
+        <AppointmentInfoBox
+          number={8}
+          title={"Randevu İptali"}
+          changeRate={2}
+        />
+        <AppointmentInfoBox
+          number={18}
+          title={"Randevu Onayı"}
+          changeRate={10}
+        />
+        <AppointmentInfoBox
+          number={12}
+          title={"Hizmet Sayısı"}
+          changeRate={15}
+        />
       </div>
     </div>
   );
