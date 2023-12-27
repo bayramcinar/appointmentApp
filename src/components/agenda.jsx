@@ -65,12 +65,13 @@ function Agenda() {
   function convertFormDataToTable() {
     // TABLODA DÖNDÜRDÜĞÜMÜZ HER BİR SATIR
     return formData.map((formEntry, index) => {
+      const status = formEntry.confirm;
       const { time, duration, service } = formEntry;
       const parsedInfos = time.split(/\s+/);
       const dateInfo = parsedInfos[0] + " " + parsedInfos[1];
       const timeInfo = getTime(parsedInfos[2], duration);
       const remainingTime = getRemainingTime(time);
-
+      const requestStatus = parsedInfos[3];
       const currentDate = new Date();
       const appointmentDate = new Date(
         time.split(" ")[0].split(".").reverse().join("-") +
@@ -79,6 +80,10 @@ function Agenda() {
       );
       const isPastAppointment = appointmentDate < currentDate;
       const isToday = isSameDay(appointmentDate, currentDate);
+
+      const dateArray = parsedInfos[0].split(".").join(""); // Use join("") to convert the array to a string
+      const timeArray = parsedInfos[2].split(":").join(""); // Use join("") to convert the array to a string
+      const appointmentNumber = dateArray + timeArray;
 
       return (
         <tr
@@ -95,6 +100,9 @@ function Agenda() {
         >
           <td className="text-center border-dashed border-2 border-[#0003]">
             {index + 1}
+          </td>
+          <td className="text-center border-dashed border-2 border-[#0003]">
+            {appointmentNumber}
           </td>
           <td className="text-center border-dashed border-2 border-[#0003]">
             {dateInfo}
@@ -129,6 +137,14 @@ function Agenda() {
                 </button>
               </div>
             </div>
+          </td>
+          <td className="text-center border-dashed border-2 border-[#0003] status">
+            {status === "false" && (
+              <h1 className="text-md text-center ">Onay Bekliyor</h1>
+            )}
+            {status === "true" && (
+              <h1 className="text-md text-center ">Aktif</h1>
+            )}
           </td>
           <td className="text-center border-dashed border-2 border-[#0003]">
             {remainingTime.remainingHours > 0 ? (
@@ -290,10 +306,12 @@ function Agenda() {
             <thead>
               <tr className="sticky top-0 bg-buttonColor text-white">
                 <th className="p-3">Sıra</th>
+                <th className="p-3">Randevu Numarası</th>
                 <th className="p-3">Tarih</th>
                 <th className="p-3">Saat</th>
                 <th className="p-3">Randevu</th>
                 <th className="p-3">İşlemler</th>
+                <th className="p-3">Durum</th>
                 <th className="p-3">Kalan Süre</th>
               </tr>
             </thead>
