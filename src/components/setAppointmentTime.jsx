@@ -286,7 +286,7 @@ function SetAppointmentTime() {
                     <h1 className="text-md font-semibold text-center text-red-500 mb-[2px]">
                       Kayıtlı Saatler
                     </h1>
-                    <h1 className="text-md font-semibold text-center text-red-500 mb-[2px] w-[350px]">
+                    <h1 className="text-md font-semibold text-center text-red-500 mb-[2px] w-[350px] flex items-center justify-center">
                       (Randevu süresi {appointmentDuration} dakika olarak
                       ayarlıdır. Dilerseniz bu süreyi profilinizden
                       güncelleyebilirsiniz.)
