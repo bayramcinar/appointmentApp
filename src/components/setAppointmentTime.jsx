@@ -3,7 +3,6 @@ import { Field, Form, Formik } from "formik";
 import Swal from "sweetalert2";
 import SetDateAndTime from "./setDateAndTime";
 import SavedTimes from "./savedTimeBox";
-import SavedDurations from "./savedDurationBox";
 import moment from "moment";
 
 function SetAppointmentTime() {
@@ -11,15 +10,20 @@ function SetAppointmentTime() {
   const [selectedTimes, setSelectedTimes] = useState([]); // SEÇTİĞİMİZ SAATLERİ TUTAN DEĞİŞKEN
   const [selectedDuration, setSelectedDuration] = useState(""); //SEÇTİĞİMİZ RANDEVU SÜRESİNİ TUTAN DEĞİŞKEN
   const [savedTimesArray, setSavedTimesArray] = useState([]); // KAYITLI SAATLER BÖLGESİNDE GÖSTERİLEN SAATLERİ TUTAN ARRAY
-  const [savedDurationsArray, setSavedDurationsArray] = useState([]); // KAYITLI SÜRELER BÖLGESİNDE GÖSTERİLEN SÜRELERİ TUTAN ARRAY
   const [savedTimes, setSavedTimes] = useState(true); // KAYITLI SAATLER VEYA SAAT SEÇ EKRANINDA GİDİP GELMEMİZİ SĞLAYAN DEĞİŞKEN
+  const appointmentDuration = 90; // BU KISIM KULLANICI PROFİLİNDEN ALINAN RANDEVU SÜRESİ YERİ
   useEffect(() => {
     const localStorageSavedTimes =
-      JSON.parse(localStorage.getItem("savedTimes")) || []; // DATABASE DEN RANDEVU SAATİ OLUŞTURMAK İÇİN KULLANDIĞIMIZ KAYITLI SAATLERİ ALACAĞIMIZ YER BEN BURDA DİREK LOCALDEN ALDIM(savedTimes) ADINDA TABLODAN ALACAĞIZ
-    setSavedTimesArray(localStorageSavedTimes);
-    const localStorageSavedDurations =
-      JSON.parse(localStorage.getItem("savedDurations")) || []; // DATABASE DEN RANDEVU SAATİ OLUŞTURMAK İÇİN KULLANDIĞIMIZ KAYITLI SÜRELERİ ALACAĞIMIZ YER BEN BURDA DİREK LOCALDEN ALDIM(savedDurations) ADINDA TABLODAN ALACAĞIZ
-    setSavedDurationsArray(localStorageSavedDurations);
+      JSON.parse(localStorage.getItem("savedTimes")) || [];
+    const timeSortingFunction = (a, b) => {
+      const timeA = new Date("1970-01-01T" + a + ":00");
+      const timeB = new Date("1970-01-01T" + b + ":00");
+
+      return timeA - timeB;
+    };
+    const sortedSavedTimes = localStorageSavedTimes.sort(timeSortingFunction);
+
+    setSavedTimesArray(sortedSavedTimes);
   }, []);
 
   const getSelectedDate = (selectedDate) => {
@@ -30,8 +34,11 @@ function SetAppointmentTime() {
 
   const handleSetTime = (values, { resetForm }) => {
     // RANDEVU SAATİ EKLEMEMİZİ SAĞLAYAN FONKSİYON
+
+    setSelectedDuration(appointmentDuration);
+
     if (savedTimes === true) {
-      const { duration } = values;
+      const duration = selectedDuration;
 
       if (!selectedTimes.length || !datesData.length || !duration) {
         Swal.fire({
@@ -169,7 +176,6 @@ function SetAppointmentTime() {
     const [hour, minute] = clickedTime.split(":");
     const selectedTime = `${hour}:${minute}`;
     setFieldValue("chosenDate", selectedDate);
-
     setSelectedTimes((prevSelectedTimes) => {
       if (prevSelectedTimes.includes(selectedTime)) {
         return prevSelectedTimes.filter((time) => time !== selectedTime);
@@ -179,17 +185,49 @@ function SetAppointmentTime() {
     });
   };
 
-  const handleAppointmentDurationBoxClick = (
-    //SÜREYİ SEÇTİĞİMİZDE BUNU SEÇİLEN SÜREYE ATAYAN FONKSİYON
-    clickedDuration,
-    setFieldValue
-  ) => {
-    setSelectedDuration(clickedDuration);
-    setFieldValue("duration", clickedDuration);
+  const handleSaveTime = (values) => {
+    const { time } = values;
+
+    if (!time) {
+      Swal.fire({
+        title: "Hata !",
+        text: "Lütfen bir zaman seçiniz.",
+        icon: "error",
+        confirmButtonText: "Kapat",
+      });
+      return;
+    }
+
+    const existingSavedTimes =
+      JSON.parse(localStorage.getItem("savedTimes")) || []; //DATABASE DEN savedTime TABLOSUNU OKUYACAĞIMIZ YER BEN BURDA DİREK LOCAL DEN ALDIM
+
+    const isDuplicate = existingSavedTimes.some(
+      (savedTime) => savedTime === time
+    );
+
+    if (isDuplicate) {
+      Swal.fire({
+        title: "Hata !",
+        text: "Bu zaman zaten kaydedilmiş.",
+        icon: "error",
+        confirmButtonText: "Kapat",
+      });
+      return;
+    }
+
+    existingSavedTimes.push(time);
+    localStorage.setItem("savedTimes", JSON.stringify(existingSavedTimes)); // GÜNCELLEMİŞ SAATLERİ DATABASE E GÖNDERECEĞİMİZ YER BEN BURDA DİREK LOCAL A GÖNDERDİM
+
+    Swal.fire({
+      title: "Başarılı !",
+      text: "Zaman başarıyla kaydedildi.",
+      icon: "success",
+      confirmButtonText: "Kapat",
+    });
   };
 
   return (
-    <div className="ml-auto mr-auto bg-dayComponentBg mt-10 setAppointmentTime flex items-center justify-center flex-col lg:w-[33rem] md:w-[24rem] max-[768px]:w-[24rem] lg:h-auto sm:h-auto shadow-xl border-stepBorder1 border-2 rounded-xl">
+    <div className="ml-auto mr-auto bg-dayComponentBg mt-10 setAppointmentTime flex items-center justify-center flex-col lg:w-[33rem] md:w-[24rem] max-[768px]:w-[24rem] lg:h-auto sm:h-auto shadow-xl border-stepBorder1 border-2 rounded-xl lg:min-h-[700px]">
       <h2 className="text-buttonColor text-2xl m-3 font-semibold mb-0">
         Randevu Zamanı Belirle
       </h2>
@@ -210,20 +248,27 @@ function SetAppointmentTime() {
             savedTimes === false ? "bg-appoinmentBox" : "bg-backButtonColor"
           }`}
         >
-          Saat Seç
+          Saat Ekle
         </button>
       </div>
       <Formik
-        initialValues={{ chosenDate: "", duration: "" }}
-        onSubmit={handleSetTime}
+        initialValues={savedTimes === true ? { chosenDate: "" } : { time: "" }}
+        onSubmit={savedTimes === true ? handleSetTime : handleSaveTime}
       >
         {(formikProps) => (
           <Form>
-            <div className="m-3 field-container flex items-center justify-center">
+            <div
+              className={`m-3 field-container flex items-center ${
+                savedTimes === false ? "hidden" : ""
+              } justify-center`}
+            >
               <SetDateAndTime onDateChange={getSelectedDate} />
             </div>
             {savedTimes === false && (
               <>
+                <h2 className="text-sm text-red-600 text-center font-semibold m-5">
+                  Aşağıdan Kaydetmek istediğiniz saati seçiniz
+                </h2>
                 <div className="m-3 field-container lg:w-[21rem]">
                   <Field
                     name="time"
@@ -232,22 +277,19 @@ function SetAppointmentTime() {
                     placeholder="Saat"
                   />
                 </div>
-                <div className="m-3 field-container lg:w-[21rem]">
-                  <Field
-                    name="duration"
-                    type="number"
-                    className={`p-3 lg:w-[21rem] max-[768px]:w-[22rem] focus:border-none outline-none bg-white`}
-                    placeholder="Randevu Süresi (örn: 30 dk)"
-                  />
-                </div>
               </>
             )}
             {savedTimes === true && (
               <>
                 <div className="flex items-center justify-center flex-col">
-                  <div className="border-b-2 border-buttonColor mb-1">
-                    <h1 className="text-md font-semibold text-center text-buttonColor mb-[2px]">
+                  <div className=" mb-1 w-[400px]">
+                    <h1 className="text-md font-semibold text-center text-red-500 mb-[2px]">
                       Kayıtlı Saatler
+                    </h1>
+                    <h1 className="text-md font-semibold text-center text-red-500 mb-[2px]">
+                      (Randevu süresi {appointmentDuration} dakika olarak
+                      ayarlıdır. Dilerseniz bu süreyi profilinizden
+                      güncelleyebilirsiniz.)
                     </h1>
                   </div>
                   <div className="chooseSavedTimes flex items-center justify-center flex-wrap mx-[15px]">
@@ -272,45 +314,32 @@ function SetAppointmentTime() {
                     )}
                   </div>
                 </div>
-                <div className="flex items-center justify-center flex-col">
-                  <div className="border-b-2 border-buttonColor mb-1">
-                    <h1 className="text-md font-semibold text-center text-buttonColor mb-[2px]">
-                      Kayıtlı Süreler
-                    </h1>
-                  </div>
-                  <div className="savedTimes flex flex-wrap justify-center items-center mx-[15px]">
-                    {savedDurationsArray.map((savedDuration, index) => (
-                      <SavedDurations
-                        key={index}
-                        time={savedDuration}
-                        onTimeClick={(clickedDuration) =>
-                          handleAppointmentDurationBoxClick(
-                            clickedDuration,
-                            formikProps.setFieldValue
-                          )
-                        }
-                        selectedDuration={selectedDuration}
-                      />
-                    ))}
-                    {savedDurationsArray.length === 0 && (
-                      <h1 className="text-center text-sm text-red-600 font-semibold">
-                        Kayıtlı süre bulunmamaktadır.
-                      </h1>
-                    )}
-                  </div>
-                </div>
               </>
             )}
-            <div className="w-full flex items-center justify-center">
-              <button
-                type="submit"
-                className="bg-buttonColor rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
-              >
-                <h4 className="text-text p-2 px-6 text-sm tracking-wider">
-                  Zamanı ve Tarihi Ayarla
-                </h4>
-              </button>
-            </div>
+            {savedTimes === true && (
+              <div className="w-full flex items-center justify-center">
+                <button
+                  type="submit"
+                  className="bg-buttonColor rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
+                >
+                  <h4 className="text-text p-2 px-6 text-sm tracking-wider">
+                    Zamanı ve Tarihi Ayarla
+                  </h4>
+                </button>
+              </div>
+            )}
+            {savedTimes === false && (
+              <div className="w-full flex items-center justify-center">
+                <button
+                  type="submit"
+                  className="bg-buttonColor rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
+                >
+                  <h4 className="text-text p-2 px-6 text-sm tracking-wider">
+                    Kayıt Et
+                  </h4>
+                </button>
+              </div>
+            )}
           </Form>
         )}
       </Formik>

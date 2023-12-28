@@ -14,6 +14,7 @@ module.exports = {
         lightBlue: "#4e9bfe",
         greenForTable: "#01e2b4",
         grayForTable: "#dbdada",
+        islemeAlButtonColor: "#5D3587",
       },
     },
   },

@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../style/myAppointments.css";
 import Swal from "sweetalert2";
 
-function NotAppointmentRequestBox({ image, infos, onDetails }) {
+function NotAppointmentRequestBox({ image, infos, onDetails, setFormData }) {
   const timeString = infos.time;
   const timeStart = timeString.split(" ")[2];
-  const requestOrNot = timeString.split(" ")[3];
   const addDurationToStartTime = (timeStart, duration) => {
     const durationMinutes = parseInt(duration, 10);
     const [hours, minutes] = timeStart.split(" ")[2].split(":").map(Number);
@@ -49,7 +48,7 @@ function NotAppointmentRequestBox({ image, infos, onDetails }) {
     const originalObje = findObjectByTime(timeObject);
     Swal.fire({
       title: "Emin misiniz!",
-      text: "Randevuyu onaylamak istediğinize emin misiniz?",
+      text: "Randevuyu işleme almak istediğinize emin misiniz?",
       icon: "question",
       showCancelButton: true,
       confirmButtonText: "Evet",
@@ -74,7 +73,6 @@ function NotAppointmentRequestBox({ image, infos, onDetails }) {
 
             if (index !== -1) {
               formData[index] = updatedObje;
-
               localStorage.setItem("formData", JSON.stringify(formData));
               Swal.fire({
                 title: "Başarılı !",
@@ -90,46 +88,6 @@ function NotAppointmentRequestBox({ image, infos, onDetails }) {
     });
 
     return null;
-  };
-
-  const onReject = () => {
-    // RANDEVU TALEBİNİ RED ETME FONKSİYONUNU DİREK FORMDATA DAN O ÖGEYİ SİLİYOR
-    Swal.fire({
-      title: "Emin misiniz!",
-      text: "Randevuyu silmek istediğinize emin misiniz?",
-      icon: "question",
-      showCancelButton: true,
-      confirmButtonText: "Evet",
-      cancelButtonText: "Hayır",
-    }).then((result) => {
-      console.log(result.isConfirmed);
-      if (result.isConfirmed) {
-        const obje = findObjectByTime(timeObject);
-
-        if (obje) {
-          const formDataString = localStorage.getItem("formData");
-
-          if (formDataString) {
-            const formData = JSON.parse(formDataString);
-
-            const index = formData.findIndex((obj) => obj.time === obje.time);
-
-            if (index !== -1) {
-              formData.splice(index, 1);
-
-              localStorage.setItem("formData", JSON.stringify(formData));
-
-              Swal.fire({
-                title: "Başarılı !",
-                text: "Randevu başarılı bir şekilde reddedildi.",
-                icon: "success",
-                confirmButtonText: "Kapat",
-              });
-            }
-          }
-        }
-      }
-    });
   };
 
   const startTime = infos.time;
@@ -179,15 +137,9 @@ function NotAppointmentRequestBox({ image, infos, onDetails }) {
           <div className="buttonsArea flex justify-center items-center mt-4">
             <button
               onClick={() => onAccept(timeObject)}
-              className="p-2 bg-green-500 text-white text-sm font-semibold rounded-lg mx-2"
+              className="p-2 bg-islemeAlButtonColor text-white text-sm font-semibold rounded-lg mx-2"
             >
-              Onayla
-            </button>
-            <button
-              onClick={() => onReject(timeObject)}
-              className="p-2 bg-red-500 text-white text-sm font-semibold rounded-lg"
-            >
-              Reddet
+              İşleme Al
             </button>
             <button
               onClick={() => onDetails()}

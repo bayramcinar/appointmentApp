@@ -5,7 +5,7 @@ function AppointmentInfoBox({ number, title, changeRate }) {
     <div>
       <div className="w-[150px] h-[150px] shadow-lg flex flex-col items-center justify-center border-stepBorder1 border-2 rounded-xl m-6 relative">
         {changeRate > 0 && (
-          <div className="absolute right-1 top-1 flex flashing-text">
+          <div className="absolute right-1 top-1 flex">
             <i class="fa-solid fa-arrow-up text-sm mr-[2px] text-green-600"></i>
             <h1 className="text-sm font-semibold text-center text-green-600">
               {changeRate}
@@ -13,7 +13,7 @@ function AppointmentInfoBox({ number, title, changeRate }) {
           </div>
         )}
         {changeRate < 0 && (
-          <div className="absolute right-1 top-1 flex flashing-text">
+          <div className="absolute right-1 top-1 flex">
             <i class="fa-solid fa-arrow-down text-sm mr-[2px] text-red-600"></i>
             <h1 className="text-sm font-semibold text-center text-red-600">
               {changeRate}

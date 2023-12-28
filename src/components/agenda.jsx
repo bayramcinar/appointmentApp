@@ -6,24 +6,55 @@ function Agenda() {
   const [formData, setFormData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [filter, setFilter] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(7);
 
   const handleOpenModal = (event) => {
     setSelectedEvent(event);
     setOpenModal(true);
   };
 
-  const filterFormData = (formData) => {
-    const filteredData = formData.filter((data) => {
-      // Örnek olarak 'true' içeren öğeleri filtrele
-      const timeArray = data.time.split(" ");
-      const lastElement = timeArray[timeArray.length - 2];
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
 
-      return lastElement.toLowerCase() === "false";
+  const paginatedFormData = formData.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const filterFormData = (formData, filter) => {
+    const currentDate = new Date();
+    const filteredData = formData.filter((data) => {
+      const timeArray = data.time.split(" ");
+      const appointmentDate = new Date(
+        timeArray[0].split(".").reverse().join("-") + " " + timeArray[2]
+      );
+
+      const currentDateOnly = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        currentDate.getDate()
+      );
+
+      switch (filter) {
+        case "past":
+          return appointmentDate < currentDateOnly;
+        case "today":
+          return isSameDay(currentDateOnly, appointmentDate);
+        case "future":
+          return (
+            appointmentDate > currentDate &&
+            !isSameDay(currentDate, appointmentDate)
+          );
+        default:
+          return true;
+      }
     });
 
     return filteredData;
   };
-
   const handleCloseModal = () => {
     setOpenModal(false);
   };
@@ -34,7 +65,7 @@ function Agenda() {
 
     if (storedFormData) {
       const parsedFormData = JSON.parse(storedFormData);
-      const filteredFormData = filterFormData(parsedFormData);
+      const filteredFormData = filterFormData(parsedFormData, filter);
 
       if (filteredFormData) {
         const sortedFormData = filteredFormData.sort((a, b) => {
@@ -55,7 +86,7 @@ function Agenda() {
         setFormData(sortedFormData);
       }
     }
-  }, []);
+  }, [filter]);
 
   useEffect(() => {
     const interval = setInterval(updateRemainingTime, 1000);
@@ -63,8 +94,7 @@ function Agenda() {
   }, [formData]);
 
   function convertFormDataToTable() {
-    // TABLODA DÖNDÜRDÜĞÜMÜZ HER BİR SATIR
-    return formData.map((formEntry, index) => {
+    return paginatedFormData.map((formEntry, index) => {
       const status = formEntry.confirm;
       const { time, duration, service } = formEntry;
       const parsedInfos = time.split(/\s+/);
@@ -81,25 +111,26 @@ function Agenda() {
       const isPastAppointment = appointmentDate < currentDate;
       const isToday = isSameDay(appointmentDate, currentDate);
 
-      const dateArray = parsedInfos[0].split(".").join(""); // Use join("") to convert the array to a string
-      const timeArray = parsedInfos[2].split(":").join(""); // Use join("") to convert the array to a string
+      const dateArray = parsedInfos[0].split(".").join("");
+      const timeArray = parsedInfos[2].split(":").join("");
       const appointmentNumber = dateArray + timeArray;
+      const actualIndex = (currentPage - 1) * itemsPerPage + index;
 
       return (
         <tr
-          key={index}
+          key={actualIndex}
           className={
             isPastAppointment
               ? "bg-grayForTable" // Gri renk tarihi geçmiş randevular için
               : isToday
-              ? "bg-greenForTable" // Yeşil renk bu gün olan randevular için
-              : index % 2 === 0
+              ? "bg-greenForTable"
+              : actualIndex % 2 === 0
               ? "bg-white"
               : "bg-white"
           }
         >
           <td className="text-center border-dashed border-2 border-[#0003]">
-            {index + 1}
+            {actualIndex + 1}
           </td>
           <td className="text-center border-dashed border-2 border-[#0003]">
             {appointmentNumber}
@@ -139,11 +170,33 @@ function Agenda() {
             </div>
           </td>
           <td className="text-center border-dashed border-2 border-[#0003] status">
-            {status === "false" && (
-              <h1 className="text-md text-center ">Onay Bekliyor</h1>
-            )}
-            {status === "true" && (
-              <h1 className="text-md text-center ">Aktif</h1>
+            {isPastAppointment ? (
+              <span className="text-red-600">Randevu Sonlandı</span>
+            ) : (
+              <>
+                {status === "false" && requestStatus === "false" && (
+                  <div className="flex">
+                    <i className="fa-solid fa-circle text-red-600 flashing-text text-center flex items-center justify-center mx-2"></i>
+                    <h1 className="text-md text-center ">
+                      İşleme Alınması Bekleniyor
+                    </h1>
+                  </div>
+                )}
+                {status === "true" && (
+                  <div className="flex justify-center items-center">
+                    <i className="fa-solid fa-circle text-appoinmentBox flex items-center justify-center mx-2"></i>
+                    <h1 className="text-md text-center ">Aktif</h1>
+                  </div>
+                )}
+                {requestStatus === "true" && status === "false" && (
+                  <div className="flex">
+                    <i className="fa-solid fa-circle text-red-600 flashing-text flex items-center justify-center mx-2"></i>
+                    <h1 className="text-md text-center ">
+                      Randevu Talebi Onay Bekleniyor
+                    </h1>
+                  </div>
+                )}
+              </>
             )}
           </td>
           <td className="text-center border-dashed border-2 border-[#0003]">
@@ -295,14 +348,36 @@ function Agenda() {
     );
   }
 
+  const handleFilterChange = (newFilter) => {
+    setFilter(newFilter);
+    setCurrentPage(1);
+  };
+
+  const totalPages = Math.ceil(formData.length / itemsPerPage);
+
   return (
     <>
-      <div className="w-full shadow-xl border-stepBorder1 border-2 rounded-xl overflow-auto max-h-500">
-        <h1 className=" text-2xl text-center font-semibold mt-5 sticky top-0 text-buttonColor p-3">
-          Ajanda
-        </h1>
-        <div className="overflow-auto max-h-[400px]">
-          <table className="rounded-xl w-full my-5">
+      <div className="w-full shadow-xl overflow-auto max-h-600">
+        <div className="flex">
+          <div className="w-[33%] max-[768px]:hidden"></div>
+          <h1 className=" lg:text-3xl max-[768px]:text-xl max-[768px]:w-[48%] w-[33%] text-center max-[768px]:justify:start font-semibold mt-5 sticky top-0 text-buttonColor p-3">
+            Yaklaşan Randevularım
+          </h1>
+          <div className="flex w-[33%] max-[768px]:w-[48%] justify-end items-center mb-4 mt-6">
+            <select
+              value={filter}
+              onChange={(e) => handleFilterChange(e.target.value)}
+              className="p-3 border rounded-3xl  max-[768px]:w-[200px]"
+            >
+              <option value="all">Tüm Randevular</option>
+              <option value="past">Geçmiş Randevular</option>
+              <option value="today">Bu Gün</option>
+              <option value="future">Gelecekteki Randevular</option>
+            </select>
+          </div>
+        </div>
+        <div className=" max-h-[465px]">
+          <table className="rounded-xl w-full">
             <thead>
               <tr className="sticky top-0 bg-buttonColor text-white">
                 <th className="p-3">Sıra</th>
@@ -318,6 +393,25 @@ function Agenda() {
             <tbody>{convertFormDataToTable()}</tbody>
           </table>
         </div>
+      </div>
+      <div className="flex justify-center my-3">
+        <ul className="flex space-x-2">
+          {[...Array(totalPages).keys()].map((page) => (
+            <li
+              key={page + 1}
+              onClick={() => handlePageChange(page + 1)}
+              className={`px-3 py-2 border cursor-pointer rounded-2xl ${
+                page + 1 === currentPage
+                  ? "bg-buttonColor text-white"
+                  : "border-gray-300"
+              }`}
+            >
+              <button onClick={() => handlePageChange(page + 1)}>
+                {page + 1}
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
       <EventModal
         isOpen={openModal}
