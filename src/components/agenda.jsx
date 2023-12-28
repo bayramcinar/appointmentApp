@@ -355,11 +355,34 @@ function Agenda() {
 
   const totalPages = Math.ceil(formData.length / itemsPerPage);
 
+  const pendingAppointments = formData.filter(
+    (formEntry) =>
+      formEntry.confirm === "false" && isFutureAppointment(formEntry.time)
+  );
+
+  // Add this function to check if the appointment is in the future
+  function isFutureAppointment(time) {
+    const currentDate = new Date();
+    const appointmentDate = new Date(
+      time.split(" ")[0].split(".").reverse().join("-") +
+        " " +
+        time.split(" ")[2]
+    );
+    return appointmentDate > currentDate;
+  }
+
   return (
     <>
       <div className="w-full shadow-xl overflow-auto max-h-600">
         <div className="flex">
-          <div className="w-[33%] max-[768px]:hidden"></div>
+          <div className="w-[33%] flex items-center justify-center">
+            {pendingAppointments.length > 0 && (
+              <h1 className="text-md max-[768px]:text-sm text-red-600 text-center font-semibold flashing-text">
+                {pendingAppointments.length} İşlem bekleyen randevu lütfen
+                kontrol ediniz.
+              </h1>
+            )}
+          </div>
           <h1 className=" lg:text-3xl max-[768px]:text-xl max-[768px]:w-[48%] w-[33%] text-center max-[768px]:justify:start font-semibold mt-5 sticky top-0 text-buttonColor p-3">
             Yaklaşan Randevularım
           </h1>

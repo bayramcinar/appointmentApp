@@ -100,9 +100,22 @@ function TimeAndDate({
     setSelectedTime(clickedTime);
   };
 
+  function formatDateToDDMMYYYY(inputDate) {
+    const day = String(inputDate.getDate()).padStart(2, "0");
+    const month = String(inputDate.getMonth() + 1).padStart(2, "0");
+    const year = inputDate.getFullYear();
+    const datee = `${day}-${month}-${year}`;
+    return datee;
+  }
+
   const renderSwiper = (times) => {
     const swiperSlides = [];
     const slidesPerRow = isMobile ? 9 : 4;
+
+    const currentDate1 = new Date();
+    const currentDate = formatDateToDDMMYYYY(currentDate1);
+    const currentDateFormatted = currentDate;
+    const currentTimeFormatted = `${currentDate1.getHours()}:${currentDate1.getMinutes()}`;
 
     if (!isMobile) {
       for (let i = 0; i < times.length; i += slidesPerRow) {
@@ -111,6 +124,16 @@ function TimeAndDate({
           const timeA = a.time.split(":").join("");
           const timeB = b.time.split(":").join("");
           return parseInt(timeA) - parseInt(timeB);
+        });
+        sortedTimes.forEach((time) => {
+          const appointmentDateTime = `${formatDateToDDMMYYYY(selectedDate)} ${
+            time.time
+          }`;
+          const currentTime = `${currentDateFormatted} ${currentTimeFormatted}`;
+
+          const isSameDayOrFuture = appointmentDateTime >= currentTime;
+
+          time.active = isSameDayOrFuture;
         });
 
         const swiperSlide = (
@@ -284,8 +307,6 @@ function TimeAndDate({
         });
         return;
       }
-
-      console.log("Duration:", selectedDuration);
 
       setRequestSelectedDuration(selectedDuration);
       setTimesRequestSelectedDuration(selectedDuration);
