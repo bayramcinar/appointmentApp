@@ -146,7 +146,8 @@ function AppointmentRequestList() {
           <>
             {formData.map((data, index) => (
               <div key={index} className="flex-shrink-0 p-2 mb-0 m-5">
-                {data.confirm === "false" ? (
+                {data.confirm === "false" &&
+                data.time.split(" ")[3] === "true" ? (
                   <AppointmentRequestBox
                     image={pp}
                     infos={data}
