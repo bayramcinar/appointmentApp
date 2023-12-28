@@ -4,6 +4,14 @@ import Swal from "sweetalert2";
 import SetDateAndTime from "./setDateAndTime";
 import SavedTimes from "./savedTimeBox";
 import moment from "moment";
+import SavedTimesForDeletion from "./savedTimeBoxForDelete";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+import { Navigation, Pagination } from "swiper/modules";
 
 function SetAppointmentTime() {
   const [datesData, setDatesData] = useState([]); // TAKVİMDEN SEÇTİĞİMİZ TARİHLERİ TUTAN ARRAY
@@ -166,6 +174,102 @@ function SetAppointmentTime() {
     //KAYITLI SAATLER VEYA SAAT SEÇ EKRANLARINDA GEZİNMEMEİZİ SAĞLAYAN FONKSİYON
     setSavedTimes(option);
   };
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const renderSwiper = (times) => {
+    const itemsPerSlide = 6;
+    const swiperSlides = [];
+    for (let i = 0; i < times.length; i += itemsPerSlide) {
+      const currentTimes = times.slice(i, i + itemsPerSlide);
+      const swiperSlide = (
+        <SwiperSlide key={i}>
+          <div className="flex flex-wrap items-center justify-center serviceBoxArea ">
+            {currentTimes.map((savedTime, index) => (
+              <SavedTimesForDeletion key={index} time={savedTime} />
+            ))}
+          </div>
+        </SwiperSlide>
+      );
+      swiperSlides.push(swiperSlide);
+    }
+
+    if (isMobile) {
+      return (
+        <Swiper
+          pagination={{ clickable: true }}
+          modules={[Pagination]}
+          className="mySwiper"
+        >
+          {swiperSlides}
+        </Swiper>
+      );
+    } else {
+      return (
+        <Swiper
+          navigation={{
+            prevEl: ".custom-swiper-button-prev8",
+            nextEl: ".custom-swiper-button-next8",
+          }}
+          modules={[Navigation]}
+          className="mySwiper"
+        >
+          {swiperSlides}
+        </Swiper>
+      );
+    }
+  };
+  const renderSwiper2 = (times, formikProps) => {
+    const itemsPerSlide = 6;
+    const swiperSlides = [];
+    for (let i = 0; i < times.length; i += itemsPerSlide) {
+      const currentTimes = times.slice(i, i + itemsPerSlide);
+      const swiperSlide = (
+        <SwiperSlide key={i}>
+          <div className="flex flex-wrap items-center justify-center serviceBoxArea ">
+            {currentTimes.map((savedTime, index) => (
+              <SavedTimes
+                key={index}
+                time={savedTime}
+                onTimeClick={(clickedTime) =>
+                  handleAppointmentBoxClick(
+                    clickedTime,
+                    datesData,
+                    formikProps.setFieldValue
+                  )
+                }
+                selectedTime={selectedTimes.includes(savedTime)}
+              />
+            ))}
+          </div>
+        </SwiperSlide>
+      );
+      swiperSlides.push(swiperSlide);
+    }
+
+    if (isMobile) {
+      return (
+        <Swiper
+          pagination={{ clickable: true }}
+          modules={[Pagination]}
+          className="mySwiper"
+        >
+          {swiperSlides}
+        </Swiper>
+      );
+    } else {
+      return (
+        <Swiper
+          navigation={{
+            prevEl: ".custom-swiper-button-prev9",
+            nextEl: ".custom-swiper-button-next9",
+          }}
+          modules={[Navigation]}
+          className="mySwiper"
+        >
+          {swiperSlides}
+        </Swiper>
+      );
+    }
+  };
 
   const handleAppointmentBoxClick = (
     // KAYITLI SAATLERDE BİRDEN ÇOK SAAT SEÇEBİLMEMİZİ SAĞLAYAN FONKSİYON
@@ -269,13 +373,35 @@ function SetAppointmentTime() {
                 <h2 className="text-sm text-red-600 text-center font-semibold m-5">
                   Aşağıdan Kaydetmek istediğiniz saati seçiniz
                 </h2>
-                <div className="m-3 field-container lg:w-[21rem]">
+                <div className="m-3 field-container lg:w-[21rem] mx-auto flex items-center justify-center">
                   <Field
                     name="time"
                     type="time"
-                    className={`p-3 lg:w-[21rem] max-[768px]:w-[22rem] focus:border-none outline-none bg-white`}
+                    className={`p-3 lg:w-[21rem] max-[768px]:w-[20rem] focus:border-none outline-none bg-white mx-auto`}
                     placeholder="Saat"
                   />
+                </div>
+                <h2 className="text-sm text-red-600 text-center font-semibold m-5">
+                  Kayıtlı saatler aşağıda gözükmektedir dilerseniz
+                  silebilirsiniz.
+                </h2>
+                <div className="w-full justify-center flex items-center">
+                  <div className="savedTimesList flex flex-wrap items-center justify-center w-[400px] h-auto relative">
+                    {renderSwiper(savedTimesArray)}
+                    {savedTimesArray.length && !isMobile > 6 && (
+                      <>
+                        <div className="custom-swiper-button-prev8 absolute left-2 text-xl text-buttonColor top-[45%] z-[2] cursor-pointer">
+                          <i
+                            className="fa-solid fa-arrow-left"
+                            alt="Previous"
+                          ></i>
+                        </div>
+                        <div className="custom-swiper-button-next8 top-[45%] absolute right-2 text-xl text-buttonColor z-[2] cursor-pointer">
+                          <i className="fa-solid fa-arrow-right" alt="Next"></i>
+                        </div>
+                      </>
+                    )}
+                  </div>
                 </div>
               </>
             )}
@@ -292,25 +418,25 @@ function SetAppointmentTime() {
                       güncelleyebilirsiniz.)
                     </h1>
                   </div>
-                  <div className="chooseSavedTimes flex items-center justify-center flex-wrap mx-[15px]">
-                    {savedTimesArray.map((savedTime, index) => (
-                      <SavedTimes
-                        key={index}
-                        time={savedTime}
-                        onTimeClick={(clickedTime) =>
-                          handleAppointmentBoxClick(
-                            clickedTime,
-                            datesData,
-                            formikProps.setFieldValue
-                          )
-                        }
-                        selectedTime={selectedTimes.includes(savedTime)}
-                      />
-                    ))}
+                  <div className="chooseSavedTimes flex items-center justify-center flex-wrap mx-[15px] w-[420px] relative">
+                    {renderSwiper2(savedTimesArray, formikProps)}
                     {savedTimesArray.length === 0 && (
                       <h1 className="text-center text-sm text-red-600 font-semibold">
                         Kayıtlı saat bulunmamaktadır.
                       </h1>
+                    )}
+                    {savedTimesArray.length > 6 && !isMobile && (
+                      <>
+                        <div className="custom-swiper-button-prev9 absolute left-2 text-xl text-buttonColor top-[40%] z-[2] cursor-pointer">
+                          <i
+                            className="fa-solid fa-arrow-left"
+                            alt="Previous"
+                          ></i>
+                        </div>
+                        <div className="custom-swiper-button-next9 top-[40%] absolute right-2 text-xl text-buttonColor z-[2] cursor-pointer">
+                          <i className="fa-solid fa-arrow-right" alt="Next"></i>
+                        </div>
+                      </>
                     )}
                   </div>
                 </div>
