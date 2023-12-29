@@ -119,7 +119,19 @@ function FullCalendarComponent() {
       setSelectedDay(selectedDate);
     }
   };
-
+  const messages = {
+    allDay: "Tüm gün",
+    previous: "Önceki",
+    next: "Sonraki",
+    today: "Bugün",
+    month: "Ay",
+    week: "Hafta",
+    day: "Gün",
+    agenda: "Ajanda",
+    date: "Tarih",
+    time: "Saat",
+    event: "Olay", // Veya istediğiniz bir kelimeyi kullanabilirsiniz
+  };
   return (
     <>
       <div className="mx-auto p-5">
@@ -140,6 +152,7 @@ function FullCalendarComponent() {
             }
             selectable
             popup
+            messages={messages}
           />
         </div>
       </div>

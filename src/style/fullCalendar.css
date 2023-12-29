@@ -114,6 +114,8 @@
   .rbc-btn-group button {
     width: 44px;
     font-size: 12px;
+    padding-left: 0;
+    padding-right: 0;
   }
   .rbc-day-slot .rbc-event {
     width: 100% !important;
