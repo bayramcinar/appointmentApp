@@ -107,10 +107,8 @@
     border-radius: 50%;
     border-bottom: none;
   }
-  span[role="columnheader"]:before {
-    content: attr(data);
-    display: inline-block;
-    width: 0;
-    overflow: hidden;
+  .rbc-button-link {
+    padding: 4px;
+    padding-left: 5px;
   }
 }
