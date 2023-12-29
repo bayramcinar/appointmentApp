@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Calendar, momentLocalizer } from "react-big-calendar";
+import { Calendar, Views, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "moment/locale/tr";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -72,7 +72,7 @@ function FullCalendarComponent() {
   const [selectedTimes, setSelectedTimes] = useState([]);
   const [isFullDayModalOpen, setFullDayModalOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState("");
-
+  const isMobile = window.innerWidth <= 768;
   useEffect(() => {
     const storedFormData = localStorage.getItem("formData");
     if (storedFormData) {
@@ -121,9 +121,11 @@ function FullCalendarComponent() {
             localizer={localizer}
             startAccessor="start"
             endAccessor="end"
-            style={{ height: 600, width: 900 }}
+            style={isMobile ? { height: 600 } : { height: 700, width: 900 }}
             events={eventsFromSessionStorage}
             onSelectEvent={onSelectSlot}
+            defaultView={isMobile ? Views.WEEK : Views.MONTH}
+            views={isMobile ? ["week"] : ["month", "week", "day", "agenda"]}
             selectable
             popup
           />

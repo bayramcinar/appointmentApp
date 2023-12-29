@@ -92,6 +92,25 @@
   line-height: normal;
   color: #3174ad;
 }
-/* .rbc-btn-group {
-  display: none;
-} */
+
+@media only screen and (max-width: 768px) {
+  .rbc-btn-group {
+    display: none;
+  }
+  .rbc-event {
+    width: 44px !important;
+  }
+  .rbc-event-label {
+    display: none;
+  }
+  .rbc-header {
+    border-radius: 50%;
+    border-bottom: none;
+  }
+  span[role="columnheader"]:before {
+    content: attr(data);
+    display: inline-block;
+    width: 0;
+    overflow: hidden;
+  }
+}
