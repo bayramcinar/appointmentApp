@@ -134,7 +134,7 @@ function FullCalendarComponent() {
   };
   return (
     <>
-      <div className="mx-auto p-5">
+      <div className="mx-auto lg:p-5 max-[768px]:p-3">
         <h1 className="text-buttonColor text-2xl m-6 mt-1 font-semibold text-center">
           Randevular Takvim Görünümü
         </h1>

@@ -21,7 +21,7 @@ function Dashboard() {
           </div>
         </div>
         <div className="flex max-[768px]:block  items-center justify-center bg-dayComponentBg pb-8 ">
-          <div className="bg-dayComponentBg lg:mr-[9rem] mt-[50px] shadow-xl border-stepBorder1 border-2 rounded-xl ">
+          <div className="bg-dayComponentBg lg:mr-[9rem] mt-[50px] shadow-xl border-stepBorder1 border-2 rounded-xl max-[768px]:mx-[10px]">
             <FullCalendarComponent />
           </div>
           <div>
