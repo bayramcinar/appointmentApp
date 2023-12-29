@@ -32,47 +32,38 @@ const getSessionStorageData = (formData, setRequest) => {
     return [];
   }
 
-  const now = moment(); // Get the current date and time
+  return formData.map((formEntry) => {
+    const name =
+      formEntry.firstName && formEntry.lastName
+        ? formEntry.firstName + " " + formEntry.lastName
+        : "Bayram Çınar";
+    const gender = formEntry.gender || "erkek";
+    const birthday = formEntry.dateOfBirth || "2023-02-13";
+    const language = formEntry.language;
+    const notes = formEntry.notes;
+    const service = formEntry.service;
 
-  return formData
-    .map((formEntry) => {
-      const name =
-        formEntry.firstName && formEntry.lastName
-          ? formEntry.firstName + " " + formEntry.lastName
-          : "Bayram Çınar";
-      const gender = formEntry.gender || "erkek";
-      const birthday = formEntry.dateOfBirth || "2023-02-13";
-      const language = formEntry.language;
-      const notes = formEntry.notes;
-      const service = formEntry.service;
+    let request = false;
 
-      let request = false;
+    const start = convertToISOFormat(formEntry.time, (value) => {
+      request = value;
+    }).toDate();
 
-      const start = convertToISOFormat(formEntry.time, (value) => {
-        request = value;
-      }).toDate();
+    const end = convertToISOFormat(formEntry.time, () => {})
+      .add(formEntry.duration, "minutes")
+      .toDate();
 
-      const end = convertToISOFormat(formEntry.time, () => {})
-        .add(formEntry.duration, "minutes")
-        .toDate();
-
-      // Check if the event has already occurred
-      if (moment(start).isBefore(now)) {
-        return null; // Skip past events
-      }
-
-      return {
-        name: name,
-        gender: gender,
-        birthday: birthday,
-        language: language,
-        notes: notes,
-        title: service + " " + (request ? "(Randevu Talebi)" : ""),
-        start: start,
-        end: end,
-      };
-    })
-    .filter(Boolean); // Remove null entries (past events)
+    return {
+      name: name,
+      gender: gender,
+      birthday: birthday,
+      language: language,
+      notes: notes,
+      title: service + " " + (request ? "(Randevu Talebi)" : ""),
+      start: start,
+      end: end,
+    };
+  });
 };
 
 function FullCalendarComponent() {
@@ -119,6 +110,23 @@ function FullCalendarComponent() {
       setSelectedDay(selectedDate);
     }
   };
+
+  const eventPropGetter = (event, start, end, isSelected) => {
+    const isPastEvent = moment(event.start).isBefore(moment(), "day");
+
+    if (isPastEvent) {
+      return {
+        className: "past-event",
+        style: {
+          backgroundColor: "gray",
+          opacity: 0.6,
+        },
+      };
+    }
+
+    return {};
+  };
+
   const messages = {
     allDay: "Tüm gün",
     previous: "Önceki",
@@ -130,8 +138,9 @@ function FullCalendarComponent() {
     agenda: "Ajanda",
     date: "Tarih",
     time: "Saat",
-    event: "Olay", // Veya istediğiniz bir kelimeyi kullanabilirsiniz
+    event: "Olay",
   };
+
   return (
     <>
       <div className="mx-auto lg:p-5 max-[768px]:p-3">
@@ -153,6 +162,7 @@ function FullCalendarComponent() {
             selectable
             popup
             messages={messages}
+            eventPropGetter={eventPropGetter}
           />
         </div>
       </div>
