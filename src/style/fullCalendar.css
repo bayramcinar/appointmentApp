@@ -94,9 +94,6 @@
 }
 
 @media only screen and (max-width: 768px) {
-  /* .rbc-btn-group {
-    display: none;
-  } */
   .rbc-event {
     width: 44px !important;
   }
@@ -108,8 +105,7 @@
     border-bottom: none;
   }
   .rbc-button-link {
-    padding: 4px;
-    padding-left: 5px;
+    padding: 2px;
   }
   .rbc-btn-group button {
     width: 44px;

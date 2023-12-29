@@ -386,7 +386,7 @@ function SetAppointmentTime() {
                   silebilirsiniz.
                 </h2>
                 <div className="w-full justify-center flex items-center">
-                  <div className="savedTimesList flex flex-wrap items-center justify-center w-[400px] h-auto relative">
+                  <div className="savedTimesList flex flex-wrap items-center justify-center w-[385px] h-auto relative">
                     {renderSwiper(savedTimesArray)}
                     {savedTimesArray.length && !isMobile > 6 && (
                       <>
@@ -418,7 +418,7 @@ function SetAppointmentTime() {
                       güncelleyebilirsiniz.)
                     </h1>
                   </div>
-                  <div className="chooseSavedTimes flex items-center justify-center flex-wrap mx-[15px] w-[420px] relative">
+                  <div className="chooseSavedTimes flex items-center justify-center flex-wrap mx-[15px] w-[345px] relative">
                     {renderSwiper2(savedTimesArray, formikProps)}
                     {savedTimesArray.length === 0 && (
                       <h1 className="text-center text-sm text-red-600 font-semibold">
