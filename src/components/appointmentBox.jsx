@@ -41,16 +41,11 @@ function AppointmentBox({
         {isMobile === true && (
           <>
             <h4 className="text-sm text-text p-1 pb-0 text-center">{time}</h4>
-            <h4 className="text-sm text-text p-1 pt-0 text-center">
-              ({duration} Dakika)
-            </h4>
           </>
         )}
         {isMobile === false && (
           <>
-            <h4 className="text-sm text-text p-1 text-center">
-              {time} ({duration} Dakika)
-            </h4>
+            <h4 className="text-sm text-text p-1 text-center">{time}</h4>
           </>
         )}
       </div>

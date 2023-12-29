@@ -32,38 +32,47 @@ const getSessionStorageData = (formData, setRequest) => {
     return [];
   }
 
-  return formData.map((formEntry) => {
-    const name =
-      formEntry.firstName && formEntry.lastName
-        ? formEntry.firstName + " " + formEntry.lastName
-        : "Bayram Çınar";
-    const gender = formEntry.gender || "erkek";
-    const birthday = formEntry.dateOfBirth || "2023-02-13";
-    const language = formEntry.language;
-    const notes = formEntry.notes;
-    const service = formEntry.service;
+  const now = moment(); // Get the current date and time
 
-    let request = false;
+  return formData
+    .map((formEntry) => {
+      const name =
+        formEntry.firstName && formEntry.lastName
+          ? formEntry.firstName + " " + formEntry.lastName
+          : "Bayram Çınar";
+      const gender = formEntry.gender || "erkek";
+      const birthday = formEntry.dateOfBirth || "2023-02-13";
+      const language = formEntry.language;
+      const notes = formEntry.notes;
+      const service = formEntry.service;
 
-    const start = convertToISOFormat(formEntry.time, (value) => {
-      request = value;
-    }).toDate();
+      let request = false;
 
-    const end = convertToISOFormat(formEntry.time, () => {})
-      .add(formEntry.duration, "minutes")
-      .toDate();
+      const start = convertToISOFormat(formEntry.time, (value) => {
+        request = value;
+      }).toDate();
 
-    return {
-      name: name,
-      gender: gender,
-      birthday: birthday,
-      language: language,
-      notes: notes,
-      title: service + " " + (request ? "(Randevu Talebi)" : ""), // Düzgün bir şekilde birleştirilmiş saat aralığı
-      start: start,
-      end: end,
-    };
-  });
+      const end = convertToISOFormat(formEntry.time, () => {})
+        .add(formEntry.duration, "minutes")
+        .toDate();
+
+      // Check if the event has already occurred
+      if (moment(start).isBefore(now)) {
+        return null; // Skip past events
+      }
+
+      return {
+        name: name,
+        gender: gender,
+        birthday: birthday,
+        language: language,
+        notes: notes,
+        title: service + " " + (request ? "(Randevu Talebi)" : ""),
+        start: start,
+        end: end,
+      };
+    })
+    .filter(Boolean); // Remove null entries (past events)
 };
 
 function FullCalendarComponent() {
@@ -73,6 +82,7 @@ function FullCalendarComponent() {
   const [isFullDayModalOpen, setFullDayModalOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState("");
   const isMobile = window.innerWidth <= 768;
+
   useEffect(() => {
     const storedFormData = localStorage.getItem("formData");
     if (storedFormData) {
@@ -125,7 +135,9 @@ function FullCalendarComponent() {
             events={eventsFromSessionStorage}
             onSelectEvent={onSelectSlot}
             defaultView={isMobile ? Views.WEEK : Views.MONTH}
-            views={isMobile ? ["week"] : ["month", "week", "day", "agenda"]}
+            views={
+              isMobile ? ["week", "day"] : ["month", "week", "day", "agenda"]
+            }
             selectable
             popup
           />

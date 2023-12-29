@@ -1,13 +1,6 @@
 import React from "react";
 
-function RequestTimeBox({
-  time,
-  date,
-  selectedTime,
-  onTimeClick,
-  duration,
-  isMobile,
-}) {
+function RequestTimeBox({ time, date, selectedTime, onTimeClick, isMobile }) {
   const handleTimeClick = () => {
     //seçtiğimiz saati geri döndürüyor ve background renk ayarlamarını yapıyor
     if (onTimeClick && typeof onTimeClick === "function") {
@@ -28,16 +21,11 @@ function RequestTimeBox({
         {isMobile === true && (
           <>
             <h4 className="text-sm text-text p-1 pb-0 text-center">{time}</h4>
-            <h4 className="text-sm text-text p-1 pt-0 text-center">
-              ({duration} Dakika)
-            </h4>
           </>
         )}
         {isMobile === false && (
           <>
-            <h4 className="text-sm text-text p-1 text-center">
-              {time} ({duration} Dakika)
-            </h4>
+            <h4 className="text-sm text-text p-1 text-center">{time}</h4>
           </>
         )}
       </div>

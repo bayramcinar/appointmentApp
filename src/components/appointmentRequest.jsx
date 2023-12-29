@@ -22,7 +22,7 @@ function AppointmentRequest({ isOpen, onClose, handleFormSubmit, date }) {
       someDate.getFullYear() === today.getFullYear()
     );
   };
-
+  const appoinmentDuration = 90; //HİZMET VERENIN RANDEVU SÜRESİNİ ALACAĞIMIZ YER
   return (
     <>
       <div className={modalClass}>
@@ -60,10 +60,12 @@ function AppointmentRequest({ isOpen, onClose, handleFormSubmit, date }) {
                   Lütfen Aşağıdan oluşturmak istediğiniz randevu talebin saatini
                   ve süresini seçiniz
                 </h1>
+                <h2 className="text-red-600 text-center text-sm font-bold">
+                  Ortalama randevu süresi {appoinmentDuration} dakikadır
+                </h2>
                 <Formik
                   initialValues={{
                     time: "",
-                    duration: "",
                   }}
                   onSubmit={handleFormSubmit}
                 >
@@ -79,15 +81,7 @@ function AppointmentRequest({ isOpen, onClose, handleFormSubmit, date }) {
                         name="time"
                       />
                     </div>
-                    <div className="m-3">
-                      <Field
-                        min={1}
-                        name="duration"
-                        type="number"
-                        className={`p-3 lg:w-[22rem] max-[768px]:w-[22rem] focus:border-none outline-none bg-dayComponentBg`}
-                        placeholder="Randevu Süresi (örn: 30 dk)"
-                      />
-                    </div>
+
                     <button
                       type="submit"
                       className="bg-appoinmentBox rounded-2xl p-1 px-6 text-white text-sm mt-[15px]"

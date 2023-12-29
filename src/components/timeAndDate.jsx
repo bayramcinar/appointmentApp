@@ -267,7 +267,7 @@ function TimeAndDate({
   const handleFormSubmit = (values) => {
     //RANDEVUYU TAMAMLADIĞIMIZ FONKSİYON
     const selectedTime = values.time;
-    const selectedDuration = values.duration;
+    const selectedDuration = appoinmentDuration;
     setDuration1(selectedDuration);
 
     if (selectedTime === "" || selectedDuration === "") {
@@ -324,12 +324,17 @@ function TimeAndDate({
     setAppointmentRequest(false);
   };
 
+  const appoinmentDuration = 90; //HİZMET VERENIN RANDEVU SÜRESİNİ ALACAĞIMIZ YER
+
   return (
     <>
       <div className="animate__animated animate__fadeInLeft">
         <div className="title">
           <h2 className="text-buttonColor text-center text-3xl font-bold p-3">
             Tarih ve Zaman Seçiniz
+          </h2>
+          <h2 className="text-red-600 text-center text-md font-bold">
+            Ortalama randevu süresi {appoinmentDuration} dakikadır
           </h2>
         </div>
         <div className="bg-dayComponentBg dayComponent flex flex-col md:flex-row  m-3 lg:w-[34rem] lg:h-[20rem] md:w-[25rem] sm:w-[25rem] md:h-[40rem] sm:h-[40rem]">
