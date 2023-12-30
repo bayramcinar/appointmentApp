@@ -444,7 +444,7 @@ function SetAppointmentTime() {
                   <div className="chooseSavedTimes flex items-center justify-center flex-wrap mx-[15px] w-[345px] relative">
                     {renderSwiper2(savedTimesArray, formikProps)}
                     {savedTimesArray.length === 0 && (
-                      <h1 className="text-center text-sm text-red-600 font-semibold">
+                      <h1 className="text-center text-sm text-red-600 font-semibold mx-auto">
                         Kayıtlı saat bulunmamaktadır.
                       </h1>
                     )}
