@@ -351,7 +351,7 @@ function SetAppointmentTime() {
         >
           <i className="fa-solid fa-circle-info text-xl text-buttonColor"></i>
         </div>
-        <div className="tooltip hidden bg-white border border-gray-300 p-2 rounded-xl shadow-lg absolute transform -translate-x-0 right-[2px] transition duration-300 w-[200px]">
+        <div className="tooltip z-[3] hidden bg-white border border-gray-300 p-2 rounded-xl shadow-lg absolute transform -translate-x-0 right-[2px] transition duration-300 w-[200px]">
           <h1 className="text-xs font-semibold text-center text-red-500">
             Randevu süresi {appointmentDuration} dakika, randevu ücreti{" "}
             {appointmentPrice} ₺ olarak ayarlıdır. Dilerseniz bu bilgileri
