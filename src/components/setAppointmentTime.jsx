@@ -414,8 +414,16 @@ function SetAppointmentTime() {
                 </h2>
                 <div className="w-full justify-center flex items-center">
                   <div className="savedTimesList flex flex-wrap items-center justify-center w-[385px] h-auto relative">
-                    {renderSwiper(savedTimesArray)}
-                    {savedTimesArray.length && !isMobile > 6 && (
+                    {savedTimesArray.length > 0 &&
+                      renderSwiper(savedTimesArray)}
+
+                    {savedTimesArray.length === 0 && (
+                      <h2 className="text-sm text-red-600 text-center font-semibold m-5">
+                        Kayıtlı saat bulunmamaktadır
+                      </h2>
+                    )}
+
+                    {savedTimesArray.length > 0 && !isMobile && (
                       <>
                         <div className="custom-swiper-button-prev8 absolute left-2 text-xl text-buttonColor top-[45%] z-[2] cursor-pointer">
                           <i
