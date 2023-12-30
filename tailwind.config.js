@@ -15,6 +15,7 @@ module.exports = {
         greenForTable: "#01e2b4",
         grayForTable: "#dbdada",
         islemeAlButtonColor: "#5D3587",
+        calanderAppointment: "#FF9800",
       },
     },
   },

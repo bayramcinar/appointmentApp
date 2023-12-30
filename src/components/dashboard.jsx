@@ -4,6 +4,7 @@ import SetAppointmentTime from "./setAppointmentTime";
 import AppointmentInfos from "./appointmentInfos";
 import Agenda from "./agenda";
 import AppointmentRequestList from "./appointmentRequestList";
+import Deneme from "./deneme";
 
 function Dashboard() {
   return (
@@ -27,6 +28,9 @@ function Dashboard() {
           <div>
             <SetAppointmentTime />
           </div>
+        </div>
+        <div className="hidden max-[768px]:block w-[350px] mx-auto">
+          <Deneme />
         </div>
       </div>
     </>

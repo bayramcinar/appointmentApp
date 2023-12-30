@@ -138,7 +138,6 @@ function TimeAndDate({
                 const currentDateTime = currentTime.toDate();
                 const now = new Date();
 
-                // Check if the appointment time is in the past
                 const isPast = currentDateTime < now;
 
                 return (
@@ -167,7 +166,6 @@ function TimeAndDate({
           const timeB = b.time.split(":").join("");
           return parseInt(timeA) - parseInt(timeB);
         });
-        console.log(sortedTimes);
         const swiperSlide = (
           <SwiperSlide key={i}>
             <div

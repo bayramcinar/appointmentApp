@@ -64,7 +64,7 @@ function AppointmentRequestList() {
       ...filteredFormDataForNotConfirm,
       ...filteredFormDataForRequests,
     ]);
-  }, []);
+  });
 
   const handleOpenModal = (appointment) => {
     setSelectedAppointment(appointment);

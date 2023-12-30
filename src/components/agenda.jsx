@@ -86,12 +86,12 @@ function Agenda() {
         setFormData(sortedFormData);
       }
     }
-  }, [filter]);
+  });
 
   useEffect(() => {
     const interval = setInterval(updateRemainingTime, 1000);
     return () => clearInterval(interval);
-  }, [formData]);
+  });
 
   function convertFormDataToTable() {
     return paginatedFormData.map((formEntry, index) => {

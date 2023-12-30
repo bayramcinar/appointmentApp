@@ -58,7 +58,7 @@ function AppointmentRequest({ isOpen, onClose, handleFormSubmit, date }) {
               <div className="appointmentRequestArea">
                 <h1 className="text-buttonColor text-sm text-center font-semibold">
                   Lütfen Aşağıdan oluşturmak istediğiniz randevu talebin saatini
-                  ve süresini seçiniz
+                  seçiniz
                 </h1>
                 <h2 className="text-red-600 text-center text-sm font-bold">
                   Ortalama randevu süresi {appoinmentDuration} dakikadır

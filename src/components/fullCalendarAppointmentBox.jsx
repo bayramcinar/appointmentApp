@@ -11,8 +11,6 @@ function FullCalendarAppointmentBox({ image, infos, onDelete }) {
 
   const duration = infos["duration"];
   const time = extractTimeFromDate(infos["time"]);
-  console.log(duration);
-  console.log(time);
   const durationMinutes = parseInt(duration, 10);
   const [hours, minutes] = time.split(":").map(Number);
   const endHours = Math.floor((minutes + durationMinutes) / 60);
@@ -20,7 +18,6 @@ function FullCalendarAppointmentBox({ image, infos, onDelete }) {
   const endTime = `${hours + endHours}:${endMinutes
     .toString()
     .padStart(2, "0")}`;
-  console.log(endTime);
   const isRequestFunction = () => {
     const timeArray = infos["time"].split(" ");
     const trueValue = timeArray[timeArray.length - 2];

@@ -156,7 +156,6 @@ function AppointmentComponent() {
             "selectedTimes",
             JSON.stringify(existingSelectedTimes)
           );
-          console.log(existingSelectedTimes);
         }
 
         let existingFormData =

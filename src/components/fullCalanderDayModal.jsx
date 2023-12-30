@@ -47,7 +47,7 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
       (timeObj) => convertToISODate(timeObj.time) === time
     );
     setChoosenFormDatas(filteredFormDatas);
-  }, [time]);
+  });
 
   const renderSwiper = (appointments) => {
     //en fazla alt alta 2 tane randevu görüntülememizi sağlayan kod
@@ -179,7 +179,7 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
             <div className=" flex items-center justify-center m-3 mt-0">
               <div className="border-b-2 border-buttonColor w-fit">
                 <h1 className="text-[17px] font-semibold text-center text-buttonColor">
-                  Randevuler
+                  Randevular
                 </h1>
               </div>
             </div>

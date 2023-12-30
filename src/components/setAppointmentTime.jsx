@@ -33,7 +33,7 @@ function SetAppointmentTime() {
     const sortedSavedTimes = localStorageSavedTimes.sort(timeSortingFunction);
 
     setSavedTimesArray(sortedSavedTimes);
-  }, []);
+  });
 
   const getSelectedDate = (selectedDate) => {
     // TAKVİMDEKİ DEĞİŞİKLİKLERE GÖRE SEÇİLEN TARİHLERİ AYARLAYAN FONKSİYON
@@ -408,10 +408,6 @@ function SetAppointmentTime() {
                     placeholder="Saat"
                   />
                 </div>
-                <h2 className="text-sm text-red-600 text-center font-semibold m-5">
-                  Kayıtlı saatler aşağıda gözükmektedir dilerseniz
-                  silebilirsiniz.
-                </h2>
                 <div className="w-full justify-center flex items-center">
                   <div className="savedTimesList flex flex-wrap items-center justify-center w-[385px] h-auto relative">
                     {savedTimesArray.length > 0 &&
@@ -443,11 +439,19 @@ function SetAppointmentTime() {
             {savedTimes === true && (
               <>
                 <div className="flex items-center justify-center flex-col">
-                  <div className=" mb-1 w-[400px]">
-                    <h1 className="text-md font-semibold text-center text-red-500 mb-[2px]">
-                      Kayıtlı Saatler ({appointmentDuration} Dakika /{" "}
-                      {appointmentPrice} ₺)
-                    </h1>
+                  <div className=" mb-1 w-[400px] flex items-center justify-center">
+                    <div className="flex mr-5">
+                      <i class="fa-solid fa-clock text-lightBlue flex items-center justify-center mr-2"></i>
+                      <h1 className="text-sm font-semibold text-center mb-[2px]">
+                        {appointmentDuration} Dakika
+                      </h1>
+                    </div>
+                    <div className="flex">
+                      <i class="fa-solid fa-money-bill-1-wave text-lightBlue flex items-center justify-center mr-2"></i>
+                      <h1 className="text-sm font-semibold text-center  mb-[2px]">
+                        {appointmentPrice} ₺
+                      </h1>
+                    </div>
                   </div>
                   <div className="chooseSavedTimes flex items-center justify-center flex-wrap mx-[15px] w-[345px] relative">
                     {renderSwiper2(savedTimesArray, formikProps)}

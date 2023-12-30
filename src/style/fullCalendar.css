@@ -90,7 +90,9 @@
   opacity: 0.6;
   border-color: gray !important;
 }
-
+.empty-appointment {
+  border-color: #ff9800 !important;
+}
 @media only screen and (max-width: 768px) {
   .rbc-event {
     width: 44px !important;
