@@ -357,6 +357,20 @@ function SetAppointmentTime() {
             {appointmentPrice} ₺ olarak ayarlıdır. Dilerseniz bu bilgileri
             profilinizden güncelleyebilirsiniz.
           </h1>
+          <div className=" my-1 flex items-center justify-center">
+            <div className="flex mr-5">
+              <i class="fa-solid fa-clock text-lightBlue flex items-center justify-center mr-2"></i>
+              <h1 className="text-xs font-semibold text-center mb-[2px]">
+                {appointmentDuration} Dakika
+              </h1>
+            </div>
+            <div className="flex">
+              <i class="fa-solid fa-money-bill-1-wave text-lightBlue flex items-center justify-center mr-2"></i>
+              <h1 className="text-xs font-semibold text-center  mb-[2px]">
+                {appointmentPrice} ₺
+              </h1>
+            </div>
+          </div>
         </div>
       </div>
       <h2 className="text-buttonColor text-2xl m-3 font-semibold mb-0">
@@ -439,20 +453,6 @@ function SetAppointmentTime() {
             {savedTimes === true && (
               <>
                 <div className="flex items-center justify-center flex-col">
-                  <div className=" mb-1 w-[400px] flex items-center justify-center">
-                    <div className="flex mr-5">
-                      <i class="fa-solid fa-clock text-lightBlue flex items-center justify-center mr-2"></i>
-                      <h1 className="text-sm font-semibold text-center mb-[2px]">
-                        {appointmentDuration} Dakika
-                      </h1>
-                    </div>
-                    <div className="flex">
-                      <i class="fa-solid fa-money-bill-1-wave text-lightBlue flex items-center justify-center mr-2"></i>
-                      <h1 className="text-sm font-semibold text-center  mb-[2px]">
-                        {appointmentPrice} ₺
-                      </h1>
-                    </div>
-                  </div>
                   <div className="chooseSavedTimes flex items-center justify-center flex-wrap mx-[15px] w-[345px] relative">
                     {renderSwiper2(savedTimesArray, formikProps)}
                     {savedTimesArray.length === 0 && (

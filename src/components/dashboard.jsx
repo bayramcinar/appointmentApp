@@ -29,9 +29,9 @@ function Dashboard() {
             <SetAppointmentTime />
           </div>
         </div>
-        <div className="hidden max-[768px]:block w-[350px] mx-auto">
+        {/* <div className="hidden max-[768px]:block w-[350px] mx-auto">
           <Deneme />
-        </div>
+        </div> */}
       </div>
     </>
   );
