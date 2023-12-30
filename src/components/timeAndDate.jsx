@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import Swal from "sweetalert2";
-
+import moment from "moment-timezone";
 import { Navigation, Pagination, Mousewheel } from "swiper/modules";
 import RequestTimeBox from "./requestTimeBox";
 import AppointmentRequest from "./appointmentRequest";
@@ -125,16 +125,6 @@ function TimeAndDate({
           const timeB = b.time.split(":").join("");
           return parseInt(timeA) - parseInt(timeB);
         });
-        sortedTimes.forEach((time) => {
-          const appointmentDateTime = `${formatDateToDDMMYYYY(selectedDate)} ${
-            time.time
-          }`;
-          const currentTime = `${currentDateFormatted} ${currentTimeFormatted}`;
-
-          const isSameDayOrFuture = appointmentDateTime >= currentTime;
-
-          time.active = isSameDayOrFuture;
-        });
 
         const swiperSlide = (
           <SwiperSlide key={i}>
@@ -143,8 +133,15 @@ function TimeAndDate({
                 timedRequestSelectedTime !== "" ? "hidden" : "block"
               }  appointmentBoxArea mr-auto ml-auto`}
             >
-              {sortedTimes.map((time, index) => (
-                <>
+              {sortedTimes.map((time, index) => {
+                const currentTime = moment(`${time.date} ${time.time}`);
+                const currentDateTime = currentTime.toDate();
+                const now = new Date();
+
+                // Check if the appointment time is in the past
+                const isPast = currentDateTime < now;
+
+                return (
                   <AppointmentBox
                     isMobile={isMobile}
                     key={index}
@@ -152,11 +149,11 @@ function TimeAndDate({
                     duration={time.duration}
                     onTimeClick={handleAppointmentBoxClick}
                     selectedTime={selectedTime}
-                    active={time.active}
+                    active={!isPast && time.active}
                     date={time.date}
                   />
-                </>
-              ))}
+                );
+              })}
             </div>
           </SwiperSlide>
         );
@@ -170,7 +167,7 @@ function TimeAndDate({
           const timeB = b.time.split(":").join("");
           return parseInt(timeA) - parseInt(timeB);
         });
-
+        console.log(sortedTimes);
         const swiperSlide = (
           <SwiperSlide key={i}>
             <div

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRange } from "react-date-range";
+import { tr } from "date-fns/locale";
 
 function SetDateAndTime({ onDateChange }) {
   const currentDate = new Date();
@@ -53,6 +54,7 @@ function SetDateAndTime({ onDateChange }) {
   return (
     <>
       <DateRange
+        locale={tr}
         minDate={currentDate}
         editableDateInputs={true}
         onChange={handleDateChange}

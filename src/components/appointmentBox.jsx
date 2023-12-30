@@ -35,7 +35,7 @@ function AppointmentBox({
           isSelected ? "bg-red-600" : "bg-appoinmentBox"
         } ${
           active ? "bg-appoinmentBox" : "bg-stepBorder1"
-        } rounded-3xl mb-[5px] p-[2px] max-[768px]:m-[5px] cursor-pointer`}
+        }  rounded-3xl mb-[5px] p-[2px] max-[768px]:m-[5px] cursor-pointer`}
         onClick={handleTimeClick}
       >
         {isMobile === true && (

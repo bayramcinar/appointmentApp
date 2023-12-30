@@ -120,7 +120,7 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
             <div className=" flex items-center justify-center">
               <div className="border-b-2 border-buttonColor w-fit">
                 <h1 className="text-[17px]  font-semibold text-center text-buttonColor">
-                  Hala Randevu alınmayan Saatler
+                  Hala Randevu alınmayan veya süresi geçmiş saatler
                 </h1>
               </div>
             </div>

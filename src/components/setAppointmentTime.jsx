@@ -20,6 +20,7 @@ function SetAppointmentTime() {
   const [savedTimesArray, setSavedTimesArray] = useState([]); // KAYITLI SAATLER BÖLGESİNDE GÖSTERİLEN SAATLERİ TUTAN ARRAY
   const [savedTimes, setSavedTimes] = useState(true); // KAYITLI SAATLER VEYA SAAT SEÇ EKRANINDA GİDİP GELMEMİZİ SĞLAYAN DEĞİŞKEN
   const appointmentDuration = 90; // BU KISIM KULLANICI PROFİLİNDEN ALINAN RANDEVU SÜRESİ YERİ
+  const appointmentPrice = 1000; // BU KISIM KULLANICI PROFİLİNDEN ALINAN RANDEVU ÜCRETİ YERİ
   useEffect(() => {
     const localStorageSavedTimes =
       JSON.parse(localStorage.getItem("savedTimes")) || [];
@@ -329,9 +330,35 @@ function SetAppointmentTime() {
       confirmButtonText: "Kapat",
     });
   };
+  const handleInfoIconHover = () => {
+    const tooltip = document.querySelector(".tooltip");
+    console.log(tooltip);
+    tooltip.style.display = "block";
+  };
 
+  const handleInfoIconLeave = () => {
+    const tooltip = document.querySelector(".tooltip");
+    console.log(tooltip);
+    tooltip.style.display = "none";
+  };
   return (
-    <div className="ml-auto mr-auto bg-dayComponentBg mt-10 setAppointmentTime flex items-center justify-center flex-col lg:w-[33rem] md:w-[24rem] max-[768px]:w-[24rem] lg:h-auto sm:h-auto shadow-xl border-stepBorder1 border-2 rounded-xl lg:min-h-[700px]">
+    <div className="ml-auto mr-auto bg-dayComponentBg mt-10 setAppointmentTime flex items-center justify-center flex-col lg:w-[33rem] md:w-[24rem] max-[768px]:w-[24rem] lg:h-auto sm:h-auto shadow-xl border-stepBorder1 border-2 rounded-xl lg:min-h-[700px] relative">
+      <div className="infoIcon absolute right-2 top-4">
+        <div
+          className="infoIcon relative inline-block cursor-pointer"
+          onMouseEnter={handleInfoIconHover}
+          onMouseLeave={handleInfoIconLeave}
+        >
+          <i className="fa-solid fa-circle-info text-xl text-buttonColor"></i>
+        </div>
+        <div className="tooltip hidden bg-white border border-gray-300 p-2 rounded-xl shadow-lg absolute transform -translate-x-0 right-[2px] transition duration-300 w-[200px]">
+          <h1 className="text-xs font-semibold text-center text-red-500">
+            Randevu süresi {appointmentDuration} dakika, randevu ücreti{" "}
+            {appointmentPrice} ₺ olarak ayarlıdır. Dilerseniz bu bilgileri
+            profilinizden güncelleyebilirsiniz.
+          </h1>
+        </div>
+      </div>
       <h2 className="text-buttonColor text-2xl m-3 font-semibold mb-0">
         Randevu Zamanı Belirle
       </h2>
@@ -410,12 +437,8 @@ function SetAppointmentTime() {
                 <div className="flex items-center justify-center flex-col">
                   <div className=" mb-1 w-[400px]">
                     <h1 className="text-md font-semibold text-center text-red-500 mb-[2px]">
-                      Kayıtlı Saatler
-                    </h1>
-                    <h1 className="text-md font-semibold text-center text-red-500 mb-[2px] w-[350px] flex items-center justify-center mx-auto">
-                      (Randevu süresi {appointmentDuration} dakika olarak
-                      ayarlıdır. Dilerseniz bu süreyi profilinizden
-                      güncelleyebilirsiniz.)
+                      Kayıtlı Saatler ({appointmentDuration} Dakika /{" "}
+                      {appointmentPrice} ₺)
                     </h1>
                   </div>
                   <div className="chooseSavedTimes flex items-center justify-center flex-wrap mx-[15px] w-[345px] relative">

@@ -148,13 +148,15 @@ function AppointmentComponent() {
           (timeObj) =>
             timeObj.time === selectedDateTime && timeObj.date === formattedDate
         );
-
+        console.log(timeIndex);
         if (timeIndex !== -1) {
+          console.log(existingSelectedTimes[timeIndex]);
           existingSelectedTimes[timeIndex].active = false;
           localStorage.setItem(
             "selectedTimes",
             JSON.stringify(existingSelectedTimes)
           );
+          console.log(existingSelectedTimes);
         }
 
         let existingFormData =
