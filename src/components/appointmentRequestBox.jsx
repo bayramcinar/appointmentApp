@@ -47,20 +47,11 @@ function AppointmentRequestBox({ image, infos, onDetails }) {
     }).then((result) => {
       if (result.isConfirmed) {
         if (originalObje) {
-          const separatedValues = timeObject.split(" ");
           const falseValue2 = originalObje.confirm;
-          const falseValue = separatedValues[separatedValues.length - 2];
-
-          const updatedValue = falseValue === "true" ? "false" : "true";
           const updatedValue2 = falseValue2 === "false" ? "true" : "";
-
-          separatedValues[separatedValues.length - 2] = updatedValue;
-
-          const updatedTimeObject = separatedValues.join(" ");
 
           const updatedObje = {
             ...originalObje,
-            time: updatedTimeObject,
             confirm: updatedValue2,
           };
 
@@ -83,7 +74,7 @@ function AppointmentRequestBox({ image, infos, onDetails }) {
                 icon: "success",
                 confirmButtonText: "Kapat",
               });
-              return updatedTimeObject;
+              return updatedObje;
             }
           }
         }

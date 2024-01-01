@@ -31,7 +31,7 @@ function AppointmentBox({
   return (
     <div>
       <div
-        className={`timeBox w-[145px] max-[768px]:w-[115px] ${
+        className={`timeBox w-[145px] max-[768px]:w-[100px] ${
           isSelected ? "bg-red-600" : "bg-appoinmentBox"
         } ${
           active ? "bg-appoinmentBox" : "bg-stepBorder1"
