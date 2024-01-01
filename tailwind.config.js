@@ -16,6 +16,7 @@ module.exports = {
         grayForTable: "#dbdada",
         islemeAlButtonColor: "#5D3587",
         calanderAppointment: "#FF9800",
+        appointmentRequest: "#5D3587",
       },
     },
   },

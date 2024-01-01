@@ -93,6 +93,9 @@
 .empty-appointment {
   border-color: #ff9800 !important;
 }
+.request-appointment {
+  border-color: #5d3587 !important;
+}
 @media only screen and (max-width: 768px) {
   .rbc-event {
     width: 44px !important;

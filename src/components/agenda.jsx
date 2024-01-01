@@ -426,22 +426,15 @@ function Agenda() {
     <>
       <div className="w-full shadow-xl overflow-auto max-h-600">
         <div className="flex">
-          <div className="w-[33%] flex items-center justify-center">
-            {pendingAppointments.length > 0 && (
-              <h1 className="text-md max-[768px]:text-sm text-red-600 text-center font-semibold flashing-text">
-                {pendingAppointments.length} İşlem bekleyen randevu lütfen
-                kontrol ediniz.
-              </h1>
-            )}
-          </div>
-          <h1 className=" lg:text-3xl max-[768px]:text-xl max-[768px]:w-[48%] w-[33%] text-center max-[768px]:justify:start font-semibold mt-5 sticky top-0 text-buttonColor p-3">
+          <div className="w-[33%] flex items-center justify-center"></div>
+          <h1 className=" lg:text-3xl max-[768px]:text-xl max-[768px]:w-[48%] w-[33%] text-center max-[768px]:justify:start font-semibold mt-5 sticky top-0 text-buttonColor p-3 pb-0">
             Yaklaşan Randevularım
           </h1>
           <div className="flex w-[33%] max-[768px]:w-[48%] justify-end items-center mb-4 mt-6">
             <select
               value={filter}
               onChange={(e) => handleFilterChange(e.target.value)}
-              className="p-3  border rounded-3xl  max-[768px]:w-[150px]"
+              className="p-2 border rounded-3xl text-sm max-[768px]:w-[120px]"
             >
               <option value="all">Tüm Randevular</option>
               <option value="past">Geçmiş Randevular</option>
@@ -450,6 +443,12 @@ function Agenda() {
             </select>
           </div>
         </div>
+        {pendingAppointments.length > 0 && (
+          <h1 className="text-md max-[768px]:text-sm text-red-600 text-center font-semibold flashing-text mb-2 max-[768px]:mb-0">
+            {pendingAppointments.length} İşlem bekleyen randevu lütfen kontrol
+            ediniz.
+          </h1>
+        )}
         <div className=" max-h-[465px]">
           {!isMobile && (
             <table className="rounded-xl w-full">
