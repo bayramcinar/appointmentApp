@@ -28,8 +28,8 @@ function AppointmentInfoBox({ number, title, changeRate }) {
             {number}
           </h1>
         </div>
-        <div className="titleArea h-1/2 m-3 flex items-center justify-center mt-0">
-          <h1 className="text-md text-center">{title}</h1>
+        <div className="titleArea h-1/2 m-3 max-[768px]:m-2 flex items-center justify-center mt-0">
+          <h1 className="text-md text-center max-[768px]:text-sm">{title}</h1>
         </div>
       </div>
     </div>

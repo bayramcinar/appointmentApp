@@ -4,7 +4,7 @@ import SetAppointmentTime from "./setAppointmentTime";
 import AppointmentInfos from "./appointmentInfos";
 import Agenda from "./agenda";
 import AppointmentRequestList from "./appointmentRequestList";
-import Deneme from "./deneme";
+import Deneme from "./agendaCard";
 
 function Dashboard() {
   return (
@@ -29,9 +29,17 @@ function Dashboard() {
             <SetAppointmentTime />
           </div>
         </div>
-        {/* <div className="hidden max-[768px]:block w-[350px] mx-auto">
-          <Deneme />
-        </div> */}
+        <div className="hidden max-[768px]:block w-[350px] mx-auto">
+          <Deneme
+            appointmentNumber={"010120241330"}
+            name={"Bayram Çınar"}
+            remainingTime={"18 saat 16 dakika"}
+            service={"fitness"}
+            status={"Onay Bekliyor"}
+            time={"09:00 - 10:30"}
+            date={"31.12.2023 Pazar"}
+          />
+        </div>
       </div>
     </>
   );

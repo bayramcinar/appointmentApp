@@ -169,7 +169,7 @@ function FullCalendarComponent() {
     <>
       <div className="mx-auto lg:p-5 max-[768px]:p-3 relative ">
         <h1 className="text-buttonColor text-2xl m-6 mt-1 font-semibold text-center">
-          Randevular Takvim Görünümü
+          Randevular Takvimi
         </h1>
         <div className="colorsMean  max-[768px]:mb-5 lg:absolute max-[768px]:flex  max-[768px]:justify-center max-[768px]:items-center right-1 top-1 font-semibold">
           <div className="flex max-[768px]:mr-2">
@@ -187,7 +187,7 @@ function FullCalendarComponent() {
           <div className="flex max-[768px]:mr-2">
             <i class="fa-solid fa-circle text-stepBorder1 text-sm max-[768px]:flex  max-[768px]:justify-center max-[768px]:items-center"></i>
             <h1 className="text-sm max-[768px]:text-xs ml-2 max-[768px]:text-center">
-              Geçmiş Randevuler
+              Geçmiş Randevular
             </h1>
           </div>
         </div>

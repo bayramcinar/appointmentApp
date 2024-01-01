@@ -22,9 +22,8 @@ function AppointmentComponent() {
   const [birthDay, setBirthday] = useState(""); //Appointment view ekranında kullandığımız doğum datiri i atadığımız değişkern
   const [isOwn, setIsOwn] = useState(true); // kendim için ve başkası için değişkenlerini tutan değişken (true false yapısı)
   const [request, setRequest] = useState(false); //Appointment view ekranında kullandığımız talep olup olmadığını i atadığımız değişkern
-  const [duration, setDuration] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [duration, setDuration] = useState("");
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -125,7 +124,6 @@ function AppointmentComponent() {
     setBirthday(formDataa.dateOfBirth);
     setFirstName(formDataa.firstName);
     setLastName(formDataa.lastName);
-
     if (step === 3) {
       // Check if any required field is empty except for "kendim" or "başkası"
       const isFormValid = Object.keys(formDataa).every(
@@ -139,18 +137,24 @@ function AppointmentComponent() {
         const selectedDateTime = returnDate.split(" ")[2];
         const selectedDate = returnDate.split(" ")[0];
 
+        console.log(selectedDate);
+
+        // Gününüze bir gün ekleyin
         const parts = selectedDate.split(".");
-        const formattedDate = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`)
-          .toISOString()
-          .split("T")[0];
+        const formattedDate = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
+        formattedDate.setDate(formattedDate.getDate() + 1);
+
+        console.log(formattedDate.toISOString().split("T")[0]);
+        console.log(selectedDateTime);
 
         const timeIndex = existingSelectedTimes.findIndex(
           (timeObj) =>
-            timeObj.time === selectedDateTime && timeObj.date === formattedDate
+            timeObj.time === selectedDateTime &&
+            timeObj.date === formattedDate.toISOString().split("T")[0]
         );
         console.log(timeIndex);
+
         if (timeIndex !== -1) {
-          console.log(existingSelectedTimes[timeIndex]);
           existingSelectedTimes[timeIndex].active = false;
           localStorage.setItem(
             "selectedTimes",
@@ -251,6 +255,8 @@ function AppointmentComponent() {
     };
   };
 
+  const appointmentDuration = 90; //KULLANICI PROFİLİNDEN ALDIĞIMIZ SÜRE
+
   // Kullanım
   const returnDateFinal = returnDate;
   const { date, time } = parseDateTime(returnDateFinal);
@@ -266,17 +272,6 @@ function AppointmentComponent() {
     }
     // Hata durumu için boş bir obje döndürebilirsiniz.
     return { date: "", time: "" };
-  };
-
-  const findDuration = (date) => {
-    const values = parseDateTimeString(date);
-    const timeValue = values.time;
-    const dateValue = values.date;
-    return (
-      selectedTimes.find(
-        (timeObj) => timeObj.time === timeValue && timeObj.date === dateValue
-      )?.duration || duration
-    );
   };
 
   return (
@@ -297,7 +292,7 @@ function AppointmentComponent() {
           birthday={birthDay}
           firstName={firstName}
           lastName={lastName}
-          duration={findDuration(returnDate)}
+          duration={appointmentDuration}
           price={"100"}
           serviceProviderName={"Bayram Çınar"}
           serviceProviderJob={"Uzman, Klinik Psikoloji"}
@@ -326,7 +321,7 @@ function AppointmentComponent() {
           {step === 3 && (
             <>
               <ContactForm
-                duration={findDuration(returnDate)}
+                duration={appointmentDuration}
                 time={returnDate}
                 service={returnService}
                 onFormSubmit={handleFinish}

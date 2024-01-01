@@ -17,7 +17,7 @@ function AppointmentInfos() {
     { number: 7, title: "Randevu Talebi", changeRate: -6 },
     { number: 8, title: "Randevu İptali", changeRate: 2 },
     { number: 18, title: "Randevu Onayı", changeRate: 10 },
-    { number: 75, title: "Ortalama Randevu Süresi ", changeRate: 15 },
+    { number: 75, title: "Ortalama Randevu Süresi (Dakika)", changeRate: 15 },
   ];
 
   const renderSwiper = (items, renderItem) => {

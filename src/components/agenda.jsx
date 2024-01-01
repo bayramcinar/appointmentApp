@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import EventModal from "./eventModal";
 import "../style/agenda.css";
 import Swal from "sweetalert2";
+import AgendaCard from "./agendaCard";
 function Agenda() {
   const [formData, setFormData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
@@ -9,7 +10,7 @@ function Agenda() {
   const [filter, setFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(7);
-
+  const isMobile = window.innerWidth <= 768;
   const handleOpenModal = (event) => {
     setSelectedEvent(event);
     setOpenModal(true);
@@ -92,6 +93,56 @@ function Agenda() {
     const interval = setInterval(updateRemainingTime, 1000);
     return () => clearInterval(interval);
   });
+
+  function convertFromDataToCard() {
+    return paginatedFormData.map((formEntry, index) => {
+      const status = formEntry.confirm;
+      const { time, duration, service } = formEntry;
+      const parsedInfos = time.split(/\s+/);
+      const dateInfo = parsedInfos[0] + " " + parsedInfos[1];
+      const timeInfo = getTime(parsedInfos[2], duration);
+      const remainingTime = getRemainingTime(time);
+      const requestStatus = parsedInfos[3];
+      const currentDate = new Date();
+      const appointmentDate = new Date(
+        time.split(" ")[0].split(".").reverse().join("-") +
+          " " +
+          time.split(" ")[2]
+      );
+      const isPastAppointment = appointmentDate < currentDate;
+      const isToday = isSameDay(appointmentDate, currentDate);
+      const name =
+        `${formEntry.firstName || ""} ${formEntry.lastName || ""}`.trim() ||
+        "Bayram Çınar";
+      const dateArray = parsedInfos[0].split(".").join("");
+      const timeArray = parsedInfos[2].split(":").join("");
+      const appointmentNumber = dateArray + timeArray;
+      const actualIndex = (currentPage - 1) * itemsPerPage + index;
+
+      return (
+        <AgendaCard
+          key={actualIndex}
+          appointmentNumber={appointmentNumber}
+          name={name}
+          remainingTime={
+            remainingTime.remainingHours > 0 ? (
+              `${remainingTime.remainingHours} saat ${remainingTime.remainingMinutes} dakika`
+            ) : remainingTime.remainingMinutes > 0 ? (
+              <span>{`${remainingTime.remainingMinutes} dakika`}</span>
+            ) : (
+              <span>Randevu Bitti</span>
+            )
+          }
+          isPastAppointment={isPastAppointment}
+          requestStatus={requestStatus}
+          service={service}
+          status={status}
+          time={timeInfo}
+          date={dateInfo}
+        />
+      );
+    });
+  }
 
   function convertFormDataToTable() {
     return paginatedFormData.map((formEntry, index) => {
@@ -390,7 +441,7 @@ function Agenda() {
             <select
               value={filter}
               onChange={(e) => handleFilterChange(e.target.value)}
-              className="p-3 border rounded-3xl  max-[768px]:w-[200px]"
+              className="p-3  border rounded-3xl  max-[768px]:w-[150px]"
             >
               <option value="all">Tüm Randevular</option>
               <option value="past">Geçmiş Randevular</option>
@@ -400,21 +451,24 @@ function Agenda() {
           </div>
         </div>
         <div className=" max-h-[465px]">
-          <table className="rounded-xl w-full">
-            <thead>
-              <tr className="sticky top-0 bg-buttonColor text-white">
-                <th className="p-3">Sıra</th>
-                <th className="p-3">Randevu Numarası</th>
-                <th className="p-3">Tarih</th>
-                <th className="p-3">Saat</th>
-                <th className="p-3">Randevu</th>
-                <th className="p-3">İşlemler</th>
-                <th className="p-3">Durum</th>
-                <th className="p-3">Kalan Süre</th>
-              </tr>
-            </thead>
-            <tbody>{convertFormDataToTable()}</tbody>
-          </table>
+          {!isMobile && (
+            <table className="rounded-xl w-full">
+              <thead>
+                <tr className="sticky top-0 bg-buttonColor text-white">
+                  <th className="p-3">Sıra</th>
+                  <th className="p-3">Randevu Numarası</th>
+                  <th className="p-3">Tarih</th>
+                  <th className="p-3">Saat</th>
+                  <th className="p-3">Randevu</th>
+                  <th className="p-3">İşlemler</th>
+                  <th className="p-3">Durum</th>
+                  <th className="p-3">Kalan Süre</th>
+                </tr>
+              </thead>
+              <tbody>{convertFormDataToTable()}</tbody>
+            </table>
+          )}
+          {isMobile && <div>{convertFromDataToCard()}</div>}
         </div>
       </div>
       <div className="flex justify-center my-3">
