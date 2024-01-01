@@ -14,19 +14,23 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
   const [selectedFormDatas, setSelectedFormDatas] = useState([]);
   const [choosenFormDatas, setChoosenFormDatas] = useState([]);
   function convertToISODate(inputDate) {
-    // Gelen tarihi boşluktan ve noktadan ayır
+    // Split the input date by space or dot
     const dateComponents = inputDate.split(/\s|\./);
 
-    // Gün, ay ve yıl bilgilerini al
+    // Extract day, month, and year
     const day = dateComponents[0];
     const month = dateComponents[1];
     const year = dateComponents[2];
 
-    // Tarihi ISO 8601 formata dönüştür
-    const isoFormattedDate = `${year}-${month}-${day}`;
+    // Format the date in ISO 8601 format (YYYY-MM-DD)
+    const isoFormattedDate = `${year}-${month.padStart(2, "0")}-${day.padStart(
+      2,
+      "0"
+    )}`;
 
     return isoFormattedDate;
   }
+
   useEffect(() => {
     const storedSelectedTimes = localStorage.getItem("selectedTimes");
     if (storedSelectedTimes) {
@@ -48,9 +52,9 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
     );
     setChoosenFormDatas(filteredFormDatas);
   });
-
   const renderSwiper = (appointments) => {
     //en fazla alt alta 2 tane randevu görüntülememizi sağlayan kod
+    console.log(appointments);
     const swiperSlides = [];
     for (let i = 0; i < appointments.length; i += 2) {
       const choosenFormDatas = appointments.slice(i, i + 2);
