@@ -17,15 +17,6 @@ function AppointmentRequestBox({ image, infos, onDetails }) {
 
     return endTime;
   };
-  function FlashingText({ text, color }) {
-    return (
-      <h1
-        className={`flashing-text text-sm text-${color} p-1 text-center font-semibold m-1`}
-      >
-        {text}
-      </h1>
-    );
-  }
 
   const findObjectByTime = (timeObject) => {
     //TIKLADIĞIMIZ OBJEYİ ALIYORUZ
@@ -156,7 +147,11 @@ function AppointmentRequestBox({ image, infos, onDetails }) {
             </div>
             <div className="infoArea w-2/3">
               <div>
-                <FlashingText color={"red-600"} text="Yeni Randevu Talebi." />
+                <h1
+                  className={`flashing-text text-sm text-red-600 p-1 text-center font-semibold m-1`}
+                >
+                  Yeni Randevu Talebi
+                </h1>
               </div>
 
               <div className="forWho flex">

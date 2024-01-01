@@ -16,16 +16,6 @@ function NotAppointmentRequestBox({ image, infos, onDetails, setFormData }) {
 
     return endTime;
   };
-  function FlashingText({ text, color }) {
-    return (
-      <h1
-        className={`flashing-text text-sm text-${color} p-1 text-center font-semibold m-1`}
-        style={{ color: "#1bce94" }}
-      >
-        {text}
-      </h1>
-    );
-  }
 
   const findObjectByTime = (timeObject) => {
     //TIKLADIĞIMIZ OBJEYİ ALIYORUZ
@@ -104,7 +94,11 @@ function NotAppointmentRequestBox({ image, infos, onDetails, setFormData }) {
             </div>
             <div className="infoArea w-2/3">
               <div>
-                <FlashingText color={"newAppointment1"} text="Yeni Randevu." />
+                <h1
+                  className={`flashing-text text-sm text-[#1bce92] p-1 text-center font-semibold m-1`}
+                >
+                  Yeni Randevu.
+                </h1>
               </div>
               <div className="forWho flex">
                 <i className="fa-solid fa-circle mt-[3px] text-[15px] text-callNowButtonColor"></i>
