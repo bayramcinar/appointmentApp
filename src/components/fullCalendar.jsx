@@ -146,7 +146,6 @@ function FullCalendarComponent() {
         className: "request-appointment",
         style: {
           backgroundColor: "#5D3587",
-          opacity: 0.6,
         },
       };
     }
@@ -204,13 +203,13 @@ function FullCalendarComponent() {
           <div className="lg:flex lg:items-center lg:justify-center">
             <div className="flex max-[768px]:mr-2 mr-2">
               <i class="fa-solid fa-circle text-appoinmentBox text-sm  max-[768px]:flex  max-[768px]:justify-center max-[768px]:items-center"></i>
-              <h1 className="text-sm max-[768px]:text-xs ml-2 max-[768px]:text-center">
+              <h1 className="text-sm max-[768px]:text-xs ml-2 max-[768px]:text-center flex justify-center items-center">
                 Randevu alınmış saatler
               </h1>
             </div>
             <div className="flex  max-[768px]:mr-2 mr-2">
               <i class="fa-solid fa-circle text-calanderAppointment text-sm max-[768px]:flex  max-[768px]:justify-center max-[768px]:items-center"></i>
-              <h1 className="text-sm max-[768px]:text-xs ml-2 max-[768px]:text-center">
+              <h1 className="text-sm max-[768px]:text-xs ml-2 max-[768px]:text-center flex justify-center items-center">
                 Randevu alınmamış saatler
               </h1>
             </div>
@@ -218,13 +217,13 @@ function FullCalendarComponent() {
           <div className="lg:flex lg:items-center lg:justify-center">
             <div className="flex max-[768px]:mr-2 mr-2">
               <i class="fa-solid fa-circle text-stepBorder1 text-sm max-[768px]:flex  max-[768px]:justify-center max-[768px]:items-center"></i>
-              <h1 className="text-sm max-[768px]:text-xs ml-2 max-[768px]:text-center">
+              <h1 className="text-sm max-[768px]:text-xs ml-2 max-[768px]:text-center flex justify-center items-center">
                 Geçmiş Randevular
               </h1>
             </div>
             <div className="flex max-[768px]:mr-2 mr-2">
-              <i class="fa-solid fa-circle text-appointmentRequest text-xs  max-[768px]:flex  max-[768px]:justify-center max-[768px]:items-center"></i>
-              <h1 className="text-xs max-[768px]:text-xs ml-2 max-[768px]:text-center">
+              <i class="fa-solid fa-circle text-appointmentRequest text-sm  max-[768px]:flex  max-[768px]:justify-center max-[768px]:items-center"></i>
+              <h1 className="text-sm max-[768px]:text-xs ml-2 max-[768px]:text-center flex justify-center items-center">
                 Randevu Talepleri
               </h1>
             </div>

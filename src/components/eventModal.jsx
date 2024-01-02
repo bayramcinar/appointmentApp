@@ -42,7 +42,7 @@ const EventModal = ({ isOpen, onClose, event }) => {
             <div className="m-3">
               <div className="appointmentNotes">
                 <div className="flex">
-                  <div className="imgArea w-36">
+                  <div className="imgArea w-[120px] p-2">
                     <img src={pp} alt="" />
                   </div>
                   <div className="forSomeone flex mt-3 flex-wrap items-center justify-center">

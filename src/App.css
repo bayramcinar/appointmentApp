@@ -18,4 +18,12 @@
     align-items: center;
     justify-content: center;
   }
+  .agendaCardSwiper .swiper {
+    height: 38rem;
+  }
+}
+@media (max-width: 768px) {
+  .agendaCardSwiper .swiper {
+    height: 38rem;
+  }
 }

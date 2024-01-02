@@ -368,7 +368,6 @@ function Agenda() {
       formEntry.confirm === "false" && isFutureAppointment(formEntry.time)
   );
 
-  // Add this function to check if the appointment is in the future
   function isFutureAppointment(time) {
     const currentDate = new Date();
     const appointmentDate = new Date(
@@ -383,7 +382,7 @@ function Agenda() {
     const swiperSlides = [];
 
     for (let i = 0; i < times.length; i += itemsPerSlide) {
-      const currentTimes = times.slice(i, i + itemsPerSlide); // Get the current set of formEntry elements
+      const currentTimes = times.slice(i, i + itemsPerSlide);
       const swiperSlide = (
         <SwiperSlide key={i}>
           <div className="flex flex-wrap  justify-center h-[auto] agendaCardBoxArea ">
@@ -430,6 +429,8 @@ function Agenda() {
                   status={status}
                   time={timeInfo}
                   date={dateInfo}
+                  showDetails={() => handleOpenModal(formEntry)}
+                  deleteFunction={() => handleDelete(formEntry)}
                 />
               );
             })}
@@ -491,7 +492,7 @@ function Agenda() {
             ediniz.
           </h1>
         )}
-        <div className="max-h-[465px] agendaCardSwiper">
+        <div className="max-h-[465px] max-[768px]:max-h-[600px] agendaCardSwiper">
           {!isMobile && (
             <table className="rounded-xl w-full">
               <thead>

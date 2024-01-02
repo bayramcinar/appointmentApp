@@ -11,6 +11,9 @@ function AgendaCard({
   remainingTime,
   requestStatus,
   isPastAppointment,
+  showDetails,
+  deleteFunction,
+  edit,
 }) {
   return (
     <div className="flex flex-col">
@@ -53,12 +56,12 @@ function AgendaCard({
             )}
           </h1>
         </div>
-        <div className="timeInfos w-4/12 flex-col flex items-center justify-center">
+        <div className="timeInfos w-4/12 border-r-2 border-stepBorder1">
           <div className="saatAraliği border-b-2  border-stepBorder1 flex flex-col items-center justify-center w-full">
             <h1 className="text-[11px] text-center">{date}</h1>
             <h1 className="text-[11px] text-center">{time}</h1>
           </div>
-          <div className="kalanSüre ">
+          <div className="kalanSüre my-auto h-[50%] flex items-center justify-center">
             <h1
               className={`text-[11px] text-center my-auto ${
                 remainingTime === "Randevu Bitti" ? "text-red-600" : ""
@@ -66,6 +69,29 @@ function AgendaCard({
             >
               {remainingTime}
             </h1>
+          </div>
+        </div>
+        <div className="buttonsArea">
+          <div className="m-1">
+            <button
+              onClick={() => deleteFunction()}
+              className="p-1  bg-red-600 text-white text-xs font-semibold rounded-lg w-full"
+            >
+              Sil
+            </button>
+          </div>
+          <div className="m-1">
+            <button className="p-1 bg-appoinmentBox text-white text-xs font-semibold rounded-lg w-full">
+              Düzenle
+            </button>
+          </div>
+          <div className="m-1">
+            <button
+              onClick={() => showDetails()}
+              className="p-1 bg-lightBlue text-white text-xs font-semibold rounded-lg w-full"
+            >
+              Detaylar
+            </button>
           </div>
         </div>
       </div>

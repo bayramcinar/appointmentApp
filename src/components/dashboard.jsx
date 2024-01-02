@@ -16,7 +16,7 @@ function Dashboard() {
           <div className="bg-dayComponentBg border-stepBorder1 border-2 rounded-xl h-fit  mr-[2rem] max-[768px]:h-auto  max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 w-full">
             <Agenda />
           </div>
-          <div className="bg-dayComponentBg border-stepBorder1 border-2 rounded-xl ml-[2rem] max-[768px]:h-auto w-[400px] max-[768px]:mx-auto max-[768px]:w-[23rem]  mb-5 ">
+          <div className="bg-dayComponentBg border-stepBorder1 border-2 rounded-xl ml-[2rem] max-[768px]:h-auto w-[400px] max-[768px]:mx-auto max-[768px]:w-[23rem]  mb-5 justify-center items-center">
             <AppointmentRequestList />
           </div>
         </div>
