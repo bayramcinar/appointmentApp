@@ -12,8 +12,10 @@
 .agendaCardSwiper .swiper {
   height: 28rem;
 }
-/* .myCustomHeight {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
+@media (min-width: 1024px) {
+  .myCustomHeight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

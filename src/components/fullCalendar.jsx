@@ -74,7 +74,7 @@ function FullCalendarComponent() {
   const [selectedTimes, setSelectedTimes] = useState([]);
   const [isFullDayModalOpen, setFullDayModalOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState("");
-  const isMobile = window.innerWidth <= 768;
+  const isMobile = window.innerWidth <= 1220;
 
   useEffect(() => {
     const storedFormData = localStorage.getItem("formData");
@@ -185,7 +185,7 @@ function FullCalendarComponent() {
 
   return (
     <>
-      <div className="mx-auto lg:p-5 max-[768px]:p-[8px] relative max-[768px]:w-[360px]">
+      <div className="mx-auto lg:p-5 max-[768px]:p-[8px] relative w-full max-[768px]:w-[360px]">
         <h1 className="text-buttonColor text-2xl m-6 max-[768px]:m-3 mt-1 font-semibold text-center">
           Randevular Takvimi
         </h1>
