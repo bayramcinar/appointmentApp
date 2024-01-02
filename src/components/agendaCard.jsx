@@ -58,7 +58,7 @@ function AgendaCard({
         </div>
         <div className="timeInfos w-4/12 border-r-2 border-stepBorder1">
           <div className="saatAraliği border-b-2  border-stepBorder1 flex flex-col items-center justify-center w-full">
-            <h1 className="text-[11px] text-center">{date}</h1>
+            <h1 className="text-[11px] text-center w-min">{date}</h1>
             <h1 className="text-[11px] text-center">{time}</h1>
           </div>
           <div className="kalanSüre my-auto h-[50%] flex items-center justify-center">
