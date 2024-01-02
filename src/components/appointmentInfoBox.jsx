@@ -6,16 +6,16 @@ function AppointmentInfoBox({ number, title, changeRate }) {
       <div className="w-[8vw] h-[8vw] max-[768px]:w-[120px] max-[768px]:h-[120px] shadow-lg flex flex-col items-center justify-center border-stepBorder1 border-2 rounded-xl m-6 relative">
         {changeRate > 0 && (
           <div className="absolute right-1 top-1 flex">
-            <i class="fa-solid fa-arrow-up text-sm mr-[2px] text-green-600"></i>
-            <h1 className="text-[0.7vw] font-semibold text-center text-green-600">
+            <i class="fa-solid fa-arrow-up lg:text-[0.8vw] max-[768px]:text-sm mr-[2px] text-green-600"></i>
+            <h1 className="lg:text-[0.7vw] max-[768px]:text-sm font-semibold text-center text-green-600">
               {changeRate}
             </h1>
           </div>
         )}
         {changeRate < 0 && (
           <div className="absolute right-1 top-1 flex">
-            <i class="fa-solid fa-arrow-down text-sm mr-[2px] text-red-600"></i>
-            <h1 className="text-[0.7vw] font-semibold text-center text-red-600">
+            <i class="fa-solid fa-arrow-down lg:text-[0.8vw] max-[768px]:text-sm mr-[2px] text-red-600"></i>
+            <h1 className="lg:text-[0.7vw] max-[768px]:text-sm font-semibold text-center text-red-600">
               {changeRate}
             </h1>
           </div>
