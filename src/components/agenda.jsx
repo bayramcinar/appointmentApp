@@ -378,7 +378,7 @@ function Agenda() {
     return appointmentDate > currentDate;
   }
   const renderSwiper = (times) => {
-    const itemsPerSlide = 5;
+    const itemsPerSlide = 4;
     const swiperSlides = [];
 
     for (let i = 0; i < times.length; i += itemsPerSlide) {
