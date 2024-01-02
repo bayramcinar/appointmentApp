@@ -178,7 +178,7 @@ function FullCalendarComponent() {
 
   return (
     <>
-      <div className="mx-auto lg:p-5 max-[768px]:p-3 relative max-[768px]:w-[400px]">
+      <div className="mx-auto lg:p-5 max-[768px]:p-[8px] relative max-[768px]:w-[400px]">
         <h1 className="text-buttonColor text-2xl m-6 max-[768px]:m-3 mt-1 font-semibold text-center">
           Randevular Takvimi
         </h1>
