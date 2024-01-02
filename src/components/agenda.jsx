@@ -492,6 +492,11 @@ function Agenda() {
             ediniz.
           </h1>
         )}
+        {pendingAppointments.length === 0 && (
+          <h1 className="text-md max-[768px]:text-sm text-red-600 text-center font-semibold mb-2 max-[768px]:mb-0">
+            Yaklaşan randevunuz bulunmamaktadır.
+          </h1>
+        )}
         <div className="max-h-[465px] max-[768px]:max-h-[600px] agendaCardSwiper">
           {!isMobile && (
             <table className="rounded-xl w-full">
