@@ -68,7 +68,7 @@ function AppointmentInfos() {
           renderSwiper(boxes, renderItem)
         ) : (
           <>
-            <div className="infosArea flex items-center justify-center flex-wrap">
+            <div className="infosArea flex items-center justify-center flex-row">
               {boxes.map((box, index) => (
                 <div key={index}>
                   <AppointmentInfoBox

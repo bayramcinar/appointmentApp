@@ -3,13 +3,20 @@ import EventModal from "./eventModal";
 import "../style/agenda.css";
 import Swal from "sweetalert2";
 import AgendaCard from "./agendaCard";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Navigation, Pagination } from "swiper/modules";
+
 function Agenda() {
   const [formData, setFormData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [filter, setFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(7);
+  const [itemsPerPage] = useState(6);
   const isMobile = window.innerWidth <= 768;
   const handleOpenModal = (event) => {
     setSelectedEvent(event);
@@ -87,62 +94,12 @@ function Agenda() {
         setFormData(sortedFormData);
       }
     }
-  });
+  }, [formData]);
 
   useEffect(() => {
     const interval = setInterval(updateRemainingTime, 1000);
     return () => clearInterval(interval);
-  });
-
-  function convertFromDataToCard() {
-    return paginatedFormData.map((formEntry, index) => {
-      const status = formEntry.confirm;
-      const { time, duration, service } = formEntry;
-      const parsedInfos = time.split(/\s+/);
-      const dateInfo = parsedInfos[0] + " " + parsedInfos[1];
-      const timeInfo = getTime(parsedInfos[2], duration);
-      const remainingTime = getRemainingTime(time);
-      const requestStatus = parsedInfos[3];
-      const currentDate = new Date();
-      const appointmentDate = new Date(
-        time.split(" ")[0].split(".").reverse().join("-") +
-          " " +
-          time.split(" ")[2]
-      );
-      const isPastAppointment = appointmentDate < currentDate;
-      const isToday = isSameDay(appointmentDate, currentDate);
-      const name =
-        `${formEntry.firstName || ""} ${formEntry.lastName || ""}`.trim() ||
-        "Bayram Çınar";
-      const dateArray = parsedInfos[0].split(".").join("");
-      const timeArray = parsedInfos[2].split(":").join("");
-      const appointmentNumber = dateArray + timeArray;
-      const actualIndex = (currentPage - 1) * itemsPerPage + index;
-
-      return (
-        <AgendaCard
-          key={actualIndex}
-          appointmentNumber={appointmentNumber}
-          name={name}
-          remainingTime={
-            remainingTime.remainingHours > 0 ? (
-              `${remainingTime.remainingHours} saat ${remainingTime.remainingMinutes} dakika`
-            ) : remainingTime.remainingMinutes > 0 ? (
-              <span>{`${remainingTime.remainingMinutes} dakika`}</span>
-            ) : (
-              <span>Randevu Bitti</span>
-            )
-          }
-          isPastAppointment={isPastAppointment}
-          requestStatus={requestStatus}
-          service={service}
-          status={status}
-          time={timeInfo}
-          date={dateInfo}
-        />
-      );
-    });
-  }
+  }, []);
 
   function convertFormDataToTable() {
     return paginatedFormData.map((formEntry, index) => {
@@ -421,6 +378,91 @@ function Agenda() {
     );
     return appointmentDate > currentDate;
   }
+  const renderSwiper = (times) => {
+    const itemsPerSlide = 5;
+    const swiperSlides = [];
+
+    for (let i = 0; i < times.length; i += itemsPerSlide) {
+      const currentTimes = times.slice(i, i + itemsPerSlide); // Get the current set of formEntry elements
+      const swiperSlide = (
+        <SwiperSlide key={i}>
+          <div className="flex flex-wrap  justify-center h-[auto] agendaCardBoxArea ">
+            {currentTimes.map((formEntry, index) => {
+              const status = formEntry.confirm;
+              const { time, duration, service } = formEntry;
+              const parsedInfos = time.split(/\s+/);
+              const dateInfo = parsedInfos[0] + " " + parsedInfos[1];
+              const timeInfo = getTime(parsedInfos[2], duration);
+              const remainingTime = getRemainingTime(time);
+              const requestStatus = parsedInfos[3];
+              const currentDate = new Date();
+              const appointmentDate = new Date(
+                time.split(" ")[0].split(".").reverse().join("-") +
+                  " " +
+                  time.split(" ")[2]
+              );
+              const isPastAppointment = appointmentDate < currentDate;
+              const name =
+                `${formEntry.firstName || ""} ${
+                  formEntry.lastName || ""
+                }`.trim() || "Bayram Çınar";
+              const dateArray = parsedInfos[0].split(".").join("");
+              const timeArray = parsedInfos[2].split(":").join("");
+              const appointmentNumber = dateArray + timeArray;
+
+              return (
+                <AgendaCard
+                  key={index}
+                  appointmentNumber={appointmentNumber}
+                  name={name}
+                  remainingTime={
+                    remainingTime.remainingHours > 0 ? (
+                      `${remainingTime.remainingHours} saat ${remainingTime.remainingMinutes} dakika`
+                    ) : remainingTime.remainingMinutes > 0 ? (
+                      <span>{`${remainingTime.remainingMinutes} dakika`}</span>
+                    ) : (
+                      <span>Randevu Bitti</span>
+                    )
+                  }
+                  isPastAppointment={isPastAppointment}
+                  requestStatus={requestStatus}
+                  service={service}
+                  status={status}
+                  time={timeInfo}
+                  date={dateInfo}
+                />
+              );
+            })}
+          </div>
+        </SwiperSlide>
+      );
+      swiperSlides.push(swiperSlide);
+    }
+
+    const swiperProps = isMobile
+      ? {
+          direction: "vertical",
+          pagination: { clickable: true, dynamicBullets: true },
+          modules: [Pagination, Navigation],
+          navigation: {
+            prevEl: ".custom-swiper-button-prev",
+            nextEl: ".custom-swiper-button-next",
+          },
+        }
+      : {
+          navigation: {
+            prevEl: ".custom-swiper-button-prev",
+            nextEl: ".custom-swiper-button-next",
+          },
+          modules: [Navigation],
+        };
+
+    return (
+      <Swiper {...swiperProps} className="mySwiper">
+        {swiperSlides}
+      </Swiper>
+    );
+  };
 
   return (
     <>
@@ -449,7 +491,7 @@ function Agenda() {
             ediniz.
           </h1>
         )}
-        <div className=" max-h-[465px]">
+        <div className="max-h-[465px] agendaCardSwiper">
           {!isMobile && (
             <table className="rounded-xl w-full">
               <thead>
@@ -467,28 +509,30 @@ function Agenda() {
               <tbody>{convertFormDataToTable()}</tbody>
             </table>
           )}
-          {isMobile && <div>{convertFromDataToCard()}</div>}
+          {isMobile && <>{renderSwiper(paginatedFormData)}</>}
         </div>
       </div>
-      <div className="flex justify-center my-3">
-        <ul className="flex space-x-2">
-          {[...Array(totalPages).keys()].map((page) => (
-            <li
-              key={page + 1}
-              onClick={() => handlePageChange(page + 1)}
-              className={`px-3 py-2 border cursor-pointer rounded-2xl ${
-                page + 1 === currentPage
-                  ? "bg-buttonColor text-white"
-                  : "border-gray-300"
-              }`}
-            >
-              <button onClick={() => handlePageChange(page + 1)}>
-                {page + 1}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {!isMobile && (
+        <div className="flex justify-center my-3">
+          <ul className="flex space-x-2">
+            {[...Array(totalPages).keys()].map((page) => (
+              <li
+                key={page + 1}
+                onClick={() => handlePageChange(page + 1)}
+                className={`px-3 py-2 border cursor-pointer rounded-2xl ${
+                  page + 1 === currentPage
+                    ? "bg-buttonColor text-white"
+                    : "border-gray-300"
+                }`}
+              >
+                <button onClick={() => handlePageChange(page + 1)}>
+                  {page + 1}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       <EventModal
         isOpen={openModal}
         onClose={handleCloseModal}
