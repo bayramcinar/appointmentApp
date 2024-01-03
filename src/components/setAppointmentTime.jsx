@@ -338,12 +338,10 @@ function SetAppointmentTime() {
 
   const handleInfoIconLeave = () => {
     const tooltip = document.querySelector(".tooltip");
-    console.log(tooltip);
     tooltip.style.display = "none";
   };
-  //lg:w-[33rem] md:w-[24rem] max-[768px]:w-[24rem]
   return (
-    <div className="ml-auto mr-auto bg-dayComponentBg mt-10 setAppointmentTime flex items-center justify-center flex-col lg:h-auto sm:h-auto shadow-xl border-stepBorder1 border-2 rounded-xl lg:min-h-[800px] relative p-8 w-[auto] max-[768px]:p-2">
+    <div className="ml-auto mr-auto bg-dayComponentBg mt-10 setAppointmentTime flex items-center justify-center flex-col lg:h-auto sm:h-auto shadow-xl border-stepBorder1 border-2 rounded-xl lg:min-h-[800px] relative p-[1vw] w-[auto] max-[768px]:p-2">
       <div className="infoIcon absolute right-2 top-4">
         <div
           className="infoIcon relative inline-block cursor-pointer"

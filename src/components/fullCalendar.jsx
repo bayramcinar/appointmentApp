@@ -195,7 +195,7 @@ function FullCalendarComponent() {
 
   return (
     <>
-      <div className="mx-auto lg:p-5 max-[768px]:p-[8px] relative w-full max-[768px]:w-[360px] p-5">
+      <div className="mx-auto relative w-full max-[768px]:w-[360px] p-2 lg:p-5">
         <h1 className="text-buttonColor text-2xl m-6 max-[768px]:m-3 mt-1 font-semibold text-center">
           Randevular Takvimi
         </h1>
@@ -234,7 +234,10 @@ function FullCalendarComponent() {
             localizer={localizer}
             startAccessor="start"
             endAccessor="end"
-            style={isMobile ? { height: 600 } : { height: 700, width: 900 }}
+            style={{
+              height: isMobile ? "600px" : "35vw",
+              width: isMobile ? "" : "50vw",
+            }}
             events={eventsFromSessionStorage}
             onSelectEvent={onSelectSlot}
             defaultView={isMobile ? Views.WEEK : Views.MONTH}

@@ -29,26 +29,24 @@ function AppointmentBox({
   const isSelected = selectedTime === time; // seçtiğimiz saati atadığımız değişken
 
   return (
-    <div>
-      <div
-        className={`timeBox w-[145px] max-[768px]:w-[100px] ${
-          isSelected ? "bg-red-600" : "bg-appoinmentBox"
-        } ${
-          active ? "bg-appoinmentBox" : "bg-stepBorder1"
-        }  rounded-3xl mb-[5px] p-[2px] max-[768px]:m-[5px] cursor-pointer`}
-        onClick={handleTimeClick}
-      >
-        {isMobile === true && (
-          <>
-            <h4 className="text-sm text-text p-1 pb-0 text-center">{time}</h4>
-          </>
-        )}
-        {isMobile === false && (
-          <>
-            <h4 className="text-sm text-text p-1 text-center">{time}</h4>
-          </>
-        )}
-      </div>
+    <div
+      className={`timeBox w-[145px] max-[768px]:w-[100px] ${
+        isSelected ? "bg-red-600" : "bg-appoinmentBox"
+      } ${
+        active ? "bg-appoinmentBox" : "bg-stepBorder1"
+      }  rounded-3xl mb-[5px] p-[2px] max-[768px]:m-[5px] cursor-pointer`}
+      onClick={handleTimeClick}
+    >
+      {isMobile === true && (
+        <>
+          <h4 className="text-sm text-text p-1 pb-0 text-center">{time}</h4>
+        </>
+      )}
+      {isMobile === false && (
+        <>
+          <h4 className="text-sm text-text p-1 text-center">{time}</h4>
+        </>
+      )}
     </div>
   );
 }
