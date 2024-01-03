@@ -79,6 +79,11 @@
   font-weight: 600;
   font-size: medium;
 }
+.myCustomHeight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .rbc-event {
   background-color: #1bce94;
 }

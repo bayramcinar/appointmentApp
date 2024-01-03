@@ -74,11 +74,11 @@ function FullCalendarComponent() {
   const [selectedTimes, setSelectedTimes] = useState([]);
   const [isFullDayModalOpen, setFullDayModalOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState("");
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1220);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1400);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1280);
+      setIsMobile(window.innerWidth <= 1400);
     };
     window.addEventListener("resize", handleResize);
 
@@ -195,35 +195,35 @@ function FullCalendarComponent() {
 
   return (
     <>
-      <div className="mx-auto relative w-full max-[768px]:w-[360px] p-2 lg:p-5">
-        <h1 className="text-buttonColor text-[1.3vw] max-[768px]:text-lg m-6 max-[768px]:m-3 mt-1 font-semibold text-center">
+      <div className="mx-auto relative w-full max-[500px]:w-[360px] p-2 lg:p-5">
+        <h1 className="text-buttonColor md:text-[2.3vw] lg:text-[1.3vw] max-[500px]:text-lg m-6 max-[500px]:m-3 mt-1 font-semibold text-center">
           Randevular Takvimi
         </h1>
         <div className="colorsMean mt-[25px] mb-5  flex lg:block right-1 top-1 font-semibold justify-center items-center">
           <div className="lg:flex lg:items-center lg:justify-center">
-            <div className="flex max-[768px]:mr-2 mr-2">
-              <i class="fa-solid fa-circle text-appoinmentBox max-[768px]:text-xs text-[0.8vw]  flex justify-center items-center"></i>
-              <h1 className="max-[768px]:text-xs text-[0.8vw]   ml-2 max-[768px]:text-center flex justify-center items-center">
+            <div className="flex max-[500px]:mr-2 mr-2">
+              <i class="fa-solid fa-circle text-appoinmentBox max-[500px]:text-xs md:text-[1.5vw] lg:text-[0.8vw]  flex justify-center items-center"></i>
+              <h1 className="max-[500px]:text-xs md:text-[1.5vw] lg:text-[0.8vw]  ml-2 max-[500px]:text-center flex justify-center items-center">
                 Randevu alınmış saatler
               </h1>
             </div>
-            <div className="flex  max-[768px]:mr-2 mr-2">
-              <i class="fa-solid fa-circle text-calanderAppointment max-[768px]:text-xs text-[0.8vw]   flex justify-center items-center"></i>
-              <h1 className="max-[768px]:text-xs text-[0.8vw]   ml-2 max-[768px]:text-center flex justify-center items-center">
+            <div className="flex  max-[500px]:mr-2 mr-2">
+              <i class="fa-solid fa-circle text-calanderAppointment max-[500px]:text-xs md:text-[1.5vw] lg:text-[0.8vw]   flex justify-center items-center"></i>
+              <h1 className="max-[500px]:text-xs md:text-[1.5vw] lg:text-[0.8vw]   ml-2 max-[500px]:text-center flex justify-center items-center">
                 Randevu alınmamış saatler
               </h1>
             </div>
           </div>
           <div className="lg:flex lg:items-center lg:justify-center">
-            <div className="flex max-[768px]:mr-2 mr-2">
-              <i class="fa-solid fa-circle text-stepBorder1 max-[768px]:text-xs text-[0.8vw]  flex justify-center items-center"></i>
-              <h1 className="max-[768px]:text-xs text-[0.8vw]   ml-2 max-[768px]:text-center flex justify-center items-center">
+            <div className="flex max-[500px]:mr-2 mr-2">
+              <i class="fa-solid fa-circle text-stepBorder1 max-[500px]:text-xs md:text-[1.5vw] lg:text-[0.8vw]  flex justify-center items-center"></i>
+              <h1 className="max-[500px]:text-xs md:text-[1.5vw] lg:text-[0.8vw] ml-2 max-[500px]:text-center flex justify-center items-center">
                 Geçmiş Randevular
               </h1>
             </div>
-            <div className="flex max-[768px]:mr-2 mr-2">
-              <i class="fa-solid fa-circle text-appointmentRequest max-[768px]:text-xs text-[0.8vw]  flex  justify-center items-center"></i>
-              <h1 className="max-[768px]:text-xs text-[0.8vw]   ml-2 max-[768px]:text-center flex justify-center items-center">
+            <div className="flex max-[500px]:mr-2 mr-2">
+              <i class="fa-solid fa-circle text-appointmentRequest max-[500px]:text-xs md:text-[1.5vw] lg:text-[0.8vw]  flex  justify-center items-center"></i>
+              <h1 className="max-[500px]:text-xs md:text-[1.5vw] lg:text-[0.8vw]  ml-2 max-[500px]:text-center flex justify-center items-center">
                 Randevu Talepleri
               </h1>
             </div>
@@ -236,7 +236,7 @@ function FullCalendarComponent() {
             endAccessor="end"
             style={{
               height: isMobile ? "600px" : "35vw",
-              width: isMobile ? "" : "50vw",
+              width: isMobile ? "80vw" : "50vw",
             }}
             events={eventsFromSessionStorage}
             onSelectEvent={onSelectSlot}
