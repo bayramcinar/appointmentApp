@@ -236,7 +236,7 @@ function FullCalendarComponent() {
             endAccessor="end"
             style={{
               height: isMobile ? "600px" : "35vw",
-              width: isMobile ? "80vw" : "50vw",
+              width: isMobile ? "90vw" : "50vw",
             }}
             events={eventsFromSessionStorage}
             onSelectEvent={onSelectSlot}
