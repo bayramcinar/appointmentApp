@@ -1,7 +1,7 @@
 import React from "react";
 import pp from "../images/pp.png";
 
-const EventModal = ({ isOpen, onClose, event }) => {
+const EventModal = ({ isOpen, onClose, event, appointmentNumber }) => {
   if (!event) {
     return null;
   }
@@ -106,6 +106,19 @@ const EventModal = ({ isOpen, onClose, event }) => {
                     </div>
                     <div className="appointmentLanguage">
                       <h1 className="text-sm">{event.language}</h1>
+                    </div>
+                  </div>
+                  <div className="generalAppointmentNumber ml-5 mt-5">
+                    <div className="birthdayAreaSomeone flex">
+                      <i class="fa-solid fa-calendar-check text-callNowButtonColor flex items-center justify-center"></i>
+                      <h2 className="text-sm font-bold ml-[8px] text-center">
+                        Randevu Numarası
+                      </h2>
+                    </div>
+                    <div>
+                      <h2 className="text-sm text-center">
+                        {event.appointmentNumber}
+                      </h2>
                     </div>
                   </div>
                 </div>

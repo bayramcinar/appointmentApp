@@ -19,8 +19,19 @@ function Agenda() {
   const [itemsPerPage] = useState(6);
   const isMobile = window.innerWidth <= 768;
   const handleOpenModal = (event) => {
-    setSelectedEvent(event);
+    setSelectedEvent({
+      ...event,
+      appointmentNumber: getAppointmentNumber(event.time),
+    });
     setOpenModal(true);
+  };
+
+  // Function to get the appointment number
+  const getAppointmentNumber = (time) => {
+    const parsedInfos = time.split(/\s+/);
+    const dateArray = parsedInfos[0].split(".").join("");
+    const timeArray = parsedInfos[2].split(":").join("");
+    return dateArray + timeArray;
   };
 
   const handlePageChange = (newPage) => {
@@ -123,7 +134,6 @@ function Agenda() {
       const timeArray = parsedInfos[2].split(":").join("");
       const appointmentNumber = dateArray + timeArray;
       const actualIndex = (currentPage - 1) * itemsPerPage + index;
-
       return (
         <tr
           key={actualIndex}
