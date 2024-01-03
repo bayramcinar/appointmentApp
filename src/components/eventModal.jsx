@@ -85,8 +85,8 @@ const EventModal = ({ isOpen, onClose, event, appointmentNumber }) => {
                     </div>
                   </div>
                 </div>
-                <div className="flex">
-                  <div className="serviceNameArea mt-5">
+                <div className="flex w-full mt-5 justify-around">
+                  <div className="serviceNameArea">
                     <div className="service flex">
                       <i class="fa-solid fa-user text-callNowButtonColor flex items-center justify-center"></i>
                       <h2 className="text-sm font-bold ml-[8px] text-center">
@@ -97,7 +97,7 @@ const EventModal = ({ isOpen, onClose, event, appointmentNumber }) => {
                       <h1 className="text-sm">{event.service}</h1>
                     </div>
                   </div>
-                  <div className="languageArea ml-5 mt-5">
+                  <div className="languageArea">
                     <div className="textLogoArea flex">
                       <i class="fa-solid fa-earth-americas text-callNowButtonColor flex items-center justify-center"></i>
                       <h5 className="text-sm font-semibold ml-[8px] mt-auto mb-auto text-center">
@@ -108,7 +108,7 @@ const EventModal = ({ isOpen, onClose, event, appointmentNumber }) => {
                       <h1 className="text-sm">{event.language}</h1>
                     </div>
                   </div>
-                  <div className="generalAppointmentNumber ml-5 mt-5">
+                  <div className="generalAppointmentNumber">
                     <div className="birthdayAreaSomeone flex">
                       <i class="fa-solid fa-calendar-check text-callNowButtonColor flex items-center justify-center"></i>
                       <h2 className="text-sm font-bold ml-[8px] text-center">
