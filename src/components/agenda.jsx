@@ -137,47 +137,47 @@ function Agenda() {
               : "bg-white"
           }
         >
-          <td className="text-center border-dashed border-2 border-[#0003]">
+          <td className="text-center border-dashed border-2 border-[#0003] text-[0.8vw]">
             {actualIndex + 1}
           </td>
-          <td className="text-center border-dashed border-2 border-[#0003]">
+          <td className="text-center border-dashed border-2 border-[#0003] text-[0.8vw]">
             {appointmentNumber}
           </td>
-          <td className="text-center border-dashed border-2 border-[#0003]">
+          <td className="text-center border-dashed border-2 border-[#0003] text-[0.8vw]">
             {dateInfo}
           </td>
-          <td className="text-center border-dashed border-2 border-[#0003]">
+          <td className="text-center border-dashed border-2 border-[#0003] text-[0.8vw]">
             {timeInfo}
           </td>
-          <td className="text-center border-dashed border-2 border-[#0003]">
+          <td className="text-center border-dashed border-2 border-[#0003] text-[0.8vw]">
             {service}
           </td>
-          <td className="border-dashed border-2 border-[#0003]">
+          <td className="border-dashed border-2 border-[#0003] text-[0.8vw]">
             <div className="flex items-center justify-center">
               <div className="m-2">
                 <button
                   onClick={() => handleDelete(formEntry)}
-                  className="p-2 bg-red-600 text-white text-sm font-semibold rounded-xl"
+                  className="p-2 bg-red-600 text-white text-[0.8vw] font-semibold rounded-xl"
                 >
                   Sil
                 </button>
               </div>
               <div className="m-2 ml-0">
-                <button className="p-2 bg-appoinmentBox text-white text-sm font-semibold rounded-xl">
+                <button className="p-2 bg-appoinmentBox text-white text-[0.8vw] font-semibold rounded-xl">
                   Düzenle
                 </button>
               </div>
               <div className="m-2 ml-0">
                 <button
                   onClick={() => handleOpenModal(formEntry)}
-                  className="p-2 bg-lightBlue text-white text-sm font-semibold rounded-xl"
+                  className="p-2 bg-lightBlue text-white text-[0.8vw] font-semibold rounded-xl"
                 >
                   Detaylar
                 </button>
               </div>
             </div>
           </td>
-          <td className="text-center border-dashed border-2 border-[#0003] status">
+          <td className="text-center border-dashed border-2 border-[#0003] status text-[0.8vw]">
             {isPastAppointment ? (
               <span className="text-red-600">Randevu Sonlandı</span>
             ) : (
@@ -207,7 +207,7 @@ function Agenda() {
               </>
             )}
           </td>
-          <td className="text-center border-dashed border-2 border-[#0003]">
+          <td className="text-center border-dashed border-2 border-[#0003] text-[0.8vw]">
             {remainingTime.remainingHours > 0 ? (
               `${remainingTime.remainingHours} saat ${remainingTime.remainingMinutes} dakika`
             ) : (
@@ -470,7 +470,7 @@ function Agenda() {
       <div className="w-full shadow-xl overflow-auto max-h-600">
         <div className="flex">
           <div className="w-[33%] flex items-center justify-center"></div>
-          <h1 className=" lg:text-3xl max-[768px]:text-xl max-[768px]:w-[48%] w-[33%] text-center max-[768px]:justify:start font-semibold mt-5 sticky top-0 text-buttonColor p-3 pb-0">
+          <h1 className=" lg:text-[1.5vw] max-[768px]:text-xl max-[768px]:w-[48%] w-[33%] text-center max-[768px]:justify:start font-semibold mt-5 sticky top-0 text-buttonColor p-3 pb-0">
             Yaklaşan Randevularım
           </h1>
           <div className="flex w-[33%] max-[768px]:w-[48%] justify-end items-center mb-4 mt-6">
@@ -501,7 +501,7 @@ function Agenda() {
           {!isMobile && (
             <table className="rounded-xl w-full">
               <thead>
-                <tr className="sticky top-0 bg-buttonColor text-white">
+                <tr className="sticky top-0 bg-buttonColor text-white text-[0.9vw]">
                   <th className="p-3">Sıra</th>
                   <th className="p-3">Randevu Numarası</th>
                   <th className="p-3">Tarih</th>

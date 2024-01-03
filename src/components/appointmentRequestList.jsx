@@ -135,7 +135,7 @@ function AppointmentRequestList() {
   return (
     <>
       {numberOfNewAppointments > 0 && (
-        <h1 className="text-buttonColor text-2xl text-center font-semibold mt-[30px]">
+        <h1 className="text-buttonColor lg:text-[1.3vw]  text-center font-semibold mt-[30px]">
           Yeni Randevular ({numberOfNewAppointments} Yeni Randevu)
         </h1>
       )}

@@ -378,7 +378,7 @@ function SetAppointmentTime() {
       <div className="chooseSavedTimes flex items-center justify-center ">
         <button
           onClick={() => handleOptionChange(true)}
-          className={`bg-appoinmentBox p-1 text-white tex-sm rounded-3xl m-3 mb-0 px-7 ${
+          className={`bg-appoinmentBox p-1 text-white text-sm rounded-3xl m-3 mb-0 px-7 ${
             savedTimes === true ? "selected" : ""
           } ${savedTimes === true ? "bg-appoinmentBox" : "bg-backButtonColor"}`}
         >
@@ -386,7 +386,7 @@ function SetAppointmentTime() {
         </button>
         <button
           onClick={() => handleOptionChange(false)}
-          className={`bg-appoinmentBox p-1 text-white tex-sm rounded-3xl m-3 mb-0 px-7 ${
+          className={`bg-appoinmentBox p-1 text-white text-sm rounded-3xl m-3 mb-0 px-7 ${
             savedTimes === false ? "selected" : ""
           } ${
             savedTimes === false ? "bg-appoinmentBox" : "bg-backButtonColor"
