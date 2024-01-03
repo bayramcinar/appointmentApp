@@ -190,6 +190,7 @@ function FullCalendarComponent() {
     date: "Tarih",
     time: "Saat",
     event: "Olay",
+    more: "Daha",
   };
 
   return (
