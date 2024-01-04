@@ -4,7 +4,7 @@
   padding: 5px 10px;
   border: none;
   cursor: pointer;
-  font-size: 1vw;
+  font-size: 15px;
   font-weight: 600;
 }
 
@@ -52,16 +52,14 @@
   color: #000;
 }
 .rbc-event {
-  width: 5vw;
+  width: 100px;
   border-color: #1bce94 !important;
 }
 .rbc-event-content {
-  font-size: 0.6vw;
-  width: 3vw;
+  font-size: 12px;
+  width: 100px;
 }
-.rbc-show-more {
-  font-size: 0.65vw;
-}
+
 .rbc-row-segment {
   display: flex;
   align-items: center;
@@ -127,12 +125,5 @@
   }
   .rbc-day-slot .rbc-event {
     width: 100% !important;
-  }
-  .rbc-event {
-    width: 4vw;
-  }
-  .rbc-event-content {
-    font-size: 3vw;
-    width: 4vw;
   }
 }

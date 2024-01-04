@@ -74,18 +74,29 @@ function FullCalendarComponent() {
   const [selectedTimes, setSelectedTimes] = useState([]);
   const [isFullDayModalOpen, setFullDayModalOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState("");
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1400);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 500);
+  const [isHalfMid, setHalfMid] = useState(
+    500 < window.innerWidth && window.innerWidth <= 1024
+  );
+  const [isMid, setIsMid] = useState(
+    window.innerWidth <= 1360 && 1024 < window.innerWidth
+  );
+
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 500);
+    setHalfMid(500 <= window.innerWidth && window.innerWidth <= 1024);
+    setIsMid(window.innerWidth <= 1360 && 1024 <= window.innerWidth);
+  };
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1400);
-    };
+    handleResize();
+
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  });
+  }, []);
 
   useEffect(() => {
     const storedFormData = localStorage.getItem("formData");
@@ -105,15 +116,18 @@ function FullCalendarComponent() {
 
   selectedTimes.forEach((timeObj) => {
     if (timeObj.active) {
-      const event = {
-        title: "Boş Randevu",
-        start: moment(timeObj.date + " " + timeObj.time).toDate(),
-        end: moment(timeObj.date + " " + timeObj.time)
-          .add(timeObj.duration, "minutes")
-          .toDate(),
-      };
-
-      eventsFromSessionStorage.push(event);
+      try {
+        const event = {
+          title: "Boş Randevu",
+          start: moment(timeObj.date + " " + timeObj.time).toDate(),
+          end: moment(timeObj.date + " " + timeObj.time)
+            .add(timeObj.duration, "minutes")
+            .toDate(),
+        };
+        eventsFromSessionStorage.push(event);
+      } catch (error) {
+        console.log(error);
+      }
     }
   });
 
@@ -139,40 +153,39 @@ function FullCalendarComponent() {
   };
 
   const eventPropGetter = (event, start, end, isSelected) => {
-    const isPastEvent = moment(event.start).isBefore(moment(), "day");
-    if (event.requestInfo === "true") {
-      return {
-        className: "request-appointment",
-        style: {
-          backgroundColor: "#5D3587",
-        },
-      };
-    }
+    try {
+      if (event && event.title) {
+        const isPastEvent = moment(event.start).isBefore(moment(), "day");
 
-    if (isPastEvent) {
-      return {
-        className: "past-event",
-        style: {
-          backgroundColor: "gray",
-        },
-      };
-    }
+        if (event.requestInfo === "true") {
+          return {
+            className: "request-appointment",
+            style: {
+              backgroundColor: "#5D3587",
+            },
+          };
+        }
 
-    if (event.title === "Boş Randevu") {
-      return {
-        className: "empty-appointment",
-        style: {
-          backgroundColor: "#FF9800",
-        },
-      };
-    }
-    if (event.title === "Boş Randevu" && isPastEvent) {
-      return {
-        className: "past-event",
-        style: {
-          backgroundColor: "gray",
-        },
-      };
+        if (isPastEvent) {
+          return {
+            className: "past-event",
+            style: {
+              backgroundColor: "gray",
+            },
+          };
+        }
+
+        if (event.title === "Boş Randevu") {
+          return {
+            className: "empty-appointment",
+            style: {
+              backgroundColor: "#FF9800",
+            },
+          };
+        }
+      }
+    } catch (error) {
+      console.error("Error handling event:", error);
     }
 
     return {};
@@ -196,34 +209,34 @@ function FullCalendarComponent() {
   return (
     <>
       <div className="mx-auto relative w-full max-[500px]:w-[360px] p-2 lg:p-5">
-        <h1 className="text-buttonColor md:text-[2.3vw] lg:text-[1.3vw] max-[500px]:text-lg m-6 max-[500px]:m-3 mt-1 font-semibold text-center">
+        <h1 className="text-buttonColor text-2xl m-6 max-[500px]:m-3 mt-1 font-semibold text-center">
           Randevular Takvimi
         </h1>
         <div className="colorsMean mt-[25px] mb-5  flex lg:block right-1 top-1 font-semibold justify-center items-center">
           <div className="lg:flex lg:items-center lg:justify-center">
             <div className="flex max-[500px]:mr-2 mr-2">
-              <i class="fa-solid fa-circle text-appoinmentBox max-[500px]:text-xs md:text-[1.5vw] lg:text-[0.8vw]  flex justify-center items-center"></i>
-              <h1 className="max-[500px]:text-xs md:text-[1.5vw] lg:text-[0.8vw]  ml-2 max-[500px]:text-center flex justify-center items-center">
+              <i class="fa-solid fa-circle text-appoinmentBox max-[500px]:text-xs flex justify-center items-center"></i>
+              <h1 className="max-[500px]:text-xs  ml-2 max-[500px]:text-center flex justify-center items-center">
                 Randevu alınmış saatler
               </h1>
             </div>
             <div className="flex  max-[500px]:mr-2 mr-2">
-              <i class="fa-solid fa-circle text-calanderAppointment max-[500px]:text-xs md:text-[1.5vw] lg:text-[0.8vw]   flex justify-center items-center"></i>
-              <h1 className="max-[500px]:text-xs md:text-[1.5vw] lg:text-[0.8vw]   ml-2 max-[500px]:text-center flex justify-center items-center">
+              <i class="fa-solid fa-circle text-calanderAppointment max-[500px]:text-xs    flex justify-center items-center"></i>
+              <h1 className="max-[500px]:text-xs   ml-2 max-[500px]:text-center flex justify-center items-center">
                 Randevu alınmamış saatler
               </h1>
             </div>
           </div>
           <div className="lg:flex lg:items-center lg:justify-center">
             <div className="flex max-[500px]:mr-2 mr-2">
-              <i class="fa-solid fa-circle text-stepBorder1 max-[500px]:text-xs md:text-[1.5vw] lg:text-[0.8vw]  flex justify-center items-center"></i>
-              <h1 className="max-[500px]:text-xs md:text-[1.5vw] lg:text-[0.8vw] ml-2 max-[500px]:text-center flex justify-center items-center">
+              <i class="fa-solid fa-circle text-stepBorder1 max-[500px]:text-xs   flex justify-center items-center"></i>
+              <h1 className="max-[500px]:text-xs ml-2 max-[500px]:text-center flex justify-center items-center">
                 Geçmiş Randevular
               </h1>
             </div>
             <div className="flex max-[500px]:mr-2 mr-2">
-              <i class="fa-solid fa-circle text-appointmentRequest max-[500px]:text-xs md:text-[1.5vw] lg:text-[0.8vw]  flex  justify-center items-center"></i>
-              <h1 className="max-[500px]:text-xs md:text-[1.5vw] lg:text-[0.8vw]  ml-2 max-[500px]:text-center flex justify-center items-center">
+              <i class="fa-solid fa-circle text-appointmentRequest max-[500px]:text-xs  flex  justify-center items-center"></i>
+              <h1 className="max-[500px]:text-xs  ml-2 max-[500px]:text-center flex justify-center items-center">
                 Randevu Talepleri
               </h1>
             </div>
@@ -235,12 +248,24 @@ function FullCalendarComponent() {
             startAccessor="start"
             endAccessor="end"
             style={{
-              height: isMobile ? "600px" : "35vw",
-              width: isMobile ? "90vw" : "50vw",
+              height: isMobile
+                ? "600px"
+                : isHalfMid
+                ? "600px"
+                : isMid
+                ? "600px"
+                : "35vw",
+              width: isMobile
+                ? "90vw"
+                : isHalfMid
+                ? "70vw"
+                : isMid
+                ? "45vw"
+                : "60vw",
             }}
             events={eventsFromSessionStorage}
             onSelectEvent={onSelectSlot}
-            defaultView={isMobile ? Views.WEEK : Views.MONTH}
+            defaultView={isMobile ? Views.WEEK : Views.WEEK}
             views={isMobile ? ["week", "day"] : ["month", "week", "day"]}
             selectable
             popup

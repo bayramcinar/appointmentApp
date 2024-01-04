@@ -135,11 +135,11 @@ function AppointmentRequestList() {
   return (
     <>
       {numberOfNewAppointments > 0 && (
-        <h1 className="text-buttonColor lg:text-[1.3vw]  text-center font-semibold mt-[30px]">
+        <h1 className="text-buttonColor text-xl  text-center font-semibold mt-[30px]">
           Yeni Randevular ({numberOfNewAppointments} Yeni Randevu)
         </h1>
       )}
-      <div className="h-fit relative flex items-center flex-wrap justify-center w-full max-[768px]:block bg-dayComponentBg">
+      <div className="h-fit relative flex items-center flex-wrap justify-center w-full max-[768px]:block bg-dayComponentBg rounded-xl">
         {formData.length > 2 ? (
           renderSwiper(formData)
         ) : (

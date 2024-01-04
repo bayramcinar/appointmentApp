@@ -17,7 +17,7 @@ function Agenda() {
   const [filter, setFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(6);
-  const isMobile = window.innerWidth <= 768;
+  const isMobile = window.innerWidth <= 500;
   const handleOpenModal = (event) => {
     setSelectedEvent({
       ...event,
@@ -147,47 +147,47 @@ function Agenda() {
               : "bg-white"
           }
         >
-          <td className="text-center border-dashed border-2 border-[#0003] text-[0.8vw]">
+          <td className="text-center border-dashed border-2 border-[#0003] ">
             {actualIndex + 1}
           </td>
-          <td className="text-center border-dashed border-2 border-[#0003] text-[0.8vw]">
+          <td className="text-center border-dashed border-2 border-[#0003] ">
             {appointmentNumber}
           </td>
-          <td className="text-center border-dashed border-2 border-[#0003] text-[0.8vw]">
+          <td className="text-center border-dashed border-2 border-[#0003]">
             {dateInfo}
           </td>
-          <td className="text-center border-dashed border-2 border-[#0003] text-[0.8vw]">
+          <td className="text-center border-dashed border-2 border-[#0003]">
             {timeInfo}
           </td>
-          <td className="text-center border-dashed border-2 border-[#0003] text-[0.8vw]">
+          <td className="text-center border-dashed border-2 border-[#0003]">
             {service}
           </td>
-          <td className="border-dashed border-2 border-[#0003] text-[0.8vw]">
+          <td className="border-dashed border-2 border-[#0003]">
             <div className="flex items-center justify-center">
               <div className="m-2">
                 <button
                   onClick={() => handleDelete(formEntry)}
-                  className="p-2 bg-red-600 text-white text-[0.8vw] font-semibold rounded-xl"
+                  className="p-2 bg-red-600 text-white font-semibold rounded-xl"
                 >
                   Sil
                 </button>
               </div>
               <div className="m-2 ml-0">
-                <button className="p-2 bg-appoinmentBox text-white text-[0.8vw] font-semibold rounded-xl">
+                <button className="p-2 bg-appoinmentBox text-white  font-semibold rounded-xl">
                   Düzenle
                 </button>
               </div>
               <div className="m-2 ml-0">
                 <button
                   onClick={() => handleOpenModal(formEntry)}
-                  className="p-2 bg-lightBlue text-white text-[0.8vw] font-semibold rounded-xl"
+                  className="p-2 bg-lightBlue text-white font-semibold rounded-xl"
                 >
                   Detaylar
                 </button>
               </div>
             </div>
           </td>
-          <td className="text-center border-dashed border-2 border-[#0003] status text-[0.8vw]">
+          <td className="text-center border-dashed border-2 border-[#0003] status">
             {isPastAppointment ? (
               <span className="text-red-600">Randevu Sonlandı</span>
             ) : (
@@ -217,7 +217,7 @@ function Agenda() {
               </>
             )}
           </td>
-          <td className="text-center border-dashed border-2 border-[#0003] text-[0.8vw]">
+          <td className="text-center border-dashed border-2 border-[#0003] ">
             {remainingTime.remainingHours > 0 ? (
               `${remainingTime.remainingHours} saat ${remainingTime.remainingMinutes} dakika`
             ) : (
@@ -511,7 +511,7 @@ function Agenda() {
           {!isMobile && (
             <table className="rounded-xl w-full">
               <thead>
-                <tr className="sticky top-0 bg-buttonColor text-white text-[0.9vw]">
+                <tr className="sticky top-0 bg-buttonColor text-white">
                   <th className="p-3">Sıra</th>
                   <th className="p-3">Randevu Numarası</th>
                   <th className="p-3">Tarih</th>

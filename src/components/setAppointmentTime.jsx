@@ -175,7 +175,7 @@ function SetAppointmentTime() {
     //KAYITLI SAATLER VEYA SAAT SEÇ EKRANLARINDA GEZİNMEMEİZİ SAĞLAYAN FONKSİYON
     setSavedTimes(option);
   };
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
   const renderSwiper = (times) => {
     const itemsPerSlide = 6;
     const swiperSlides = [];
@@ -341,7 +341,7 @@ function SetAppointmentTime() {
     tooltip.style.display = "none";
   };
   return (
-    <div className="ml-auto mr-auto bg-dayComponentBg mt-10 setAppointmentTime flex items-center justify-center flex-col lg:h-auto sm:h-auto shadow-xl border-stepBorder1 border-2 rounded-xl lg:min-h-[48vw] relative p-[1vw] w-[auto] max-[768px]:p-1 max-[768px]:max-w-[350px]">
+    <div className="ml-auto mr-auto bg-dayComponentBg mt-10 setAppointmentTime flex items-center justify-center flex-col lg:h-auto sm:h-auto shadow-xl border-stepBorder1 border-2 rounded-xl lg:min-h-[35vw] relative p-[1vw] w-[auto] max-[768px]:p-1 max-[768px]:max-w-[350px]">
       <div className="infoIcon absolute right-2 top-4">
         <div
           className="infoIcon relative inline-block cursor-pointer"
