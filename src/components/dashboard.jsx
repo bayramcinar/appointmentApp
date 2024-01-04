@@ -12,11 +12,11 @@ function Dashboard() {
         <div className="bg-dayComponentBg lg:mx-[4rem]">
           <AppointmentInfos />
         </div>
-        <div className="block xl:flex  lg:mx-[4rem] items-center justify-center">
+        <div className="block lg:flex  lg:mx-[4rem] items-center justify-center  lg:scale-[0.80] md:scale-[0.85] xl:scale-[1]">
           <div className="bg-dayComponentBg lg:scale-[1] md:scale-[0.9] lg:mr-[1rem] border-stepBorder1 border-2 rounded-xl h-fit max-[768px]:h-auto  max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 w-full">
             <Agenda />
           </div>
-          <div className="bg-dayComponentBg max-[1280px]:flex max-[1280px]:justify-center max-[1280px]:items-center  max-[1280px]:flex-col  max-[1280px]:w-full  lg:scale-[1] md:scale-[0.9] border-stepBorder1 border-2 rounded-xl  max-[768px]:h-auto w-[400px] max-[768px]:mx-auto max-[768px]:w-[23rem]  mb-5 justify-center items-center">
+          <div className="bg-dayComponentBg max-[1023px]:flex max-[1023px]:justify-center max-[1023px]:items-center  max-[1023px]:flex-col  max-[1023px]:w-full  lg:scale-[1] md:scale-[0.9] border-stepBorder1 border-2 rounded-xl  max-[768px]:h-auto w-[400px] max-[768px]:mx-auto max-[768px]:w-[23rem]  mb-5 justify-center items-center">
             <AppointmentRequestList />
           </div>
         </div>
