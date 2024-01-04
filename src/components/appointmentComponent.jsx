@@ -299,7 +299,7 @@ function AppointmentComponent() {
         />
       )}
       {!showFinishScreen && (
-        <div className="bg-dayComponentBg generalDiv lg:w-[35rem] ml-auto mr-auto mt-[50px] sm:w-[26rem] md:w-[26rem] md:h-auto sm:h-auto scale-50 md:scale-100">
+        <div className="bg-dayComponentBg generalDiv lg:w-[35rem] ml-auto mr-auto mt-[50px] sm:w-[26rem] md:w-[26rem] md:h-auto sm:h-auto lg:scale-[0.8] xl:scale-[0.9] md:scale-[0.8]">
           <Steps active={step} />
           {step === 2 && (
             <ServiceComponent
