@@ -139,7 +139,7 @@ function AppointmentRequestList() {
           Yeni Randevular ({numberOfNewAppointments} Yeni Randevu)
         </h1>
       )}
-      <div className="h-fit relative flex items-center flex-wrap justify-center w-full max-[768px]:block bg-dayComponentBg rounded-xl">
+      <div className="relative flex items-center flex-wrap justify-center w-full max-[768px]:block bg-dayComponentBg rounded-xl">
         {formData.length > 2 ? (
           renderSwiper(formData)
         ) : (

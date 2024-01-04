@@ -507,7 +507,7 @@ function Agenda() {
             Yaklaşan randevunuz bulunmamaktadır.
           </h1>
         )}
-        <div className="max-h-[465px] max-[768px]:max-h-[600px] agendaCardSwiper">
+        <div className=" agendaCardSwiper">
           {!isMobile && (
             <table className="rounded-xl w-full">
               <thead>
