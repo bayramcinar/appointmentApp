@@ -81,7 +81,10 @@ function AgendaCard({
             </button>
           </div>
           <div className="m-1">
-            <button className="p-1 bg-appoinmentBox text-white text-xs font-semibold rounded-lg w-full">
+            <button
+              onClick={() => edit()}
+              className="p-1 bg-appoinmentBox text-white text-xs font-semibold rounded-lg w-full"
+            >
               Düzenle
             </button>
           </div>

@@ -48,10 +48,17 @@ function ContactForm({
             <Formik
               initialValues={{
                 kimIçin: "Kendim",
+                firstName: "Bayram", //DATABASE DEN GİRİŞ YAPMIŞ KULLANICININ BİLGİLERİNİ ALACAĞIMIZ YER
+                lastName: "Çınar",
+                dateOfBirth: "2002-13-02",
+                gender: "erkek",
                 time: time,
                 service: service,
                 notes: "",
-                language: "", // New field for language selection
+                language: "",
+                appointmentNumber:
+                  time.split(" ")[0].split(".").join("") +
+                  time.split(" ")[2].split(":").join(""),
                 duration: duration,
                 confirm: "false",
               }}
@@ -112,6 +119,9 @@ function ContactForm({
                 service: service,
                 time: time,
                 duration: duration,
+                appointmentNumber:
+                  time.split(" ")[0].split(".").join("") +
+                  time.split(" ")[2].split(":").join(""),
                 language: "",
                 confirm: "false",
               }}

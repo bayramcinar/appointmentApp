@@ -1,7 +1,14 @@
 import React from "react";
 import pp from "../images/pp.png";
 
-const EventModal = ({ isOpen, onClose, event }) => {
+const EventModal = ({
+  isOpen,
+  onClose,
+  event,
+  randevuSaat,
+  randevuTarih,
+  endSaat,
+}) => {
   if (!event) {
     return null;
   }
@@ -70,7 +77,7 @@ const EventModal = ({ isOpen, onClose, event }) => {
                         <h2 className="text-sm text-center">{event.gender}</h2>
                       </div>
                     </div>
-                    <div className="generalBirthdayAreaSomeOne mr-5">
+                    <div className="generalBirthdayAreaSomeOne mr-5 mt-3">
                       <div className="birthdayAreaSomeone flex">
                         <i class="fa-solid fa-cake-candles text-callNowButtonColor flex items-center justify-center"></i>
                         <h2 className="text-sm font-bold ml-[8px] text-center">
@@ -80,6 +87,19 @@ const EventModal = ({ isOpen, onClose, event }) => {
                       <div>
                         <h2 className="text-sm text-center">
                           {event.dateOfBirth}
+                        </h2>
+                      </div>
+                    </div>
+                    <div className="generalAppointmentTime mr-5 mt-3">
+                      <div className="appointmentTimeArea flex">
+                        <i class="fa-regular fa-calendar-check text-callNowButtonColor flex items-center justify-center"></i>
+                        <h2 className="text-sm font-bold ml-[8px] text-center">
+                          Randevu Tarihi
+                        </h2>
+                      </div>
+                      <div>
+                        <h2 className="text-sm text-center">
+                          {randevuTarih} {randevuSaat}-{endSaat}
                         </h2>
                       </div>
                     </div>

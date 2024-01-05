@@ -9,10 +9,12 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation, Pagination } from "swiper/modules";
+import EditModal from "./editModal";
 
 function Agenda() {
   const [formData, setFormData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [filter, setFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,19 +23,15 @@ function Agenda() {
   const handleOpenModal = (event) => {
     setSelectedEvent({
       ...event,
-      appointmentNumber: getAppointmentNumber(event.time),
     });
     setOpenModal(true);
   };
-
-  // Function to get the appointment number
-  const getAppointmentNumber = (time) => {
-    const parsedInfos = time.split(/\s+/);
-    const dateArray = parsedInfos[0].split(".").join("");
-    const timeArray = parsedInfos[2].split(":").join("");
-    return dateArray + timeArray;
+  const handleOpenEditModal = (event) => {
+    setSelectedEvent({
+      ...event,
+    });
+    setOpenEditModal(true);
   };
-
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
@@ -77,7 +75,9 @@ function Agenda() {
   const handleCloseModal = () => {
     setOpenModal(false);
   };
-
+  const handleCloseEditModal = () => {
+    setOpenEditModal(false);
+  };
   useEffect(() => {
     // localStorage'dan formData'yı al
     const storedFormData = localStorage.getItem("formData");
@@ -112,6 +112,17 @@ function Agenda() {
     return () => clearInterval(interval);
   }, []);
 
+  function calculateEndTime(startTime, duration) {
+    const durationMinutes = parseInt(duration, 10);
+    const [hours, minutes] = startTime.split(":").map(Number);
+    const endHours = Math.floor((minutes + durationMinutes) / 60);
+    const endMinutes = (minutes + durationMinutes) % 60;
+    const endTime = `${hours + endHours}:${endMinutes
+      .toString()
+      .padStart(2, "0")}`;
+    return endTime;
+  }
+
   function convertFormDataToTable() {
     return paginatedFormData.map((formEntry, index) => {
       const status = formEntry.confirm;
@@ -130,9 +141,6 @@ function Agenda() {
       const isPastAppointment = appointmentDate < currentDate;
       const isToday = isSameDay(appointmentDate, currentDate);
 
-      const dateArray = parsedInfos[0].split(".").join("");
-      const timeArray = parsedInfos[2].split(":").join("");
-      const appointmentNumber = dateArray + timeArray;
       const actualIndex = (currentPage - 1) * itemsPerPage + index;
       return (
         <tr
@@ -151,7 +159,7 @@ function Agenda() {
             {actualIndex + 1}
           </td>
           <td className="text-center border-dashed border-2 border-[#0003] ">
-            {appointmentNumber}
+            {formEntry.appointmentNumber}
           </td>
           <td className="text-center border-dashed border-2 border-[#0003]">
             {dateInfo}
@@ -173,7 +181,10 @@ function Agenda() {
                 </button>
               </div>
               <div className="m-2 ml-0">
-                <button className="p-2 bg-appoinmentBox text-white  font-semibold rounded-xl">
+                <button
+                  onClick={() => handleOpenEditModal(formEntry)}
+                  className="p-2 bg-appoinmentBox text-white  font-semibold rounded-xl"
+                >
                   Düzenle
                 </button>
               </div>
@@ -415,14 +426,11 @@ function Agenda() {
                 `${formEntry.firstName || ""} ${
                   formEntry.lastName || ""
                 }`.trim() || "Bayram Çınar";
-              const dateArray = parsedInfos[0].split(".").join("");
-              const timeArray = parsedInfos[2].split(":").join("");
-              const appointmentNumber = dateArray + timeArray;
 
               return (
                 <AgendaCard
                   key={index}
-                  appointmentNumber={appointmentNumber}
+                  appointmentNumber={formEntry.appointmentNumber}
                   name={name}
                   remainingTime={
                     remainingTime.remainingHours > 0 ? (
@@ -441,6 +449,7 @@ function Agenda() {
                   date={dateInfo}
                   showDetails={() => handleOpenModal(formEntry)}
                   deleteFunction={() => handleDelete(formEntry)}
+                  edit={() => handleOpenEditModal(formEntry)}
                 />
               );
             })}
@@ -553,6 +562,22 @@ function Agenda() {
         isOpen={openModal}
         onClose={handleCloseModal}
         event={selectedEvent}
+        randevuTarih={selectedEvent && selectedEvent.time.split(" ")[0]}
+        randevuSaat={selectedEvent && selectedEvent.time.split(" ")[2]}
+        endSaat={
+          selectedEvent &&
+          calculateEndTime(
+            selectedEvent.time.split(" ")[2],
+            selectedEvent.duration
+          )
+        }
+      />
+      <EditModal
+        isOpen={openEditModal}
+        onClose={handleCloseEditModal}
+        event={selectedEvent}
+        randevuTarih={selectedEvent && selectedEvent.time.split(" ")[0]}
+        randevuSaat={selectedEvent && selectedEvent.time.split(" ")[2]}
       />
     </>
   );
