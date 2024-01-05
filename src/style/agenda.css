@@ -1,13 +1,12 @@
-/* Custom scrollbar styles */
 ::-webkit-scrollbar {
   width: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #d1d5db; /* Adjust color as needed */
+  background-color: #d1d5db;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #f3f4f6; /* Adjust color as needed */
+  background-color: #f3f4f6;
 }

@@ -10,7 +10,7 @@ const RequestModal = ({ isOpen, onClose, event }) => {
     : "hidden";
 
   return (
-    <div className={modalClass1}>
+    <div onClick={onClose} className={modalClass1}>
       <div className="absolute w-full h-full flex items-center justify-center">
         <div className="relative w-[430px] max-[768px]:w-[375px] p-5 bg-white rounded-2xl animate__animated animate__fadeInDown">
           <div className="flex items-center justify-center relative">

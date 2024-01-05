@@ -1,7 +1,7 @@
 import React from "react";
 import pp from "../images/pp.png";
 
-const EventModal = ({ isOpen, onClose, event, appointmentNumber }) => {
+const EventModal = ({ isOpen, onClose, event }) => {
   if (!event) {
     return null;
   }
@@ -9,7 +9,7 @@ const EventModal = ({ isOpen, onClose, event, appointmentNumber }) => {
     ? "fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-gray-600 bg-opacity-50"
     : "hidden";
   return (
-    <div className={modalClass}>
+    <div className={modalClass} onClick={onClose}>
       <div className="absolute w-full h-full flex items-center justify-center">
         <div className="relative w-[430px] max-[768px]:w-[375px] p-5 bg-white rounded-2xl animate__animated animate__fadeInDown">
           <div className="flex items-center justify-center relative">

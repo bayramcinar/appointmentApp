@@ -52,12 +52,12 @@
   color: #000;
 }
 .rbc-event {
-  width: 100px !important;
+  width: 80% !important;
   border-color: #1bce94 !important;
 }
 .rbc-event-content {
   font-size: 12px;
-  width: 110% !important;
+  width: 80% !important;
 }
 
 .rbc-row-segment {
