@@ -340,6 +340,8 @@ function SetAppointmentTime() {
     const tooltip = document.querySelector(".tooltip");
     tooltip.style.display = "none";
   };
+
+  const emptyOrNot = savedTimesArray.length;
   return (
     <div className=" bg-dayComponentBg  setAppointmentTime flex items-center justify-center flex-col relative rounded-xl">
       <div className="infoIcon absolute right-2 top-4">
@@ -422,12 +424,16 @@ function SetAppointmentTime() {
                   />
                 </div>
                 <div className="w-full justify-center flex items-center">
-                  <div className="savedTimesList flex flex-wrap items-center justify-center w-[385px] h-auto relative">
+                  <div
+                    className={`savedTimesList flex flex-wrap items-center justify-center ${
+                      emptyOrNot > 0 ? "w-[385px]" : "full"
+                    } h-auto relative`}
+                  >
                     {savedTimesArray.length > 0 &&
                       renderSwiper(savedTimesArray)}
 
                     {savedTimesArray.length === 0 && (
-                      <h2 className="text-sm text-red-600 text-center font-semibold m-5">
+                      <h2 className="text-sm text-red-600 text-center font-semibold m-5 w-full">
                         Kayıtlı saat bulunmamaktadır
                       </h2>
                     )}
@@ -452,7 +458,11 @@ function SetAppointmentTime() {
             {savedTimes === true && (
               <>
                 <div className="flex items-center justify-center flex-col">
-                  <div className="chooseSavedTimes flex items-center justify-center flex-wrap mx-[15px] w-[345px] relative">
+                  <div
+                    className={`chooseSavedTimes flex flex-wrap items-center justify-center ${
+                      emptyOrNot > 0 ? "w-[345px]" : "full"
+                    }  flex-wrap mx-[15px] relative`}
+                  >
                     {renderSwiper2(savedTimesArray, formikProps)}
                     {savedTimesArray.length === 0 && (
                       <h1 className="text-center text-sm text-red-600 font-semibold mx-auto">

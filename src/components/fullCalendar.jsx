@@ -212,8 +212,8 @@ function FullCalendarComponent() {
         <h1 className="text-buttonColor text-2xl m-6 max-[500px]:m-3 mt-1 font-semibold text-center">
           Randevular Takvimi
         </h1>
-        <div className="colorsMean mt-[25px] mb-5  flex lg:block right-1 top-1 font-semibold justify-center items-center">
-          <div className="lg:flex lg:items-center lg:justify-center">
+        <div className="colorsMean mt-[25px] mb-5  flex lg:flex right-1 top-1 font-semibold justify-center items-center">
+          <div className="lg:flex lg:flex-col lg:justify-start">
             <div className="flex max-[500px]:mr-2 mr-2">
               <i class="fa-solid fa-circle text-appoinmentBox max-[500px]:text-xs flex justify-center items-center"></i>
               <h1 className="max-[500px]:text-xs  ml-2 max-[500px]:text-center flex justify-center items-center">
@@ -227,7 +227,7 @@ function FullCalendarComponent() {
               </h1>
             </div>
           </div>
-          <div className="lg:flex lg:items-center lg:justify-center">
+          <div className="lg:flex lg:flex-col lg:justify-start">
             <div className="flex max-[500px]:mr-2 mr-2">
               <i class="fa-solid fa-circle text-stepBorder1 max-[500px]:text-xs   flex justify-center items-center"></i>
               <h1 className="max-[500px]:text-xs ml-2 max-[500px]:text-center flex justify-center items-center">
