@@ -425,7 +425,7 @@ function Agenda() {
               const name =
                 `${formEntry.firstName || ""} ${
                   formEntry.lastName || ""
-                }`.trim() || "Bayram Çınar";
+                }`.trim() || "Bayram Çınar"; //DATA BASE DEN ALINAN GİRİŞ YAPMIŞ KULLANICI İSMİ
 
               return (
                 <AgendaCard
@@ -497,7 +497,7 @@ function Agenda() {
               <select
                 value={filter}
                 onChange={(e) => handleFilterChange(e.target.value)}
-                className="p-2 border rounded-3xl text-sm max-[768px]:w-[120px]"
+                className="p-2 w-[11vw] border rounded-3xl text-sm max-[768px]:w-[120px]"
               >
                 <option value="all">Tüm Randevular</option>
                 <option value="past">Geçmiş Randevular</option>

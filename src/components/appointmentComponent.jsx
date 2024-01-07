@@ -294,108 +294,106 @@ function AppointmentComponent() {
           lastName={lastName}
           duration={appointmentDuration}
           price={"100"}
-          serviceProviderName={"Bayram Çınar"}
-          serviceProviderJob={"Uzman, Klinik Psikoloji"}
+          serviceProviderName={"Bayram Çınar"} //DATABASE DEN ALINAN SERVİSİ VEREN KİŞİNİN ADI
+          serviceProviderJob={"Uzman, Klinik Psikoloji"} //DATABASE DEN ALINAN SERVİSİ VEREN KİŞİNİN MESLEĞİ
         />
       )}
       {!showFinishScreen && (
-        <div className=" lg:scale-[0.8] xl:scale-[0.9] md:scale-[0.8]">
-          <div className="bg-dayComponentBg generalDiv lg:w-[35rem] ml-auto mr-auto mt-[50px] sm:w-[26rem] md:w-[26rem] md:h-auto sm:h-auto">
-            <Steps active={step} />
+        <div className="bg-dayComponentBg generalDiv lg:w-[35rem] ml-auto mr-auto mt-[50px] sm:w-[26rem] md:w-[26rem] md:h-auto sm:h-auto">
+          <Steps active={step} />
+          {step === 2 && (
+            <ServiceComponent
+              services={obje}
+              setReturnService={setReturnService}
+            />
+          )}
+          {step === 1 && (
+            <TimeAndDate
+              request={request}
+              setRequest={setRequest}
+              selectedTimes={selectedTimes}
+              setReturnDate={setReturnDate}
+              times={selectedTimes}
+              setDuration1={setDuration}
+              live={true}
+            />
+          )}
+          {step === 3 && (
+            <>
+              <ContactForm
+                duration={appointmentDuration}
+                time={returnDate}
+                service={returnService}
+                onFormSubmit={handleFinish}
+                onOptionSelect={handleOptionChange}
+                languages={[
+                  {
+                    language: "English",
+                    flagImg: english,
+                  },
+                  {
+                    language: "Turkish",
+                    flagImg: turkish,
+                  },
+                ]}
+              />
+            </>
+          )}
+          <div className="flex items-center justify-center buttonArea mt-4">
+            {step > 1 && (
+              <div className="nextStep flex items-center justify-center m-3 mb-5">
+                <button
+                  onClick={handleBack}
+                  className="bg-buttonColor rounded-3xl flex items-center justify-center w-44 buttons"
+                >
+                  <h4 className="text-text p-2 text-lg tracking-wider">
+                    <i className="mr-16 fa-solid fa-arrow-left"></i> Geri
+                  </h4>
+                </button>
+              </div>
+            )}
             {step === 2 && (
-              <ServiceComponent
-                services={obje}
-                setReturnService={setReturnService}
-              />
-            )}
-            {step === 1 && (
-              <TimeAndDate
-                request={request}
-                setRequest={setRequest}
-                selectedTimes={selectedTimes}
-                setReturnDate={setReturnDate}
-                times={selectedTimes}
-                setDuration1={setDuration}
-                live={true}
-              />
-            )}
-            {step === 3 && (
               <>
-                <ContactForm
-                  duration={appointmentDuration}
-                  time={returnDate}
-                  service={returnService}
-                  onFormSubmit={handleFinish}
-                  onOptionSelect={handleOptionChange}
-                  languages={[
-                    {
-                      language: "English",
-                      flagImg: english,
-                    },
-                    {
-                      language: "Turkish",
-                      flagImg: turkish,
-                    },
-                  ]}
-                />
-              </>
-            )}
-            <div className="flex items-center justify-center buttonArea mt-4">
-              {step > 1 && (
-                <div className="nextStep flex items-center justify-center m-3 mb-5">
-                  <button
-                    onClick={handleBack}
-                    className="bg-buttonColor rounded-3xl flex items-center justify-center w-44 buttons"
-                  >
-                    <h4 className="text-text p-2 text-lg tracking-wider">
-                      <i className="mr-16 fa-solid fa-arrow-left"></i> Geri
-                    </h4>
-                  </button>
-                </div>
-              )}
-              {step === 2 && (
-                <>
-                  <div className="nextStep flex items-center justify-center m-3 mb-5">
-                    <button
-                      onClick={handleNext}
-                      className="bg-buttonColor rounded-3xl flex items-center justify-center w-44 buttons"
-                    >
-                      <h4 className="text-text p-2 text-lg tracking-wider">
-                        İleri <i className="ml-8 fa-solid fa-arrow-right"></i>
-                      </h4>
-                    </button>
-                  </div>
-                </>
-              )}
-              {step < 2 && (
                 <div className="nextStep flex items-center justify-center m-3 mb-5">
                   <button
                     onClick={handleNext}
                     className="bg-buttonColor rounded-3xl flex items-center justify-center w-44 buttons"
                   >
                     <h4 className="text-text p-2 text-lg tracking-wider">
-                      İleri<i className="ml-8 fa-solid fa-arrow-right"></i>
+                      İleri <i className="ml-8 fa-solid fa-arrow-right"></i>
                     </h4>
                   </button>
                 </div>
-              )}
-              {step === 3 && (
-                <>
-                  <div className="nextStep flex items-center justify-center m-3 mb-5">
-                    <button
-                      value="Submit"
-                      form="myform"
-                      type="submit"
-                      className="bg-buttonColor rounded-3xl flex items-center justify-center w-44 buttons"
-                    >
-                      <h4 className="text-text p-2 text-lg tracking-wider">
-                        Bitir<i className="ml-14 fa-solid fa-check"></i>
-                      </h4>
-                    </button>
-                  </div>
-                </>
-              )}
-            </div>
+              </>
+            )}
+            {step < 2 && (
+              <div className="nextStep flex items-center justify-center m-3 mb-5">
+                <button
+                  onClick={handleNext}
+                  className="bg-buttonColor rounded-3xl flex items-center justify-center w-44 buttons"
+                >
+                  <h4 className="text-text p-2 text-lg tracking-wider">
+                    İleri<i className="ml-8 fa-solid fa-arrow-right"></i>
+                  </h4>
+                </button>
+              </div>
+            )}
+            {step === 3 && (
+              <>
+                <div className="nextStep flex items-center justify-center m-3 mb-5">
+                  <button
+                    value="Submit"
+                    form="myform"
+                    type="submit"
+                    className="bg-buttonColor rounded-3xl flex items-center justify-center w-44 buttons"
+                  >
+                    <h4 className="text-text p-2 text-lg tracking-wider">
+                      Bitir<i className="ml-14 fa-solid fa-check"></i>
+                    </h4>
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}

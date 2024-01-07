@@ -36,7 +36,7 @@ const getSessionStorageData = (formData, setRequest) => {
     const name =
       formEntry.firstName && formEntry.lastName
         ? formEntry.firstName + " " + formEntry.lastName
-        : "Bayram Çınar";
+        : "Bayram Çınar"; // VEYA DAN SONRAKİ YERE DATA BASE DEN GİRİŞ YAPMIŞ KULLANICININ BİLGİLERİNİ VERECEĞİMİZ YERS
     const gender = formEntry.gender || "erkek";
     const birthday = formEntry.dateOfBirth || "2023-02-13";
     const language = formEntry.language;
