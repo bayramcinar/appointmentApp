@@ -343,7 +343,7 @@ function SetAppointmentTime() {
 
   const emptyOrNot = savedTimesArray.length;
   return (
-    <div className="flex items-center border-stepBorder1  p-[1vw] w-[auto] max-[768px]:p-1 max-[768px]:max-w-[380px] max-[768px]:mt-10 ml-auto mr-auto lg:h-auto sm:h-auto lg:min-h-[35vw]  border-2 shadow-xl rounded-xl lg:scale-[1] md:scale-[0.9] justify-center">
+    <div className="flex items-center border-stepBorder1 w-[auto] max-[768px]:p-1 max-[768px]:max-w-[380px] max-[768px]:mt-10 ml-auto mr-auto lg:h-auto sm:h-auto lg:min-h-[35vw]  border-2 shadow-xl rounded-xl lg:scale-[1] md:scale-[0.9] justify-center">
       <div className=" bg-dayComponentBg  setAppointmentTime flex items-center justify-center flex-col relative rounded-xl">
         <div className="infoIcon absolute right-2 top-4">
           <div
