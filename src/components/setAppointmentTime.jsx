@@ -343,176 +343,188 @@ function SetAppointmentTime() {
 
   const emptyOrNot = savedTimesArray.length;
   return (
-    <div className=" bg-dayComponentBg  setAppointmentTime flex items-center justify-center flex-col relative rounded-xl">
-      <div className="infoIcon absolute right-2 top-4">
-        <div
-          className="infoIcon relative inline-block cursor-pointer"
-          onMouseEnter={handleInfoIconHover}
-          onMouseLeave={handleInfoIconLeave}
-        >
-          <i className="fa-solid fa-circle-info text-xl text-buttonColor"></i>
-        </div>
-        <div className="tooltip z-[3] hidden bg-white border border-gray-300 p-2 rounded-xl shadow-lg absolute transform -translate-x-0 right-[2px] transition duration-300 w-[200px]">
-          <h1 className="text-xs font-semibold text-center text-red-500">
-            Randevu süresi {appointmentDuration} dakika, randevu ücreti{" "}
-            {appointmentPrice} ₺ olarak ayarlıdır. Dilerseniz bu bilgileri
-            profilinizden güncelleyebilirsiniz.
-          </h1>
-          <div className=" my-1 flex items-center justify-center">
-            <div className="flex mr-5">
-              <i class="fa-solid fa-clock text-lightBlue flex items-center justify-center mr-2"></i>
-              <h1 className="text-xs font-semibold text-center mb-[2px]">
-                {appointmentDuration} Dakika
-              </h1>
-            </div>
-            <div className="flex">
-              <i class="fa-solid fa-money-bill-1-wave text-lightBlue flex items-center justify-center mr-2"></i>
-              <h1 className="text-xs font-semibold text-center  mb-[2px]">
-                {appointmentPrice} ₺
-              </h1>
+    <div className="flex items-center border-stepBorder1  p-[1vw] w-[auto] max-[768px]:p-1 max-[768px]:max-w-[380px] max-[768px]:mt-10 ml-auto mr-auto lg:h-auto sm:h-auto lg:min-h-[35vw]  border-2 shadow-xl rounded-xl lg:scale-[1] md:scale-[0.9] justify-center">
+      <div className=" bg-dayComponentBg  setAppointmentTime flex items-center justify-center flex-col relative rounded-xl">
+        <div className="infoIcon absolute right-2 top-4">
+          <div
+            className="infoIcon relative inline-block cursor-pointer"
+            onMouseEnter={handleInfoIconHover}
+            onMouseLeave={handleInfoIconLeave}
+          >
+            <i className="fa-solid fa-circle-info text-xl text-buttonColor"></i>
+          </div>
+          <div className="tooltip z-[3] hidden bg-white border border-gray-300 p-2 rounded-xl shadow-lg absolute transform -translate-x-0 right-[2px] transition duration-300 w-[200px]">
+            <h1 className="text-xs font-semibold text-center text-red-500">
+              Randevu süresi {appointmentDuration} dakika, randevu ücreti{" "}
+              {appointmentPrice} ₺ olarak ayarlıdır. Dilerseniz bu bilgileri
+              profilinizden güncelleyebilirsiniz.
+            </h1>
+            <div className=" my-1 flex items-center justify-center">
+              <div className="flex mr-5">
+                <i class="fa-solid fa-clock text-lightBlue flex items-center justify-center mr-2"></i>
+                <h1 className="text-xs font-semibold text-center mb-[2px]">
+                  {appointmentDuration} Dakika
+                </h1>
+              </div>
+              <div className="flex">
+                <i class="fa-solid fa-money-bill-1-wave text-lightBlue flex items-center justify-center mr-2"></i>
+                <h1 className="text-xs font-semibold text-center  mb-[2px]">
+                  {appointmentPrice} ₺
+                </h1>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <h2 className="text-buttonColor text-2xl m-3 font-semibold mb-0">
-        Randevu Zamanı Belirle
-      </h2>
-      <div className="chooseSavedTimes flex items-center justify-center ">
-        <button
-          onClick={() => handleOptionChange(true)}
-          className={`bg-appoinmentBox p-1 text-white text-sm rounded-3xl m-3 mb-0 px-7 ${
-            savedTimes === true ? "selected" : ""
-          } ${savedTimes === true ? "bg-appoinmentBox" : "bg-backButtonColor"}`}
+        <h2 className="text-buttonColor text-2xl m-3 font-semibold mb-0">
+          Randevu Zamanı Belirle
+        </h2>
+        <div className="chooseSavedTimes flex items-center justify-center ">
+          <button
+            onClick={() => handleOptionChange(true)}
+            className={`bg-appoinmentBox p-1 text-white text-sm rounded-3xl m-3 mb-0 px-7 ${
+              savedTimes === true ? "selected" : ""
+            } ${
+              savedTimes === true ? "bg-appoinmentBox" : "bg-backButtonColor"
+            }`}
+          >
+            Kayıtlı Saatler
+          </button>
+          <button
+            onClick={() => handleOptionChange(false)}
+            className={`bg-appoinmentBox p-1 text-white text-sm rounded-3xl m-3 mb-0 px-7 ${
+              savedTimes === false ? "selected" : ""
+            } ${
+              savedTimes === false ? "bg-appoinmentBox" : "bg-backButtonColor"
+            }`}
+          >
+            Saat Ekle
+          </button>
+        </div>
+        <Formik
+          initialValues={
+            savedTimes === true ? { chosenDate: "" } : { time: "" }
+          }
+          onSubmit={savedTimes === true ? handleSetTime : handleSaveTime}
         >
-          Kayıtlı Saatler
-        </button>
-        <button
-          onClick={() => handleOptionChange(false)}
-          className={`bg-appoinmentBox p-1 text-white text-sm rounded-3xl m-3 mb-0 px-7 ${
-            savedTimes === false ? "selected" : ""
-          } ${
-            savedTimes === false ? "bg-appoinmentBox" : "bg-backButtonColor"
-          }`}
-        >
-          Saat Ekle
-        </button>
+          {(formikProps) => (
+            <Form>
+              <div
+                className={`m-3 field-container flex items-center ${
+                  savedTimes === false ? "hidden" : ""
+                } justify-center`}
+              >
+                <SetDateAndTime onDateChange={getSelectedDate} />
+              </div>
+              {savedTimes === false && (
+                <>
+                  <h2 className="text-sm text-red-600 text-center font-semibold m-5">
+                    Aşağıdan Kaydetmek istediğiniz saati seçiniz
+                  </h2>
+                  <div className="m-3 field-container lg:w-[21rem] mx-auto flex items-center justify-center">
+                    <Field
+                      name="time"
+                      type="time"
+                      className={`p-3 lg:w-[21rem] max-[768px]:w-[20rem] focus:border-none outline-none bg-white mx-auto`}
+                      placeholder="Saat"
+                    />
+                  </div>
+                  <div className="w-full justify-center flex items-center">
+                    <div
+                      className={`savedTimesList flex flex-wrap items-center justify-center ${
+                        emptyOrNot > 0 ? "w-[385px]" : "full"
+                      } h-auto relative`}
+                    >
+                      {savedTimesArray.length > 0 &&
+                        renderSwiper(savedTimesArray)}
+
+                      {savedTimesArray.length === 0 && (
+                        <h2 className="text-sm text-red-600 text-center font-semibold m-5 w-full">
+                          Kayıtlı saat bulunmamaktadır
+                        </h2>
+                      )}
+
+                      {savedTimesArray.length > 0 && !isMobile && (
+                        <>
+                          <div className="custom-swiper-button-prev8 absolute left-2 text-xl text-buttonColor top-[45%] z-[2] cursor-pointer">
+                            <i
+                              className="fa-solid fa-arrow-left"
+                              alt="Previous"
+                            ></i>
+                          </div>
+                          <div className="custom-swiper-button-next8 top-[45%] absolute right-2 text-xl text-buttonColor z-[2] cursor-pointer">
+                            <i
+                              className="fa-solid fa-arrow-right"
+                              alt="Next"
+                            ></i>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </>
+              )}
+              {savedTimes === true && (
+                <>
+                  <div className="flex items-center justify-center flex-col">
+                    <div
+                      className={`chooseSavedTimes flex flex-wrap items-center justify-center ${
+                        emptyOrNot > 0 ? "w-[345px]" : "full"
+                      }  flex-wrap mx-[15px] relative`}
+                    >
+                      {renderSwiper2(savedTimesArray, formikProps)}
+                      {savedTimesArray.length === 0 && (
+                        <h1 className="text-center text-sm text-red-600 font-semibold mx-auto">
+                          Kayıtlı saat bulunmamaktadır.
+                        </h1>
+                      )}
+                      {savedTimesArray.length > 6 && !isMobile && (
+                        <>
+                          <div className="custom-swiper-button-prev9 absolute left-2 text-xl text-buttonColor top-[40%] z-[2] cursor-pointer">
+                            <i
+                              className="fa-solid fa-arrow-left"
+                              alt="Previous"
+                            ></i>
+                          </div>
+                          <div className="custom-swiper-button-next9 top-[40%] absolute right-2 text-xl text-buttonColor z-[2] cursor-pointer">
+                            <i
+                              className="fa-solid fa-arrow-right"
+                              alt="Next"
+                            ></i>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </>
+              )}
+              {savedTimes === true && (
+                <div className="w-full flex items-center justify-center">
+                  <button
+                    type="submit"
+                    className="bg-buttonColor rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
+                  >
+                    <h4 className="text-text p-2 px-6 text-sm tracking-wider">
+                      Zamanı ve Tarihi Ayarla
+                    </h4>
+                  </button>
+                </div>
+              )}
+              {savedTimes === false && (
+                <div className="w-full flex items-center justify-center">
+                  <button
+                    type="submit"
+                    className="bg-buttonColor rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
+                  >
+                    <h4 className="text-text p-2 px-6 text-sm tracking-wider">
+                      Kayıt Et
+                    </h4>
+                  </button>
+                </div>
+              )}
+            </Form>
+          )}
+        </Formik>
       </div>
-      <Formik
-        initialValues={savedTimes === true ? { chosenDate: "" } : { time: "" }}
-        onSubmit={savedTimes === true ? handleSetTime : handleSaveTime}
-      >
-        {(formikProps) => (
-          <Form>
-            <div
-              className={`m-3 field-container flex items-center ${
-                savedTimes === false ? "hidden" : ""
-              } justify-center`}
-            >
-              <SetDateAndTime onDateChange={getSelectedDate} />
-            </div>
-            {savedTimes === false && (
-              <>
-                <h2 className="text-sm text-red-600 text-center font-semibold m-5">
-                  Aşağıdan Kaydetmek istediğiniz saati seçiniz
-                </h2>
-                <div className="m-3 field-container lg:w-[21rem] mx-auto flex items-center justify-center">
-                  <Field
-                    name="time"
-                    type="time"
-                    className={`p-3 lg:w-[21rem] max-[768px]:w-[20rem] focus:border-none outline-none bg-white mx-auto`}
-                    placeholder="Saat"
-                  />
-                </div>
-                <div className="w-full justify-center flex items-center">
-                  <div
-                    className={`savedTimesList flex flex-wrap items-center justify-center ${
-                      emptyOrNot > 0 ? "w-[385px]" : "full"
-                    } h-auto relative`}
-                  >
-                    {savedTimesArray.length > 0 &&
-                      renderSwiper(savedTimesArray)}
-
-                    {savedTimesArray.length === 0 && (
-                      <h2 className="text-sm text-red-600 text-center font-semibold m-5 w-full">
-                        Kayıtlı saat bulunmamaktadır
-                      </h2>
-                    )}
-
-                    {savedTimesArray.length > 0 && !isMobile && (
-                      <>
-                        <div className="custom-swiper-button-prev8 absolute left-2 text-xl text-buttonColor top-[45%] z-[2] cursor-pointer">
-                          <i
-                            className="fa-solid fa-arrow-left"
-                            alt="Previous"
-                          ></i>
-                        </div>
-                        <div className="custom-swiper-button-next8 top-[45%] absolute right-2 text-xl text-buttonColor z-[2] cursor-pointer">
-                          <i className="fa-solid fa-arrow-right" alt="Next"></i>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </>
-            )}
-            {savedTimes === true && (
-              <>
-                <div className="flex items-center justify-center flex-col">
-                  <div
-                    className={`chooseSavedTimes flex flex-wrap items-center justify-center ${
-                      emptyOrNot > 0 ? "w-[345px]" : "full"
-                    }  flex-wrap mx-[15px] relative`}
-                  >
-                    {renderSwiper2(savedTimesArray, formikProps)}
-                    {savedTimesArray.length === 0 && (
-                      <h1 className="text-center text-sm text-red-600 font-semibold mx-auto">
-                        Kayıtlı saat bulunmamaktadır.
-                      </h1>
-                    )}
-                    {savedTimesArray.length > 6 && !isMobile && (
-                      <>
-                        <div className="custom-swiper-button-prev9 absolute left-2 text-xl text-buttonColor top-[40%] z-[2] cursor-pointer">
-                          <i
-                            className="fa-solid fa-arrow-left"
-                            alt="Previous"
-                          ></i>
-                        </div>
-                        <div className="custom-swiper-button-next9 top-[40%] absolute right-2 text-xl text-buttonColor z-[2] cursor-pointer">
-                          <i className="fa-solid fa-arrow-right" alt="Next"></i>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </>
-            )}
-            {savedTimes === true && (
-              <div className="w-full flex items-center justify-center">
-                <button
-                  type="submit"
-                  className="bg-buttonColor rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
-                >
-                  <h4 className="text-text p-2 px-6 text-sm tracking-wider">
-                    Zamanı ve Tarihi Ayarla
-                  </h4>
-                </button>
-              </div>
-            )}
-            {savedTimes === false && (
-              <div className="w-full flex items-center justify-center">
-                <button
-                  type="submit"
-                  className="bg-buttonColor rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
-                >
-                  <h4 className="text-text p-2 px-6 text-sm tracking-wider">
-                    Kayıt Et
-                  </h4>
-                </button>
-              </div>
-            )}
-          </Form>
-        )}
-      </Formik>
     </div>
   );
 }

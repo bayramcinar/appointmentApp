@@ -208,70 +208,72 @@ function FullCalendarComponent() {
 
   return (
     <>
-      <div className="mx-auto relative w-full max-[500px]:w-[360px] p-2 lg:p-5">
-        <h1 className="text-buttonColor text-2xl m-6 max-[500px]:m-3 mt-1 font-semibold text-center">
-          Randevular Takvimi
-        </h1>
-        <div className="colorsMean mt-[25px] mb-5  flex lg:flex right-1 top-1 font-semibold justify-center items-center">
-          <div className="lg:flex lg:flex-col lg:justify-start">
-            <div className="flex max-[500px]:mr-2 mr-2">
-              <i class="fa-solid fa-circle text-appoinmentBox max-[500px]:text-xs flex justify-center items-center"></i>
-              <h1 className="max-[500px]:text-xs  ml-2 max-[500px]:text-center flex justify-center items-center">
-                Randevu alınmış saatler
-              </h1>
+      <div className="bg-dayComponentBg  lg:scale-[1] md:scale-[0.9] lg:mr-[1rem]  shadow-xl border-stepBorder1 border-2 rounded-xl max-[768px]:mx-[10px] flex items-center justify-center lg:w-full">
+        <div className="mx-auto relative w-full max-[500px]:w-[360px] p-2 lg:p-5">
+          <h1 className="text-buttonColor text-2xl m-6 max-[500px]:m-3 mt-1 font-semibold text-center">
+            Randevular Takvimi
+          </h1>
+          <div className="colorsMean mt-[25px] mb-5  flex lg:flex right-1 top-1 font-semibold justify-center items-center">
+            <div className="lg:flex lg:flex-col lg:justify-start">
+              <div className="flex max-[500px]:mr-2 mr-2">
+                <i class="fa-solid fa-circle text-appoinmentBox max-[500px]:text-xs flex justify-center items-center"></i>
+                <h1 className="max-[500px]:text-xs  ml-2 max-[500px]:text-center flex justify-center items-center">
+                  Randevu alınmış saatler
+                </h1>
+              </div>
+              <div className="flex  max-[500px]:mr-2 mr-2">
+                <i class="fa-solid fa-circle text-calanderAppointment max-[500px]:text-xs    flex justify-center items-center"></i>
+                <h1 className="max-[500px]:text-xs   ml-2 max-[500px]:text-center flex justify-center items-center">
+                  Randevu alınmamış saatler
+                </h1>
+              </div>
             </div>
-            <div className="flex  max-[500px]:mr-2 mr-2">
-              <i class="fa-solid fa-circle text-calanderAppointment max-[500px]:text-xs    flex justify-center items-center"></i>
-              <h1 className="max-[500px]:text-xs   ml-2 max-[500px]:text-center flex justify-center items-center">
-                Randevu alınmamış saatler
-              </h1>
+            <div className="lg:flex lg:flex-col lg:justify-start">
+              <div className="flex max-[500px]:mr-2 mr-2">
+                <i class="fa-solid fa-circle text-stepBorder1 max-[500px]:text-xs   flex justify-center items-center"></i>
+                <h1 className="max-[500px]:text-xs ml-2 max-[500px]:text-center flex justify-center items-center">
+                  Geçmiş Randevular
+                </h1>
+              </div>
+              <div className="flex max-[500px]:mr-2 mr-2">
+                <i class="fa-solid fa-circle text-appointmentRequest max-[500px]:text-xs  flex  justify-center items-center"></i>
+                <h1 className="max-[500px]:text-xs  ml-2 max-[500px]:text-center flex justify-center items-center">
+                  Randevu Talepleri
+                </h1>
+              </div>
             </div>
           </div>
-          <div className="lg:flex lg:flex-col lg:justify-start">
-            <div className="flex max-[500px]:mr-2 mr-2">
-              <i class="fa-solid fa-circle text-stepBorder1 max-[500px]:text-xs   flex justify-center items-center"></i>
-              <h1 className="max-[500px]:text-xs ml-2 max-[500px]:text-center flex justify-center items-center">
-                Geçmiş Randevular
-              </h1>
-            </div>
-            <div className="flex max-[500px]:mr-2 mr-2">
-              <i class="fa-solid fa-circle text-appointmentRequest max-[500px]:text-xs  flex  justify-center items-center"></i>
-              <h1 className="max-[500px]:text-xs  ml-2 max-[500px]:text-center flex justify-center items-center">
-                Randevu Talepleri
-              </h1>
-            </div>
+          <div className="myCustomHeight">
+            <Calendar
+              localizer={localizer}
+              startAccessor="start"
+              endAccessor="end"
+              style={{
+                height: isMobile
+                  ? "600px"
+                  : isHalfMid
+                  ? "600px"
+                  : isMid
+                  ? "600px"
+                  : "35vw",
+                width: isMobile
+                  ? "90vw"
+                  : isHalfMid
+                  ? "70vw"
+                  : isMid
+                  ? "45vw"
+                  : "60vw",
+              }}
+              events={eventsFromSessionStorage}
+              onSelectEvent={onSelectSlot}
+              defaultView={isMobile ? Views.WEEK : Views.WEEK}
+              views={isMobile ? ["week", "day"] : ["month", "week", "day"]}
+              selectable
+              popup
+              messages={messages}
+              eventPropGetter={eventPropGetter}
+            />
           </div>
-        </div>
-        <div className="myCustomHeight">
-          <Calendar
-            localizer={localizer}
-            startAccessor="start"
-            endAccessor="end"
-            style={{
-              height: isMobile
-                ? "600px"
-                : isHalfMid
-                ? "600px"
-                : isMid
-                ? "600px"
-                : "35vw",
-              width: isMobile
-                ? "90vw"
-                : isHalfMid
-                ? "70vw"
-                : isMid
-                ? "45vw"
-                : "60vw",
-            }}
-            events={eventsFromSessionStorage}
-            onSelectEvent={onSelectSlot}
-            defaultView={isMobile ? Views.WEEK : Views.WEEK}
-            views={isMobile ? ["week", "day"] : ["month", "week", "day"]}
-            selectable
-            popup
-            messages={messages}
-            eventPropGetter={eventPropGetter}
-          />
         </div>
       </div>
       <FullCalendarDayModal

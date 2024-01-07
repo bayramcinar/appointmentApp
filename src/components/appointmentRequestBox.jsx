@@ -130,7 +130,7 @@ function AppointmentRequestBox({ image, infos, onDetails }) {
 
   return (
     <>
-      <div className="bg-white myAppointmentBox lg:w-[280px] h-[205px] max-[768px]:w-[300px]  ml-auto mr-auto border-2 border-buttonColor rounded-2xl shadow-2xl">
+      <div className="bg-white myAppointmentBox lg:w-[280px] lg:scale-[0.85] xl:scale-[0.95] md:scale-[0.9] h-[205px] max-[768px]:w-[300px]  ml-auto mr-auto border-2 border-buttonColor rounded-2xl shadow-2xl">
         <div className="p-2 flex flex-col pt-0">
           <div className="flex">
             <div className="imgArea1 w-1/3 flex items-center justify-center">

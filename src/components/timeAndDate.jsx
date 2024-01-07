@@ -486,7 +486,7 @@ function TimeAndDate({
             <CalendarBox
               selectedDate={selectedDate}
               onDateChange={(value) => {
-                handleDateChange(value); // Call the prop to update selectedDate
+                handleDateChange(value);
               }}
             />
           </div>

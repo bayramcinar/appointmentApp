@@ -128,7 +128,7 @@ const EditModal = ({ isOpen, onClose, event }) => {
               time: {
                 date: formatDate(event.time.split(" ")[0]) || "",
                 time: event.time.split(" ")[2] || "",
-                status: event.time.split(" ")[3] + " ",
+                status: event.time.split(" ")[3] + " " || "",
               },
             }}
             onSubmit={submitForm}

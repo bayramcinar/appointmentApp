@@ -486,78 +486,80 @@ function Agenda() {
 
   return (
     <>
-      <div className="w-full shadow-xl overflow-auto max-h-600">
-        <div className="flex">
-          <div className="w-[33%] flex items-center justify-center"></div>
-          <h1 className=" lg:text-[1.5vw] max-[768px]:text-xl max-[768px]:w-[48%] w-[33%] text-center max-[768px]:justify:start font-semibold mt-5 sticky top-0 text-buttonColor p-3 pb-0">
-            Yaklaşan Randevularım
-          </h1>
-          <div className="flex w-[33%] max-[768px]:w-[48%] justify-end items-center mb-4 mt-6">
-            <select
-              value={filter}
-              onChange={(e) => handleFilterChange(e.target.value)}
-              className="p-2 border rounded-3xl text-sm max-[768px]:w-[120px]"
-            >
-              <option value="all">Tüm Randevular</option>
-              <option value="past">Geçmiş Randevular</option>
-              <option value="today">Bu Gün</option>
-              <option value="future">Gelecekteki Randevular</option>
-            </select>
+      <div className="bg-dayComponentBg lg:scale-[1] md:scale-[0.9] lg:mr-[1rem] border-stepBorder1 border-2 rounded-xl max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 w-full flex-grow">
+        <div className="w-full shadow-xl overflow-auto max-h-600">
+          <div className="flex">
+            <div className="w-[33%] flex items-center justify-center"></div>
+            <h1 className=" lg:text-[1.5vw] max-[768px]:text-xl max-[768px]:w-[48%] w-[33%] text-center max-[768px]:justify:start font-semibold mt-5 sticky top-0 text-buttonColor p-3 pb-0">
+              Yaklaşan Randevularım
+            </h1>
+            <div className="flex w-[33%] max-[768px]:w-[48%] justify-end items-center mb-4 mt-6">
+              <select
+                value={filter}
+                onChange={(e) => handleFilterChange(e.target.value)}
+                className="p-2 border rounded-3xl text-sm max-[768px]:w-[120px]"
+              >
+                <option value="all">Tüm Randevular</option>
+                <option value="past">Geçmiş Randevular</option>
+                <option value="today">Bu Gün</option>
+                <option value="future">Gelecekteki Randevular</option>
+              </select>
+            </div>
+          </div>
+          {pendingAppointments.length > 0 && (
+            <h1 className="text-md max-[768px]:text-sm text-red-600 text-center font-semibold flashing-text mb-2 max-[768px]:mb-0">
+              {pendingAppointments.length} İşlem bekleyen randevu lütfen kontrol
+              ediniz.
+            </h1>
+          )}
+          {pendingAppointments.length === 0 && (
+            <h1 className="text-md max-[768px]:text-sm text-red-600 text-center font-semibold mb-2 max-[768px]:mb-0">
+              Yaklaşan randevunuz bulunmamaktadır.
+            </h1>
+          )}
+          <div className=" agendaCardSwiper">
+            {!isMobile && (
+              <table className="rounded-xl w-full ">
+                <thead>
+                  <tr className="sticky top-0 bg-buttonColor text-white">
+                    <th className="p-3">Sıra</th>
+                    <th className="p-3">Randevu Numarası</th>
+                    <th className="p-3">Tarih</th>
+                    <th className="p-3">Saat</th>
+                    <th className="p-3">Randevu</th>
+                    <th className="p-3">İşlemler</th>
+                    <th className="p-3">Durum</th>
+                    <th className="p-3">Kalan Süre</th>
+                  </tr>
+                </thead>
+                <tbody>{convertFormDataToTable()}</tbody>
+              </table>
+            )}
+            {isMobile && <>{renderSwiper(paginatedFormData)}</>}
           </div>
         </div>
-        {pendingAppointments.length > 0 && (
-          <h1 className="text-md max-[768px]:text-sm text-red-600 text-center font-semibold flashing-text mb-2 max-[768px]:mb-0">
-            {pendingAppointments.length} İşlem bekleyen randevu lütfen kontrol
-            ediniz.
-          </h1>
+        {!isMobile && (
+          <div className="flex justify-center my-3">
+            <ul className="flex space-x-2">
+              {[...Array(totalPages).keys()].map((page) => (
+                <li
+                  key={page + 1}
+                  onClick={() => handlePageChange(page + 1)}
+                  className={`px-3 py-2 border cursor-pointer rounded-2xl ${
+                    page + 1 === currentPage
+                      ? "bg-buttonColor text-white"
+                      : "border-gray-300"
+                  }`}
+                >
+                  <button onClick={() => handlePageChange(page + 1)}>
+                    {page + 1}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
-        {pendingAppointments.length === 0 && (
-          <h1 className="text-md max-[768px]:text-sm text-red-600 text-center font-semibold mb-2 max-[768px]:mb-0">
-            Yaklaşan randevunuz bulunmamaktadır.
-          </h1>
-        )}
-        <div className=" agendaCardSwiper">
-          {!isMobile && (
-            <table className="rounded-xl w-full">
-              <thead>
-                <tr className="sticky top-0 bg-buttonColor text-white">
-                  <th className="p-3">Sıra</th>
-                  <th className="p-3">Randevu Numarası</th>
-                  <th className="p-3">Tarih</th>
-                  <th className="p-3">Saat</th>
-                  <th className="p-3">Randevu</th>
-                  <th className="p-3">İşlemler</th>
-                  <th className="p-3">Durum</th>
-                  <th className="p-3">Kalan Süre</th>
-                </tr>
-              </thead>
-              <tbody>{convertFormDataToTable()}</tbody>
-            </table>
-          )}
-          {isMobile && <>{renderSwiper(paginatedFormData)}</>}
-        </div>
       </div>
-      {!isMobile && (
-        <div className="flex justify-center my-3">
-          <ul className="flex space-x-2">
-            {[...Array(totalPages).keys()].map((page) => (
-              <li
-                key={page + 1}
-                onClick={() => handlePageChange(page + 1)}
-                className={`px-3 py-2 border cursor-pointer rounded-2xl ${
-                  page + 1 === currentPage
-                    ? "bg-buttonColor text-white"
-                    : "border-gray-300"
-                }`}
-              >
-                <button onClick={() => handlePageChange(page + 1)}>
-                  {page + 1}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
       <EventModal
         isOpen={openModal}
         onClose={handleCloseModal}
