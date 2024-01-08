@@ -77,6 +77,9 @@
   font-weight: 600;
   font-size: medium;
 }
+.rbc-toolbar-label {
+  width: min-content;
+}
 .myCustomHeight {
   display: flex;
   align-items: center;
@@ -115,7 +118,7 @@
     border-bottom: none;
   }
   .rbc-button-link {
-    padding: 2px;
+    padding: 1px;
   }
   .rbc-btn-group button {
     width: 44px;

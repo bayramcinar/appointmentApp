@@ -36,7 +36,7 @@ function MyAppointmentBox({ image, infos, onDelete, handleOpenEditModal }) {
 
   return (
     <>
-      <div className="bg-white myAppointmentBox lg:w-[500px] max-[768px]:w-[320px] mb-5 rounded-lg ml-auto mr-auto relative">
+      <div className="bg-white myAppointmentBox lg:w-[500px] max-[768px]:w-[320px] mb-5 rounded-lg ml-auto mr-auto relative h-auto">
         <div className="p-2 flex">
           <div className="imgArea1 w-1/3 flex items-center justify-center">
             <img src={image} className="w-20" alt="" />
@@ -81,11 +81,17 @@ function MyAppointmentBox({ image, infos, onDelete, handleOpenEditModal }) {
               </h1>
             </div>
           )}
-          <div className="deleteArea flex items-center justify-center m-1 flex-col">
-            <button onClick={handleDelete} className="text-red">
+          <div className="buttonAreaBox flex items-center justify-center m-1 absolute right-1 top-1">
+            <button
+              onClick={handleDelete}
+              className=" p-1 px-2 bg-red-600 rounded-xl text-white m-1 text-sm"
+            >
               <i className="fa-regular fa-trash-can"></i>
             </button>
-            <button onClick={handleOpenEditModal} className="text-red">
+            <button
+              onClick={handleOpenEditModal}
+              className=" p-1 px-2 bg-lightBlue rounded-xl text-white m-1 text-sm"
+            >
               <i className="fa-solid fa-pen-to-square"></i>
             </button>
           </div>

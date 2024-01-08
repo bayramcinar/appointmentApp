@@ -25,61 +25,75 @@ function MyAppointments() {
   };
 
   const handleDelete = (selectedAppointment) => {
-    const selectedTimes =
-      JSON.parse(localStorage.getItem("selectedTimes")) || []; // BU İŞLEMİ DATABASE DEN YAPACAĞIZ BEN BURDA RANDEVUYU SİLERKEN AYNI ZAMANDA selectedTimes (randevu saatleri) ögesindeki o saatin active değerini false dan true ya çeviriyorum randevu silindiği için
-
-    const dateParts = selectedAppointment.time.split(" ");
-    const datePart = dateParts[0].split(".");
-    const timePart = dateParts[2];
-
-    const year = parseInt(datePart[2], 10);
-    const month = parseInt(datePart[1], 10) - 1;
-    const day = parseInt(datePart[0], 10);
-
-    const timeParts = timePart.split(":");
-    const hours = parseInt(timeParts[0], 10);
-    const minutes = parseInt(timeParts[1], 10);
-
-    const originalDate = new Date(year, month, day, hours, minutes);
-
-    const formattedDate = originalDate.toISOString().split("T")[0];
-    const formattedTime = originalDate.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-
-    const result = {
-      date: formattedDate,
-      time: formattedTime,
-    };
-
     Swal.fire({
-      title: "Başarılı !",
-      text: "Randevu başarılı bir şekilde silindi.",
-      icon: "success",
-      confirmButtonText: "Kapat",
-    });
+      title: "Emin misiniz!",
+      text: "Randevuyu silmek istediğinize emin misiniz?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Evet",
+      cancelButtonText: "Hayır",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const selectedTimes =
+          JSON.parse(localStorage.getItem("selectedTimes")) || []; // BU İŞLEMİ DATABASE DEN YAPACAĞIZ BEN BURDA RANDEVUYU SİLERKEN AYNI ZAMANDA selectedTimes (randevu saatleri) ögesindeki o saatin active değerini false dan true ya çeviriyorum randevu silindiği için
 
-    const updatedSelectedTimes = selectedTimes.map((appointment) => {
-      if (
-        appointment.date === result.date &&
-        appointment.time === result.time
-      ) {
-        return { ...appointment, active: true };
+        const dateParts = selectedAppointment.time.split(" ");
+        const datePart = dateParts[0].split(".");
+        const timePart = dateParts[2];
+
+        const year = parseInt(datePart[2], 10);
+        const month = parseInt(datePart[1], 10) - 1;
+        const day = parseInt(datePart[0], 10);
+
+        const timeParts = timePart.split(":");
+        const hours = parseInt(timeParts[0], 10);
+        const minutes = parseInt(timeParts[1], 10);
+
+        const originalDate = new Date(year, month, day, hours, minutes);
+
+        const formattedDate = originalDate.toISOString().split("T")[0];
+        const formattedTime = originalDate.toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+
+        const result = {
+          date: formattedDate,
+          time: formattedTime,
+        };
+
+        Swal.fire({
+          title: "Başarılı !",
+          text: "Randevu başarılı bir şekilde silindi.",
+          icon: "success",
+          confirmButtonText: "Kapat",
+        });
+
+        const updatedSelectedTimes = selectedTimes.map((appointment) => {
+          if (
+            appointment.date === result.date &&
+            appointment.time === result.time
+          ) {
+            return { ...appointment, active: true };
+          }
+          return appointment;
+        });
+
+        localStorage.setItem(
+          "selectedTimes",
+          JSON.stringify(updatedSelectedTimes)
+        ); // GÜNCELLENMİŞ SAATLERİ YENİDEN DATABASE E GÖNDERECEĞİZ
+
+        // Form datayı güncelle
+        const updatedFormData = formData.filter(
+          (appointment) =>
+            appointment.date !== selectedAppointment.date ||
+            appointment.time !== selectedAppointment.time
+        );
+        setFormData(updatedFormData);
+        localStorage.setItem("formData", JSON.stringify(updatedFormData)); // GÜNCELLENMİŞ RANDEVULERİ formData (randevular) DATABASE İNE GÖNDERECEĞİZ
       }
-      return appointment;
     });
-
-    localStorage.setItem("selectedTimes", JSON.stringify(updatedSelectedTimes)); // GÜNCELLENMİŞ SAATLERİ YENİDEN DATABASE E GÖNDERECEĞİZ
-
-    // Form datayı güncelle
-    const updatedFormData = formData.filter(
-      (appointment) =>
-        appointment.date !== selectedAppointment.date ||
-        appointment.time !== selectedAppointment.time
-    );
-    setFormData(updatedFormData);
-    localStorage.setItem("formData", JSON.stringify(updatedFormData)); // GÜNCELLENMİŞ RANDEVULERİ formData (randevular) DATABASE İNE GÖNDERECEĞİZ
   };
 
   useEffect(() => {
@@ -140,7 +154,7 @@ function MyAppointments() {
         <h1 className="text-center text-2xl font-semibold text-buttonColor p-3">
           Randevularım
         </h1>
-        <div className="swipperAppointments h-auto">
+        <div className="swipperAppointments h-auto sm:w-[27rem] lg:w-[35rem]">
           {formData.length > 3 ? (
             renderSwiper(formData)
           ) : (

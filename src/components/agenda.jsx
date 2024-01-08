@@ -9,17 +9,15 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation, Pagination } from "swiper/modules";
-import EditModal from "./editModal";
 
 function Agenda() {
   const [formData, setFormData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
-  const [openEditModal, setOpenEditModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [filter, setFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(6);
-  const isMobile = window.innerWidth <= 500;
+  const isMobile = window.innerWidth <= 768;
   const handleOpenModal = (event) => {
     setSelectedEvent({
       ...event,
@@ -101,6 +99,22 @@ function Agenda() {
   }, [formData]);
 
   useEffect(() => {
+    const buttons = document.querySelectorAll(".rbc-button-link");
+
+    if (buttons) {
+      buttons.forEach((button) => {
+        const spanElement = button.querySelector("span[role='columnheader']");
+
+        if (isMobile && spanElement) {
+          const originalText = spanElement.textContent;
+          const datePart = originalText.split(" ")[0];
+          spanElement.textContent = datePart;
+        }
+      });
+    }
+  }, [isMobile]);
+
+  useEffect(() => {
     const interval = setInterval(updateRemainingTime, 1000);
     return () => clearInterval(interval);
   }, []);
@@ -167,13 +181,12 @@ function Agenda() {
             <div className="flex items-center justify-center">
               <div className="m-2">
                 <button
-                  onClick={() => handleDelete(formEntry)}
+                  onClick={() => handleDelete(formEntry, isCancelDisabled)}
                   className={`p-[7px] ${
                     isCancelDisabled
                       ? "bg-gray-400 text-white cursor-not-allowed"
                       : "bg-red-600 text-white"
                   } font-semibold rounded-xl`}
-                  disabled={isCancelDisabled}
                 >
                   İptal Et
                 </button>
@@ -285,11 +298,20 @@ function Agenda() {
     );
   }
 
-  const handleDelete = (selectedAppointment) => {
+  const handleDelete = (selectedAppointment, isCancelDisabled) => {
     //SİLME FONKSİYONU
+    if (isCancelDisabled) {
+      Swal.fire({
+        title: "Hata !",
+        text: "Randevu saatine 12 saatten az kaldığı için randevuyu iptal edemezsiniz.",
+        icon: "error",
+        confirmButtonText: "Kapat",
+      });
+      return;
+    }
     Swal.fire({
       title: "Emin misiniz!",
-      text: "Randevuyu silmek istediğinize emin misiniz?",
+      text: "Randevuyu iptal etmek istediğinize emin misiniz?",
       icon: "question",
       showCancelButton: true,
       confirmButtonText: "Evet",
@@ -439,7 +461,9 @@ function Agenda() {
                   time={timeInfo}
                   date={dateInfo}
                   showDetails={() => handleOpenModal(formEntry)}
-                  deleteFunction={() => handleDelete(formEntry)}
+                  deleteFunction={() =>
+                    handleDelete(formEntry, isCancelDisabled)
+                  }
                   isCancelDisabled={isCancelDisabled}
                 />
               );

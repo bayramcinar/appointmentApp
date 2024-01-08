@@ -7,6 +7,7 @@ const EditModal = ({ isOpen, onClose, event }) => {
   if (!event) {
     return null;
   }
+  console.log(event.time.split(" ")[2]);
   function formatDate(inputDate) {
     const parts = inputDate.split(".");
     const day = parts[0].length === 1 ? "0" + parts[0] : parts[0];
@@ -285,7 +286,7 @@ const EditModal = ({ isOpen, onClose, event }) => {
                   type="submit"
                   className=" bg-lightBlue py-2 px-5 text-sm rounded-2xl font-semibold text-white"
                 >
-                  Update
+                  Güncelle
                 </button>
               </div>
             </Form>
