@@ -56,11 +56,11 @@ function AppointmentRequest({ isOpen, onClose, handleFormSubmit, date }) {
             </div>
             <div>
               <div className="appointmentRequestArea">
-                <h1 className="text-deepSlateBlueue text-sm text-center font-semibold">
+                <h1 className="text-deepSlateBlue text-sm text-center font-semibold">
                   Lütfen Aşağıdan oluşturmak istediğiniz randevu talebin saatini
                   seçiniz
                 </h1>
-                <h2 className="text-red-600 text-center text-sm font-bold">
+                <h2 className="text-coralext-center text-sm font-bold">
                   Ortalama randevu süresi {appoinmentDuration} dakikadır
                 </h2>
                 <Formik

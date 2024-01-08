@@ -186,7 +186,7 @@ function AppointmentRequestList() {
           {formData.length === 0 && (
             <>
               <div className="m-5">
-                <h1 className="text-center text-lg text-red-600 font-semibold">
+                <h1 className="text-center text-lg text-coralont-semibold">
                   Randevu Talebi Bulunmamaktadır
                 </h1>
               </div>
@@ -197,7 +197,7 @@ function AppointmentRequestList() {
               <div className="custom-swiper-button-prev4 absolute top-[50%] left-3 text-xl text-deepSlateBlue cursor-pointer z-[2]">
                 <i className="fa-solid fa-arrow-left" alt="Previous"></i>
               </div>
-              <div className="custom-swiper-button-next4 absolute top-[50%] right-3 text-xl text-deepSlateBlueueue cursor-pointer z-[2]">
+              <div className="custom-swiper-button-next4 absolute top-[50%] right-3 text-xl text-deepSlateBlue cursor-pointer z-[2]">
                 <i className="fa-solid fa-arrow-right" alt="Next"></i>
               </div>
             </>

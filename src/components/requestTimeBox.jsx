@@ -14,7 +14,7 @@ function RequestTimeBox({ time, date, selectedTime, onTimeClick, isMobile }) {
     <div className="flex items-center justify-center">
       <div
         className={`timeBox w-[145px] max-[768px]:w-[115px] ${
-          isSelected ? "bg-red-600" : "bg-callNowdeepSlateBlue"
+          isSelected ? "bg-coral" : "bg-deepSlateBlue"
         } rounded-3xl mb-[5px] p-[2px] max-[768px]:m-[5px] cursor-pointer`}
         onClick={handleTimeClick}
       >

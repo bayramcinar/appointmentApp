@@ -173,7 +173,7 @@ function ContactForm({
                   <Field
                     id="birthdaypicker"
                     type="date"
-                    className={`before:bg-gray-300 before:content-'Doğum Tarihi:' before:mr-1 before:text-gray-600 p-3 focus:border-none outline-none text-stepBorder1 lg:w-[30rem] max-[768px]:w-[22rem] `}
+                    className={` before:content-'Doğum Tarihi:' before:mr-1 before:text-gray-600 p-3 focus:border-none outline-none text-stepBorder1 lg:w-[30rem] max-[768px]:w-[22rem] `}
                     name="dateOfBirth"
                   />
                 </div>

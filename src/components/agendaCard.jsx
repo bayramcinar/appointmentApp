@@ -36,13 +36,13 @@ function AgendaCard({
               isPastAppointment ? "hidden" : ""
             } ${
               status === "false"
-                ? "text-red-600 flashing-text"
+                ? "text-coral flashing-text"
                 : "text-royalPurple"
             }  flex items-center justify-center my-0.5`}
           ></i>
           <h1 className="text-[10px] text-center ">
             {isPastAppointment ? (
-              <span className="text-red-600">Randevu Sonlandı</span>
+              <span className="text-coral">Randevu Sonlandı</span>
             ) : (
               <>
                 {status === "true" && "Aktif"}
@@ -64,7 +64,7 @@ function AgendaCard({
           <div className="kalanSüre my-auto h-[50%] flex items-center justify-center">
             <h1
               className={`text-[11px] text-center mb-auto ${
-                remainingTime === "Randevu Bitti" ? "text-red-600" : ""
+                remainingTime === "Randevu Bitti" ? "text-coral" : ""
               }`}
             >
               {remainingTime}
@@ -79,7 +79,7 @@ function AgendaCard({
                ${
                  isCancelDisabled
                    ? "bg-gray-400 text-white cursor-not-allowed"
-                   : "bg-red-600 text-white"
+                   : "bg-coralt-white"
                } font-semibold rounded-xl text-xs `}
             >
               İptal Et

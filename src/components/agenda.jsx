@@ -185,7 +185,7 @@ function Agenda() {
                   className={`p-[7px] ${
                     isCancelDisabled
                       ? "bg-gray-400 text-white cursor-not-allowed"
-                      : "bg-red-600 text-white"
+                      : "bg-coral text-white"
                   } font-semibold rounded-xl`}
                 >
                   İptal Et
@@ -203,12 +203,12 @@ function Agenda() {
           </td>
           <td className="text-center border-dashed border-2 border-[#0003] status">
             {isPastAppointment ? (
-              <span className="text-red-600">Randevu Sonlandı</span>
+              <span className="text-coral">Randevu Sonlandı</span>
             ) : (
               <>
                 {status === "false" && requestStatus === "false" && (
                   <div className="flex w-full justify-center">
-                    <i className="fa-solid fa-circle text-red-600 flashing-text text-center flex items-center justify-center mx-2"></i>
+                    <i className="fa-solid fa-circle text-coral flashing-text text-center flex items-center justify-center mx-2"></i>
                     <h1 className="text-md text-center ">
                       İşleme Alınması Bekleniyor
                     </h1>
@@ -222,7 +222,7 @@ function Agenda() {
                 )}
                 {requestStatus === "true" && status === "false" && (
                   <div className="flex w-full justify-center">
-                    <i className="fa-solid fa-circle text-red-600 flashing-text flex items-center justify-center mx-2"></i>
+                    <i className="fa-solid fa-circle text-corallashing-text flex items-center justify-center mx-2"></i>
                     <h1 className="text-md text-center ">
                       Randevu Talebi Onay Bekleniyor
                     </h1>
@@ -522,13 +522,13 @@ function Agenda() {
             </div>
           </div>
           {pendingAppointments.length > 0 && (
-            <h1 className="text-md max-[768px]:text-sm text-red-600 text-center font-semibold flashing-text mb-2 max-[768px]:mb-0">
+            <h1 className="text-md max-[768px]:text-sm text-coral text-center font-semibold flashing-text mb-2 max-[768px]:mb-0">
               {pendingAppointments.length} İşlem bekleyen randevu lütfen kontrol
               ediniz.
             </h1>
           )}
           {pendingAppointments.length === 0 && (
-            <h1 className="text-md max-[768px]:text-sm text-red-600 text-center font-semibold mb-2 max-[768px]:mb-0">
+            <h1 className="text-md max-[768px]:text-sm text-coralt-center font-semibold mb-2 max-[768px]:mb-0">
               Yaklaşan randevunuz bulunmamaktadır.
             </h1>
           )}
@@ -562,7 +562,7 @@ function Agenda() {
                   onClick={() => handlePageChange(page + 1)}
                   className={`px-3 py-2 border cursor-pointer rounded-2xl ${
                     page + 1 === currentPage
-                      ? "bg-deepSlateBlueueueueueueueue text-white"
+                      ? "bg-deepSlateBlue text-white"
                       : "border-gray-300"
                   }`}
                 >

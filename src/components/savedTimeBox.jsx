@@ -11,7 +11,7 @@ function SavedTimes({ time, onTimeClick, selectedTime }) {
     <div>
       <div
         className={`timeBox w-[115px] max-[768px]:w-[115px] ${
-          selectedTime ? "bg-red-600" : "bg-deepSlateBlue"
+          selectedTime ? "bg-coral" : "bg-deepSlateBlue"
         } rounded-3xl m-[5px] p-[5px] max-[768px]:m-[5px] cursor-pointer`}
         onClick={handleTimeClick}
       >

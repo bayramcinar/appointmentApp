@@ -145,7 +145,7 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
                   ) : null
                 )
               ) : (
-                <h1 className="text-center text-red-600 font-semibold text-lg m-3">
+                <h1 className="text-center text-coral font-semibold text-lg m-3">
                   Tüm Randevu Saatleri Dolmuştur.
                 </h1>
               )}
@@ -175,7 +175,7 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
                   ) : null
                 )
               ) : (
-                <h1 className="text-center text-red-600 font-semibold text-lg m-3">
+                <h1 className="text-center text-coral font-semibold text-lg m-3">
                   Henüz Randevu Alınmamıştır.
                 </h1>
               )}
@@ -206,7 +206,7 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
                   <div className="custom-swiper-button-prev1 absolute left-0 top-[45%] text-xl text-deepSlateBlue cursor-pointer z-[2]">
                     <i className="fa-solid fa-arrow-left" alt="Previous"></i>
                   </div>
-                  <div className="custom-swiper-button-next1 absolute right-0 top-[45%] text-xl text-deepSlateBlueueue cursor-pointer z-[2]">
+                  <div className="custom-swiper-button-next1 absolute right-0 top-[45%] text-xl text-deepSlateBlue cursor-pointer z-[2]">
                     <i className="fa-solid fa-arrow-right" alt="Next"></i>
                   </div>
                 </>

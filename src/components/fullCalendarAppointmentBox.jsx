@@ -53,18 +53,18 @@ function FullCalendarAppointmentBox({ image, infos, onDelete }) {
         {infos["kimIçin"] === "Kendim" && (
           <div className="infoAreaForOwn w-2/3">
             {request && (
-              <h1 className="text-sm text-red-600 p-1 text-center font-semibold m-1">
+              <h1 className="text-sm text-coral text-center font-semibold m-1 ">
                 Bu bir randevu talebidir.
               </h1>
             )}
             <div className="forWho flex">
-              <i class="fa-solid fa-circle mt-[3px] text-[15px] text-callNowdeepSlateBlue"></i>
+              <i class="fa-solid fa-circle mt-[3px] text-[15px] text-deepSlateBlue"></i>
               <h2 className="text-[14px] font-bold ml-2">
                 {infos["kimIçin"]} İçin
               </h2>
             </div>
             <div className="flex ">
-              <i class="fa-regular fa-clock mt-[9px] text-callNowdeepSlateBlue text-[15px]"></i>
+              <i class="fa-regular fa-clock mt-[9px] text-deepSlateBlue text-[15px]"></i>
               <h1 className="text-xs text-deepSlateBlue p-1 text-left font-semibold m-1">
                 {extractTimeFromDate(infos["time"])} - {endTime}
               </h1>
@@ -73,7 +73,7 @@ function FullCalendarAppointmentBox({ image, infos, onDelete }) {
               </h1>
             </div>
             <div className="flex">
-              <i class="fa-solid fa-hospital-user  mt-[9px] text-callNowdeepSlateBlueueueueueueueueueueue text-[15px]"></i>
+              <i class="fa-solid fa-hospital-user  mt-[9px] text-deepSlateBlue text-[15px]"></i>
               <h1 className="text-xs text-deepSlateBlue p-1 text-left font-semibold m-1">
                 {infos["service"]}
               </h1>
@@ -83,13 +83,13 @@ function FullCalendarAppointmentBox({ image, infos, onDelete }) {
         {infos["kimIçin"] === "Başkası" && (
           <div className="infoAreaForSomeOne w-2/3">
             <div className="forWho flex">
-              <i class="fa-solid fa-circle mt-[3px] text-[15px] text-callNowdeepSlateBlueue"></i>
+              <i class="fa-solid fa-circle mt-[3px] text-[15px] text-deepSlateBlue"></i>
               <h2 className="text-[14px] font-bold ml-2">
                 {infos["kimIçin"]} İçin
               </h2>
             </div>
             <div className="personalInfo flex">
-              <i class="fa-solid fa-user mt-[8px] text-[15px] text-callNowdeepSlateBlueueueueue"></i>
+              <i class="fa-solid fa-user mt-[8px] text-[15px] text-deepSlateBlue"></i>
               <h1 className="text-xs text-deepSlateBlue p-1 text-left font-semibold m-1">
                 {infos["firstName"]} {infos["lastName"]} ({infos["gender"]})
                 (Doğum Tarihi :{infos["dateOfBirth"]})
@@ -97,8 +97,8 @@ function FullCalendarAppointmentBox({ image, infos, onDelete }) {
             </div>
 
             <div className="flex">
-              <i class="fa-regular fa-clock mt-[9px] text-callNowdeepSlateBlueueueue text-[15px]"></i>
-              <h1 className="text-xs text-deepSlateBlueueueueueue p-1 text-left font-semibold m-1">
+              <i class="fa-regular fa-clock mt-[9px] text-deepSlateBlue text-[15px]"></i>
+              <h1 className="text-xs text-deepSlateBlue p-1 text-left font-semibold m-1">
                 {extractTimeFromDate(infos["time"])} - {endTime}
               </h1>
               <h1 className="text-xs text-deepSlateBlue py-1  text-left font-semibold my-1">
@@ -106,7 +106,7 @@ function FullCalendarAppointmentBox({ image, infos, onDelete }) {
               </h1>
             </div>
             <div className="flex">
-              <i class="fa-solid fa-hospital-user  mt-[9px] text-callNowdeepSlateBlue text-[15px]"></i>
+              <i class="fa-solid fa-hospital-user  mt-[9px] text-deepSlateBlue text-[15px]"></i>
               <h1 className="text-xs text-deepSlateBlue p-1 text-left font-semibold m-1">
                 {infos["service"]}
               </h1>
@@ -117,7 +117,7 @@ function FullCalendarAppointmentBox({ image, infos, onDelete }) {
       <div className="notesArea mt-[8px] border-2 border-deepSlateBlue rounded-xl mx-8 my-3">
         <div className="p-3">
           <div className="flex">
-            <i className="fa-solid fa-book text-xl text-callNowdeepSlateBlue"></i>
+            <i className="fa-solid fa-book text-xl text-deepSlateBlue"></i>
             <h2 className="text-xl ml-2 text-deepSlateBlue font-semibold">
               Notlar
             </h2>

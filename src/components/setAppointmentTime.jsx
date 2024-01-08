@@ -413,7 +413,7 @@ function SetAppointmentTime() {
               </div>
               {savedTimes === false && (
                 <>
-                  <h2 className="text-sm text-red-600 text-center font-semibold m-5">
+                  <h2 className="text-sm text-coral text-center font-semibold m-5">
                     Aşağıdan Kaydetmek istediğiniz saati seçiniz
                   </h2>
                   <div className="m-3 field-container lg:w-[21rem] mx-auto flex items-center justify-center">
@@ -434,7 +434,7 @@ function SetAppointmentTime() {
                         renderSwiper(savedTimesArray)}
 
                       {savedTimesArray.length === 0 && (
-                        <h2 className="text-sm text-red-600 text-center font-semibold m-5 w-full">
+                        <h2 className="text-sm text-coral text-center font-semibold m-5 w-full">
                           Kayıtlı saat bulunmamaktadır
                         </h2>
                       )}
@@ -469,7 +469,7 @@ function SetAppointmentTime() {
                     >
                       {renderSwiper2(savedTimesArray, formikProps)}
                       {savedTimesArray.length === 0 && (
-                        <h1 className="text-center text-sm text-red-600 font-semibold mx-auto">
+                        <h1 className="text-center text-sm text-coral font-semibold mx-auto">
                           Kayıtlı saat bulunmamaktadır.
                         </h1>
                       )}

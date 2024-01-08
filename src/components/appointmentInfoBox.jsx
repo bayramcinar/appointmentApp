@@ -13,12 +13,13 @@ function AppointmentInfoBox({ number, title, changeRate }) {
       )}
       {changeRate < 0 && (
         <div className="absolute right-1 top-1 flex">
-          <i class="fa-solid fa-arrow-down lg:text-[0.8vw] max-[768px]:text-sm mr-[2px] text-red-600"></i>
-          <h1 className="lg:text-[0.7vw] max-[768px]:text-sm font-semibold text-center text-red-600">
+          <i className="fa-solid fa-arrow-down lg:text-[0.8vw] max-[768px]:text-sm mr-[2px] text-coral"></i>
+          <h1 className="lg:text-[0.7vw] max-[768px]:text-sm font-semibold text-center text-coral">
             {changeRate}
           </h1>
         </div>
       )}
+
       <div className="infoArea w-[6vw] m-4 mb-0 max-[768px]:w-[15vw]">
         <h1
           className="number text-center text-deepSlateBlue text-[3vw] max-[768px]:text-4xl font-semibold"

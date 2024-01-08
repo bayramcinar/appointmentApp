@@ -44,7 +44,7 @@ function MyAppointmentBox({ image, infos, onDelete, handleOpenEditModal }) {
           {infos["kimIçin"] === "Kendim" && (
             <div className="infoAreaForOwn w-2/3">
               {request && (
-                <h1 className="text-sm text-red-600 p-1 text-center font-semibold m-1">
+                <h1 className="text-sm text-coral p-1 text-center font-semibold m-1">
                   Bu bir randevu talebidir.
                 </h1>
               )}
@@ -84,7 +84,7 @@ function MyAppointmentBox({ image, infos, onDelete, handleOpenEditModal }) {
           <div className="buttonAreaBox flex items-center justify-center m-1 absolute right-1 top-1">
             <button
               onClick={handleDelete}
-              className=" p-1 px-2 bg-red-600 rounded-xl text-white m-1 text-sm"
+              className=" p-1 px-2 bg-coral rounded-xl text-white m-1 text-sm"
             >
               <i className="fa-regular fa-trash-can"></i>
             </button>
