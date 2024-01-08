@@ -207,7 +207,7 @@ function Agenda() {
             ) : (
               <>
                 {status === "false" && requestStatus === "false" && (
-                  <div className="flex">
+                  <div className="flex w-full justify-center">
                     <i className="fa-solid fa-circle text-red-600 flashing-text text-center flex items-center justify-center mx-2"></i>
                     <h1 className="text-md text-center ">
                       İşleme Alınması Bekleniyor
@@ -215,13 +215,13 @@ function Agenda() {
                   </div>
                 )}
                 {status === "true" && (
-                  <div className="flex justify-center items-center">
+                  <div className="flex items-center w-full justify-center">
                     <i className="fa-solid fa-circle text-green-500 items-center justify-center mx-2"></i>
                     <h1 className="text-md text-center ">Aktif</h1>
                   </div>
                 )}
                 {requestStatus === "true" && status === "false" && (
-                  <div className="flex">
+                  <div className="flex w-full justify-center">
                     <i className="fa-solid fa-circle text-red-600 flashing-text flex items-center justify-center mx-2"></i>
                     <h1 className="text-md text-center ">
                       Randevu Talebi Onay Bekleniyor

@@ -173,7 +173,7 @@ const EditModal = ({ isOpen, onClose, event }) => {
                         <div className="forSomeone flex mt-3 flex-wrap items-center justify-center">
                           <div className="generalNameAreaSomeOne">
                             <div className="nameAreaSomeone flex mb-1 w-full items-center justify-center">
-                              <i className="fa-solid fa-user text-callNowdeepSlateBlueue flex items-center justify-center"></i>
+                              <i className="fa-solid fa-user text-deepSlateBlue flex items-center justify-center"></i>
                               <h2 className="text-sm font-bold ml-[8px] text-center">
                                 İsim Soyisim
                               </h2>
@@ -197,7 +197,7 @@ const EditModal = ({ isOpen, onClose, event }) => {
                     <div className="flex justify-around">
                       <div className="serviceNameArea mt-3 mr-2">
                         <div className="service flex mb-1 w-full items-center justify-center">
-                          <i className="fa-solid fa-user text-callNowdeepSlateBlue flex items-center justify-center"></i>
+                          <i className="fa-solid fa-user text-deepSlateBlue flex items-center justify-center"></i>
                           <h2 className="text-sm font-bold ml-[8px] text-center">
                             Hizmet
                           </h2>
@@ -212,7 +212,7 @@ const EditModal = ({ isOpen, onClose, event }) => {
                       </div>
                       <div className="generalAppointmentTime mt-3 flex flex-col items-center justify-center">
                         <div className="appointmentTimeArea flex">
-                          <i class="fa-regular fa-calendar-check text-callNowdeepSlateBlueue flex items-center justify-center"></i>
+                          <i class="fa-regular fa-calendar-check text-deepSlateBlue flex items-center justify-center"></i>
                           <h2 className="text-sm font-bold ml-[8px] text-center">
                             Randevu Tarihi
                           </h2>
@@ -234,7 +234,7 @@ const EditModal = ({ isOpen, onClose, event }) => {
                     <div className="flex w-full mt-5 justify-around">
                       <div className="languageArea">
                         <div className="textLogoArea flex mb-1 w-full items-center justify-center">
-                          <i className="fa-solid fa-earth-americas text-callNowdeepSlateBlue flex items-center justify-center"></i>
+                          <i className="fa-solid fa-earth-americas text-deepSlateBlue flex items-center justify-center"></i>
                           <h5 className="text-sm font-semibold ml-[8px] mt-auto mb-auto text-center">
                             Dil
                           </h5>
@@ -249,7 +249,7 @@ const EditModal = ({ isOpen, onClose, event }) => {
                       </div>
                       <div className="generalAppointmentNumber">
                         <div className="birthdayAreaSomeone flex mb-1 w-full items-center justify-center">
-                          <i className="fa-solid fa-calendar-check text-callNowdeepSlateBlue flex items-center justify-center"></i>
+                          <i className="fa-solid fa-calendar-check text-deepSlateBlue flex items-center justify-center"></i>
                           <h2 className="text-sm font-bold ml-[8px] text-center">
                             Randevu Numarası
                           </h2>
@@ -263,11 +263,11 @@ const EditModal = ({ isOpen, onClose, event }) => {
                         </div>
                       </div>
                     </div>
-                    <div className="notesArea mt-[18px] border-2 border-callNowdeepSlateBlue rounded-xl">
+                    <div className="notesArea mt-[18px] border-2 border-deepSlateBlue rounded-xl">
                       <div className="p-3">
                         <div className="flex">
-                          <i className="fa-solid fa-book text-xl text-callNowdeepSlateBlue"></i>
-                          <h2 className="text-xl ml-2 text-callNowdeepSlateBlueue">
+                          <i className="fa-solid fa-book text-xl text-deepSlateBlue"></i>
+                          <h2 className="text-xl ml-2 text-deepSlateBlue">
                             Notlar
                           </h2>
                         </div>
@@ -284,7 +284,7 @@ const EditModal = ({ isOpen, onClose, event }) => {
               <div className="w-full flex items-center justify-center">
                 <button
                   type="submit"
-                  className=" bg-lightBlue py-2 px-5 text-sm rounded-2xl font-semibold text-white"
+                  className=" bg-deepSlateBlue py-2 px-5 text-sm rounded-2xl font-semibold text-white"
                 >
                   Güncelle
                 </button>

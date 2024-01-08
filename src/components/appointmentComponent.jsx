@@ -211,7 +211,7 @@ function AppointmentComponent() {
           "</h2>"
         : '<h2 class="text-stepBorder1 text-center text-base font-semibold p-4">' +
           "Sizinle buluşmayı büyük bir heyecan ile bekliyoruz." +
-          '<a class="text-deepSlateBlueue text-lg font-semibold" href="/myAppointments"> Randevularım </a>' +
+          '<a class="text-deepSlateBlue text-lg font-semibold" href="/myAppointments"> Randevularım </a>' +
           "bölümünden randevunuzun detaylarını inceleyebilir ve yönetebilirsiniz." +
           "</h2>",
       icon: "success",

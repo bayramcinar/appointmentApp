@@ -101,13 +101,13 @@ function NotAppointmentRequestBox({ image, infos, onDetails, setFormData }) {
                 </h1>
               </div>
               <div className="forWho flex">
-                <i className="fa-solid fa-circle mt-[3px] text-[15px] text-deepSlateBlue"></i>
-                <h2 className="text-[14px] font-bold ml-2">
+                <i className="fa-solid fa-circle mt-[3px] text-[15px] text-royalPurple"></i>
+                <h2 className="text-[14px] font-bold ml-2 text-deepSlateBlue">
                   {infos.kimIçin} İçin
                 </h2>
               </div>
               <div className="flex">
-                <i className="fa-regular fa-clock mt-[15px] text-deepSlateBlue text-[15px]"></i>
+                <i className="fa-regular fa-clock mt-[15px] text-royalPurple text-[15px]"></i>
                 <div className="flex flex-col items-center justify-center">
                   <h1 className="text-xs text-deepSlateBlue p-1 text-left font-semibold m-1 mb-0 pb-0">
                     {date}
@@ -121,7 +121,7 @@ function NotAppointmentRequestBox({ image, infos, onDetails, setFormData }) {
                 </h1>
               </div>
               <div className="flex">
-                <i className="fa-solid fa-hospital-user mt-[9px] text-deepSlateBlue text-[15px]"></i>
+                <i className="fa-solid fa-hospital-user mt-[9px] text-royalPurple text-[15px]"></i>
                 <h1 className="text-xs text-deepSlateBlue p-1 text-left font-semibold m-1">
                   {infos.service}
                 </h1>

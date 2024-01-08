@@ -1,7 +1,14 @@
 import React from "react";
 import pp from "../images/pp.png";
 
-const RequestModal = ({ isOpen, onClose, event }) => {
+const RequestModal = ({
+  isOpen,
+  onClose,
+  event,
+  randevuSaat,
+  randevuTarih,
+  endSaat,
+}) => {
   if (!event) {
     return null;
   }
@@ -43,13 +50,13 @@ const RequestModal = ({ isOpen, onClose, event }) => {
             <div className="m-3">
               <div className="appointmentNotes">
                 <div className="flex">
-                  <div className="imgArea w-36">
+                  <div className="imgArea w-[120px] p-2">
                     <img src={pp} alt="" />
                   </div>
                   <div className="forSomeone flex mt-3 flex-wrap items-center justify-center">
                     <div className="generalNameAreaSomeOne mr-5">
                       <div className="nameAreaSomeone flex">
-                        <i class="fa-solid fa-user text-callNowdeepSlateBlue flex items-center justify-center"></i>
+                        <i class="fa-solid fa-user text-deepSlateBlue flex items-center justify-center"></i>
                         <h2 className="text-sm font-bold ml-[8px] text-center">
                           İsim Soyisim
                         </h2>
@@ -62,7 +69,7 @@ const RequestModal = ({ isOpen, onClose, event }) => {
                     </div>
                     <div className="generalGenderAreaSomeOne mr-5">
                       <div className="genderAreaSomeone flex">
-                        <i class="fa-solid fa-venus-mars text-callNowdeepSlateBlue flex items-center justify-center"></i>
+                        <i class="fa-solid fa-venus-mars text-deepSlateBlue flex items-center justify-center"></i>
                         <h2 className="text-sm font-bold ml-[8px] text-center">
                           Cinsiyet
                         </h2>
@@ -71,9 +78,9 @@ const RequestModal = ({ isOpen, onClose, event }) => {
                         <h2 className="text-sm text-center">{event.gender}</h2>
                       </div>
                     </div>
-                    <div className="generalBirthdayAreaSomeOne mr-5">
+                    <div className="generalBirthdayAreaSomeOne mr-5 mt-3">
                       <div className="birthdayAreaSomeone flex">
-                        <i class="fa-solid fa-cake-candles text-callNowdeepSlateBlue flex items-center justify-center"></i>
+                        <i class="fa-solid fa-cake-candles text-deepSlateBlue flex items-center justify-center"></i>
                         <h2 className="text-sm font-bold ml-[8px] text-center">
                           Doğum Tarihi
                         </h2>
@@ -84,12 +91,25 @@ const RequestModal = ({ isOpen, onClose, event }) => {
                         </h2>
                       </div>
                     </div>
+                    <div className="generalAppointmentTime mr-5 mt-3">
+                      <div className="appointmentTimeArea flex">
+                        <i class="fa-regular fa-calendar-check text-deepSlateBlue flex items-center justify-center"></i>
+                        <h2 className="text-sm font-bold ml-[8px] text-center">
+                          Randevu Tarihi
+                        </h2>
+                      </div>
+                      <div>
+                        <h2 className="text-sm text-center">
+                          {randevuTarih} {randevuSaat}-{endSaat}
+                        </h2>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="flex">
-                  <div className="serviceNameArea mt-5">
+                <div className="flex w-full mt-5 justify-around">
+                  <div className="serviceNameArea">
                     <div className="service flex">
-                      <i class="fa-solid fa-user text-callNowdeepSlateBlue flex items-center justify-center"></i>
+                      <i class="fa-solid fa-user text-deepSlateBlue flex items-center justify-center"></i>
                       <h2 className="text-sm font-bold ml-[8px] text-center">
                         Hizmet
                       </h2>
@@ -98,9 +118,9 @@ const RequestModal = ({ isOpen, onClose, event }) => {
                       <h1 className="text-sm">{event.service}</h1>
                     </div>
                   </div>
-                  <div className="languageArea ml-5 mt-5">
+                  <div className="languageArea">
                     <div className="textLogoArea flex">
-                      <i class="fa-solid fa-earth-americas text-callNowdeepSlateBlue flex items-center justify-center"></i>
+                      <i class="fa-solid fa-earth-americas text-deepSlateBlue flex items-center justify-center"></i>
                       <h5 className="text-sm font-semibold ml-[8px] mt-auto mb-auto text-center">
                         Dil
                       </h5>
@@ -109,12 +129,25 @@ const RequestModal = ({ isOpen, onClose, event }) => {
                       <h1 className="text-sm">{event.language}</h1>
                     </div>
                   </div>
+                  <div className="generalAppointmentNumber">
+                    <div className="birthdayAreaSomeone flex">
+                      <i class="fa-solid fa-calendar-check text-deepSlateBlue flex items-center justify-center"></i>
+                      <h2 className="text-sm font-bold ml-[8px] text-center">
+                        Randevu Numarası
+                      </h2>
+                    </div>
+                    <div>
+                      <h2 className="text-sm text-center">
+                        {event.appointmentNumber}
+                      </h2>
+                    </div>
+                  </div>
                 </div>
-                <div className="notesArea mt-[8px] border-2 border-callNowdeepSlateBlue rounded-xl">
+                <div className="notesArea mt-[8px] border-2 border-deepSlateBlue rounded-xl">
                   <div className="p-3">
                     <div className="flex">
-                      <i className="fa-solid fa-book text-xl text-callNowdeepSlateBlue"></i>
-                      <h2 className="text-xl ml-2 text-callNowdeepSlateBlueue">
+                      <i className="fa-solid fa-book text-xl text-deepSlateBlue"></i>
+                      <h2 className="text-xl ml-2 text-deepSlateBlue">
                         Notlar
                       </h2>
                     </div>

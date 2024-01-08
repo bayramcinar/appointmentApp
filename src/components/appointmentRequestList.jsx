@@ -76,6 +76,17 @@ function AppointmentRequestList() {
     setIsModalOpen(false);
   };
 
+  function calculateEndTime(startTime, duration) {
+    const durationMinutes = parseInt(duration, 10);
+    const [hours, minutes] = startTime.split(":").map(Number);
+    const endHours = Math.floor((minutes + durationMinutes) / 60);
+    const endMinutes = (minutes + durationMinutes) % 60;
+    const endTime = `${hours + endHours}:${endMinutes
+      .toString()
+      .padStart(2, "0")}`;
+    return endTime;
+  }
+
   const renderSwiper = (appointments) => {
     const isMobile = window.innerWidth <= 768;
     const swiperSlides = [];
@@ -197,6 +208,19 @@ function AppointmentRequestList() {
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         event={selectedAppointment}
+        randevuTarih={
+          selectedAppointment && selectedAppointment.time.split(" ")[0]
+        }
+        randevuSaat={
+          selectedAppointment && selectedAppointment.time.split(" ")[2]
+        }
+        endSaat={
+          selectedAppointment &&
+          calculateEndTime(
+            selectedAppointment.time.split(" ")[2],
+            selectedAppointment.duration
+          )
+        }
       />
     </>
   );
