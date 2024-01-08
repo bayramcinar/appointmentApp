@@ -7,10 +7,23 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
+import EditModal from "./editModal";
 import Swal from "sweetalert2";
 
 function MyAppointments() {
   const [formData, setFormData] = useState([]); // tüm randevuleri atadığımız array
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [appointmentDataValue, setAppointmentDataValue] = useState();
+
+  const handleOpenEditModal = (selectedAppointment) => {
+    setAppointmentDataValue(selectedAppointment);
+    setOpenEditModal(true);
+  };
+
+  const handleCloseEditModal = () => {
+    setOpenEditModal(false);
+  };
+
   const handleDelete = (selectedAppointment) => {
     const selectedTimes =
       JSON.parse(localStorage.getItem("selectedTimes")) || []; // BU İŞLEMİ DATABASE DEN YAPACAĞIZ BEN BURDA RANDEVUYU SİLERKEN AYNI ZAMANDA selectedTimes (randevu saatleri) ögesindeki o saatin active değerini false dan true ya çeviriyorum randevu silindiği için
@@ -87,15 +100,20 @@ function MyAppointments() {
         <SwiperSlide key={i}>
           <div className="flex flex-col items-center justify-center appointmentBoxArea">
             {currentAppointments.map((appointmentData, index) => (
-              <MyAppointmentBox
-                key={index}
-                image={resim}
-                infos={{
-                  ...appointmentData,
-                  duration: appointmentData.duration || "0", // duration bilgisini ekledik
-                }}
-                onDelete={handleDelete}
-              />
+              <>
+                <MyAppointmentBox
+                  key={index}
+                  image={resim}
+                  infos={{
+                    ...appointmentData,
+                    duration: appointmentData.duration || "0", // duration bilgisini ekledik
+                  }}
+                  onDelete={handleDelete}
+                  handleOpenEditModal={() =>
+                    handleOpenEditModal(appointmentData)
+                  }
+                />
+              </>
             ))}
           </div>
         </SwiperSlide>
@@ -117,42 +135,58 @@ function MyAppointments() {
   };
 
   return (
-    <div className="myAppointments bg-dayComponentBg flex flex-col items-center justify-center p-3 relative lg:w-[56rem] mr-auto ml-auto mt-[50px] h-auto">
-      <h1 className="text-center text-2xl font-semibold text-buttonColor p-3">
-        Randevularım
-      </h1>
-      <div className="swipperAppointments h-auto lg:w-[56rem] lg:h-[27rem]">
-        {formData.length > 3 ? (
-          renderSwiper(formData)
-        ) : (
+    <>
+      <div className="myAppointments bg-dayComponentBg flex flex-col items-center justify-center p-3 relative lg:w-[56rem] mr-auto ml-auto mt-[50px] h-auto">
+        <h1 className="text-center text-2xl font-semibold text-buttonColor p-3">
+          Randevularım
+        </h1>
+        <div className="swipperAppointments h-auto">
+          {formData.length > 3 ? (
+            renderSwiper(formData)
+          ) : (
+            <>
+              {formData.map((appointmentData, index) => (
+                <>
+                  <MyAppointmentBox
+                    key={index}
+                    image={resim}
+                    infos={{
+                      ...appointmentData,
+                      duration: appointmentData.duration || "0", // duration bilgisini ekledik
+                    }}
+                    onDelete={handleDelete}
+                    handleOpenEditModal={() =>
+                      handleOpenEditModal(appointmentData)
+                    }
+                  />
+                </>
+              ))}
+            </>
+          )}
+        </div>
+        {formData.length > 3 && (
           <>
-            {formData.map((appointmentData, index) => (
-              <MyAppointmentBox
-                key={index}
-                image={resim}
-                infos={{
-                  ...appointmentData,
-                  duration: appointmentData.duration || "0", // duration bilgisini ekledik
-                }}
-                onDelete={handleDelete}
-              />
-            ))}
+            <div className="custom-swiper-button-prev absolute left-3 text-xl text-buttonColor cursor-pointer z-[2]">
+              <i className="fa-solid fa-arrow-left" alt="Previous"></i>
+            </div>
+            <div className="custom-swiper-button-next absolute right-3 text-xl text-buttonColor cursor-pointer z-[2]">
+              <i className="fa-solid fa-arrow-right" alt="Next"></i>
+            </div>
           </>
         )}
       </div>
-
-      {/* Custom navigation buttons */}
-      {formData.length > 3 && (
-        <>
-          <div className="custom-swiper-button-prev absolute left-3 text-xl text-buttonColor cursor-pointer z-[2]">
-            <i className="fa-solid fa-arrow-left" alt="Previous"></i>
-          </div>
-          <div className="custom-swiper-button-next absolute right-3 text-xl text-buttonColor cursor-pointer z-[2]">
-            <i className="fa-solid fa-arrow-right" alt="Next"></i>
-          </div>
-        </>
-      )}
-    </div>
+      <EditModal
+        isOpen={openEditModal}
+        onClose={handleCloseEditModal}
+        event={appointmentDataValue}
+        randevuTarih={
+          appointmentDataValue && appointmentDataValue.time.split(" ")[0]
+        }
+        randevuSaat={
+          appointmentDataValue && appointmentDataValue.time.split(" ")[2]
+        }
+      />
+    </>
   );
 }
 

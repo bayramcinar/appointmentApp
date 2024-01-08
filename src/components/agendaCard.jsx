@@ -13,7 +13,7 @@ function AgendaCard({
   isPastAppointment,
   showDetails,
   deleteFunction,
-  edit,
+  isCancelDisabled,
 }) {
   return (
     <div className="flex flex-col">
@@ -75,17 +75,14 @@ function AgendaCard({
           <div className="m-1">
             <button
               onClick={() => deleteFunction()}
-              className="p-1  bg-red-600 text-white text-xs font-semibold rounded-lg w-full"
+              className={`p-2 ${
+                isCancelDisabled
+                  ? "bg-gray-400 text-white cursor-not-allowed"
+                  : "bg-red-600 text-white"
+              } font-semibold rounded-xl`}
+              disabled={isCancelDisabled}
             >
-              Sil
-            </button>
-          </div>
-          <div className="m-1">
-            <button
-              onClick={() => edit()}
-              className="p-1 bg-appoinmentBox text-white text-xs font-semibold rounded-lg w-full"
-            >
-              Düzenle
+              İptal Et
             </button>
           </div>
           <div className="m-1">

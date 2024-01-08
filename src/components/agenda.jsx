@@ -26,12 +26,7 @@ function Agenda() {
     });
     setOpenModal(true);
   };
-  const handleOpenEditModal = (event) => {
-    setSelectedEvent({
-      ...event,
-    });
-    setOpenEditModal(true);
-  };
+
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
@@ -75,9 +70,7 @@ function Agenda() {
   const handleCloseModal = () => {
     setOpenModal(false);
   };
-  const handleCloseEditModal = () => {
-    setOpenEditModal(false);
-  };
+
   useEffect(() => {
     // localStorage'dan formData'yı al
     const storedFormData = localStorage.getItem("formData");
@@ -140,7 +133,7 @@ function Agenda() {
       );
       const isPastAppointment = appointmentDate < currentDate;
       const isToday = isSameDay(appointmentDate, currentDate);
-
+      const isCancelDisabled = remainingTime.remainingHours < 12;
       const actualIndex = (currentPage - 1) * itemsPerPage + index;
       return (
         <tr
@@ -175,17 +168,14 @@ function Agenda() {
               <div className="m-2">
                 <button
                   onClick={() => handleDelete(formEntry)}
-                  className="p-2 bg-red-600 text-white font-semibold rounded-xl"
+                  className={`p-2 ${
+                    isCancelDisabled
+                      ? "bg-gray-400 text-white cursor-not-allowed"
+                      : "bg-red-600 text-white"
+                  } font-semibold rounded-xl`}
+                  disabled={isCancelDisabled}
                 >
-                  Sil
-                </button>
-              </div>
-              <div className="m-2 ml-0">
-                <button
-                  onClick={() => handleOpenEditModal(formEntry)}
-                  className="p-2 bg-appoinmentBox text-white  font-semibold rounded-xl"
-                >
-                  Düzenle
+                  İptal Et
                 </button>
               </div>
               <div className="m-2 ml-0">
@@ -421,6 +411,7 @@ function Agenda() {
                   " " +
                   time.split(" ")[2]
               );
+              const isCancelDisabled = remainingTime.remainingHours < 12;
               const isPastAppointment = appointmentDate < currentDate;
               const name =
                 `${formEntry.firstName || ""} ${
@@ -449,7 +440,7 @@ function Agenda() {
                   date={dateInfo}
                   showDetails={() => handleOpenModal(formEntry)}
                   deleteFunction={() => handleDelete(formEntry)}
-                  edit={() => handleOpenEditModal(formEntry)}
+                  isCancelDisabled={isCancelDisabled}
                 />
               );
             })}
@@ -573,13 +564,6 @@ function Agenda() {
             selectedEvent.duration
           )
         }
-      />
-      <EditModal
-        isOpen={openEditModal}
-        onClose={handleCloseEditModal}
-        event={selectedEvent}
-        randevuTarih={selectedEvent && selectedEvent.time.split(" ")[0]}
-        randevuSaat={selectedEvent && selectedEvent.time.split(" ")[2]}
       />
     </>
   );
