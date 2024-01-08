@@ -79,7 +79,7 @@ function AgendaCard({
                 isCancelDisabled
                   ? "bg-gray-400 text-white cursor-not-allowed"
                   : "bg-red-600 text-white"
-              } font-semibold rounded-xl`}
+              } font-semibold rounded-xl text-xs `}
               disabled={isCancelDisabled}
             >
               İptal Et
