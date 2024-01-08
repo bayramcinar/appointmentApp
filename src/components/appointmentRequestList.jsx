@@ -138,10 +138,10 @@ function AppointmentRequestList() {
         {numberOfNewAppointments > 0 && (
           <>
             <div className="flex flex-col">
-              <h1 className="text-buttonColor lg:text-[1.3vw] max-[768px]:text-xl text-center font-semibold mt-[30px]">
+              <h1 className="text-deepSlateBlue lg:text-[1.3vw] max-[768px]:text-xl text-center font-semibold mt-[30px]">
                 Yeni Randevular
               </h1>
-              <h1 className="text-buttonColor lg:text-[1.3vw] max-[768px]:text-xl text-center font-semibold">
+              <h1 className="text-deepSlateBlue lg:text-[1.3vw] max-[768px]:text-xl text-center font-semibold">
                 ({numberOfNewAppointments} Yeni Randevu)
               </h1>
             </div>
@@ -183,10 +183,10 @@ function AppointmentRequestList() {
           )}
           {formData.length > 2 && (
             <>
-              <div className="custom-swiper-button-prev4 absolute top-[50%] left-3 text-xl text-buttonColor cursor-pointer z-[2]">
+              <div className="custom-swiper-button-prev4 absolute top-[50%] left-3 text-xl text-deepSlateBlue cursor-pointer z-[2]">
                 <i className="fa-solid fa-arrow-left" alt="Previous"></i>
               </div>
-              <div className="custom-swiper-button-next4 absolute top-[50%] right-3 text-xl text-buttonColor cursor-pointer z-[2]">
+              <div className="custom-swiper-button-next4 absolute top-[50%] right-3 text-xl text-deepSlateBlueueue cursor-pointer z-[2]">
                 <i className="fa-solid fa-arrow-right" alt="Next"></i>
               </div>
             </>

@@ -37,7 +37,7 @@ function AgendaCard({
             } ${
               status === "false"
                 ? "text-red-600 flashing-text"
-                : "text-appoinmentBox"
+                : "text-royalPurple"
             }  flex items-center justify-center my-0.5`}
           ></i>
           <h1 className="text-[10px] text-center ">

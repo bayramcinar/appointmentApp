@@ -21,7 +21,7 @@ function AppointmentInfoBox({ number, title, changeRate }) {
       )}
       <div className="infoArea w-[6vw] m-4 mb-0 max-[768px]:w-[15vw]">
         <h1
-          className="number text-center text-buttonColor text-[3vw] max-[768px]:text-4xl font-semibold"
+          className="number text-center text-deepSlateBlue text-[3vw] max-[768px]:text-4xl font-semibold"
           style={{ fontFamily: "Montserrat, sans-serif" }}
         >
           {number}

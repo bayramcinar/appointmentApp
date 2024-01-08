@@ -94,10 +94,10 @@ function AppointmentInfos() {
         )}
         {isMobile && (
           <>
-            <div className="custom-swiper-button-prev10 absolute left-2 text-xl text-buttonColor top-[45%] z-[2] cursor-pointer">
+            <div className="custom-swiper-button-prev10 absolute left-2 text-xl text-deepSlateBlue top-[45%] z-[2] cursor-pointer">
               <i className="fa-solid fa-arrow-left" alt="Previous"></i>
             </div>
-            <div className="custom-swiper-button-next10 top-[45%] absolute right-2 text-xl text-buttonColor z-[2] cursor-pointer">
+            <div className="custom-swiper-button-next10 top-[45%] absolute right-2 text-xl text-deepSlateBlueueue z-[2] cursor-pointer">
               <i className="fa-solid fa-arrow-right" alt="Next"></i>
             </div>
           </>

@@ -325,18 +325,18 @@ function TimeAndDate({
     <>
       <div className="animate__animated animate__fadeInLeft">
         <div className="title">
-          <h2 className="text-buttonColor text-center text-3xl font-bold p-3">
+          <h2 className="text-deepSlateBlue text-center text-3xl font-bold p-3">
             Tarih ve Zaman Seçiniz
           </h2>
-          <h2 className="text-red-600 text-center text-md font-bold">
+          <h2 className="text-coral text-center text-md font-bold">
             Ortalama randevu süresi {appoinmentDuration} dakikadır
           </h2>
         </div>
         <div className="bg-dayComponentBg dayComponent flex flex-col md:flex-row md:h-[20rem] m-3 lg:w-[34rem] lg:h-[20rem] md:w-[25rem] sm:w-[25rem]  sm:h-[40rem]">
-          <div className="flex flex-col items-center justify-between lg:order-1  max-[768px]:order-2 lg:w-[10rem] border-2 border-buttonColor rounded-2xl shadow-xl lg:mr-3 bg-white rightMobile md:w-[25rem] max-[768px]:h-auto">
+          <div className="flex flex-col items-center justify-between lg:order-1  max-[768px]:order-2 lg:w-[10rem] border-2 border-deepSlateBlue rounded-2xl shadow-xl lg:mr-3 bg-white rightMobile md:w-[25rem] max-[768px]:h-auto">
             <div className="choosenDate h-[62px]">
               <div className="dateText m-2">
-                <h2 className="text-center text-buttonColor text-md font-semibold  w-[100px]">
+                <h2 className="text-center text-deepSlateBlue text-md font-semibold  w-[90px]">
                   {currentDateDisplay}
                 </h2>
               </div>
@@ -345,11 +345,11 @@ function TimeAndDate({
               <div className="flex flex-col items-center justify-center">
                 {timedRequestSelectedTime === "" && (
                   <>
-                    <h1 className="text-xs text-red-600 font-semibold text-center">
+                    <h1 className="text-xs text-coral font-semibold text-center">
                       Size uyan bir saat yoksa randevu talebi oluşturabilirsiniz
                     </h1>
                     <button
-                      className="bg-callNowButtonColor rounded-2xl p-1 px-6 text-white text-sm mt-[5px] mb-[10px]"
+                      className="bg-deepSlateBlue rounded-2xl p-1 px-6 text-white text-sm mt-[5px] mb-[10px]"
                       onClick={() => {
                         setRequest(true);
                         setAppointmentRequest(true);
@@ -363,10 +363,10 @@ function TimeAndDate({
                 {timedRequestSelectedTime !== "" &&
                   formatDate(selectedDate) === currentDateDisplayNotDay && (
                     <>
-                      <h2 className="text-sm text-buttonColor text-center font-semibold mt-[8px]">
+                      <h2 className="text-sm text-deepSlateBlue text-center font-semibold mt-[8px]">
                         Seçtiğiniz randevu talebi saati
                       </h2>
-                      <h2 className="text-sm text-buttonColor text-center font-semibold mb-[8px] ml-auto mr-auto">
+                      <h2 className="text-sm text-deepSlateBlue text-center font-semibold mb-[8px] ml-auto mr-auto">
                         (Lütfen aşağıdan seçiniz ! )
                       </h2>
                       <RequestTimeBox
@@ -385,7 +385,7 @@ function TimeAndDate({
                     <div className="flex items-center justify-center">
                       <button
                         onClick={() => setAppointmentRequest(true)}
-                        className="bg-appoinmentBox font-semibold text-sm text-white p-1 px-6 rounded-2xl"
+                        className="bg-royalPurple font-semibold text-sm text-white p-1 px-6 rounded-2xl"
                       >
                         <i class="fa-solid fa-file-pen"></i> Düzenle
                       </button>
@@ -404,10 +404,10 @@ function TimeAndDate({
               >
                 {isMobile && appointmentTimesForSelectedDate.length > 9 && (
                   <>
-                    <div className="custom-swiper-button-prev absolute left-1 top-[41%] text-xl text-buttonColor z-[2] cursor-pointer">
+                    <div className="custom-swiper-button-prev absolute left-1 top-[41%] text-xl text-deepSlateBlue z-[2] cursor-pointer">
                       <i className="fa-solid fa-arrow-left" alt="Previous"></i>
                     </div>
-                    <div className="custom-swiper-button-next absolute right-1 top-[41%] text-xl text-buttonColor z-[2] cursor-pointer">
+                    <div className="custom-swiper-button-next absolute right-1 top-[41%] text-xl text-deepSlateBlue z-[2] cursor-pointer">
                       <i className="fa-solid fa-arrow-right" alt="Next"></i>
                     </div>
                   </>
@@ -433,7 +433,7 @@ function TimeAndDate({
                       )}
                       {requestSelectedTime === "" && (
                         <button
-                          className="bg-callNowButtonColor rounded-2xl p-1 px-6 text-white text-sm my-[15px]"
+                          className="bg-callNowdeepSlateBlue rounded-2xl p-1 px-6 text-white text-sm my-[15px]"
                           onClick={() => {
                             setAppointmentRequestNormal(true);
                             setRequest(true);
@@ -447,10 +447,10 @@ function TimeAndDate({
                         formatDate(selectedDate) ===
                           currentDateDisplayNotDay && (
                           <>
-                            <h2 className="text-sm text-buttonColor text-center font-semibold mt-[8px]">
+                            <h2 className="text-sm text-deepSlateBlue text-center font-semibold mt-[8px]">
                               Seçtiğiniz randevu talebi saati
                             </h2>
-                            <h2 className="text-sm text-buttonColor text-center font-semibold mb-[8px] ml-auto mr-auto">
+                            <h2 className="text-sm text-deepSlateBlue text-center font-semibold mb-[8px] ml-auto mr-auto">
                               (Lütfen aşağıdan seçiniz ! )
                             </h2>
                             <RequestTimeBox
@@ -469,7 +469,7 @@ function TimeAndDate({
                           <div className="flex items-center justify-center">
                             <button
                               onClick={() => setAppointmentRequest(true)}
-                              className="bg-appoinmentBox font-semibold text-sm text-white p-1 px-6 rounded-2xl"
+                              className="bg-royalPurple font-semibold text-sm text-white p-1 px-6 rounded-2xl"
                             >
                               <i class="fa-solid fa-file-pen"></i> Düzenle
                             </button>
@@ -482,7 +482,7 @@ function TimeAndDate({
               </div>
             </div>
           </div>
-          <div className="max-[768px]:mb-[10px] rightArea max-[768px]:flex-1 flex items-center justify-center md:order-2 border-2 border-buttonColor rounded-2xl shadow-xl bg-white md:h-[20rem]">
+          <div className="max-[768px]:mb-[10px] rightArea max-[768px]:flex-1 flex items-center justify-center md:order-2 border-2 border-deepSlateBlue rounded-2xl shadow-xl bg-white md:h-[20rem]">
             <CalendarBox
               selectedDate={selectedDate}
               onDateChange={(value) => {

@@ -20,7 +20,7 @@ function ContactForm({
   return (
     <div className="contactComponent animate__animated animate__fadeInLeft lg:w-[35rem] lg:h-auto md:w-[24rem] sm:w-[24rem] md:h-auto sm:h-auto">
       <div className="title">
-        <h2 className="text-buttonColor text-center text-3xl font-bold p-3">
+        <h2 className="text-deepSlateBlue text-center text-3xl font-bold p-3">
           Ön Bilgi Formu
         </h2>
       </div>
@@ -28,17 +28,17 @@ function ContactForm({
         <div className="choosePerson">
           <button
             onClick={() => handleOptionChange(true)}
-            className={`bg-appoinmentBox p-2 text-white tex-sm rounded-3xl m-3 px-7 ${
+            className={` p-2 text-white tex-sm rounded-3xl m-3 px-7 ${
               isOwn === true ? "selected" : ""
-            } ${isOwn === true ? "bg-appoinmentBox" : "bg-backButtonColor"}`}
+            } ${isOwn === true ? "bg-royalPurple" : "bg-deepSlateBlue"}`}
           >
             Kendim İçin
           </button>
           <button
             onClick={() => handleOptionChange(false)}
-            className={`bg-appoinmentBox p-2 text-white tex-sm rounded-3xl m-3 px-7 ${
+            className={` p-2 text-white tex-sm rounded-3xl m-3 px-7 ${
               isOwn === false ? "selected" : ""
-            } ${isOwn === false ? "bg-appoinmentBox" : "bg-backButtonColor"}`}
+            } ${isOwn === false ? "bg-royalPurple" : "bg-deepSlateBlue"}`}
           >
             Başkası İçin
           </button>

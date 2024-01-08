@@ -48,35 +48,35 @@ function MyAppointmentBox({ image, infos, onDelete, handleOpenEditModal }) {
                   Bu bir randevu talebidir.
                 </h1>
               )}
-              <h1 className="text-xs text-buttonColor p-1 text-left font-medium m-1">
+              <h1 className="text-xs text-deepSlateBlue p-1 text-left font-medium m-1">
                 {infos["kimIçin"]} için ({infos["notes"]})
               </h1>
               <div className="flex ">
-                <h1 className="text-xs text-buttonColor p-1 text-left font-medium m-1">
+                <h1 className="text-xs text-deepSlateBlue p-1 text-left font-medium m-1">
                   {removeTrueValue(infos["time"])}
                 </h1>
-                <h1 className="text-xs text-buttonColor py-1  text-left font-medium my-1">
+                <h1 className="text-xs text-deepSlateBlue py-1  text-left font-medium my-1">
                   ({infos["duration"]} Dakika)
                 </h1>
               </div>
-              <h1 className="text-xs text-buttonColor p-1 text-left font-medium m-1">
+              <h1 className="text-xs text-deepSlateBlue p-1 text-left font-medium m-1">
                 {infos["service"]}
               </h1>
             </div>
           )}
           {infos["kimIçin"] === "Başkası" && (
             <div className="infoAreaForSomeOne w-2/3">
-              <h1 className="text-xs text-buttonColor p-1 text-left font-medium m-1">
+              <h1 className="text-xs text-deepSlateBlue p-1 text-left font-medium m-1">
                 {infos["kimIçin"]} için ({infos["notes"]})
               </h1>
-              <h1 className="text-xs text-buttonColor p-1 text-left font-medium m-1">
+              <h1 className="text-xs text-deepSlateBlue p-1 text-left font-medium m-1">
                 {infos["firstName"]} {infos["lastName"]} ({infos["gender"]})
                 (Doğum Tarihi :{infos["dateOfBirth"]})
               </h1>
-              <h1 className="text-xs text-buttonColor p-1 text-left font-medium m-1">
+              <h1 className="text-xs text-deepSlateBlue p-1 text-left font-medium m-1">
                 {removeTrueValue(infos["time"])}
               </h1>
-              <h1 className="text-xs text-buttonColor p-1 text-left font-medium m-1">
+              <h1 className="text-xs text-deepSlateBlue p-1 text-left font-medium m-1">
                 {infos["service"]}
               </h1>
             </div>

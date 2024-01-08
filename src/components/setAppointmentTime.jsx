@@ -351,10 +351,10 @@ function SetAppointmentTime() {
             onMouseEnter={handleInfoIconHover}
             onMouseLeave={handleInfoIconLeave}
           >
-            <i className="fa-solid fa-circle-info text-xl text-buttonColor"></i>
+            <i className="fa-solid fa-circle-info text-xl text-deepSlateBlue"></i>
           </div>
           <div className="tooltip z-[3] hidden bg-white border border-gray-300 p-2 rounded-xl shadow-lg absolute transform -translate-x-0 right-[2px] transition duration-300 w-[200px]">
-            <h1 className="text-xs font-semibold text-center text-red-500">
+            <h1 className="text-xs font-semibold text-center text-coral">
               Randevu süresi {appointmentDuration} dakika, randevu ücreti{" "}
               {appointmentPrice} ₺ olarak ayarlıdır. Dilerseniz bu bilgileri
               profilinizden güncelleyebilirsiniz.
@@ -375,27 +375,23 @@ function SetAppointmentTime() {
             </div>
           </div>
         </div>
-        <h2 className="text-buttonColor text-2xl m-3 font-semibold mb-0">
+        <h2 className="text-deepSlateBlue text-2xl m-3 font-semibold mb-0">
           Randevu Zamanı Belirle
         </h2>
         <div className="chooseSavedTimes flex items-center justify-center ">
           <button
             onClick={() => handleOptionChange(true)}
-            className={`bg-appoinmentBox p-1 text-white text-sm rounded-3xl m-3 mb-0 px-7 ${
+            className={`p-1 text-white text-sm rounded-3xl m-3 mb-0 px-7 ${
               savedTimes === true ? "selected" : ""
-            } ${
-              savedTimes === true ? "bg-appoinmentBox" : "bg-backButtonColor"
-            }`}
+            } ${savedTimes === true ? "bg-royalPurple" : "bg-deepSlateBlue"}`}
           >
             Kayıtlı Saatler
           </button>
           <button
             onClick={() => handleOptionChange(false)}
-            className={`bg-appoinmentBox p-1 text-white text-sm rounded-3xl m-3 mb-0 px-7 ${
+            className={` p-1 text-white text-sm rounded-3xl m-3 mb-0 px-7 ${
               savedTimes === false ? "selected" : ""
-            } ${
-              savedTimes === false ? "bg-appoinmentBox" : "bg-backButtonColor"
-            }`}
+            } ${savedTimes === false ? "bg-royalPurple" : "bg-deepSlateBlue"}`}
           >
             Saat Ekle
           </button>
@@ -445,13 +441,13 @@ function SetAppointmentTime() {
 
                       {savedTimesArray.length > 0 && !isMobile && (
                         <>
-                          <div className="custom-swiper-button-prev8 absolute left-2 text-xl text-buttonColor top-[45%] z-[2] cursor-pointer">
+                          <div className="custom-swiper-button-prev8 absolute left-2 text-xl text-deepSlateBlue top-[45%] z-[2] cursor-pointer">
                             <i
                               className="fa-solid fa-arrow-left"
                               alt="Previous"
                             ></i>
                           </div>
-                          <div className="custom-swiper-button-next8 top-[45%] absolute right-2 text-xl text-buttonColor z-[2] cursor-pointer">
+                          <div className="custom-swiper-button-next8 top-[45%] absolute right-2 text-xl text-deepSlateBlue z-[2] cursor-pointer">
                             <i
                               className="fa-solid fa-arrow-right"
                               alt="Next"
@@ -479,13 +475,13 @@ function SetAppointmentTime() {
                       )}
                       {savedTimesArray.length > 6 && !isMobile && (
                         <>
-                          <div className="custom-swiper-button-prev9 absolute left-2 text-xl text-buttonColor top-[40%] z-[2] cursor-pointer">
+                          <div className="custom-swiper-button-prev9 absolute left-2 text-xl text-deepSlateBlue top-[40%] z-[2] cursor-pointer">
                             <i
                               className="fa-solid fa-arrow-left"
                               alt="Previous"
                             ></i>
                           </div>
-                          <div className="custom-swiper-button-next9 top-[40%] absolute right-2 text-xl text-buttonColor z-[2] cursor-pointer">
+                          <div className="custom-swiper-button-next9 top-[40%] absolute right-2 text-xl text-deepSlateBlue z-[2] cursor-pointer">
                             <i
                               className="fa-solid fa-arrow-right"
                               alt="Next"
@@ -501,7 +497,7 @@ function SetAppointmentTime() {
                 <div className="w-full flex items-center justify-center">
                   <button
                     type="submit"
-                    className="bg-buttonColor rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
+                    className="bg-royalPurple rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
                   >
                     <h4 className="text-text p-2 px-6 text-sm tracking-wider">
                       Zamanı ve Tarihi Ayarla
@@ -513,7 +509,7 @@ function SetAppointmentTime() {
                 <div className="w-full flex items-center justify-center">
                   <button
                     type="submit"
-                    className="bg-buttonColor rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
+                    className="bg-royalPurple rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
                   >
                     <h4 className="text-text p-2 px-6 text-sm tracking-wider">
                       Kayıt Et

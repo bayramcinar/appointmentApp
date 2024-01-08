@@ -216,7 +216,7 @@ function Agenda() {
                 )}
                 {status === "true" && (
                   <div className="flex justify-center items-center">
-                    <i className="fa-solid fa-circle text-appoinmentBox flex items-center justify-center mx-2"></i>
+                    <i className="fa-solid fa-circle text-green-500 items-center justify-center mx-2"></i>
                     <h1 className="text-md text-center ">Aktif</h1>
                   </div>
                 )}
@@ -505,7 +505,7 @@ function Agenda() {
         <div className="w-full shadow-xl overflow-auto max-h-600">
           <div className="flex">
             <div className="w-[33%] flex items-center justify-center"></div>
-            <h1 className=" lg:text-[1.5vw] max-[768px]:text-xl max-[768px]:w-[48%] w-[33%] text-center max-[768px]:justify:start font-semibold mt-5 sticky top-0 text-buttonColor p-3 pb-0">
+            <h1 className=" lg:text-[1.5vw] max-[768px]:text-xl max-[768px]:w-[48%] w-[33%] text-center max-[768px]:justify:start font-semibold mt-5 sticky top-0 text-deepSlateBlue p-3 pb-0">
               Yaklaşan Randevularım
             </h1>
             <div className="flex w-[33%] max-[768px]:w-[48%] justify-end items-center mb-4 mt-6">
@@ -536,7 +536,7 @@ function Agenda() {
             {!isMobile && (
               <table className="rounded-xl w-full ">
                 <thead>
-                  <tr className="sticky top-0 bg-buttonColor text-white">
+                  <tr className="sticky top-0 bg-deepSlateBlue text-white">
                     <th className="p-3">Sıra</th>
                     <th className="p-3">Randevu Numarası</th>
                     <th className="p-3">Tarih</th>
@@ -562,7 +562,7 @@ function Agenda() {
                   onClick={() => handlePageChange(page + 1)}
                   className={`px-3 py-2 border cursor-pointer rounded-2xl ${
                     page + 1 === currentPage
-                      ? "bg-buttonColor text-white"
+                      ? "bg-deepSlateBlueueueueueueueue text-white"
                       : "border-gray-300"
                   }`}
                 >

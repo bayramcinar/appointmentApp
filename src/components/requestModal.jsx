@@ -49,7 +49,7 @@ const RequestModal = ({ isOpen, onClose, event }) => {
                   <div className="forSomeone flex mt-3 flex-wrap items-center justify-center">
                     <div className="generalNameAreaSomeOne mr-5">
                       <div className="nameAreaSomeone flex">
-                        <i class="fa-solid fa-user text-callNowButtonColor flex items-center justify-center"></i>
+                        <i class="fa-solid fa-user text-callNowdeepSlateBlue flex items-center justify-center"></i>
                         <h2 className="text-sm font-bold ml-[8px] text-center">
                           İsim Soyisim
                         </h2>
@@ -62,7 +62,7 @@ const RequestModal = ({ isOpen, onClose, event }) => {
                     </div>
                     <div className="generalGenderAreaSomeOne mr-5">
                       <div className="genderAreaSomeone flex">
-                        <i class="fa-solid fa-venus-mars text-callNowButtonColor flex items-center justify-center"></i>
+                        <i class="fa-solid fa-venus-mars text-callNowdeepSlateBlue flex items-center justify-center"></i>
                         <h2 className="text-sm font-bold ml-[8px] text-center">
                           Cinsiyet
                         </h2>
@@ -73,7 +73,7 @@ const RequestModal = ({ isOpen, onClose, event }) => {
                     </div>
                     <div className="generalBirthdayAreaSomeOne mr-5">
                       <div className="birthdayAreaSomeone flex">
-                        <i class="fa-solid fa-cake-candles text-callNowButtonColor flex items-center justify-center"></i>
+                        <i class="fa-solid fa-cake-candles text-callNowdeepSlateBlue flex items-center justify-center"></i>
                         <h2 className="text-sm font-bold ml-[8px] text-center">
                           Doğum Tarihi
                         </h2>
@@ -89,7 +89,7 @@ const RequestModal = ({ isOpen, onClose, event }) => {
                 <div className="flex">
                   <div className="serviceNameArea mt-5">
                     <div className="service flex">
-                      <i class="fa-solid fa-user text-callNowButtonColor flex items-center justify-center"></i>
+                      <i class="fa-solid fa-user text-callNowdeepSlateBlue flex items-center justify-center"></i>
                       <h2 className="text-sm font-bold ml-[8px] text-center">
                         Hizmet
                       </h2>
@@ -100,7 +100,7 @@ const RequestModal = ({ isOpen, onClose, event }) => {
                   </div>
                   <div className="languageArea ml-5 mt-5">
                     <div className="textLogoArea flex">
-                      <i class="fa-solid fa-earth-americas text-callNowButtonColor flex items-center justify-center"></i>
+                      <i class="fa-solid fa-earth-americas text-callNowdeepSlateBlue flex items-center justify-center"></i>
                       <h5 className="text-sm font-semibold ml-[8px] mt-auto mb-auto text-center">
                         Dil
                       </h5>
@@ -110,11 +110,11 @@ const RequestModal = ({ isOpen, onClose, event }) => {
                     </div>
                   </div>
                 </div>
-                <div className="notesArea mt-[8px] border-2 border-callNowButtonColor rounded-xl">
+                <div className="notesArea mt-[8px] border-2 border-callNowdeepSlateBlue rounded-xl">
                   <div className="p-3">
                     <div className="flex">
-                      <i className="fa-solid fa-book text-xl text-callNowButtonColor"></i>
-                      <h2 className="text-xl ml-2 text-callNowButtonColor">
+                      <i className="fa-solid fa-book text-xl text-callNowdeepSlateBlue"></i>
+                      <h2 className="text-xl ml-2 text-callNowdeepSlateBlueue">
                         Notlar
                       </h2>
                     </div>

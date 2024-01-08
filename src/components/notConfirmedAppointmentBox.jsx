@@ -86,7 +86,7 @@ function NotAppointmentRequestBox({ image, infos, onDetails, setFormData }) {
 
   return (
     <>
-      <div className="bg-white myAppointmentBox lg:w-[280px] h-[205px] max-[768px]:w-[300px]  ml-auto mr-auto border-2 border-buttonColor rounded-2xl shadow-2xl">
+      <div className="bg-white myAppointmentBox lg:w-[280px] h-[205px] max-[768px]:w-[300px]  ml-auto mr-auto border-2 border-deepSlateBlue rounded-2xl shadow-2xl">
         <div className="p-2 flex flex-col pt-0">
           <div className="flex">
             <div className="imgArea1 w-1/3 flex items-center justify-center">
@@ -101,28 +101,28 @@ function NotAppointmentRequestBox({ image, infos, onDetails, setFormData }) {
                 </h1>
               </div>
               <div className="forWho flex">
-                <i className="fa-solid fa-circle mt-[3px] text-[15px] text-callNowButtonColor"></i>
+                <i className="fa-solid fa-circle mt-[3px] text-[15px] text-deepSlateBlue"></i>
                 <h2 className="text-[14px] font-bold ml-2">
                   {infos.kimIçin} İçin
                 </h2>
               </div>
               <div className="flex">
-                <i className="fa-regular fa-clock mt-[15px] text-callNowButtonColor text-[15px]"></i>
+                <i className="fa-regular fa-clock mt-[15px] text-deepSlateBlue text-[15px]"></i>
                 <div className="flex flex-col items-center justify-center">
-                  <h1 className="text-xs text-buttonColor p-1 text-left font-semibold m-1 mb-0 pb-0">
+                  <h1 className="text-xs text-deepSlateBlue p-1 text-left font-semibold m-1 mb-0 pb-0">
                     {date}
                   </h1>
-                  <h1 className="text-xs text-buttonColor p-1 text-left font-semibold m-1 mt-0 pt-0">
+                  <h1 className="text-xs text-deepSlateBlue p-1 text-left font-semibold m-1 mt-0 pt-0">
                     {timeStart} - {endTime}
                   </h1>
                 </div>
-                <h1 className="text-xs text-buttonColor py-1 text-left font-semibold my-1 flex items-center justify-center">
+                <h1 className="text-xs text-deepSlateBlue py-1 text-left font-semibold my-1 flex items-center justify-center">
                   ({infos.duration} Dakika)
                 </h1>
               </div>
               <div className="flex">
-                <i className="fa-solid fa-hospital-user mt-[9px] text-callNowButtonColor text-[15px]"></i>
-                <h1 className="text-xs text-buttonColor p-1 text-left font-semibold m-1">
+                <i className="fa-solid fa-hospital-user mt-[9px] text-deepSlateBlue text-[15px]"></i>
+                <h1 className="text-xs text-deepSlateBlue p-1 text-left font-semibold m-1">
                   {infos.service}
                 </h1>
               </div>
@@ -131,7 +131,7 @@ function NotAppointmentRequestBox({ image, infos, onDetails, setFormData }) {
           <div className="buttonsArea flex justify-center items-center mt-4">
             <button
               onClick={() => onAccept(timeObject)}
-              className="p-2 bg-islemeAlButtonColor text-white text-sm font-semibold rounded-lg mx-2"
+              className="p-2 bg-vividOrange text-white text-sm font-semibold rounded-lg mx-2"
             >
               İşleme Al
             </button>

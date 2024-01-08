@@ -56,7 +56,7 @@ function AppointmentRequest({ isOpen, onClose, handleFormSubmit, date }) {
             </div>
             <div>
               <div className="appointmentRequestArea">
-                <h1 className="text-buttonColor text-sm text-center font-semibold">
+                <h1 className="text-deepSlateBlueue text-sm text-center font-semibold">
                   Lütfen Aşağıdan oluşturmak istediğiniz randevu talebin saatini
                   seçiniz
                 </h1>
@@ -84,7 +84,7 @@ function AppointmentRequest({ isOpen, onClose, handleFormSubmit, date }) {
 
                     <button
                       type="submit"
-                      className="bg-appoinmentBox rounded-2xl p-1 px-6 text-white text-sm mt-[15px]"
+                      className="bg-royalPurpleounded-2xl p-1 px-6 text-white text-sm mt-[15px]"
                     >
                       Talep Oluştur
                     </button>

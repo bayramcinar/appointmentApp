@@ -206,12 +206,12 @@ function AppointmentComponent() {
       html: request
         ? '<h2 class="text-stepBorder1 text-center text-base font-semibold p-4">' +
           "Randevu talebiniz başarılı bir şekilde oluşturuldu." +
-          '<a class="text-buttonColor text-lg font-semibold" href="/myAppointments"> Randevularım </a>' +
+          '<a class="text-deepSlateBlue text-lg font-semibold" href="/myAppointments"> Randevularım </a>' +
           "bölümünden randevunuzun detaylarını inceleyebilir ve yönetebilirsiniz." +
           "</h2>"
         : '<h2 class="text-stepBorder1 text-center text-base font-semibold p-4">' +
           "Sizinle buluşmayı büyük bir heyecan ile bekliyoruz." +
-          '<a class="text-buttonColor text-lg font-semibold" href="/myAppointments"> Randevularım </a>' +
+          '<a class="text-deepSlateBlueue text-lg font-semibold" href="/myAppointments"> Randevularım </a>' +
           "bölümünden randevunuzun detaylarını inceleyebilir ve yönetebilirsiniz." +
           "</h2>",
       icon: "success",
@@ -344,7 +344,7 @@ function AppointmentComponent() {
               <div className="nextStep flex items-center justify-center m-3 mb-5">
                 <button
                   onClick={handleBack}
-                  className="bg-buttonColor rounded-3xl flex items-center justify-center w-44 buttons"
+                  className="bg-deepSlateBlue rounded-3xl flex items-center justify-center w-44 buttons"
                 >
                   <h4 className="text-text p-2 text-lg tracking-wider">
                     <i className="mr-16 fa-solid fa-arrow-left"></i> Geri
@@ -357,7 +357,7 @@ function AppointmentComponent() {
                 <div className="nextStep flex items-center justify-center m-3 mb-5">
                   <button
                     onClick={handleNext}
-                    className="bg-buttonColor rounded-3xl flex items-center justify-center w-44 buttons"
+                    className="bg-deepSlateBlue rounded-3xl flex items-center justify-center w-44 buttons"
                   >
                     <h4 className="text-text p-2 text-lg tracking-wider">
                       İleri <i className="ml-8 fa-solid fa-arrow-right"></i>
@@ -370,7 +370,7 @@ function AppointmentComponent() {
               <div className="nextStep flex items-center justify-center m-3 mb-5">
                 <button
                   onClick={handleNext}
-                  className="bg-buttonColor rounded-3xl flex items-center justify-center w-44 buttons"
+                  className="bg-deepSlateBlue rounded-3xl flex items-center justify-center w-44 buttons"
                 >
                   <h4 className="text-text p-2 text-lg tracking-wider">
                     İleri<i className="ml-8 fa-solid fa-arrow-right"></i>
@@ -385,7 +385,7 @@ function AppointmentComponent() {
                     value="Submit"
                     form="myform"
                     type="submit"
-                    className="bg-buttonColor rounded-3xl flex items-center justify-center w-44 buttons"
+                    className="bg-deepSlateBlue rounded-3xl flex items-center justify-center w-44 buttons"
                   >
                     <h4 className="text-text p-2 text-lg tracking-wider">
                       Bitir<i className="ml-14 fa-solid fa-check"></i>

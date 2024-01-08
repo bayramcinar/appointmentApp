@@ -122,8 +122,8 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
           </div>
           <div className="relative">
             <div className=" flex items-center justify-center">
-              <div className="border-b-2 border-buttonColor w-fit">
-                <h1 className="text-[17px]  font-semibold text-center text-buttonColor">
+              <div className="border-b-2 border-deepSlateBlue w-fit">
+                <h1 className="text-[17px]  font-semibold text-center text-deepSlateBlue">
                   Hala Randevu alınmayan veya süresi geçmiş saatler
                 </h1>
               </div>
@@ -152,8 +152,8 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
             </div>
 
             <div className=" flex items-center justify-center">
-              <div className="border-b-2 border-buttonColor w-fit">
-                <h1 className="text-[17px] font-semibold text-center text-buttonColor">
+              <div className="border-b-2 border-deepSlateBlue w-fit">
+                <h1 className="text-[17px] font-semibold text-center text-deepSlateBlue">
                   Randevu Alınan Saatler
                 </h1>
               </div>
@@ -181,8 +181,8 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
               )}
             </div>
             <div className=" flex items-center justify-center m-3 mt-0">
-              <div className="border-b-2 border-buttonColor w-fit">
-                <h1 className="text-[17px] font-semibold text-center text-buttonColor">
+              <div className="border-b-2 border-deepSlateBlue w-fit">
+                <h1 className="text-[17px] font-semibold text-center text-deepSlateBlue">
                   Randevular
                 </h1>
               </div>
@@ -203,10 +203,10 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
               )}
               {choosenFormDatas.length > 2 && (
                 <>
-                  <div className="custom-swiper-button-prev1 absolute left-0 top-[45%] text-xl text-buttonColor cursor-pointer z-[2]">
+                  <div className="custom-swiper-button-prev1 absolute left-0 top-[45%] text-xl text-deepSlateBlue cursor-pointer z-[2]">
                     <i className="fa-solid fa-arrow-left" alt="Previous"></i>
                   </div>
-                  <div className="custom-swiper-button-next1 absolute right-0 top-[45%] text-xl text-buttonColor cursor-pointer z-[2]">
+                  <div className="custom-swiper-button-next1 absolute right-0 top-[45%] text-xl text-deepSlateBlueueue cursor-pointer z-[2]">
                     <i className="fa-solid fa-arrow-right" alt="Next"></i>
                   </div>
                 </>

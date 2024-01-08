@@ -7,7 +7,6 @@ function AppointmentBox({
   selectedTime,
   onTimeClick,
   active,
-  duration,
   isMobile,
 }) {
   const handleTimeClick = () => {
@@ -31,9 +30,9 @@ function AppointmentBox({
   return (
     <div
       className={`timeBox w-[145px] max-[768px]:w-[100px] ${
-        isSelected ? "bg-red-600" : "bg-appoinmentBox"
+        isSelected ? "bg-vividOrange" : "bg-royalPurple"
       } ${
-        active ? "bg-appoinmentBox" : "bg-stepBorder1"
+        active ? "bg-royalPurple" : "bg-stepBorder1"
       }  rounded-3xl mb-[5px] p-[2px] max-[768px]:m-[5px] cursor-pointer`}
       onClick={handleTimeClick}
     >
