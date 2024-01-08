@@ -63,7 +63,7 @@ function AgendaCard({
           </div>
           <div className="kalanSüre my-auto h-[50%] flex items-center justify-center">
             <h1
-              className={`text-[11px] text-center my-auto ${
+              className={`text-[11px] text-center mb-auto ${
                 remainingTime === "Randevu Bitti" ? "text-red-600" : ""
               }`}
             >
