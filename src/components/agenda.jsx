@@ -168,7 +168,7 @@ function Agenda() {
               <div className="m-2">
                 <button
                   onClick={() => handleDelete(formEntry)}
-                  className={`p-2 ${
+                  className={`p-[7px] ${
                     isCancelDisabled
                       ? "bg-gray-400 text-white cursor-not-allowed"
                       : "bg-red-600 text-white"

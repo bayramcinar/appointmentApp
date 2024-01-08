@@ -71,15 +71,16 @@ function AgendaCard({
             </h1>
           </div>
         </div>
-        <div className="buttonsArea">
+        <div className="buttonsArea flex flex-col items-center justify-center">
           <div className="m-1">
             <button
               onClick={() => deleteFunction()}
-              className={`p-2 ${
-                isCancelDisabled
-                  ? "bg-gray-400 text-white cursor-not-allowed"
-                  : "bg-red-600 text-white"
-              } font-semibold rounded-xl text-xs `}
+              className={`p-[7px]
+               ${
+                 isCancelDisabled
+                   ? "bg-gray-400 text-white cursor-not-allowed"
+                   : "bg-red-600 text-white"
+               } font-semibold rounded-xl text-xs `}
               disabled={isCancelDisabled}
             >
               İptal Et
