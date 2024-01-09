@@ -35,9 +35,7 @@ function AgendaCard({
             className={`fa-solid fa-circle text-[10px] ${
               isPastAppointment ? "hidden" : ""
             } ${
-              status === "false"
-                ? "text-coral flashing-text"
-                : "text-royalPurple"
+              status === "false" ? "text-coral flashing-text" : "text-green-500"
             }  flex items-center justify-center my-0.5`}
           ></i>
           <h1 className="text-[10px] text-center ">
