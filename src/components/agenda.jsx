@@ -222,7 +222,7 @@ function Agenda() {
                 )}
                 {requestStatus === "true" && status === "false" && (
                   <div className="flex w-full justify-center">
-                    <i className="fa-solid fa-circle text-corallashing-text flex items-center justify-center mx-2"></i>
+                    <i className="fa-solid fa-circle text-coral flashing-text flex items-center justify-center mx-2"></i>
                     <h1 className="text-md text-center ">
                       Randevu Talebi Onay Bekleniyor
                     </h1>
