@@ -102,27 +102,27 @@ function NotAppointmentRequestBox({ image, infos, onDetails, setFormData }) {
               </div>
               <div className="forWho flex">
                 <i className="fa-solid fa-circle mt-[3px] text-[15px] text-royalPurple"></i>
-                <h2 className="text-[14px] font-bold ml-2 text-deepSlateBlue">
+                <h2 className="text-[14px] font-bold ml-2 ">
                   {infos.kimIçin} İçin
                 </h2>
               </div>
               <div className="flex">
                 <i className="fa-regular fa-clock mt-[15px] text-royalPurple text-[15px]"></i>
                 <div className="flex flex-col items-center justify-center">
-                  <h1 className="text-xs text-deepSlateBlue p-1 text-left font-semibold m-1 mb-0 pb-0">
+                  <h1 className="text-xs  p-1 text-left font-semibold m-1 mb-0 pb-0">
                     {date}
                   </h1>
-                  <h1 className="text-xs text-deepSlateBlue p-1 text-left font-semibold m-1 mt-0 pt-0">
+                  <h1 className="text-xs  p-1 text-left font-semibold m-1 mt-0 pt-0">
                     {timeStart} - {endTime}
                   </h1>
                 </div>
-                <h1 className="text-xs text-deepSlateBlue py-1 text-left font-semibold my-1 flex items-center justify-center">
+                <h1 className="text-xs  py-1 text-left font-semibold my-1 flex items-center justify-center">
                   ({infos.duration} Dakika)
                 </h1>
               </div>
               <div className="flex">
                 <i className="fa-solid fa-hospital-user mt-[9px] text-royalPurple text-[15px]"></i>
-                <h1 className="text-xs text-deepSlateBlue p-1 text-left font-semibold m-1">
+                <h1 className="text-xs  p-1 text-left font-semibold m-1">
                   {infos.service}
                 </h1>
               </div>

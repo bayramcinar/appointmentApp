@@ -381,17 +381,25 @@ function SetAppointmentTime() {
         <div className="chooseSavedTimes flex items-center justify-center ">
           <button
             onClick={() => handleOptionChange(true)}
-            className={`p-1 text-white text-sm rounded-3xl m-3 mb-0 px-7 ${
+            className={`p-1 text-sm rounded-3xl m-3 mb-0 px-7 ${
               savedTimes === true ? "selected" : ""
-            } ${savedTimes === true ? "bg-royalPurple" : "bg-deepSlateBlue"}`}
+            } ${
+              savedTimes === true
+                ? "bg-royalPurple text-white "
+                : "bg-white border-royalPurple border-2 text-royalPurple"
+            }`}
           >
             Kayıtlı Saatler
           </button>
           <button
             onClick={() => handleOptionChange(false)}
-            className={` p-1 text-white text-sm rounded-3xl m-3 mb-0 px-7 ${
+            className={` p-1  text-sm rounded-3xl m-3 mb-0 px-7 ${
               savedTimes === false ? "selected" : ""
-            } ${savedTimes === false ? "bg-royalPurple" : "bg-deepSlateBlue"}`}
+            } ${
+              savedTimes === false
+                ? "bg-royalPurple text-white"
+                : "bg-white border-royalPurple border-2 text-royalPurple"
+            }`}
           >
             Saat Ekle
           </button>

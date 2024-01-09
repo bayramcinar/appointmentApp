@@ -17,6 +17,10 @@ module.exports = {
         deepSlateBlue: "hsl(270, 100%, 29.75%)",
         coral: "hsl(0, 89.87%, 60.5%)",
       },
+      backgroundImage: {
+        gradient:
+          "linear-gradient(360deg, rgba(237,20,91,1) 0%, rgba(107,36,101,1) 100%)",
+      },
     },
   },
   plugins: [],

@@ -536,7 +536,7 @@ function Agenda() {
             {!isMobile && (
               <table className="rounded-xl w-full ">
                 <thead>
-                  <tr className="sticky top-0 bg-deepSlateBlue text-white">
+                  <tr className="sticky top-0 bg-gradient text-white">
                     <th className="p-3">Sıra</th>
                     <th className="p-3">Randevu Numarası</th>
                     <th className="p-3">Tarih</th>
@@ -562,7 +562,7 @@ function Agenda() {
                   onClick={() => handlePageChange(page + 1)}
                   className={`px-3 py-2 border cursor-pointer rounded-2xl ${
                     page + 1 === currentPage
-                      ? "bg-deepSlateBlue text-white"
+                      ? "bg-gradient text-white"
                       : "border-gray-300"
                   }`}
                 >
