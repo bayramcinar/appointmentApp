@@ -536,7 +536,7 @@ function Agenda() {
             {!isMobile && (
               <table className="rounded-xl w-full ">
                 <thead>
-                  <tr className="sticky top-0 bg-gradient text-white">
+                  <tr className="sticky top-0 bg-mistikBlue text-white">
                     <th className="p-3">Sıra</th>
                     <th className="p-3">Randevu Numarası</th>
                     <th className="p-3">Tarih</th>

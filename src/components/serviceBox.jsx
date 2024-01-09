@@ -15,20 +15,17 @@ function ServiceBox({ title, selectedService, onServiceClick, image }) {
       <div
         className="service max-[768px]:m-[13px] cursor-pointer flex rounded-2xl w-[14.5rem] max-[768px]:w-[16rem] m-[2px]"
         onClick={handleServiceClick}
-        deepSlateBlue
-        deepSlateBlue
-        deepSlateBlue
       >
         <div
-          className={`textArea md:rounded-r-3xl bg-deepSlateBlue ${
+          className={`textArea md:rounded-r-3xl  ${
             isSelected
-              ? "bg-white border-2 border-deepSlateBlue "
-              : "bg-deepSlateBlue"
+              ? "bg-white border-2 border-mistikBlue "
+              : "bg-mistikBlue"
           } w-80 p-2 rounded-3xl flex items-center justify-center max-[768px]:rounded-2xl`}
         >
           <h3
             className={`text-sm max-[768px]:text-base ${
-              isSelected ? "text-deepSlateBlueue" : "text-white"
+              isSelected ? "text-mistikBlue" : "text-white"
             } text-center`}
           >
             {title}

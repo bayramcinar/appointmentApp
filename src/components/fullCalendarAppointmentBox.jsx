@@ -65,16 +65,16 @@ function FullCalendarAppointmentBox({ image, infos, onDelete }) {
             </div>
             <div className="flex ">
               <i class="fa-regular fa-clock mt-[9px] text-deepSlateBlue text-[15px]"></i>
-              <h1 className="text-xs text-deepSlateBlue p-1 text-left font-semibold m-1">
+              <h1 className="text-xs  p-1 text-left font-semibold m-1">
                 {extractTimeFromDate(infos["time"])} - {endTime}
               </h1>
-              <h1 className="text-xs text-deepSlateBlue py-1  text-left font-semibold my-1">
+              <h1 className="text-xs  py-1  text-left font-semibold my-1">
                 ({infos["duration"]} Dakika)
               </h1>
             </div>
             <div className="flex">
               <i class="fa-solid fa-hospital-user  mt-[9px] text-deepSlateBlue text-[15px]"></i>
-              <h1 className="text-xs text-deepSlateBlue p-1 text-left font-semibold m-1">
+              <h1 className="text-xs  p-1 text-left font-semibold m-1">
                 {infos["service"]}
               </h1>
             </div>
@@ -90,7 +90,7 @@ function FullCalendarAppointmentBox({ image, infos, onDelete }) {
             </div>
             <div className="personalInfo flex">
               <i class="fa-solid fa-user mt-[8px] text-[15px] text-deepSlateBlue"></i>
-              <h1 className="text-xs text-deepSlateBlue p-1 text-left font-semibold m-1">
+              <h1 className="text-xs  p-1 text-left font-semibold m-1">
                 {infos["firstName"]} {infos["lastName"]} ({infos["gender"]})
                 (Doğum Tarihi :{infos["dateOfBirth"]})
               </h1>
@@ -98,16 +98,16 @@ function FullCalendarAppointmentBox({ image, infos, onDelete }) {
 
             <div className="flex">
               <i class="fa-regular fa-clock mt-[9px] text-deepSlateBlue text-[15px]"></i>
-              <h1 className="text-xs text-deepSlateBlue p-1 text-left font-semibold m-1">
+              <h1 className="text-xs  p-1 text-left font-semibold m-1">
                 {extractTimeFromDate(infos["time"])} - {endTime}
               </h1>
-              <h1 className="text-xs text-deepSlateBlue py-1  text-left font-semibold my-1">
+              <h1 className="text-xs py-1  text-left font-semibold my-1">
                 ({infos["duration"]} Dakika)
               </h1>
             </div>
             <div className="flex">
               <i class="fa-solid fa-hospital-user  mt-[9px] text-deepSlateBlue text-[15px]"></i>
-              <h1 className="text-xs text-deepSlateBlue p-1 text-left font-semibold m-1">
+              <h1 className="text-xs  p-1 text-left font-semibold m-1">
                 {infos["service"]}
               </h1>
             </div>

@@ -344,10 +344,10 @@ function AppointmentComponent() {
               <div className="nextStep flex items-center justify-center m-3 mb-5">
                 <button
                   onClick={handleBack}
-                  className="bg-deepSlateBlue rounded-3xl flex items-center justify-center w-44 buttons"
+                  className="border-premiumPurple bg-white border-2 rounded-3xl flex items-center justify-center w-[9rem] buttons"
                 >
-                  <h4 className="text-text p-2 text-lg tracking-wider">
-                    <i className="mr-16 fa-solid fa-arrow-left"></i> Geri
+                  <h4 className="text-premiumPurple p-2 text-md tracking-wider">
+                    <i className="mr-2 fa-solid fa-chevron-left"></i> Geri
                   </h4>
                 </button>
               </div>
@@ -357,10 +357,10 @@ function AppointmentComponent() {
                 <div className="nextStep flex items-center justify-center m-3 mb-5">
                   <button
                     onClick={handleNext}
-                    className="bg-deepSlateBlue rounded-3xl flex items-center justify-center w-44 buttons"
+                    className="bg-premiumPurple rounded-3xl flex items-center justify-center w-[9rem] buttons"
                   >
-                    <h4 className="text-text p-2 text-lg tracking-wider">
-                      İleri <i className="ml-8 fa-solid fa-arrow-right"></i>
+                    <h4 className="text-text p-2 text-md tracking-wider">
+                      İleri <i className="ml-2 fa-solid fa-chevron-right"></i>
                     </h4>
                   </button>
                 </div>
@@ -370,10 +370,10 @@ function AppointmentComponent() {
               <div className="nextStep flex items-center justify-center m-3 mb-5">
                 <button
                   onClick={handleNext}
-                  className="bg-deepSlateBlue rounded-3xl flex items-center justify-center w-44 buttons"
+                  className="bg-premiumPurple rounded-3xl flex items-center justify-center w-[9rem] buttons"
                 >
-                  <h4 className="text-text p-2 text-lg tracking-wider">
-                    İleri<i className="ml-8 fa-solid fa-arrow-right"></i>
+                  <h4 className="text-text p-2 text-md tracking-wider">
+                    İleri<i className="ml-2 fa-solid fa-chevron-right"></i>
                   </h4>
                 </button>
               </div>
@@ -385,10 +385,10 @@ function AppointmentComponent() {
                     value="Submit"
                     form="myform"
                     type="submit"
-                    className="bg-deepSlateBlue rounded-3xl flex items-center justify-center w-44 buttons"
+                    className="bg-premiumPurple rounded-3xl flex items-center justify-center w-[9rem] buttons"
                   >
-                    <h4 className="text-text p-2 text-lg tracking-wider">
-                      Bitir<i className="ml-14 fa-solid fa-check"></i>
+                    <h4 className="text-text p-2 text-md tracking-wider">
+                      Bitir<i className="ml-2 fa-solid fa-check"></i>
                     </h4>
                   </button>
                 </div>

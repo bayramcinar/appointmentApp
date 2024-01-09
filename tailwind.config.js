@@ -16,6 +16,9 @@ module.exports = {
         vividOrange: "hsl(48, 100%, 50%)",
         deepSlateBlue: "hsl(270, 100%, 29.75%)",
         coral: "hsl(0, 89.87%, 60.5%)",
+        mistikBlue: "#314C93",
+        lightMistikBlue: "#0091CC",
+        premiumPurple: "#7620e1",
       },
       backgroundImage: {
         gradient:

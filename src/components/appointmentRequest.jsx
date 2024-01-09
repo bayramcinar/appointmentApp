@@ -60,7 +60,7 @@ function AppointmentRequest({ isOpen, onClose, handleFormSubmit, date }) {
                   Lütfen Aşağıdan oluşturmak istediğiniz randevu talebin saatini
                   seçiniz
                 </h1>
-                <h2 className="text-coralext-center text-sm font-bold">
+                <h2 className="text-coral text-center text-sm font-bold">
                   Ortalama randevu süresi {appoinmentDuration} dakikadır
                 </h2>
                 <Formik

@@ -7,7 +7,7 @@ function Steps({ active }) {
         <div
           className={`rounded-full w-9 flex items-center justify-center m-3 ${
             active === 1
-              ? "bg-deepSlateBlue"
+              ? "bg-premiumPurple"
               : "bg-text border-stepBorder1 border-2"
           }`}
         >
@@ -20,7 +20,7 @@ function Steps({ active }) {
         <div
           className={`rounded-full w-9 flex items-center justify-center m-3 ${
             active === 2
-              ? "bg-deepSlateBlue"
+              ? "bg-premiumPurple"
               : "bg-text border-stepBorder1 border-2"
           }`}
         >
@@ -33,7 +33,7 @@ function Steps({ active }) {
         <div
           className={`rounded-full w-9 flex items-center justify-center m-3 ${
             active === 3
-              ? "bg-deepSlateBlue"
+              ? "bg-premiumPurple"
               : "bg-text border-stepBorder1 border-2"
           }`}
         >
