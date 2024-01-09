@@ -528,7 +528,7 @@ function Agenda() {
             </h1>
           )}
           {pendingAppointments.length === 0 && (
-            <h1 className="text-md max-[768px]:text-sm text-coralt-center font-semibold mb-2 max-[768px]:mb-0">
+            <h1 className="text-md max-[768px]:text-sm text-coral text-center font-semibold mb-2 max-[768px]:mb-0">
               Yaklaşan randevunuz bulunmamaktadır.
             </h1>
           )}

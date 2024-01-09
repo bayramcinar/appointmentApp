@@ -186,7 +186,7 @@ function AppointmentRequestList() {
           {formData.length === 0 && (
             <>
               <div className="m-5">
-                <h1 className="text-center text-lg text-coralont-semibold">
+                <h1 className="text-center text-lg text-coral font-semibold">
                   Randevu Talebi Bulunmamaktadır
                 </h1>
               </div>
