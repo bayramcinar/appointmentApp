@@ -194,7 +194,7 @@ function Agenda() {
               <div className="m-2 ml-0">
                 <button
                   onClick={() => handleOpenModal(formEntry)}
-                  className="p-2 bg-deepSlateBlue text-white font-semibold rounded-xl"
+                  className="p-2 bg-lightBlue text-white font-semibold rounded-xl"
                 >
                   Detaylar
                 </button>
