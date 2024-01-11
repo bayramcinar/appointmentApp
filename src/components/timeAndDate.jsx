@@ -340,7 +340,7 @@ function TimeAndDate({
                 </h2>
               </div>
             </div>
-            {appointmentTimesForSelectedDate.length >= 0 && (
+            {appointmentTimesForSelectedDate.length > 0 && (
               <div className="flex flex-col items-center justify-center">
                 {timedRequestSelectedTime === "" && (
                   <>
@@ -432,7 +432,7 @@ function TimeAndDate({
                       )}
                       {requestSelectedTime === "" && (
                         <button
-                          className="bg-callNowdeepSlateBlue rounded-2xl p-1 px-6 text-white text-sm my-[15px]"
+                          className="bg-deepSlateBlue rounded-2xl p-1 px-6 text-white text-sm my-[15px]"
                           onClick={() => {
                             setAppointmentRequestNormal(true);
                             setRequest(true);
