@@ -84,7 +84,7 @@ function AppointmentRequest({ isOpen, onClose, handleFormSubmit, date }) {
 
                     <button
                       type="submit"
-                      className="bg-royalPurpleounded-2xl p-1 px-6 text-white text-sm mt-[15px]"
+                      className="bg-royalPurple rounded-2xl p-1 px-6 text-white text-sm mt-[15px]"
                     >
                       Talep Oluştur
                     </button>
