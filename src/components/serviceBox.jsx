@@ -13,7 +13,7 @@ function ServiceBox({ title, selectedService, onServiceClick, image }) {
   return (
     <div>
       <div
-        className="service max-[768px]:m-[13px] cursor-pointer flex rounded-2xl w-[14.5rem] max-[768px]:w-[16rem] m-[2px]"
+        className="service max-[768px]:m-[13px] cursor-pointer flex rounded-2xl w-[14.5rem] max-[768px]:w-[16rem] m-[7px]"
         onClick={handleServiceClick}
       >
         <div
