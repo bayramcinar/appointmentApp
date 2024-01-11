@@ -19,13 +19,13 @@ function ServiceBox({ title, selectedService, onServiceClick, image }) {
         <div
           className={`textArea md:rounded-r-3xl  ${
             isSelected
-              ? "bg-white border-2 border-deepSlateBlue "
-              : "bg-deepSlateBlue"
+              ? "bg-purpleBg border-2 border-premiumPurple "
+              : "bg-premiumPurple"
           } w-80 p-2 rounded-3xl flex items-center justify-center max-[768px]:rounded-2xl`}
         >
           <h3
             className={`text-sm max-[768px]:text-base ${
-              isSelected ? "text-deepSlateBlue" : "text-white"
+              isSelected ? "text-premiumPurple" : "text-white"
             } text-center`}
           >
             {title}

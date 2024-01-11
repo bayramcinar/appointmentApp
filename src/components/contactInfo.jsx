@@ -32,8 +32,8 @@ function ContactForm({
               isOwn === true ? "selected" : ""
             } ${
               isOwn === true
-                ? "bg-royalPurple text-white"
-                : "bg-white border-2 border-royalPurple text-royalPurple"
+                ? "bg-deepSlateBlue text-white"
+                : "bg-white border-2 border-deepSlateBlue text-deepSlateBlue"
             }`}
           >
             Kendim İçin
@@ -44,8 +44,8 @@ function ContactForm({
               isOwn === false ? "selected" : ""
             } ${
               isOwn === false
-                ? "bg-royalPurple text-white"
-                : "bg-white border-2 border-royalPurple text-royalPurple"
+                ? "bg-deepSlateBlue text-white"
+                : "bg-white border-2 border-deepSlateBlue text-deepSlateBlue"
             }`}
           >
             Başkası İçin

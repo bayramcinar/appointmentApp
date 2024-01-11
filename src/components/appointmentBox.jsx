@@ -30,20 +30,34 @@ function AppointmentBox({
   return (
     <div
       className={`timeBox w-[145px] max-[768px]:w-[100px] ${
-        isSelected ? "bg-vividOrange" : "bg-royalPurple"
+        isSelected
+          ? "bg-purpleBg border-2 border-premiumPurple text-premiumPurple"
+          : "bg-premiumPurple"
       } ${
-        active ? "bg-royalPurple" : "bg-stepBorder1"
+        active ? "bg-premiumPurple " : "bg-stepBorder1"
       }  rounded-3xl mb-[5px] p-[2px] max-[768px]:m-[5px] cursor-pointer`}
       onClick={handleTimeClick}
     >
       {isMobile === true && (
         <>
-          <h4 className="text-sm text-text p-1 pb-0 text-center">{time}</h4>
+          <h4
+            className={`text-sm ${
+              isSelected ? "text-premiumPurple" : "text-white"
+            } p-1 pb-0 text-center`}
+          >
+            {time}
+          </h4>
         </>
       )}
       {isMobile === false && (
         <>
-          <h4 className="text-sm text-text p-1 text-center">{time}</h4>
+          <h4
+            className={`text-sm ${
+              isSelected ? "text-premiumPurple" : "text-white"
+            } p-1 text-center`}
+          >
+            {time}
+          </h4>
         </>
       )}
     </div>

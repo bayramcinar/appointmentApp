@@ -2,7 +2,7 @@
   width: auto;
 }
 .react-calendar__tile--now {
-  background-color: hsl(330, 100%, 50%);
+  background-color: hsl(7, 90%, 64%);
   color: #fff;
 }
 
@@ -10,17 +10,17 @@
   background-color: hsl(330, 100%, 50%);
 }
 .react-calendar__tile--active {
-  background-color: hsl(48, 100%, 50%) !important;
+  background-color: hsl(270, 100%, 29.75%) !important;
 }
 .react-calendar__tile--active:hover {
-  background-color: hsl(48, 100%, 50%) !important;
+  background-color: hsl(270, 100%, 29.75%) !important;
 }
 .react-calendar {
   background: none;
 }
 .react-calendar__tile--now:enabled:hover,
 .react-calendar__tile--now:enabled:focus {
-  background: hsl(330, 100%, 50%);
+  background: hsl(7, 90%, 64%);
 }
 
 .react-calendar__month-view__days button:not([disabled]) {
