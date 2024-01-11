@@ -361,13 +361,13 @@ function SetAppointmentTime() {
             </h1>
             <div className=" my-1 flex items-center justify-center">
               <div className="flex mr-5">
-                <i class="fa-solid fa-clock text-lightBlue flex items-center justify-center mr-2"></i>
+                <i class="fa-solid fa-clock text-deepSlateBlue flex items-center justify-center mr-2"></i>
                 <h1 className="text-xs font-semibold text-center mb-[2px]">
                   {appointmentDuration} Dakika
                 </h1>
               </div>
               <div className="flex">
-                <i class="fa-solid fa-money-bill-1-wave text-lightBlue flex items-center justify-center mr-2"></i>
+                <i class="fa-solid fa-money-bill-1-wave text-deepSlateBlue flex items-center justify-center mr-2"></i>
                 <h1 className="text-xs font-semibold text-center  mb-[2px]">
                   {appointmentPrice} ₺
                 </h1>

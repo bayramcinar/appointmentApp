@@ -194,7 +194,7 @@ function Agenda() {
               <div className="m-2 ml-0">
                 <button
                   onClick={() => handleOpenModal(formEntry)}
-                  className="p-2 bg-lightBlue text-white font-semibold rounded-xl"
+                  className="p-2 bg-deepSlateBlue text-white font-semibold rounded-xl"
                 >
                   Detaylar
                 </button>
@@ -536,7 +536,7 @@ function Agenda() {
             {!isMobile && (
               <table className="rounded-xl w-full ">
                 <thead>
-                  <tr className="sticky top-0 bg-mistikBlue text-white">
+                  <tr className="sticky top-0 bg-premiumPurple text-white">
                     <th className="p-3">Sıra</th>
                     <th className="p-3">Randevu Numarası</th>
                     <th className="p-3">Tarih</th>
@@ -562,7 +562,7 @@ function Agenda() {
                   onClick={() => handlePageChange(page + 1)}
                   className={`px-3 py-2 border cursor-pointer rounded-2xl ${
                     page + 1 === currentPage
-                      ? "bg-gradient text-white"
+                      ? "bg-premiumPurple text-white"
                       : "border-gray-300"
                   }`}
                 >

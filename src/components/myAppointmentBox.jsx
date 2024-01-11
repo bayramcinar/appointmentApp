@@ -90,7 +90,7 @@ function MyAppointmentBox({ image, infos, onDelete, handleOpenEditModal }) {
             </button>
             <button
               onClick={handleOpenEditModal}
-              className=" p-1 px-2 bg-lightBlue rounded-xl text-white m-1 text-sm"
+              className=" p-1 px-2 bg-deepSlateBlue rounded-xl text-white m-1 text-sm"
             >
               <i className="fa-solid fa-pen-to-square"></i>
             </button>

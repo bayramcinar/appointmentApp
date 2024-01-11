@@ -86,7 +86,7 @@ function AgendaCard({
           <div className="m-1">
             <button
               onClick={() => showDetails()}
-              className="p-1 bg-lightBlue text-white text-xs font-semibold rounded-lg w-full"
+              className="p-1 bg-deepSlateBlue text-white text-xs font-semibold rounded-lg w-full"
             >
               Detaylar
             </button>

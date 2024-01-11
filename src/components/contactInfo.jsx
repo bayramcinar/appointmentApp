@@ -20,7 +20,7 @@ function ContactForm({
   return (
     <div className="contactComponent animate__animated animate__fadeInLeft lg:w-[35rem] lg:h-auto md:w-[24rem] sm:w-[24rem] md:h-auto sm:h-auto">
       <div className="title">
-        <h2 className="text-mistikBlue text-center text-3xl font-bold p-3">
+        <h2 className="text-premiumPurple text-center text-3xl font-bold p-3">
           Ön Bilgi Formu
         </h2>
       </div>

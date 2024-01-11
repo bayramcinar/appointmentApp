@@ -188,7 +188,7 @@ function AppointmentRequestBox({ image, infos, onDetails }) {
             </button>
             <button
               onClick={() => onDetails()}
-              className="p-2 bg-lightBlue text-white text-sm font-semibold rounded-lg mx-2"
+              className="p-2 bg-deepSlateBlue text-white text-sm font-semibold rounded-lg mx-2"
             >
               Detaylar
             </button>

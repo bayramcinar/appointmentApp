@@ -1,5 +1,5 @@
 .rbc-btn-group button {
-  background-color: #4e9bfe;
+  background-color: hsl(267, 100%, 47%);
   color: #fff;
   padding: 5px 10px;
   border: none;
@@ -12,9 +12,9 @@
   position: relative;
   cursor: pointer;
   margin: 8px;
-  border: 2px solid #4e9bfe;
+  border: 2px solid hsl(267, 100%, 47%);
   border-radius: 12px;
-  background-color: #eaf6ff;
+  background-color: hsl(258, 96%, 95%);
 }
 .rbc-date-cell {
   padding-right: 15px;
@@ -25,14 +25,14 @@
   border: none;
 }
 .rbc-day-bg + .rbc-day-bg {
-  border-left: 2px solid #4e9bfe;
+  border-left: 2px solid hsl(267, 100%, 47%);
 }
 .rbc-month-view {
-  border: 2px solid #4e9bfe;
+  border: 2px solid hsl(267, 100%, 47%);
   border-radius: 15px;
 }
 .rbc-today {
-  background-color: #4e9bfe;
+  background-color: hsl(267, 100%, 47%);
   color: #fff;
 }
 .rbc-current {
@@ -40,7 +40,7 @@
 }
 .rbc-header {
   margin: 8px;
-  border-bottom: 2px solid #4e9bfe;
+  border-bottom: 2px solid hsl(267, 100%, 47%);
 }
 .rbc-header + .rbc-header {
   border-left: none;
@@ -94,7 +94,7 @@
   font-weight: bold;
   height: auto;
   line-height: normal;
-  color: #3174ad;
+  color: hsl(267, 100%, 47%);
 }
 .past-event {
   opacity: 0.6;

@@ -18,7 +18,8 @@ module.exports = {
         coral: "hsl(0, 89.87%, 60.5%)",
         mistikBlue: "#314C93",
         lightMistikBlue: "#0091CC",
-        premiumPurple: "#7620e1",
+        premiumPurple: "hsl(267, 100%, 47%)",
+        purpleBg: "hsl(258, 96%, 95%)",
       },
       backgroundImage: {
         gradient:
