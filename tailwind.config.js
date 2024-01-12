@@ -19,7 +19,9 @@ module.exports = {
         mistikBlue: "#314C93",
         lightMistikBlue: "#0091CC",
         premiumPurple: "hsl(7, 90%, 64%)",
+        lightOrange: "hsl(7, 90%, 72%)",
         purpleBg: "#fff",
+        orangeBg: "hsl(7, 90%, 98%)",
       },
       backgroundImage: {
         gradient:

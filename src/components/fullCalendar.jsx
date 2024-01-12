@@ -208,7 +208,7 @@ function FullCalendarComponent() {
 
   return (
     <>
-      <div className="bg-dayComponentBg  lg:scale-[1] md:scale-[0.9] lg:mr-[1rem]  shadow-xl border-stepBorder1 border-2 rounded-xl max-[768px]:mx-[10px] flex items-center justify-center lg:w-full">
+      <div className="bg-dayComponentBg  lg:scale-[1] md:scale-[0.9] lg:mr-[1rem]  shadow-xl border-text border-2 rounded-xl max-[768px]:mx-[10px] flex items-center justify-center lg:w-full">
         <div className="mx-auto relative w-full max-[500px]:w-[360px] p-2 lg:p-5">
           <h1 className="text-deepSlateBlue text-2xl m-6 max-[500px]:m-3 mt-1 font-semibold text-center">
             Randevular Takvimi

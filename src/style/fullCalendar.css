@@ -32,7 +32,7 @@
   border-radius: 15px;
 }
 .rbc-today {
-  background-color: hsl(267, 100%, 47%);
+  background-color: hsl(7, 90%, 72%);
   color: #fff;
 }
 .rbc-current {
@@ -40,7 +40,7 @@
 }
 .rbc-header {
   margin: 8px;
-  border-bottom: 2px solid hsl(267, 100%, 47%);
+  border-bottom: 2px solid hsl(7, 90%, 72%);
 }
 .rbc-header + .rbc-header {
   border-left: none;

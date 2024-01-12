@@ -17,8 +17,8 @@ function AgendaCard({
 }) {
   return (
     <div className="flex flex-col">
-      <div className="card mx-auto flex w-[330px] border-2 border-deepSlateBlue rounded-2xl m-3">
-        <div className="numAndInfo w-4/12 flex-col flex items-center justify-center border-r-2 border-deepSlateBlue bg-deepSlateBlue text-white rounded-s-[0.8rem]">
+      <div className="card mx-auto flex w-[330px] border-2 border-lightOrange rounded-2xl m-3">
+        <div className="numAndInfo w-4/12 flex-col flex items-center justify-center border-r-2 border-lightOrange bg-lightOrange text-white rounded-s-[0.8rem]">
           <div className="appointmentNumber">
             <h1 className="text-[11px] text-center">{appointmentNumber}</h1>
           </div>
@@ -86,7 +86,7 @@ function AgendaCard({
           <div className="m-1">
             <button
               onClick={() => showDetails()}
-              className="p-1 bg-deepSlateBlue text-white text-xs font-semibold rounded-lg w-full"
+              className="p-1 bg-premiumPurple text-white text-xs font-semibold rounded-lg w-full"
             >
               Detaylar
             </button>

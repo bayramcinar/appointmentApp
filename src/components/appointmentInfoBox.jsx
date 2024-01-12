@@ -2,7 +2,7 @@ import React from "react";
 
 function AppointmentInfoBox({ number, title, changeRate }) {
   return (
-    <div className="w-[8vw] h-[8vw] max-[768px]:w-[120px] max-[768px]:h-[120px] shadow-lg flex flex-col items-center justify-center border-stepBorder1 border-2 rounded-xl m-[1.4vw] max-[500px]:m-[20px] relative">
+    <div className="w-[8vw] h-[8vw] max-[768px]:w-[120px] max-[768px]:h-[120px] shadow-lg flex flex-col items-center justify-center border-premiumPurple border-2 rounded-xl m-[1.4vw] max-[500px]:m-[20px] relative">
       {changeRate > 0 && (
         <div className="absolute right-1 top-1 flex">
           <i class="fa-solid fa-arrow-up lg:text-[0.8vw] max-[768px]:text-sm mr-[2px] text-green-600"></i>
@@ -22,7 +22,7 @@ function AppointmentInfoBox({ number, title, changeRate }) {
 
       <div className="infoArea w-[6vw] m-4 mb-0 max-[768px]:w-[15vw]">
         <h1
-          className="number text-center text-deepSlateBlue text-[3vw] max-[768px]:text-4xl font-semibold"
+          className="number text-center text-lightOrange text-[3vw] max-[768px]:text-4xl font-semibold"
           style={{ fontFamily: "Montserrat, sans-serif" }}
         >
           {number}
