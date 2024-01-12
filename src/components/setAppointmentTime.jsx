@@ -385,8 +385,8 @@ function SetAppointmentTime() {
               savedTimes === true ? "selected" : ""
             } ${
               savedTimes === true
-                ? "bg-royalPurple text-white "
-                : "bg-white border-royalPurple border-2 text-royalPurple"
+                ? "bg-premiumPurple text-white "
+                : "bg-white border-premiumPurple border-2 text-premiumPurple"
             }`}
           >
             Kayıtlı Saatler
@@ -397,8 +397,8 @@ function SetAppointmentTime() {
               savedTimes === false ? "selected" : ""
             } ${
               savedTimes === false
-                ? "bg-royalPurple text-white"
-                : "bg-white border-royalPurple border-2 text-royalPurple"
+                ? "bg-premiumPurple text-white"
+                : "bg-white border-premiumPurple border-2 text-premiumPurple"
             }`}
           >
             Saat Ekle
@@ -505,7 +505,7 @@ function SetAppointmentTime() {
                 <div className="w-full flex items-center justify-center">
                   <button
                     type="submit"
-                    className="bg-royalPurple rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
+                    className="bg-premiumPurple rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
                   >
                     <h4 className="text-text p-2 px-6 text-sm tracking-wider">
                       Zamanı ve Tarihi Ayarla
@@ -517,7 +517,7 @@ function SetAppointmentTime() {
                 <div className="w-full flex items-center justify-center">
                   <button
                     type="submit"
-                    className="bg-royalPurple rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
+                    className="bg-premiumPurple rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
                   >
                     <h4 className="text-text p-2 px-6 text-sm tracking-wider">
                       Kayıt Et
