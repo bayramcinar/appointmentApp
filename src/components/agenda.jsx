@@ -49,26 +49,32 @@ function Agenda() {
       );
 
       switch (filter) {
+        case "cancelled":
+          return data.delete === true;
         case "past":
-          return appointmentDate < currentDateOnly;
+          return appointmentDate < currentDateOnly && data.delete === false;
         case "today":
-          return isSameDay(currentDateOnly, appointmentDate);
+          return (
+            isSameDay(currentDateOnly, appointmentDate) && data.delete === false
+          );
         case "future":
           return (
             appointmentDate > currentDate &&
-            !isSameDay(currentDate, appointmentDate)
+            !isSameDay(currentDate, appointmentDate) &&
+            data.delete === false
           );
         default:
           return (
-            (appointmentDate > currentDate &&
-              !isSameDay(currentDate, appointmentDate)) ||
-            isSameDay(currentDateOnly, appointmentDate)
+            (appointmentDate > currentDate ||
+              isSameDay(currentDate, appointmentDate)) &&
+            data.delete === false
           );
       }
     });
 
     return filteredData;
   };
+
   const handleCloseModal = () => {
     setOpenModal(false);
   };
@@ -153,11 +159,14 @@ function Agenda() {
       const isToday = isSameDay(appointmentDate, currentDate);
       const isCancelDisabled = remainingTime.remainingHours < 12;
       const actualIndex = (currentPage - 1) * itemsPerPage + index;
+      const isCancelled = formEntry.delete === true;
       return (
         <tr
           key={actualIndex}
           className={
-            isPastAppointment
+            isCancelled
+              ? "bg-red-200" // İptal edilen randevular için kırmızı arka plan
+              : isPastAppointment
               ? "bg-grayForTable" // Gri renk tarihi geçmiş randevular için
               : isToday
               ? "bg-greenForTable"
@@ -181,36 +190,44 @@ function Agenda() {
           <td className="text-center border-dashed border-2 border-[#0003]">
             {service}
           </td>
-          <td className="border-dashed border-2 border-[#0003]">
-            <div className="flex items-center justify-center">
-              <div className="m-2">
-                <button
-                  onClick={() => handleDelete(formEntry, isCancelDisabled)}
-                  className={`p-[7px] ${
-                    isCancelDisabled
-                      ? "bg-gray-400 text-white cursor-not-allowed"
-                      : "bg-coral text-white"
-                  } font-semibold rounded-xl`}
-                >
-                  İptal Et
-                </button>
+          <td className="border-dashed border-2 border-[#0003] h-[60px]">
+            {isCancelled && (
+              <h1 className="text-center  ">Randevu İptal Edildi</h1>
+            )}
+
+            {!isCancelled && (
+              <div className="flex items-center justify-center">
+                <div className="m-2">
+                  <button
+                    onClick={() => handleDelete(formEntry, isCancelDisabled)}
+                    className={`p-[7px] ${
+                      isCancelDisabled
+                        ? "bg-gray-400 text-white cursor-not-allowed"
+                        : "bg-coral text-white"
+                    } font-semibold rounded-xl`}
+                  >
+                    İptal Et
+                  </button>
+                </div>
+                <div className="m-2 ml-0">
+                  <button
+                    onClick={() => handleOpenModal(formEntry)}
+                    className="p-2 bg-lightBlue text-white font-semibold rounded-xl"
+                  >
+                    Detaylar
+                  </button>
+                </div>
               </div>
-              <div className="m-2 ml-0">
-                <button
-                  onClick={() => handleOpenModal(formEntry)}
-                  className="p-2 bg-lightBlue text-white font-semibold rounded-xl"
-                >
-                  Detaylar
-                </button>
-              </div>
-            </div>
+            )}
           </td>
           <td className="text-center border-dashed border-2 border-[#0003] status">
-            {isPastAppointment ? (
+            {isCancelled ? (
+              <span className="text-red-500">Randevu İptal Edildi</span>
+            ) : isPastAppointment ? (
               <span className="text-coral">Randevu Sonlandı</span>
             ) : (
               <>
-                {status === "false" && requestStatus === "false" && (
+                {status === false && requestStatus === "false" && (
                   <div className="flex w-full justify-center">
                     <i className="fa-solid fa-circle text-coral flashing-text text-center flex items-center justify-center mx-2"></i>
                     <h1 className="text-md text-center ">
@@ -218,13 +235,13 @@ function Agenda() {
                     </h1>
                   </div>
                 )}
-                {status === "true" && (
+                {status === true && (
                   <div className="flex items-center w-full justify-center">
                     <i className="fa-solid fa-circle text-green-500 items-center justify-center mx-2"></i>
                     <h1 className="text-md text-center ">Aktif</h1>
                   </div>
                 )}
-                {requestStatus === "true" && status === "false" && (
+                {requestStatus === "true" && status === false && (
                   <div className="flex w-full justify-center">
                     <i className="fa-solid fa-circle text-coral flashing-text flex items-center justify-center mx-2"></i>
                     <h1 className="text-md text-center ">
@@ -373,11 +390,16 @@ function Agenda() {
         ); // GÜNCELLENMİŞ SAATLERİ YENİDEN DATABASE E GÖNDERECEĞİZ
 
         // Form datayı güncelle
-        const updatedFormData = formData.filter(
-          (appointment) =>
-            appointment.date !== selectedAppointment.date ||
-            appointment.time !== selectedAppointment.time
-        );
+        const updatedFormData = formData.map((appointment) => {
+          if (
+            appointment.date === selectedAppointment.date &&
+            appointment.time === selectedAppointment.time
+          ) {
+            return { ...appointment, delete: true };
+          }
+          return appointment;
+        });
+
         setFormData(updatedFormData);
         localStorage.setItem("formData", JSON.stringify(updatedFormData)); // GÜNCELLENMİŞ RANDEVULERİ formData (randevular) DATABASE İNE GÖNDERECEĞİZ
       }
@@ -507,6 +529,8 @@ function Agenda() {
     switch (filter) {
       case "past":
         return "Geçmiş Randevularım";
+      case "cancelled":
+        return "İptal Edilen Randevularım";
       case "today":
         return "Bugünki Randevularım";
       case "future":
@@ -531,10 +555,11 @@ function Agenda() {
                 onChange={(e) => handleFilterChange(e.target.value)}
                 className="p-2 w-[11vw] border rounded-3xl text-sm max-[768px]:w-[120px]"
               >
-                <option value="all">Tüm Randevular</option>
+                <option value="all">Yaklaşan Randevular</option>
                 <option value="past">Geçmiş Randevular</option>
                 <option value="today">Bugünki Randevular</option>
                 <option value="future">Gelecekteki Randevular</option>
+                <option value="cancelled">İptal Edilen Randevular</option>
               </select>
             </div>
           </div>

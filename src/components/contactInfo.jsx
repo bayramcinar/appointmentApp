@@ -68,7 +68,8 @@ function ContactForm({
                   time.split(" ")[0].split(".").join("") +
                   time.split(" ")[2].split(":").join(""),
                 duration: duration,
-                confirm: "false",
+                confirm: false,
+                delete: false,
               }}
               onSubmit={onFormSubmit}
             >
@@ -131,7 +132,8 @@ function ContactForm({
                   time.split(" ")[0].split(".").join("") +
                   time.split(" ")[2].split(":").join(""),
                 language: "",
-                confirm: "false",
+                confirm: false,
+                delete: false,
               }}
               onSubmit={onFormSubmit}
             >

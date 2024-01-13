@@ -48,7 +48,7 @@ function NotAppointmentRequestBox({ image, infos, onDetails, setFormData }) {
         if (originalObje) {
           const falseValue = originalObje.confirm;
 
-          const updatedValue = falseValue === "false" ? "true" : "";
+          const updatedValue = falseValue === false ? true : "";
 
           const updatedObje = { ...originalObje, confirm: updatedValue };
 

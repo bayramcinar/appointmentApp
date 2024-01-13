@@ -48,7 +48,7 @@ function AppointmentRequestBox({ image, infos, onDetails }) {
       if (result.isConfirmed) {
         if (originalObje) {
           const falseValue2 = originalObje.confirm;
-          const updatedValue2 = falseValue2 === "false" ? "true" : "";
+          const updatedValue2 = falseValue2 === false ? true : "";
 
           const updatedObje = {
             ...originalObje,
