@@ -87,9 +87,6 @@ function AppointmentComponent() {
       title: "Depresyon",
     },
     {
-      title: "Travma Sonrası Stres Bozukluğu",
-    },
-    {
       title: "Uyum Bozuklukları",
     },
     {
