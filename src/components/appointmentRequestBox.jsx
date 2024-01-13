@@ -94,7 +94,6 @@ function AppointmentRequestBox({ image, infos, onDetails }) {
       confirmButtonText: "Evet",
       cancelButtonText: "Hayır",
     }).then((result) => {
-      console.log(result.isConfirmed);
       if (result.isConfirmed) {
         const obje = findObjectByTime(timeObject);
 
@@ -107,7 +106,8 @@ function AppointmentRequestBox({ image, infos, onDetails }) {
             const index = formData.findIndex((obj) => obj.time === obje.time);
 
             if (index !== -1) {
-              formData.splice(index, 1);
+              // Set the 'delete' property to true
+              formData[index].delete = true;
 
               localStorage.setItem("formData", JSON.stringify(formData));
 

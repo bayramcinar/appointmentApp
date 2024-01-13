@@ -25,6 +25,7 @@ function AppointmentRequestList() {
       return (
         lastElement.toLowerCase() === "true" &&
         data.confirm === false &&
+        data.delete === false &&
         appointmentDate >= new Date()
       );
     });
@@ -43,6 +44,7 @@ function AppointmentRequestList() {
       return (
         lastElement.toLowerCase() === "false" &&
         data.confirm === false &&
+        data.delete === false &&
         appointmentDate >= new Date()
       );
     });

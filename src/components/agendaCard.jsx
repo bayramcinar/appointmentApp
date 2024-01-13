@@ -14,6 +14,7 @@ function AgendaCard({
   showDetails,
   deleteFunction,
   isCancelDisabled,
+  isCancelled,
 }) {
   return (
     <div className="flex flex-col">
@@ -33,13 +34,15 @@ function AgendaCard({
         <div className="status flex flex-col w-2/12 items-center justify-center border-r-2 border-stepBorder1">
           <i
             className={`fa-solid fa-circle text-[10px] ${
-              isPastAppointment ? "hidden" : ""
+              isCancelled ? "hidden" : isPastAppointment ? "hidden" : ""
             } ${
               status === false ? "text-coral flashing-text" : "text-green-500"
             }  flex items-center justify-center my-0.5`}
           ></i>
           <h1 className="text-[10px] text-center ">
-            {isPastAppointment ? (
+            {isCancelled ? (
+              <span className="text-red-500">Randevu İptal Edildi</span>
+            ) : isPastAppointment ? (
               <span className="text-coral">Randevu Sonlandı</span>
             ) : (
               <>
@@ -70,27 +73,36 @@ function AgendaCard({
           </div>
         </div>
         <div className="buttonsArea flex flex-col items-center justify-center">
-          <div className="m-1">
-            <button
-              onClick={() => deleteFunction()}
-              className={`p-[7px]
+          {isCancelled && (
+            <h1 className="text-[11px] text-center p-1">
+              Randevu İptal Edildi
+            </h1>
+          )}
+          {!isCancelled && (
+            <>
+              <div className="m-1">
+                <button
+                  onClick={() => deleteFunction()}
+                  className={`p-[7px]
                ${
                  isCancelDisabled
                    ? "bg-gray-400 text-white cursor-not-allowed"
                    : "bg-coral text-white"
                } font-semibold rounded-xl text-xs `}
-            >
-              İptal Et
-            </button>
-          </div>
-          <div className="m-1">
-            <button
-              onClick={() => showDetails()}
-              className="p-1 bg-premiumPurple text-white text-xs font-semibold rounded-lg w-full"
-            >
-              Detaylar
-            </button>
-          </div>
+                >
+                  İptal Et
+                </button>
+              </div>
+              <div className="m-1">
+                <button
+                  onClick={() => showDetails()}
+                  className="p-1 bg-premiumPurple text-white text-xs font-semibold rounded-lg w-full"
+                >
+                  Detaylar
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

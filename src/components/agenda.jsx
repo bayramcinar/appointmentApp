@@ -465,9 +465,10 @@ function Agenda() {
                 `${formEntry.firstName || ""} ${
                   formEntry.lastName || ""
                 }`.trim() || "Bayram Çınar"; //DATA BASE DEN ALINAN GİRİŞ YAPMIŞ KULLANICI İSMİ
-
+              const isCancelled = formEntry.delete;
               return (
                 <AgendaCard
+                  isCancelled={isCancelled}
                   key={index}
                   appointmentNumber={formEntry.appointmentNumber}
                   name={name}
