@@ -376,7 +376,7 @@ function SetAppointmentTime() {
             </div>
           </div>
         </div>
-        <h2 className="text-deepSlateBlue text-2xl m-3 font-semibold mb-0">
+        <h2 className="text-deepSlateBlue text-[1.3vw] max-[768px]:text-xl m-3 font-semibold mb-0">
           Randevu Zamanı Belirle
         </h2>
         <div className="chooseSavedTimes flex items-center justify-center ">
@@ -429,7 +429,7 @@ function SetAppointmentTime() {
                     <Field
                       name="time"
                       type="time"
-                      className={`p-3 lg:w-[21rem] max-[768px]:w-[20rem] focus:border-none outline-none bg-white mx-auto`}
+                      className={`p-3 lg:w-[21rem] max-[768px]:w-[20rem] focus:border-none outline-none bg-gray-100 mx-auto`}
                       placeholder="Saat"
                     />
                   </div>

@@ -212,7 +212,7 @@ function Agenda() {
                 <div className="m-2 ml-0">
                   <button
                     onClick={() => handleOpenModal(formEntry)}
-                    className="p-2 bg-lightBlue text-white font-semibold rounded-xl"
+                    className="p-2 bg-deepSlateBlue text-white font-semibold rounded-xl"
                   >
                     Detaylar
                   </button>
@@ -424,7 +424,9 @@ function Agenda() {
 
   const pendingAppointments = formData.filter(
     (formEntry) =>
-      formEntry.confirm === "false" && isFutureAppointment(formEntry.time)
+      formEntry.confirm === false &&
+      isFutureAppointment(formEntry.time) &&
+      formEntry.delete === false
   );
 
   function isFutureAppointment(time) {
@@ -466,8 +468,11 @@ function Agenda() {
                   formEntry.lastName || ""
                 }`.trim() || "Bayram Çınar"; //DATA BASE DEN ALINAN GİRİŞ YAPMIŞ KULLANICI İSMİ
               const isCancelled = formEntry.delete;
+              const isToday = isSameDay(appointmentDate, currentDate);
+
               return (
                 <AgendaCard
+                  isToday={isToday}
                   isCancelled={isCancelled}
                   key={index}
                   appointmentNumber={formEntry.appointmentNumber}
@@ -558,8 +563,8 @@ function Agenda() {
               >
                 <option value="all">Yaklaşan Randevular</option>
                 <option value="past">Geçmiş Randevular</option>
-                <option value="today">Bugünki Randevular</option>
-                <option value="future">Gelecekteki Randevular</option>
+                <option value="today">Bugünkü Randevular</option>
+                <option value="future">Gelecek Randevular</option>
                 <option value="cancelled">İptal Edilen Randevular</option>
               </select>
             </div>

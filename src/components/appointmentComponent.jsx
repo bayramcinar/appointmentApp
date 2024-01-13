@@ -201,7 +201,7 @@ function AppointmentComponent() {
     Swal.fire({
       title: "Başarılı",
       html: request
-        ? '<h2 class="text-stepBorder1 text-center text-base font-semibold p-4">' +
+        ? '<h2 class="text-gray-500 text-center text-base font-semibold p-4">' +
           "Randevu talebiniz başarılı bir şekilde oluşturuldu." +
           '<a class="text-deepSlateBlue text-lg font-semibold" href="/myAppointments"> Randevularım </a>' +
           "bölümünden randevunuzun detaylarını inceleyebilir ve yönetebilirsiniz." +

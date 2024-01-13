@@ -15,11 +15,32 @@ function AgendaCard({
   deleteFunction,
   isCancelDisabled,
   isCancelled,
+  isToday,
 }) {
   return (
     <div className="flex flex-col">
-      <div className="card mx-auto flex w-[330px] border-2 border-lightOrange rounded-2xl m-3">
-        <div className="numAndInfo w-4/12 flex-col flex items-center justify-center border-r-2 border-lightOrange bg-lightOrange text-white rounded-s-[0.8rem]">
+      <div
+        className={`card mx-auto flex w-[330px] border-2 ${
+          isCancelled
+            ? "border-coral"
+            : isToday
+            ? "border-green-500"
+            : isPastAppointment
+            ? "border-gray-400"
+            : "border-lightOrange"
+        } rounded-2xl m-3`}
+      >
+        <div
+          className={`numAndInfo w-4/12 flex-col flex items-center ${
+            isCancelled
+              ? "border-coral bg-coral"
+              : isToday
+              ? "border-green-400 bg-green-500"
+              : isPastAppointment
+              ? "border-gray-400 bg-gray-400"
+              : "border-lightOrange bg-lightOrange"
+          } justify-center border-r-2  text-white rounded-s-[0.8rem]`}
+        >
           <div className="appointmentNumber">
             <h1 className="text-[11px] text-center">{appointmentNumber}</h1>
           </div>
