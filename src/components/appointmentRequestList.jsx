@@ -145,7 +145,7 @@ function AppointmentRequestList() {
 
   return (
     <>
-      <div className="bg-dayComponentBg max-[1023px]:flex max-[1023px]:justify-center max-[1023px]:items-center max-[1023px]:flex-col max-[1023px]:w-full lg:scale-[1] md:scale-[0.9] border-text border-2 rounded-xl lg:w-[300px] xl:w-[330px] max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 justify-center items-center flex-grow ">
+      <div className="bg-orangeBg max-[1023px]:flex max-[1023px]:justify-center max-[1023px]:items-center max-[1023px]:flex-col max-[1023px]:w-full lg:scale-[1] md:scale-[0.9] border-premiumPurple border-2 rounded-xl lg:w-[300px] xl:w-[330px] max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 justify-center items-center flex-grow ">
         {numberOfNewAppointments > 0 && (
           <>
             <div className="flex flex-col">
@@ -161,7 +161,7 @@ function AppointmentRequestList() {
         <div
           className={`relative ${
             numberOfNewAppointments === 0 ? "h-full" : ""
-          }  flex items-center flex-wrap justify-center w-full max-[768px]:block bg-dayComponentBg rounded-xl`}
+          }  flex items-center flex-wrap justify-center w-full max-[768px]:block bg-orangeBg rounded-xl`}
         >
           {formData.length > 2 ? (
             renderSwiper(formData)

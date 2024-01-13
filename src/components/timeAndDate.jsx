@@ -324,7 +324,7 @@ function TimeAndDate({
     <>
       <div className="animate__animated animate__fadeInLeft">
         <div className="title">
-          <h2 className=" text-center text-3xl font-bold p-3">
+          <h2 className=" text-center text-deepSlateBlue text-3xl font-bold p-3">
             Tarih ve Zaman Seçiniz
           </h2>
           <h2 className="text-premiumPurple text-center text-md font-bold">

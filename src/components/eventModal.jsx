@@ -55,7 +55,7 @@ const EventModal = ({
                   <div className="forSomeone flex mt-3 flex-wrap items-center justify-center">
                     <div className="generalNameAreaSomeOne mr-5">
                       <div className="nameAreaSomeone flex">
-                        <i class="fa-solid fa-user text-deepSlateBlue flex items-center justify-center"></i>
+                        <i class="fa-solid fa-user text-premiumPurple flex items-center justify-center"></i>
                         <h2 className="text-sm font-bold ml-[8px] text-center">
                           İsim Soyisim
                         </h2>
@@ -68,7 +68,7 @@ const EventModal = ({
                     </div>
                     <div className="generalGenderAreaSomeOne mr-5">
                       <div className="genderAreaSomeone flex">
-                        <i class="fa-solid fa-venus-mars text-deepSlateBlue flex items-center justify-center"></i>
+                        <i class="fa-solid fa-venus-mars text-premiumPurple flex items-center justify-center"></i>
                         <h2 className="text-sm font-bold ml-[8px] text-center">
                           Cinsiyet
                         </h2>
@@ -79,7 +79,7 @@ const EventModal = ({
                     </div>
                     <div className="generalBirthdayAreaSomeOne mr-5 mt-3">
                       <div className="birthdayAreaSomeone flex">
-                        <i class="fa-solid fa-cake-candles text-deepSlateBlue flex items-center justify-center"></i>
+                        <i class="fa-solid fa-cake-candles text-premiumPurple flex items-center justify-center"></i>
                         <h2 className="text-sm font-bold ml-[8px] text-center">
                           Doğum Tarihi
                         </h2>
@@ -92,7 +92,7 @@ const EventModal = ({
                     </div>
                     <div className="generalAppointmentTime mr-5 mt-3">
                       <div className="appointmentTimeArea flex">
-                        <i class="fa-regular fa-calendar-check text-deepSlateBlue flex items-center justify-center"></i>
+                        <i class="fa-regular fa-calendar-check text-premiumPurple flex items-center justify-center"></i>
                         <h2 className="text-sm font-bold ml-[8px] text-center">
                           Randevu Tarihi
                         </h2>
@@ -108,7 +108,7 @@ const EventModal = ({
                 <div className="flex w-full mt-5 justify-around">
                   <div className="serviceNameArea">
                     <div className="service flex">
-                      <i class="fa-solid fa-user text-deepSlateBlue flex items-center justify-center"></i>
+                      <i class="fa-solid fa-user text-premiumPurple flex items-center justify-center"></i>
                       <h2 className="text-sm font-bold ml-[8px] text-center">
                         Hizmet
                       </h2>
@@ -119,7 +119,7 @@ const EventModal = ({
                   </div>
                   <div className="languageArea">
                     <div className="textLogoArea flex">
-                      <i class="fa-solid fa-earth-americas text-deepSlateBlue flex items-center justify-center"></i>
+                      <i class="fa-solid fa-earth-americas text-premiumPurple flex items-center justify-center"></i>
                       <h5 className="text-sm font-semibold ml-[8px] mt-auto mb-auto text-center">
                         Dil
                       </h5>
@@ -130,7 +130,7 @@ const EventModal = ({
                   </div>
                   <div className="generalAppointmentNumber">
                     <div className="birthdayAreaSomeone flex">
-                      <i class="fa-solid fa-calendar-check text-deepSlateBlue flex items-center justify-center"></i>
+                      <i class="fa-solid fa-calendar-check text-premiumPurple flex items-center justify-center"></i>
                       <h2 className="text-sm font-bold ml-[8px] text-center">
                         Randevu Numarası
                       </h2>
@@ -142,11 +142,11 @@ const EventModal = ({
                     </div>
                   </div>
                 </div>
-                <div className="notesArea mt-[8px] border-2 border-deepSlateBlue rounded-xl">
+                <div className="notesArea mt-[8px] border-2 border-premiumPurple rounded-xl">
                   <div className="p-3">
                     <div className="flex">
-                      <i className="fa-solid fa-book text-xl text-deepSlateBlue"></i>
-                      <h2 className="text-xl ml-2 text-deepSlateBlue">
+                      <i className="fa-solid fa-book text-xl text-premiumPurple"></i>
+                      <h2 className="text-xl ml-2 text-premiumPurple">
                         Notlar
                       </h2>
                     </div>

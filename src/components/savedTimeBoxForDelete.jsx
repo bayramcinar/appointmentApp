@@ -31,15 +31,18 @@ function SavedTimesForDeletion({ time }) {
   return (
     <div>
       <div
-        className={`timeBox w-[95px] max-[768px]:w-[95px] ${"bg-deepSlateBlue"} rounded-3xl m-[5px] p-[5px] max-[768px]:m-[5px] cursor-pointer flex`}
+        className={`timeBox w-[95px] max-[768px]:w-[95px] ${"border-deepSlateBlue bg-white border-2"} rounded-3xl m-[5px] p-[5px] max-[768px]:m-[5px] cursor-pointer flex`}
       >
         <h4
-          className={`text-sm text-text ml-[7px] mt-[7px] pb-0 text-center ${"text-white font-bold"}`}
+          className={`text-sm text-deepSlateBlue ml-[7px] mt-[7px] pb-0 text-center ${"text-deepSlateBlue font-bold"}`}
         >
           {time}
         </h4>
-        <div className="bg-coral  rounded-3xl ml-3" onClick={handleDeleteClick}>
-          <i className="coralfa-trash text-center p-2  text-white flex justify-center items-center"></i>
+        <div
+          className="bg-coral  rounded-3xl ml-3 mr-[5px]"
+          onClick={handleDeleteClick}
+        >
+          <i className="fa-solid fa-trash text-center p-2  text-white flex justify-center items-center"></i>
         </div>
       </div>
     </div>

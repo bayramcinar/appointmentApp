@@ -93,7 +93,7 @@ function AppointmentView({
                     <h2 className="text-sm font-semibold">({service})</h2>
                   </div>
                   <div className="forWho flex">
-                    <i class="fa-solid fa-circle mt-[6px] text-[11px] text-deepSlateBlue"></i>
+                    <i class="fa-solid fa-circle mt-[6px] text-[11px] text-premiumPurple"></i>
                     <h2 className="text-[14px] font-bold ml-2">
                       {forWho} İçin
                     </h2>
@@ -104,7 +104,7 @@ function AppointmentView({
                 <div className="appointmentDetailsArea flex">
                   <div className="dateArea mr-5">
                     <div className="textLogoArea flex">
-                      <i class="fa-solid fa-calendar text-deepSlateBlue flex items-center justify-center"></i>
+                      <i class="fa-solid fa-calendar text-premiumPurple flex items-center justify-center"></i>
                       <h5 className="text-sm font-semibold ml-[8px] mt-auto mb-auto text-center">
                         Tarih
                       </h5>
@@ -115,7 +115,7 @@ function AppointmentView({
                   </div>
                   <div className="timeArea mr-5">
                     <div className="textLogoArea flex">
-                      <i class="fa-solid fa-clock text-deepSlateBlue flex items-center justify-center"></i>
+                      <i class="fa-solid fa-clock text-premiumPurple flex items-center justify-center"></i>
                       <h5 className="text-sm font-semibold ml-[8px] mt-auto mb-auto text-center">
                         Saat
                       </h5>
@@ -126,7 +126,7 @@ function AppointmentView({
                   </div>
                   <div className="languageArea mr-5">
                     <div className="textLogoArea flex">
-                      <i class="fa-solid fa-earth-americas text-deepSlateBlue flex items-center justify-center"></i>
+                      <i class="fa-solid fa-earth-americas text-premiumPurple flex items-center justify-center"></i>
                       <h5 className="text-sm font-semibold ml-[8px] mt-auto mb-auto text-center">
                         Dil
                       </h5>
@@ -137,7 +137,7 @@ function AppointmentView({
                   </div>
                   <div className="moneyArea mr-5">
                     <div className="textLogoArea flex">
-                      <i class="fa-regular fa-money-bill-1 text-deepSlateBlue flex items-center justify-center"></i>
+                      <i class="fa-regular fa-money-bill-1 text-premiumPurple flex items-center justify-center"></i>
                       <h5 className="text-sm font-semibold ml-[8px] mt-auto mb-auto text-center">
                         Ücret/Dakika
                       </h5>
@@ -152,7 +152,7 @@ function AppointmentView({
                     <div className="forSomeone flex mt-3">
                       <div className="generalNameAreaSomeOne mr-5">
                         <div className="nameAreaSomeone flex">
-                          <i class="fa-solid fa-user text-deepSlateBlue flex items-center justify-center"></i>
+                          <i class="fa-solid fa-user text-premiumPurple flex items-center justify-center"></i>
                           <h2 className="text-sm font-bold ml-[8px] text-center">
                             İsim Soyisim
                           </h2>
@@ -165,7 +165,7 @@ function AppointmentView({
                       </div>
                       <div className="generalGenderAreaSomeOne mr-5">
                         <div className="genderAreaSomeone flex">
-                          <i class="fa-solid fa-venus-mars text-deepSlateBlue flex items-center justify-center"></i>
+                          <i class="fa-solid fa-venus-mars text-premiumPurple flex items-center justify-center"></i>
                           <h2 className="text-sm font-bold ml-[8px] text-center">
                             Cinsiyet
                           </h2>
@@ -176,7 +176,7 @@ function AppointmentView({
                       </div>
                       <div className="generalGenderAreaSomeOne mr-5">
                         <div className="birthdayAreaSomeone flex">
-                          <i class="fa-solid fa-cake-candles text-deepSlateBlue flex items-center justify-center"></i>
+                          <i class="fa-solid fa-cake-candles text-premiumPurple flex items-center justify-center"></i>
                           <h2 className="text-sm font-bold ml-[8px] text-center">
                             Doğum Tarihi
                           </h2>
@@ -187,11 +187,11 @@ function AppointmentView({
                       </div>
                     </div>
                   )}
-                  <div className="notesArea mt-[8px] border-2 border-deepSlateBlue rounded-xl">
+                  <div className="notesArea mt-[8px] border-2 border-premiumPurple rounded-xl">
                     <div className="p-3">
                       <div className="flex">
-                        <i className="fa-solid fa-book text-xl text-deepSlateBlue"></i>
-                        <h2 className="text-xl ml-2 text-deepSlateBlue">
+                        <i className="fa-solid fa-book text-xl text-premiumPurple"></i>
+                        <h2 className="text-xl ml-2 text-premiumPurple">
                           Notlar
                         </h2>
                       </div>

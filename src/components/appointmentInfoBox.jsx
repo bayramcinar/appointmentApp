@@ -2,7 +2,7 @@ import React from "react";
 
 function AppointmentInfoBox({ number, title, changeRate }) {
   return (
-    <div className="w-[8vw] h-[8vw] max-[768px]:w-[120px] max-[768px]:h-[120px] shadow-lg flex flex-col items-center justify-center border-premiumPurple border-2 rounded-xl m-[1.4vw] max-[500px]:m-[20px] relative">
+    <div className="w-[8vw] h-[8vw] max-[768px]:w-[120px] max-[768px]:h-[120px] shadow-lg flex flex-col items-center bg-white justify-center border-premiumPurple border-2 rounded-xl m-[1.4vw] max-[500px]:m-[20px] relative">
       {changeRate > 0 && (
         <div className="absolute right-1 top-1 flex">
           <i class="fa-solid fa-arrow-up lg:text-[0.8vw] max-[768px]:text-sm mr-[2px] text-green-600"></i>

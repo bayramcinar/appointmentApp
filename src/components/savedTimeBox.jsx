@@ -12,14 +12,14 @@ function SavedTimes({ time, onTimeClick, selectedTime }) {
       <div
         className={`timeBox w-[115px] max-[768px]:w-[115px] ${
           selectedTime
-            ? "bg-white border-2 border-deepSlateBlue "
-            : "bg-deepSlateBlue"
+            ? "bg-deepSlateBlue"
+            : " bg-white border-2 border-deepSlateBlue "
         } rounded-3xl m-[5px] p-[5px] max-[768px]:m-[5px] cursor-pointer`}
         onClick={handleTimeClick}
       >
         <h4
           className={`text-sm  p-1 pb-0 text-center ${
-            selectedTime ? "text-deepSlateBlue font-bold" : "text-white"
+            selectedTime ? "text-white" : " text-deepSlateBlue font-bold"
           }`}
         >
           {time}

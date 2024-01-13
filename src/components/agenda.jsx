@@ -501,7 +501,7 @@ function Agenda() {
 
   return (
     <>
-      <div className="bg-dayComponentBg lg:scale-[1] md:scale-[0.9] lg:mr-[1rem] border-text border-2 rounded-xl max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 w-full flex-grow">
+      <div className="bg-orangeBg lg:scale-[1] md:scale-[0.9] lg:mr-[1rem] border-premiumPurple border-2 rounded-xl max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 w-full flex-grow">
         <div className="w-full shadow-xl overflow-auto max-h-600">
           <div className="flex">
             <div className="w-[33%] flex items-center justify-center"></div>

@@ -86,7 +86,7 @@ function NotAppointmentRequestBox({ image, infos, onDetails, setFormData }) {
 
   return (
     <>
-      <div className="bg-white myAppointmentBox lg:w-[280px] h-[205px] max-[768px]:w-[300px]  ml-auto mr-auto border-2 border-deepSlateBlue rounded-2xl shadow-2xl">
+      <div className="bg-white myAppointmentBox lg:w-[280px] h-[205px] max-[768px]:w-[300px]  ml-auto mr-auto border-2 border-lightOrange rounded-2xl shadow-2xl">
         <div className="p-2 flex flex-col pt-0">
           <div className="flex">
             <div className="imgArea1 w-1/3 flex items-center justify-center">
@@ -101,13 +101,13 @@ function NotAppointmentRequestBox({ image, infos, onDetails, setFormData }) {
                 </h1>
               </div>
               <div className="forWho flex">
-                <i className="fa-solid fa-circle mt-[3px] text-[15px] text-royalPurple"></i>
+                <i className="fa-solid fa-circle mt-[3px] text-[15px] text-premiumPurple"></i>
                 <h2 className="text-[14px] font-bold ml-2 ">
                   {infos.kimIçin} İçin
                 </h2>
               </div>
               <div className="flex">
-                <i className="fa-regular fa-clock mt-[15px] text-royalPurple text-[15px]"></i>
+                <i className="fa-regular fa-clock mt-[15px] text-premiumPurple text-[15px]"></i>
                 <div className="flex flex-col items-center justify-center">
                   <h1 className="text-xs  p-1 text-left font-semibold m-1 mb-0 pb-0">
                     {date}
@@ -121,7 +121,7 @@ function NotAppointmentRequestBox({ image, infos, onDetails, setFormData }) {
                 </h1>
               </div>
               <div className="flex">
-                <i className="fa-solid fa-hospital-user mt-[9px] text-royalPurple text-[15px]"></i>
+                <i className="fa-solid fa-hospital-user mt-[9px] text-premiumPurple text-[15px]"></i>
                 <h1 className="text-xs  p-1 text-left font-semibold m-1">
                   {infos.service}
                 </h1>
