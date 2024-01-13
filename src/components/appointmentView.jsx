@@ -203,7 +203,7 @@ function AppointmentView({
               <div className="confirmButtonArea">
                 <button
                   onClick={confirmButton}
-                  className="bg-deepSlateBlue p-2 w-full text-white rounded-xl text-lg"
+                  className="bg-premiumPurple p-2 w-full text-white rounded-xl text-lg"
                 >
                   Onayla
                 </button>
