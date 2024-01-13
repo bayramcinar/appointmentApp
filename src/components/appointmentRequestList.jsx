@@ -42,7 +42,7 @@ function AppointmentRequestList() {
 
       return (
         lastElement.toLowerCase() === "false" &&
-        data.confirm === "false" &&
+        data.confirm === false &&
         appointmentDate >= new Date()
       );
     });
