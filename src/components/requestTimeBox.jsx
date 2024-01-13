@@ -14,18 +14,20 @@ function RequestTimeBox({ time, date, selectedTime, onTimeClick, isMobile }) {
     <div className="flex items-center justify-center">
       <div
         className={`timeBox w-[145px] max-[768px]:w-[115px] ${
-          isSelected ? "bg-coral" : "bg-deepSlateBlue"
+          isSelected
+            ? "bg-deepSlateBlue text-white"
+            : "bg-white text-deepSlateBlue border-deepSlateBlue border-2"
         } rounded-3xl mb-[5px] p-[2px] max-[768px]:m-[5px] cursor-pointer`}
         onClick={handleTimeClick}
       >
         {isMobile === true && (
           <>
-            <h4 className="text-sm text-text p-1 pb-0 text-center">{time}</h4>
+            <h4 className="text-sm  p-1 pb-0 text-center">{time}</h4>
           </>
         )}
         {isMobile === false && (
           <>
-            <h4 className="text-sm text-text p-1 text-center">{time}</h4>
+            <h4 className="text-sm p-1 text-center">{time}</h4>
           </>
         )}
       </div>

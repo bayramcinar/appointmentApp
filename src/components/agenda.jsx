@@ -59,7 +59,11 @@ function Agenda() {
             !isSameDay(currentDate, appointmentDate)
           );
         default:
-          return true;
+          return (
+            (appointmentDate > currentDate &&
+              !isSameDay(currentDate, appointmentDate)) ||
+            isSameDay(currentDateOnly, appointmentDate)
+          );
       }
     });
 
@@ -499,14 +503,27 @@ function Agenda() {
     );
   };
 
+  function getTableHeaders() {
+    switch (filter) {
+      case "past":
+        return "Geçmiş Randevularım";
+      case "today":
+        return "Bugünki Randevularım";
+      case "future":
+        return "Gelecek Randevularım";
+      default:
+        return "Yaklaşan Randevularım";
+    }
+  }
+
   return (
     <>
-      <div className="bg-orangeBg lg:scale-[1] md:scale-[0.9] lg:mr-[1rem] border-premiumPurple border-2 rounded-xl max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 w-full flex-grow">
+      <div className="bg-white lg:scale-[1] md:scale-[0.9] lg:mr-[1rem] border-premiumPurple border-2 rounded-xl max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 w-full flex-grow">
         <div className="w-full shadow-xl overflow-auto max-h-600">
           <div className="flex">
             <div className="w-[33%] flex items-center justify-center"></div>
             <h1 className=" lg:text-[1.5vw] max-[768px]:text-xl max-[768px]:w-[48%] w-[33%] text-center max-[768px]:justify:start font-semibold mt-5 sticky top-0 text-deepSlateBlue p-3 pb-0">
-              Yaklaşan Randevularım
+              {getTableHeaders()}
             </h1>
             <div className="flex w-[33%] max-[768px]:w-[48%] justify-end items-center mb-4 mt-6">
               <select
@@ -516,7 +533,7 @@ function Agenda() {
               >
                 <option value="all">Tüm Randevular</option>
                 <option value="past">Geçmiş Randevular</option>
-                <option value="today">Bu Gün</option>
+                <option value="today">Bugünki Randevular</option>
                 <option value="future">Gelecekteki Randevular</option>
               </select>
             </div>

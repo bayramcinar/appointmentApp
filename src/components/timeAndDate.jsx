@@ -384,7 +384,7 @@ function TimeAndDate({
                     <div className="flex items-center justify-center">
                       <button
                         onClick={() => setAppointmentRequest(true)}
-                        className="bg-royalPurple font-semibold text-sm text-white p-1 px-6 rounded-2xl"
+                        className="bg-premiumPurple font-semibold text-sm text-white p-1 px-6 rounded-2xl"
                       >
                         <i class="fa-solid fa-file-pen"></i> Düzenle
                       </button>
@@ -468,7 +468,7 @@ function TimeAndDate({
                           <div className="flex items-center justify-center">
                             <button
                               onClick={() => setAppointmentRequest(true)}
-                              className="bg-royalPurple font-semibold text-sm text-white p-1 px-6 rounded-2xl"
+                              className="bg-premiumPurple font-semibold text-sm text-white p-1 px-6 rounded-2xl"
                             >
                               <i class="fa-solid fa-file-pen"></i> Düzenle
                             </button>
