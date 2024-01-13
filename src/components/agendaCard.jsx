@@ -35,7 +35,7 @@ function AgendaCard({
             className={`fa-solid fa-circle text-[10px] ${
               isPastAppointment ? "hidden" : ""
             } ${
-              status === "false" ? "text-coral flashing-text" : "text-green-500"
+              status === false ? "text-coral flashing-text" : "text-green-500"
             }  flex items-center justify-center my-0.5`}
           ></i>
           <h1 className="text-[10px] text-center ">
@@ -43,12 +43,12 @@ function AgendaCard({
               <span className="text-coral">Randevu Sonlandı</span>
             ) : (
               <>
-                {status === "true" && "Aktif"}
-                {status === "false" &&
+                {status === true && "Aktif"}
+                {status === false &&
                   requestStatus === "false" &&
                   "İşleme Alınması Bekleniyor"}
                 {requestStatus === "true" &&
-                  status === "false" &&
+                  status === false &&
                   "Randevu Talebi Onay Bekleniyor"}
               </>
             )}
