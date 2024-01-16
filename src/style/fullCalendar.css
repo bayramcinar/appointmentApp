@@ -32,7 +32,7 @@
   border-radius: 15px;
 }
 .rbc-today {
-  background-color: hsl(7, 90%, 72%);
+  background-color: hsl(7, 90%, 95%);
   color: #fff;
 }
 .rbc-current {
@@ -97,7 +97,6 @@
   color: hsl(267, 100%, 47%);
 }
 .past-event {
-  opacity: 0.6;
   border-color: gray !important;
 }
 .empty-appointment {

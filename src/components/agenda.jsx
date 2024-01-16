@@ -142,12 +142,32 @@ function Agenda() {
 
   function convertFormDataToTable() {
     return paginatedFormData.map((formEntry, index) => {
+      const last12Hours = (remainingTime) => {
+        try {
+          const hourAndMin = remainingTime.split(" ");
+
+          const hour = parseInt(hourAndMin[0]);
+          const min = parseInt(hourAndMin[2]);
+
+          const totalHours = hour + min / 60;
+
+          const isLast12Hours = totalHours < 12;
+
+          return isLast12Hours;
+        } catch (err) {}
+      };
       const status = formEntry.confirm;
       const { time, duration, service } = formEntry;
       const parsedInfos = time.split(/\s+/);
       const dateInfo = parsedInfos[0] + " " + parsedInfos[1];
       const timeInfo = getTime(parsedInfos[2], duration);
       const remainingTime = getRemainingTime(time);
+      const fullRemainingTime =
+        remainingTime.remainingHours > 0
+          ? `${remainingTime.remainingHours} saat ${remainingTime.remainingMinutes} dakika`
+          : remainingTime.remainingMinutes > 0
+          ? `${remainingTime.remainingMinutes} dakika`
+          : "Randevu Bitti";
       const requestStatus = parsedInfos[3];
       const currentDate = new Date();
       const appointmentDate = new Date(
@@ -190,11 +210,7 @@ function Agenda() {
           <td className="text-center border-dashed border-2 border-[#0003]">
             {service}
           </td>
-          <td className="border-dashed border-2 border-[#0003] h-[60px]">
-            {isCancelled && (
-              <h1 className="text-center  ">Randevu İptal Edildi</h1>
-            )}
-
+          <td className="border-dashed border-2 border-[#0003] h-[60px] flex items-center justify-center">
             {!isCancelled && (
               <div className="flex items-center justify-center">
                 <div className="m-2">
@@ -209,16 +225,16 @@ function Agenda() {
                     İptal Et
                   </button>
                 </div>
-                <div className="m-2 ml-0">
-                  <button
-                    onClick={() => handleOpenModal(formEntry)}
-                    className="p-2 bg-deepSlateBlue text-white font-semibold rounded-xl"
-                  >
-                    Detaylar
-                  </button>
-                </div>
               </div>
             )}
+            <div className="m-2 ml-0">
+              <button
+                onClick={() => handleOpenModal(formEntry)}
+                className="p-2 bg-deepSlateBlue text-white font-semibold rounded-xl"
+              >
+                Detaylar
+              </button>
+            </div>
           </td>
           <td className="text-center border-dashed border-2 border-[#0003] status">
             {isCancelled ? (
@@ -252,16 +268,14 @@ function Agenda() {
               </>
             )}
           </td>
-          <td className="text-center border-dashed border-2 border-[#0003] ">
-            {remainingTime.remainingHours > 0 ? (
-              `${remainingTime.remainingHours} saat ${remainingTime.remainingMinutes} dakika`
-            ) : (
-              <span>
-                {remainingTime.remainingMinutes > 0
-                  ? `${remainingTime.remainingMinutes} dakika`
-                  : "Randevu Bitti"}
-              </span>
-            )}
+          <td className={`text-center border-dashed border-2 border-[#0003]`}>
+            <span
+              className={`text-center mb-auto ${
+                fullRemainingTime === "Randevu Bitti" ? "text-coral" : ""
+              }`}
+            >
+              {fullRemainingTime}
+            </span>
           </td>
         </tr>
       );
@@ -446,7 +460,7 @@ function Agenda() {
       const currentTimes = times.slice(i, i + itemsPerSlide);
       const swiperSlide = (
         <SwiperSlide key={i}>
-          <div className="flex flex-wrap  justify-center h-[auto] agendaCardBoxArea ">
+          <div className="flex flex-wrap  justify-center h-auto agendaCardBoxArea">
             {currentTimes.map((formEntry, index) => {
               const status = formEntry.confirm;
               const { time, duration, service } = formEntry;
@@ -508,13 +522,9 @@ function Agenda() {
 
     const swiperProps = isMobile
       ? {
-          direction: "vertical",
+          direction: "horizontal",
           pagination: { clickable: true, dynamicBullets: true },
           modules: [Pagination, Navigation],
-          navigation: {
-            prevEl: ".custom-swiper-button-prev",
-            nextEl: ".custom-swiper-button-next",
-          },
         }
       : {
           navigation: {
@@ -577,10 +587,10 @@ function Agenda() {
           )}
           {pendingAppointments.length === 0 && (
             <h1 className="text-md max-[768px]:text-sm text-coral text-center font-semibold mb-2 max-[768px]:mb-0">
-              Yaklaşan randevunuz bulunmamaktadır.
+              İşlem bekleyen randevunuz bulunmamaktadır.
             </h1>
           )}
-          <div className=" agendaCardSwiper">
+          <div className="agendaCardSwiper">
             {!isMobile && (
               <table className="rounded-xl w-full ">
                 <thead>

@@ -15,30 +15,36 @@ function AgendaCard({
   deleteFunction,
   isCancelDisabled,
   isCancelled,
-  isToday,
 }) {
+  const last12Hours = (remainingTime) => {
+    try {
+      const hourAndMin = remainingTime.split(" ");
+
+      const hour = parseInt(hourAndMin[0]);
+      const min = parseInt(hourAndMin[2]);
+
+      const totalHours = hour + min / 60;
+
+      const isLast12Hours = totalHours < 12;
+
+      return isLast12Hours;
+    } catch (err) {}
+  };
+
   return (
     <div className="flex flex-col">
       <div
         className={`card mx-auto flex w-[330px] border-2 ${
-          isCancelled
-            ? "border-coral"
-            : isToday
-            ? "border-green-500"
-            : isPastAppointment
-            ? "border-gray-400"
-            : "border-lightOrange"
+          status === true ? "border-green-500" : "border-lightOrange"
+        }
         } rounded-2xl m-3`}
       >
         <div
-          className={`numAndInfo w-4/12 flex-col flex items-center ${
-            isCancelled
-              ? "border-coral bg-coral"
-              : isToday
-              ? "border-green-400 bg-green-500"
-              : isPastAppointment
-              ? "border-gray-400 bg-gray-400"
+          className={`numAndInfo w-4/12 flex-col flex items-center  ${
+            status === true
+              ? "border-green-500 bg-green-500"
               : "border-lightOrange bg-lightOrange"
+          }
           } justify-center border-r-2  text-white rounded-s-[0.8rem]`}
         >
           <div className="appointmentNumber">
@@ -83,19 +89,34 @@ function AgendaCard({
             <h1 className="text-[11px] text-center w-min">{date}</h1>
             <h1 className="text-[11px] text-center">{time}</h1>
           </div>
-          <div className="kalanSüre my-auto h-[50%] flex items-center justify-center">
+          <div className="kalanSüre my-auto items-center justify-center">
             <h1
-              className={`text-[11px] text-center mb-auto ${
-                remainingTime === "Randevu Bitti" ? "text-coral" : ""
+              className={`text-[11px] text-center mb-auto w-full py-[2px] pb-0 ${
+                remainingTime === "Randevu Bitti"
+                  ? "text-coral"
+                  : last12Hours(remainingTime) === true
+                  ? "text-white bg-green-500 border-green-500 border"
+                  : ""
               }`}
             >
-              {remainingTime}
+              {remainingTime.split(" ")[0] + " " + remainingTime.split(" ")[1]}
+            </h1>
+            <h1
+              className={`text-[11px] text-center mb-auto w-full py-[2px] pt-0 ${
+                remainingTime === "Randevu Bitti"
+                  ? "text-coral"
+                  : last12Hours(remainingTime) === true
+                  ? "text-white bg-green-500 border-green-500 border"
+                  : ""
+              }`}
+            >
+              {remainingTime.split(" ")[2] + " " + remainingTime.split(" ")[3]}
             </h1>
           </div>
         </div>
         <div className="buttonsArea flex flex-col items-center justify-center">
           {isCancelled && (
-            <h1 className="text-[11px] text-center p-1">
+            <h1 className="text-[11px] text-center p-1 pb-0">
               Randevu İptal Edildi
             </h1>
           )}
@@ -114,16 +135,16 @@ function AgendaCard({
                   İptal Et
                 </button>
               </div>
-              <div className="m-1">
-                <button
-                  onClick={() => showDetails()}
-                  className="p-1 bg-premiumPurple text-white text-xs font-semibold rounded-lg w-full"
-                >
-                  Detaylar
-                </button>
-              </div>
             </>
           )}
+          <div className="m-1">
+            <button
+              onClick={() => showDetails()}
+              className="p-1 bg-premiumPurple text-white text-xs font-semibold rounded-lg w-full"
+            >
+              Detaylar
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -9,21 +9,10 @@
 .swal2-cancel {
   border-radius: 30px !important;
 }
-.agendaCardSwiper .swiper {
-  height: 28rem;
-}
 @media (min-width: 1024px) {
   .myCustomHeight {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  .agendaCardSwiper .swiper {
-    height: 38rem;
-  }
-}
-@media (max-width: 768px) {
-  .agendaCardSwiper .swiper {
-    height: 30rem;
   }
 }
