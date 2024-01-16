@@ -35,6 +35,9 @@
   background-color: hsl(7, 90%, 95%);
   color: #fff;
 }
+.rbc-current-time-indicator {
+  display: none;
+}
 .rbc-current {
   color: #fff;
 }

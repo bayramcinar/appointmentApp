@@ -28,7 +28,9 @@ function AgendaCard({
       const isLast12Hours = totalHours < 12;
 
       return isLast12Hours;
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

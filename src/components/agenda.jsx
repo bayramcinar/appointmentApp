@@ -195,7 +195,7 @@ function Agenda() {
               : "bg-white"
           }
         >
-          <td className="text-center border-dashed border-2 border-[#0003] ">
+          <td className="text-center border-dashed border-2 border-[#0003] border-l-0">
             {actualIndex + 1}
           </td>
           <td className="text-center border-dashed border-2 border-[#0003] ">
@@ -207,10 +207,10 @@ function Agenda() {
           <td className="text-center border-dashed border-2 border-[#0003]">
             {timeInfo}
           </td>
-          <td className="text-center border-dashed border-2 border-[#0003]">
+          <td className="text-center border-dashed border-2 border-[#0003] ">
             {service}
           </td>
-          <td className="border-dashed border-2 border-[#0003] h-[60px] flex items-center justify-center">
+          <td className="border-dashed border-[#0003] flex items-center justify-center border-r-0 border-l-0 border-2 border-b-0 ">
             {!isCancelled && (
               <div className="flex items-center justify-center">
                 <div className="m-2">
@@ -236,7 +236,7 @@ function Agenda() {
               </button>
             </div>
           </td>
-          <td className="text-center border-dashed border-2 border-[#0003] status">
+          <td className="text-center border-dashed border-2 border-[#0003]  status ">
             {isCancelled ? (
               <span className="text-red-500">Randevu İptal Edildi</span>
             ) : isPastAppointment ? (
@@ -268,7 +268,9 @@ function Agenda() {
               </>
             )}
           </td>
-          <td className={`text-center border-dashed border-2 border-[#0003]`}>
+          <td
+            className={`text-center border-dashed border-2 border-[#0003] border-r-0`}
+          >
             <span
               className={`text-center mb-auto ${
                 fullRemainingTime === "Randevu Bitti" ? "text-coral" : ""

@@ -10,6 +10,15 @@
 ::-webkit-scrollbar-track {
   background-color: #f3f4f6;
 }
+/* Remove top border for the first child in each row */
+.agendaCardSwiper tr:first-child td {
+  border-top: 0;
+}
+
+/* Remove bottom border for the last child in each row */
+.agendaCardSwiper tr:last-child td {
+  border-bottom: 0;
+}
 @media (max-width: 768px) {
   .agendaCardSwiper .swiper-pagination {
     height: 10px;
