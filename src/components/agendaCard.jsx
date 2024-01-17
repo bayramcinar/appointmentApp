@@ -95,17 +95,6 @@ function AgendaCard({
             <h1 className="text-[11px] text-center">{time}</h1>
           </div>
           <div className="kalanSüre my-auto flex items-center justify-center h-[46%]">
-            {/* <h1
-              className={`text-[11px] text-center mb-auto w-full py-[7px] pb-0 ${
-                remainingTime === "Randevu Bitti"
-                  ? "text-coral"
-                  : last12Hours(remainingTime) === true
-                  ? "text-white bg-green-500 border-green-500 border"
-                  : ""
-              }`}
-            >
-              {remainingTime}
-            </h1> */}
             <h1
               className={`text-[11px] text-center mb-auto w-full h-full flex items-center justify-center pt-0 ${
                 remainingTime === "Randevu Bitti"
@@ -144,7 +133,7 @@ function AgendaCard({
                 <div className="m-1 my-0">
                   <button
                     onClick={() => joinFunction(formEntry, remainingHours)}
-                    className={`p-1 bg-premiumPurple text-white px-[14px] font-semibold rounded-xl text-xs ${
+                    className={`p-1  text-white px-[14px] font-semibold rounded-xl text-xs ${
                       remainingHours > 1 ? "cursor-not-allowed" : ""
                     } ${
                       remainingHours > 1 ? "bg-gray-500" : "bg-premiumPurple"

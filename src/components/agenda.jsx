@@ -252,7 +252,7 @@ function Agenda() {
                     onClick={() =>
                       joinMeet(formEntry, remainingTime.remainingHours)
                     }
-                    className={`p-2 bg-premiumPurple text-white font-semibold rounded-xl ${
+                    className={`p-2  text-white font-semibold rounded-xl ${
                       remainingTime.remainingHours > 1
                         ? "cursor-not-allowed"
                         : ""
