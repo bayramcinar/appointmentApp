@@ -140,6 +140,29 @@ function Agenda() {
     return endTime;
   }
 
+  const joinMeet = (formEntry, remainingHours) => {
+    //KATIL BUTONUNA BASTIĞIMIZDA ÇALIŞSAN FONKSİYON RANDEVU DETAYLARINI DÖNDÜRÜYOR İÇİNDE RANDEVU NUMARASI VAR ONA GÖRE MEET ALANINA YÖLENDİRME YAPILACAK
+    if (formEntry.confirm === false) {
+      Swal.fire({
+        title: "Hata !",
+        text: "Randevuye katılmak için randevuyu işleme almanız gerekmektedir.",
+        icon: "error",
+        confirmButtonText: "Kapat",
+      });
+    } else {
+      if (remainingHours > 1) {
+        Swal.fire({
+          title: "Hata !",
+          text: "Randevuye 1 saat kala katılabilirsiniz.",
+          icon: "error",
+          confirmButtonText: "Kapat",
+        });
+      } else {
+        window.location.href = `/meet/${formEntry.appointmentNumber}`; //RANDEVU EKRANINA YÖNLENDİRME LİNKİ RANDEVU NUMARASI KULLANARAK
+      }
+    }
+  };
+
   function convertFormDataToTable() {
     return paginatedFormData.map((formEntry, index) => {
       const last12Hours = (remainingTime) => {
@@ -176,7 +199,6 @@ function Agenda() {
           time.split(" ")[2]
       );
       const isPastAppointment = appointmentDate < currentDate;
-      const isToday = isSameDay(appointmentDate, currentDate);
       const isCancelDisabled = remainingTime.remainingHours < 12;
       const actualIndex = (currentPage - 1) * itemsPerPage + index;
       const isCancelled = formEntry.delete === true;
@@ -188,7 +210,7 @@ function Agenda() {
               ? "bg-red-200" // İptal edilen randevular için kırmızı arka plan
               : isPastAppointment
               ? "bg-grayForTable" // Gri renk tarihi geçmiş randevular için
-              : isToday
+              : status === true
               ? "bg-greenForTable"
               : actualIndex % 2 === 0
               ? "bg-white"
@@ -223,6 +245,26 @@ function Agenda() {
                     } font-semibold rounded-xl`}
                   >
                     İptal Et
+                  </button>
+                </div>
+                <div className="m-2 ml-0">
+                  <button
+                    onClick={() =>
+                      joinMeet(formEntry, remainingTime.remainingHours)
+                    }
+                    className={`p-2 bg-premiumPurple text-white font-semibold rounded-xl ${
+                      remainingTime.remainingHours > 1
+                        ? "cursor-not-allowed"
+                        : ""
+                    } ${
+                      status === false
+                        ? "bg-gray-500"
+                        : remainingTime.remainingHours > 1
+                        ? "bg-gray-500"
+                        : "bg-premiumPurple"
+                    }`}
+                  >
+                    Katıl
                   </button>
                 </div>
               </div>
@@ -269,7 +311,11 @@ function Agenda() {
             )}
           </td>
           <td
-            className={`text-center border-dashed border-2 border-[#0003] border-r-0`}
+            className={`text-center border-dashed border-2 border-[#0003] border-r-0  ${
+              last12Hours(fullRemainingTime) === true
+                ? "bg-green-400 text-white"
+                : ""
+            }`}
           >
             <span
               className={`text-center mb-auto ${
@@ -488,6 +534,9 @@ function Agenda() {
 
               return (
                 <AgendaCard
+                  joinFunction={joinMeet}
+                  formEntry={formEntry}
+                  remainingHours={remainingTime.remainingHours}
                   isToday={isToday}
                   isCancelled={isCancelled}
                   key={index}

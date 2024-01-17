@@ -15,6 +15,9 @@ function AgendaCard({
   deleteFunction,
   isCancelDisabled,
   isCancelled,
+  joinFunction,
+  formEntry,
+  remainingHours,
 }) {
   const last12Hours = (remainingTime) => {
     try {
@@ -91,9 +94,9 @@ function AgendaCard({
             <h1 className="text-[11px] text-center w-min">{date}</h1>
             <h1 className="text-[11px] text-center">{time}</h1>
           </div>
-          <div className="kalanSüre my-auto items-center justify-center">
-            <h1
-              className={`text-[11px] text-center mb-auto w-full py-[2px] pb-0 ${
+          <div className="kalanSüre my-auto flex items-center justify-center h-[46%]">
+            {/* <h1
+              className={`text-[11px] text-center mb-auto w-full py-[7px] pb-0 ${
                 remainingTime === "Randevu Bitti"
                   ? "text-coral"
                   : last12Hours(remainingTime) === true
@@ -101,10 +104,10 @@ function AgendaCard({
                   : ""
               }`}
             >
-              {remainingTime.split(" ")[0] + " " + remainingTime.split(" ")[1]}
-            </h1>
+              {remainingTime}
+            </h1> */}
             <h1
-              className={`text-[11px] text-center mb-auto w-full py-[2px] pt-0 ${
+              className={`text-[11px] text-center mb-auto w-full h-full flex items-center justify-center pt-0 ${
                 remainingTime === "Randevu Bitti"
                   ? "text-coral"
                   : last12Hours(remainingTime) === true
@@ -112,7 +115,7 @@ function AgendaCard({
                   : ""
               }`}
             >
-              {remainingTime.split(" ")[2] + " " + remainingTime.split(" ")[3]}
+              {remainingTime}
             </h1>
           </div>
         </div>
@@ -124,25 +127,39 @@ function AgendaCard({
           )}
           {!isCancelled && (
             <>
-              <div className="m-1">
-                <button
-                  onClick={() => deleteFunction()}
-                  className={`p-[7px]
+              <div className="flex flex-col items-center justify-center">
+                <div className="m-1">
+                  <button
+                    onClick={() => deleteFunction()}
+                    className={`p-[7px]
                ${
                  isCancelDisabled
                    ? "bg-gray-400 text-white cursor-not-allowed"
                    : "bg-coral text-white"
                } font-semibold rounded-xl text-xs `}
-                >
-                  İptal Et
-                </button>
+                  >
+                    İptal Et
+                  </button>
+                </div>
+                <div className="m-1 my-0">
+                  <button
+                    onClick={() => joinFunction(formEntry, remainingHours)}
+                    className={`p-1 bg-premiumPurple text-white px-[14px] font-semibold rounded-xl text-xs ${
+                      remainingHours > 1 ? "cursor-not-allowed" : ""
+                    } ${
+                      remainingHours > 1 ? "bg-gray-500" : "bg-premiumPurple"
+                    }`}
+                  >
+                    Katıl
+                  </button>
+                </div>
               </div>
             </>
           )}
           <div className="m-1">
             <button
               onClick={() => showDetails()}
-              className="p-1 bg-premiumPurple text-white text-xs font-semibold rounded-lg w-full"
+              className="p-1 bg-premiumPurple text-white text-xs font-semibold rounded-xl w-full"
             >
               Detaylar
             </button>
