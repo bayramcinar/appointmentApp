@@ -176,7 +176,7 @@ function AppointmentRequestBox({ image, infos, onDetails }) {
           <div className="buttonsArea flex justify-center items-center mt-4">
             <button
               onClick={() => onAccept(timeObject)}
-              className="p-2 bg-premiumPurple text-white text-sm font-semibold rounded-lg mx-2"
+              className="p-2 bg-green-600 text-white text-sm font-semibold rounded-lg mx-2"
             >
               Onayla
             </button>

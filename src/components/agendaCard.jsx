@@ -40,13 +40,23 @@ function AgendaCard({
     <div className="flex flex-col">
       <div
         className={`card mx-auto flex w-[330px] border-2 ${
-          status === true ? "border-green-500" : "border-lightOrange"
+          isCancelled === true
+            ? "border-coral"
+            : isPastAppointment
+            ? "border-gray-500"
+            : status
+            ? "border-green-500"
+            : "border-lightOrange"
         }
         } rounded-2xl m-3`}
       >
         <div
           className={`numAndInfo w-4/12 flex-col flex items-center  ${
-            status === true
+            isCancelled === true
+              ? "border-coral bg-coral "
+              : isPastAppointment
+              ? " border-gray-500 bg-gray-500"
+              : status
               ? "border-green-500 bg-green-500"
               : "border-lightOrange bg-lightOrange"
           }
@@ -73,9 +83,15 @@ function AgendaCard({
           ></i>
           <h1 className="text-[10px] text-center ">
             {isCancelled ? (
-              <span className="text-red-500">Randevu İptal Edildi</span>
+              <div className="w-full justify-center">
+                <i className="fa-solid fa-circle text-red-500 text-center flex items-center justify-center mx-2"></i>
+                <span className="text-red-500 my-1">Randevu İptal Edildi</span>
+              </div>
             ) : isPastAppointment ? (
-              <span className="text-coral">Randevu Sonlandı</span>
+              <div className="w-full justify-center">
+                <i className="fa-solid fa-circle text-gray-500 text-center flex items-center justify-center mx-2"></i>
+                <span className="text-gray-500 my-0.5">Randevu Sonlandı</span>
+              </div>
             ) : (
               <>
                 {status === true && "Aktif"}
@@ -94,14 +110,10 @@ function AgendaCard({
             <h1 className="text-[11px] text-center w-min">{date}</h1>
             <h1 className="text-[11px] text-center">{time}</h1>
           </div>
-          <div className="kalanSüre my-auto flex items-center justify-center h-[46%]">
+          <div className="kalanSüre my-auto flex items-center justify-center h-[45%]">
             <h1
-              className={`text-[11px] text-center mb-auto w-full h-full flex items-center justify-center pt-0 ${
-                remainingTime === "Randevu Bitti"
-                  ? "text-coral"
-                  : last12Hours(remainingTime) === true
-                  ? "text-white bg-green-500 border-green-500 border"
-                  : ""
+              className={`text-[11px] text-center mb-auto w-full h-full pt-0 ${
+                remainingTime === "Randevu Bitti" ? "text-coral" : ""
               }`}
             >
               {remainingTime}
@@ -114,7 +126,7 @@ function AgendaCard({
               Randevu İptal Edildi
             </h1>
           )}
-          {!isCancelled && (
+          {!isCancelled && !isPastAppointment && (
             <>
               <div className="flex flex-col items-center justify-center">
                 <div className="m-1">
@@ -135,9 +147,7 @@ function AgendaCard({
                     onClick={() => joinFunction(formEntry, remainingHours)}
                     className={`p-1  text-white px-[14px] font-semibold rounded-xl text-xs ${
                       remainingHours > 1 ? "cursor-not-allowed" : ""
-                    } ${
-                      remainingHours > 1 ? "bg-gray-500" : "bg-premiumPurple"
-                    }`}
+                    } ${remainingHours > 1 ? "bg-gray-500" : "bg-green-600"}`}
                   >
                     Katıl
                   </button>
@@ -148,7 +158,7 @@ function AgendaCard({
           <div className="m-1">
             <button
               onClick={() => showDetails()}
-              className="p-1 bg-premiumPurple text-white text-xs font-semibold rounded-xl w-full"
+              className="p-1 bg-deepSlateBlue text-white text-xs font-semibold rounded-xl w-full"
             >
               Detaylar
             </button>

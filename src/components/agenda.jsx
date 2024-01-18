@@ -205,17 +205,7 @@ function Agenda() {
       return (
         <tr
           key={actualIndex}
-          className={
-            isCancelled
-              ? "bg-red-200" // İptal edilen randevular için kırmızı arka plan
-              : isPastAppointment
-              ? "bg-grayForTable" // Gri renk tarihi geçmiş randevular için
-              : status === true
-              ? "bg-greenForTable"
-              : actualIndex % 2 === 0
-              ? "bg-white"
-              : "bg-white"
-          }
+          className={actualIndex % 2 === 0 ? "bg-white" : "bg-white"}
         >
           <td className="text-center border-dashed border-2 border-[#0003] border-l-0">
             {actualIndex + 1}
@@ -233,7 +223,7 @@ function Agenda() {
             {service}
           </td>
           <td className="border-dashed border-[#0003] flex items-center justify-center border-r-0 border-l-0 border-2 border-b-0 ">
-            {!isCancelled && (
+            {!isCancelled && !isPastAppointment && (
               <div className="flex items-center justify-center">
                 <div className="m-2">
                   <button
@@ -261,7 +251,7 @@ function Agenda() {
                         ? "bg-gray-500"
                         : remainingTime.remainingHours > 1
                         ? "bg-gray-500"
-                        : "bg-premiumPurple"
+                        : "bg-green-600"
                     }`}
                   >
                     Katıl
@@ -280,9 +270,15 @@ function Agenda() {
           </td>
           <td className="text-center border-dashed border-2 border-[#0003]  status ">
             {isCancelled ? (
-              <span className="text-red-500">Randevu İptal Edildi</span>
+              <div className="flex w-full justify-center">
+                <i className="fa-solid fa-circle text-red-500 text-center flex items-center justify-center mx-2"></i>
+                <span className="text-red-500">Randevu İptal Edildi</span>
+              </div>
             ) : isPastAppointment ? (
-              <span className="text-coral">Randevu Sonlandı</span>
+              <div className="flex w-full justify-center">
+                <i className="fa-solid fa-circle text-gray-500 text-center flex items-center justify-center mx-2"></i>
+                <span className="text-gray-500">Randevu Sonlandı</span>
+              </div>
             ) : (
               <>
                 {status === false && requestStatus === "false" && (
@@ -311,11 +307,7 @@ function Agenda() {
             )}
           </td>
           <td
-            className={`text-center border-dashed border-2 border-[#0003] border-r-0  ${
-              last12Hours(fullRemainingTime) === true
-                ? "bg-green-400 text-white"
-                : ""
-            }`}
+            className={`text-center border-dashed border-2 border-[#0003] border-r-0 `}
           >
             <span
               className={`text-center mb-auto ${
