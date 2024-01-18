@@ -12,9 +12,9 @@
   position: relative;
   cursor: pointer;
   margin: 8px;
-  border: 2px solid hsl(228, 22%, 97%);
+  border: 2px solid hsl(228, 22%, 95%);
   border-radius: 12px;
-  background-color: hsl(228, 22%, 97%);
+  background-color: hsl(228, 22%, 95%);
 }
 .rbc-date-cell {
   padding-right: 15px;
@@ -28,7 +28,7 @@
   border-left: 2px solid hsl(228, 22%, 97%);
 }
 .rbc-month-view {
-  border: 2px solid hsl(228, 22%, 97%);
+  border: 2px solid hsl(228, 22%, 95%);
   border-radius: 15px;
 }
 .rbc-today {
