@@ -1,13 +1,29 @@
 .rbc-btn-group button {
-  background-color: hsl(267, 100%, 47%);
-  color: #fff;
+  background-color: white;
+  border: hsl(7, 90%, 64%) 2px solid;
+  color: hsl(7, 90%, 64%);
   padding: 5px 10px;
-  border: none;
   cursor: pointer;
   font-size: 15px;
   font-weight: 600;
 }
+.rbc-btn-group button:first-child {
+  border-right: none;
+}
+.rbc-btn-group button:last-child {
+  border-left: none;
+}
 
+.rbc-btn-group button:hover {
+  background-color: hsl(7, 90%, 64%);
+  border: hsl(7, 90%, 64%) 2px solid;
+  color: white;
+}
+.rbc-active {
+  background-color: hsl(7, 90%, 64%) !important;
+  border: hsl(7, 90%, 64%) 2px solid !important;
+  color: white !important;
+}
 .rbc-day-bg {
   position: relative;
   cursor: pointer;

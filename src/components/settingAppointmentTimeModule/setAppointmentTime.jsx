@@ -422,7 +422,7 @@ function SetAppointmentTime() {
               </div>
               {savedTimes === false && (
                 <>
-                  <h2 className="text-sm text-coral text-center font-semibold m-5">
+                  <h2 className="text-sm text-[#000000a8] text-center font-semibold m-5">
                     Aşağıdan Kaydetmek istediğiniz saati seçiniz
                   </h2>
                   <div className="m-3 field-container lg:w-[21rem] mx-auto flex items-center justify-center">

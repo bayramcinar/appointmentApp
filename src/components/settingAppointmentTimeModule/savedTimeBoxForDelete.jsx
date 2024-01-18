@@ -38,11 +38,8 @@ function SavedTimesForDeletion({ time }) {
         >
           {time}
         </h4>
-        <div
-          className="bg-coral  rounded-3xl ml-3 mr-[5px]"
-          onClick={handleDeleteClick}
-        >
-          <i className="fa-solid fa-trash text-center p-2  text-white flex justify-center items-center"></i>
+        <div className="rounded-3xl ml-3 mr-[5px]" onClick={handleDeleteClick}>
+          <i className="fa-solid fa-trash text-center p-2  text-coral flex justify-center items-center"></i>
         </div>
       </div>
     </div>
