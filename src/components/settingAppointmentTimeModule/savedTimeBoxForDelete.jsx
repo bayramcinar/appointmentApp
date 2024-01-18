@@ -31,10 +31,10 @@ function SavedTimesForDeletion({ time }) {
   return (
     <div>
       <div
-        className={`timeBox w-[95px] max-[768px]:w-[95px] ${"border-deepSlateBlue bg-white border-2"} rounded-3xl m-[5px] p-[5px] max-[768px]:m-[5px] cursor-pointer flex`}
+        className={`timeBox w-[95px] max-[768px]:w-[95px] ${"border-purpleElite bg-white border-2"} rounded-3xl m-[5px] p-[1px] max-[768px]:m-[5px] cursor-pointer flex`}
       >
         <h4
-          className={`text-sm text-deepSlateBlue ml-[7px] mt-[7px] pb-0 text-center ${"text-deepSlateBlue font-bold"}`}
+          className={`text-sm text-purpleElite ml-[7px] mt-[7px] pb-0 text-center ${"text-purpleElite font-bold"}`}
         >
           {time}
         </h4>
