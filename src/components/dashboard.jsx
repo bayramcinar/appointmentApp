@@ -8,8 +8,8 @@ import AppointmentRequestList from "./appointmentRequestList";
 function Dashboard() {
   return (
     <>
-      <div className="bg-orangeBg">
-        <div className="bg-orangeBg lg:mx-[3rem]  xl:text-[1rem] lg:text-[0.68rem] md:text-[0.90rem]">
+      <div className="bg-grayBg">
+        <div className="bg-grayBg lg:mx-[3rem]  xl:text-[1rem] lg:text-[0.68rem] md:text-[0.90rem]">
           <AppointmentInfos />
         </div>
         <div className="block lg:flex lg:mx-[3rem] items-stretch justify-center xl:text-[1rem] lg:text-[0.68rem] md:text-[0.90rem]">

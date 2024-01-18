@@ -208,9 +208,9 @@ function FullCalendarComponent() {
 
   return (
     <>
-      <div className="bg-white  lg:scale-[1] md:scale-[0.9] lg:mr-[1rem]  shadow-xl border-premiumPurple border-2 rounded-xl max-[768px]:mx-[10px] flex items-center justify-center lg:w-full">
+      <div className="bg-white  lg:scale-[1] md:scale-[0.9] lg:mr-[1rem]  shadow-xl rounded-xl max-[768px]:mx-[10px] flex items-center justify-center lg:w-full">
         <div className="mx-auto relative w-full max-[500px]:w-[360px] p-2 lg:p-5">
-          <h1 className="text-deepSlateBlue text-[1.5vw] max-[768px]:text-xl m-6 max-[500px]:m-3 mt-1 font-semibold text-center">
+          <h1 className=" text-[1.5vw] max-[768px]:text-xl m-6 max-[500px]:m-3 mt-1 font-semibold text-center">
             Randevu Takvimi
           </h1>
           <div className="colorsMean mt-[25px] mb-5  flex lg:flex right-1 top-1 font-semibold justify-center items-center">

@@ -344,7 +344,7 @@ function SetAppointmentTime() {
 
   const emptyOrNot = savedTimesArray.length;
   return (
-    <div className="flex items-center border-premiumPurple bg-white w-[auto] max-[768px]:p-1 max-[768px]:max-w-[380px] max-[768px]:mt-10 ml-auto mr-auto lg:h-auto sm:h-auto lg:min-h-[35vw]  border-2 shadow-xl rounded-xl lg:scale-[1] md:scale-[0.9] justify-center">
+    <div className="flex items-center bg-white w-[auto] max-[768px]:p-1 max-[768px]:max-w-[380px] max-[768px]:mt-10 ml-auto mr-auto lg:h-auto sm:h-auto lg:min-h-[35vw]  border-2 shadow-xl rounded-xl lg:scale-[1] md:scale-[0.9] justify-center">
       <div className=" bg-white  setAppointmentTime flex items-center justify-center flex-col relative rounded-xl max-[768px]:w-[370px]">
         <div className="infoIcon absolute right-2 top-4">
           <div
@@ -376,7 +376,7 @@ function SetAppointmentTime() {
             </div>
           </div>
         </div>
-        <h2 className="text-deepSlateBlue text-[1.3vw] max-[768px]:text-xl m-3 font-semibold mb-0">
+        <h2 className=" text-[1.3vw] max-[768px]:text-xl m-3 font-semibold mb-0">
           Randevu Zamanı Belirle
         </h2>
         <div className="chooseSavedTimes flex items-center justify-center ">
