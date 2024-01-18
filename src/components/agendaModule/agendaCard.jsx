@@ -1,5 +1,5 @@
 import React from "react";
-import pp from "../images/pp.png";
+import pp from "../../images/pp.png";
 
 function AgendaCard({
   appointmentNumber,

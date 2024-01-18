@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../style/myAppointments.css";
+import "../../style/myAppointments.css";
 
 function FullCalendarAppointmentBox({ image, infos, onDelete }) {
   const [request, setRequest] = useState(false);

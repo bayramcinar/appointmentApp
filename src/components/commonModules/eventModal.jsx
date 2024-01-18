@@ -1,7 +1,7 @@
 import React from "react";
-import pp from "../images/pp.png";
+import pp from "../../images/pp.png";
 
-const RequestModal = ({
+const EventModal = ({
   isOpen,
   onClose,
   event,
@@ -12,12 +12,11 @@ const RequestModal = ({
   if (!event) {
     return null;
   }
-  const modalClass1 = isOpen
+  const modalClass = isOpen
     ? "fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-gray-600 bg-opacity-50"
     : "hidden";
-
   return (
-    <div className={modalClass1}>
+    <div className={modalClass} onClick={onClose}>
       <div className="absolute w-full h-full flex items-center justify-center">
         <div className="relative w-[430px] max-[768px]:w-[375px] p-5 bg-white rounded-2xl animate__animated animate__fadeInDown">
           <div className="flex items-center justify-center relative">
@@ -163,4 +162,4 @@ const RequestModal = ({
   );
 };
 
-export default RequestModal;
+export default EventModal;

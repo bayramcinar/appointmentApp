@@ -1,5 +1,5 @@
 import Calendar from "react-calendar";
-import "../style/calender.css";
+import "../../style/calender.css";
 
 function CalendarBox({ selectedDate, onDateChange }) {
   //güne tıkladığımuzda değeri geri döndürüyor

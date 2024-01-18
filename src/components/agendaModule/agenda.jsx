@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import EventModal from "./eventModal";
-import "../style/agenda.css";
+import EventModal from "../commonModules/eventModal";
+import "../../style/agenda.css";
 import Swal from "sweetalert2";
 import AgendaCard from "./agendaCard";
 

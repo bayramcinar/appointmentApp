@@ -3,7 +3,7 @@ import { Calendar, Views, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "moment/locale/tr";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import "../style/fullCalendar.css";
+import "../../style/fullCalendar.css";
 import "moment-timezone";
 import FullCalendarDayModal from "./fullCalanderDayModal";
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AppointmentBox from "./appointmentBox";
 import CalendarBox from "./calendar";
-import "../style/dayComponent.css";
+import "../../style/dayComponent.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";

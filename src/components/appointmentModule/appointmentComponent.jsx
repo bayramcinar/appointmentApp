@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Steps from "./steps";
+import Steps from "../commonModules/steps";
 import TimeAndDate from "./timeAndDate";
 import ContactForm from "./contactInfo";
 import ServiceComponent from "./serviceComponent";
-import turkish from "../images/turkish.png";
-import english from "../images/english.png";
+import turkish from "../../images/turkish.png";
+import english from "../../images/english.png";
 import Swal from "sweetalert2";
 import AppointmentView from "./appointmentView";
 

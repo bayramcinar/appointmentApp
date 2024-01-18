@@ -1,9 +1,9 @@
 import React from "react";
-import FullCalendarComponent from "./fullCalendar";
-import SetAppointmentTime from "./setAppointmentTime";
-import AppointmentInfos from "./appointmentInfos";
-import Agenda from "./agenda";
-import AppointmentRequestList from "./appointmentRequestList";
+import FullCalendarComponent from "../bigCalendarModule/fullCalendar";
+import SetAppointmentTime from "../settingAppointmentTimeModule/setAppointmentTime";
+import AppointmentInfos from "../generalInfosModule/appointmentInfos";
+import Agenda from "../agendaModule/agenda";
+import AppointmentRequestList from "../appointmentRequestListModule/appointmentRequestList";
 
 function Dashboard() {
   return (

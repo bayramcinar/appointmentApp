@@ -5,8 +5,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation, Pagination } from "swiper/modules";
-import pp from "../images/pp.png";
-import RequestModal from "./requestModal"; // Import the RequestModal component
+import pp from "../../images/pp.png";
+import RequestModal from "../appointmentModule/requestModal"; // Import the RequestModal component
 import NotAppointmentRequestBox from "./notConfirmedAppointmentBox";
 
 function AppointmentRequestList() {

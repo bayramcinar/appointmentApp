@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import pp from "../images/pp.png";
+import pp from "../../images/pp.png";
 import FullCalendarAppointmentBox from "./fullCalendarAppointmentBox";
 import FullCalanderTimeBox from "./fullCalanderTimeBox";
 import { Swiper, SwiperSlide } from "swiper/react";

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Field, Form, Formik } from "formik";
-import "../style/contactInfo.css";
+import "../../style/contactInfo.css";
 
 function ContactForm({
   onFormSubmit,

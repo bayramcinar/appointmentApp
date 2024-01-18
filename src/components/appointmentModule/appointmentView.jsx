@@ -1,6 +1,5 @@
-import serviceImage from "../images/person.jpg";
-import "../style/appointmentView.css";
-import "../style/appointmentView.css";
+import serviceImage from "../../images/person.jpg";
+import "../../style/appointmentView.css";
 
 function AppointmentView({
   serviceProviderName,

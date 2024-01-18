@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik, Field, Form } from "formik";
-import pp from "../images/pp.png";
+import pp from "../../images/pp.png";
 import Swal from "sweetalert2";
 
 const EditModal = ({ isOpen, onClose, event }) => {

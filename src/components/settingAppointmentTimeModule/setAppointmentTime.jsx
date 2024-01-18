@@ -5,7 +5,7 @@ import SetDateAndTime from "./setDateAndTime";
 import SavedTimes from "./savedTimeBox";
 import moment from "moment";
 import SavedTimesForDeletion from "./savedTimeBoxForDelete";
-import "../style/setAppointment.css";
+import "../../style/setAppointment.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";

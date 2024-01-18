@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MyAppointmentBox from "./myAppointmentBox";
-import "../style/myAppointments.css";
-import resim from "../images/service.png";
+import "../../style/myAppointments.css";
+import resim from "../../images/service.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
