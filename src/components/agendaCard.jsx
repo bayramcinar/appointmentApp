@@ -137,7 +137,7 @@ function AgendaCard({
                  isCancelDisabled
                    ? "bg-gray-400 text-white cursor-not-allowed"
                    : "bg-coral text-white"
-               } font-semibold rounded-xl text-xs `}
+               } font-semibold rounded-lg text-xs `}
                   >
                     İptal Et
                   </button>
@@ -145,7 +145,7 @@ function AgendaCard({
                 <div className="m-1 my-0">
                   <button
                     onClick={() => joinFunction(formEntry, remainingHours)}
-                    className={`p-1  text-white px-[14px] font-semibold rounded-xl text-xs ${
+                    className={`p-1  text-white px-[14px] font-semibold rounded-lg text-xs ${
                       remainingHours > 1 ? "cursor-not-allowed" : ""
                     } ${remainingHours > 1 ? "bg-gray-500" : "bg-green-600"}`}
                   >
@@ -158,7 +158,7 @@ function AgendaCard({
           <div className="m-1">
             <button
               onClick={() => showDetails()}
-              className="p-1 bg-deepSlateBlue text-white text-xs font-semibold rounded-xl w-full"
+              className="p-1 bg-purpleElite text-white text-xs font-semibold rounded-lg w-full"
             >
               Detaylar
             </button>

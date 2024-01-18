@@ -161,7 +161,7 @@ function FullCalendarComponent() {
           return {
             className: "request-appointment",
             style: {
-              backgroundColor: "#5D3587",
+              backgroundColor: "hsl(267, 100%, 47%)",
             },
           };
         }
@@ -208,7 +208,7 @@ function FullCalendarComponent() {
 
   return (
     <>
-      <div className="bg-white  lg:scale-[1] md:scale-[0.9] lg:mr-[1rem]  shadow-xl rounded-xl max-[768px]:mx-[10px] flex items-center justify-center lg:w-full">
+      <div className="bg-white  lg:scale-[1] md:scale-[0.9] lg:mr-[1rem]  shadow-xl rounded-xl max-[768px]:mx-[10px] flex items-center justify-center lg:w-full animate__animated animate__fadeInBottomLeft">
         <div className="mx-auto relative w-full max-[500px]:w-[360px] p-2 lg:p-5">
           <h1 className=" text-[1.5vw] max-[768px]:text-xl m-6 max-[500px]:m-3 mt-1 font-semibold text-center">
             Randevu Takvimi
@@ -236,7 +236,7 @@ function FullCalendarComponent() {
                 </h1>
               </div>
               <div className="flex max-[500px]:mr-2 mr-2">
-                <i class="fa-solid fa-circle text-appointmentRequest max-[500px]:text-xs  flex  justify-center items-center"></i>
+                <i class="fa-solid fa-circle text-purpleElite max-[500px]:text-xs  flex  justify-center items-center"></i>
                 <h1 className="max-[500px]:text-xs  ml-2 max-[500px]:text-center flex justify-center items-center">
                   Randevu Talepleri
                 </h1>

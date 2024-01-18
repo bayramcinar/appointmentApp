@@ -262,7 +262,7 @@ function Agenda() {
             <div className="m-2 ml-0">
               <button
                 onClick={() => handleOpenModal(formEntry)}
-                className="p-2 bg-deepSlateBlue text-white font-semibold rounded-xl"
+                className="p-2 bg-purpleElite text-white font-semibold rounded-xl"
               >
                 Detaylar
               </button>
@@ -601,7 +601,7 @@ function Agenda() {
 
   return (
     <>
-      <div className="bg-white lg:scale-[1] md:scale-[0.9] lg:mr-[1rem]  rounded-xl max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 w-full flex-grow shadow-xl">
+      <div className="bg-white lg:scale-[1] md:scale-[0.9] lg:mr-[1rem] animate__animated animate__fadeInTopLeft rounded-xl max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 w-full flex-grow shadow-xl">
         <div className="w-full shadow-xl overflow-auto max-h-600">
           <div className="flex">
             <div className="w-[33%] flex items-center justify-center"></div>

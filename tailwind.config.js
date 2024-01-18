@@ -22,6 +22,7 @@ module.exports = {
         lightOrange: "hsl(7, 90%, 72%)",
         purpleBg: "#fff",
         orangeBg: "hsl(7, 90%, 98%)",
+        purpleElite: "hsl(267, 100%, 47%)",
         grayBg: "#f1f2f6",
       },
       backgroundImage: {
