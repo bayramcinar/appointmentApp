@@ -210,7 +210,7 @@ function FullCalendarComponent() {
   return (
     <>
       <div
-        className={`bg-white lg:scale-[1] md:scale-[0.9] lg:mr-[1rem] shadow-xl rounded-xl max-[768px]:mx-[20px] flex items-center justify-center animate__animated lg:w-full ${
+        className={`bg-white lg:scale-[1] md:scale-[0.9] lg:mr-[1rem] shadow-xl rounded-xl max-[768px]:mx-[15px] flex items-center justify-center animate__animated lg:w-full ${
           isMobileForAnimation ? "" : "animate__fadeInBottomLeft"
         }`}
       >
