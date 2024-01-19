@@ -344,7 +344,7 @@ function TimeAndDate({
               <div className="flex flex-col items-center justify-center">
                 {timedRequestSelectedTime === "" && (
                   <>
-                    <h1 className="text-xs text-coral font-semibold text-center">
+                    <h1 className="text-xs text-[#000000a9] font-semibold text-center">
                       Size uyan bir saat yoksa randevu talebi oluşturabilirsiniz
                     </h1>
                     <button
