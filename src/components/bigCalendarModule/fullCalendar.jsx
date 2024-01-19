@@ -157,15 +157,6 @@ function FullCalendarComponent() {
       if (event && event.title) {
         const isPastEvent = moment(event.start).isBefore(moment(), "day");
 
-        if (event.requestInfo === "true") {
-          return {
-            className: "request-appointment",
-            style: {
-              backgroundColor: "hsl(267, 100%, 47%)",
-            },
-          };
-        }
-
         if (isPastEvent) {
           return {
             className: "past-event",
@@ -173,15 +164,23 @@ function FullCalendarComponent() {
               backgroundColor: "gray",
             },
           };
-        }
-
-        if (event.title === "Boş Randevu") {
-          return {
-            className: "empty-appointment",
-            style: {
-              backgroundColor: "#FF9800",
-            },
-          };
+        } else {
+          if (event.requestInfo === "true") {
+            return {
+              className: "request-appointment",
+              style: {
+                backgroundColor: "hsl(267, 100%, 47%)",
+              },
+            };
+          }
+          if (event.title === "Boş Randevu") {
+            return {
+              className: "empty-appointment",
+              style: {
+                backgroundColor: "#FF9800",
+              },
+            };
+          }
         }
       }
     } catch (error) {

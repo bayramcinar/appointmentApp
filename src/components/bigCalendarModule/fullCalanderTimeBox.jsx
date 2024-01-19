@@ -13,7 +13,7 @@ function FullCalanderTimeBox({ time, date, active, duration }) {
     <div>
       <div
         className={`timeBox w-[135px] max-[768px]:w-[115px] m-3 ${
-          active ? "bg-royalPurple" : "bg-stepBorder1"
+          active ? "bg-purpleElite" : "bg-stepBorder1"
         } rounded-3xl mb-[5px] p-[2px] py-[5px] max-[768px]:m-[5px]`}
       >
         <>

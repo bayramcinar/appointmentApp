@@ -128,7 +128,7 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
                 </h1>
               </div>
             </div>
-            <div className="flex flex-wrap items-center justify-center w-[500px] mx-auto">
+            <div className="flex flex-wrap items-center justify-center w-[500px] max-[768px]:w-[300px] mx-auto">
               {choosenTimes.filter((time) => time.active === true).length >
               0 ? (
                 choosenTimes.map((time, index) =>
@@ -158,7 +158,7 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
                 </h1>
               </div>
             </div>
-            <div className="flex flex-wrap items-center justify-center w-[500px] mx-auto">
+            <div className="flex flex-wrap items-center justify-center w-[500px] max-[768px]:w-[300px] mx-auto">
               {choosenTimes.filter((time) => time.active === false).length >
               0 ? (
                 choosenTimes.map((time, index) =>
