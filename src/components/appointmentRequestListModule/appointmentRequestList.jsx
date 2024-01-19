@@ -144,10 +144,14 @@ function AppointmentRequestList() {
   };
 
   const numberOfNewAppointments = formData.length;
-
+  const isMobileForAnimation = window.innerWidth <= 768;
   return (
     <>
-      <div className="bg-white max-[1023px]:flex max-[1023px]:justify-center max-[1023px]:items-center max-[1023px]:flex-col max-[1023px]:w-full lg:scale-[1] md:scale-[0.9]  rounded-xl lg:w-[300px] xl:w-[330px] max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 justify-center items-center flex-grow shadow-xl animate__animated animate__fadeInTopRight">
+      <div
+        className={`bg-white max-[1023px]:flex max-[1023px]:justify-center max-[1023px]:items-center max-[1023px]:flex-col max-[1023px]:w-full lg:scale-[1] md:scale-[0.9]  rounded-xl lg:w-[300px] xl:w-[330px] max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 justify-center items-center flex-grow shadow-xl animate__animated  ${
+          isMobileForAnimation ? "" : "animate__fadeInTopRight"
+        }`}
+      >
         {numberOfNewAppointments > 0 && (
           <>
             <div className="flex flex-col">

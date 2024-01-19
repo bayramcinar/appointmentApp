@@ -56,7 +56,7 @@ function AppointmentRequest({ isOpen, onClose, handleFormSubmit, date }) {
             </div>
             <div>
               <div className="appointmentRequestArea">
-                <h1 className="text-deepSlateBlue text-sm text-center font-semibold">
+                <h1 className="text-[#000000a8] text-sm text-center font-semibold">
                   Lütfen Aşağıdan oluşturmak istediğiniz randevu talebin saatini
                   seçiniz
                 </h1>

@@ -83,7 +83,7 @@ function FullCalendarComponent() {
   );
 
   const handleResize = () => {
-    setIsMobile(window.innerWidth <= 500);
+    setIsMobile(window.innerWidth <= 768);
     setHalfMid(500 <= window.innerWidth && window.innerWidth <= 1024);
     setIsMid(window.innerWidth <= 1360 && 1024 <= window.innerWidth);
   };
@@ -206,9 +206,14 @@ function FullCalendarComponent() {
     more: "Daha",
   };
 
+  const isMobileForAnimation = window.innerWidth <= 768;
   return (
     <>
-      <div className="bg-white  lg:scale-[1] md:scale-[0.9] lg:mr-[1rem]  shadow-xl rounded-xl max-[768px]:mx-[10px] flex items-center justify-center lg:w-full animate__animated animate__fadeInBottomLeft">
+      <div
+        className={`bg-white lg:scale-[1] md:scale-[0.9] lg:mr-[1rem] shadow-xl rounded-xl max-[768px]:mx-[25px] flex items-center justify-center animate__animated lg:w-full ${
+          isMobileForAnimation ? "" : "animate__fadeInBottomLeft"
+        }`}
+      >
         <div className="mx-auto relative w-full max-[500px]:w-[360px] p-2 lg:p-5">
           <h1 className=" text-[1.5vw] max-[768px]:text-xl m-6 max-[500px]:m-3 mt-1 font-semibold text-center">
             Randevu Takvimi
@@ -266,8 +271,12 @@ function FullCalendarComponent() {
               }}
               events={eventsFromSessionStorage}
               onSelectEvent={onSelectSlot}
-              defaultView={isMobile ? Views.WEEK : Views.WEEK}
-              views={isMobile ? ["week", "day"] : ["month", "week", "day"]}
+              defaultView={Views.WEEK}
+              views={
+                isMobileForAnimation
+                  ? ["week", "day"]
+                  : ["month", "week", "day"]
+              }
               selectable
               popup
               messages={messages}

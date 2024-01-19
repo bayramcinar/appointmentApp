@@ -598,10 +598,14 @@ function Agenda() {
         return "Yaklaşan Randevularım";
     }
   }
-
+  const isMobileForAnimation = window.innerWidth <= 768;
   return (
     <>
-      <div className="bg-white lg:scale-[1] md:scale-[0.9] lg:mr-[1rem] animate__animated animate__fadeInTopLeft rounded-xl max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 w-full flex-grow shadow-xl">
+      <div
+        className={`bg-white lg:scale-[1] md:scale-[0.9] lg:mr-[1rem] ${
+          isMobileForAnimation ? "" : "animate__fadeInTopLeft"
+        } animate__animated  rounded-xl max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 w-full flex-grow shadow-xl`}
+      >
         <div className="w-full shadow-xl overflow-auto max-h-600">
           <div className="flex">
             <div className="w-[33%] flex items-center justify-center"></div>
@@ -628,16 +632,11 @@ function Agenda() {
               ediniz.
             </h1>
           )}
-          {pendingAppointments.length === 0 && (
-            <h1 className="text-md max-[768px]:text-sm text-coral text-center font-semibold mb-2 max-[768px]:mb-0">
-              İşlem bekleyen randevunuz bulunmamaktadır.
-            </h1>
-          )}
           <div className="agendaCardSwiper">
             {!isMobile && (
               <table className="rounded-xl w-full ">
                 <thead>
-                  <tr className="sticky top-0 border-premiumPurple border-2 text-premiumPurple">
+                  <tr className="sticky top-0 bg-premiumPurple text-white">
                     <th className="p-3">Sıra</th>
                     <th className="p-3">Randevu Numarası</th>
                     <th className="p-3">Tarih</th>

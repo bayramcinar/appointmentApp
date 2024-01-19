@@ -341,10 +341,14 @@ function SetAppointmentTime() {
     const tooltip = document.querySelector(".tooltip");
     tooltip.style.display = "none";
   };
-
+  const isMobileForAnimation = window.innerWidth <= 768;
   const emptyOrNot = savedTimesArray.length;
   return (
-    <div className="flex items-center bg-white w-[auto] max-[768px]:p-1 max-[768px]:max-w-[380px] max-[768px]:mt-10 ml-auto mr-auto lg:h-auto sm:h-auto lg:min-h-[35vw]  shadow-xl rounded-xl lg:scale-[1] md:scale-[0.9] justify-center animate__animated animate__fadeInBottomRight">
+    <div
+      className={`flex items-center bg-white w-[auto] max-[768px]:p-1 max-[768px]:max-w-[380px] max-[768px]:mt-10 ml-auto mr-auto lg:h-auto sm:h-auto lg:min-h-[35vw]  shadow-xl rounded-xl lg:scale-[1] md:scale-[0.9] justify-center animate__animated ${
+        isMobileForAnimation ? "" : "animate__fadeInBottomRight"
+      } `}
+    >
       <div className=" bg-white  setAppointmentTime flex items-center justify-center flex-col relative rounded-xl max-[768px]:w-[370px]">
         <div className="infoIcon absolute right-2 top-4">
           <div
@@ -379,7 +383,7 @@ function SetAppointmentTime() {
         <h2 className=" text-[1.3vw] max-[768px]:text-xl m-3 font-semibold mb-0">
           Randevu Zamanı Belirle
         </h2>
-        <div className="chooseSavedTimes flex items-center justify-center ">
+        <div className="chooseSavedTimes flex items-center justify-center mt-5">
           <button
             onClick={() => handleOptionChange(true)}
             className={`p-1 text-sm rounded-3xl m-3 mb-0 px-7 ${
@@ -422,10 +426,10 @@ function SetAppointmentTime() {
               </div>
               {savedTimes === false && (
                 <>
-                  <h2 className="text-sm text-[#000000a8] text-center font-semibold m-5">
+                  <h2 className="text-sm text-[#000000a8] text-center font-semibold m-8">
                     Aşağıdan Kaydetmek istediğiniz saati seçiniz
                   </h2>
-                  <div className="m-3 field-container lg:w-[21rem] mx-auto flex items-center justify-center">
+                  <div className="m-8 field-container lg:w-[21rem] mx-auto flex items-center justify-center">
                     <Field
                       name="time"
                       type="time"
@@ -433,7 +437,7 @@ function SetAppointmentTime() {
                       placeholder="Saat"
                     />
                   </div>
-                  <div className="w-full justify-center flex items-center">
+                  <div className="w-full justify-center flex items-center mt-10">
                     <div
                       className={`savedTimesList flex flex-wrap items-center justify-center ${
                         emptyOrNot > 0 ? "w-[385px]" : "full"
@@ -515,7 +519,7 @@ function SetAppointmentTime() {
                 </div>
               )}
               {savedTimes === false && (
-                <div className="w-full flex items-center justify-center">
+                <div className="w-full flex items-center justify-center mt-5">
                   <button
                     type="submit"
                     className="bg-premiumPurple rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"

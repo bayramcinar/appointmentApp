@@ -86,9 +86,7 @@ function ServiceComponent({ services, setReturnService }) {
   return (
     <div className="serviceArea animate__animated animate__fadeInLeft lg:w-[35rem] lg:h-[20rem] md:w-[24rem] max-[768px]:w-[23rem] max-[768px]:h-auto md:h-auto md:mr-[0px]">
       <div className="title">
-        <h2 className=" text-center text-deepSlateBlue text-3xl font-bold p-3">
-          Hizmet Seçiniz
-        </h2>
+        <h2 className=" text-center text-3xl font-bold p-3">Hizmet Seçiniz</h2>
       </div>
       <div className="serviceBoxes lg:w-[33.5rem] relative  rounded-2xl shadow-xl m-3 bg-white mb-5 lg:h-[16rem] md:w-[24rem] max-[768px]:h-[35rem]">
         {!isMobile && (

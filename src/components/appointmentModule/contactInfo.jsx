@@ -20,9 +20,7 @@ function ContactForm({
   return (
     <div className="contactComponent animate__animated animate__fadeInLeft lg:w-[35rem] lg:h-auto md:w-[24rem] sm:w-[24rem] md:h-auto sm:h-auto">
       <div className="title">
-        <h2 className="text-deepSlateBlue text-center text-3xl font-bold p-3">
-          Ön Bilgi Formu
-        </h2>
+        <h2 className="text-center text-3xl font-bold p-3">Ön Bilgi Formu</h2>
       </div>
       <div className="flex flex-col items-center justify-center h-auto">
         <div className="choosePerson">

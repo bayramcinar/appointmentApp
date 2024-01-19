@@ -324,7 +324,7 @@ function TimeAndDate({
     <>
       <div className="animate__animated animate__fadeInLeft">
         <div className="title">
-          <h2 className=" text-center text-deepSlateBlue text-3xl font-bold p-3">
+          <h2 className=" text-center text-3xl font-bold p-3">
             Tarih ve Zaman Seçiniz
           </h2>
           <h2 className="text-premiumPurple text-center text-md font-bold">
@@ -362,10 +362,10 @@ function TimeAndDate({
                 {timedRequestSelectedTime !== "" &&
                   formatDate(selectedDate) === currentDateDisplayNotDay && (
                     <>
-                      <h2 className="text-sm text-deepSlateBlue text-center font-semibold mt-[8px]">
+                      <h2 className="text-sm text-purpleElite text-center font-semibold mt-[8px]">
                         Seçtiğiniz randevu talebi saati
                       </h2>
-                      <h2 className="text-sm text-deepSlateBlue text-center font-semibold mb-[8px] ml-auto mr-auto">
+                      <h2 className="text-sm text-purpleElite text-center font-semibold mb-[8px] ml-auto mr-auto">
                         (Lütfen aşağıdan seçiniz ! )
                       </h2>
                       <RequestTimeBox
@@ -403,10 +403,10 @@ function TimeAndDate({
               >
                 {isMobile && appointmentTimesForSelectedDate.length > 9 && (
                   <>
-                    <div className="custom-swiper-button-prev absolute left-1 top-[41%] text-xl text-deepSlateBlue z-[2] cursor-pointer">
+                    <div className="custom-swiper-button-prev absolute left-1 top-[41%] text-xl text-purpleElite z-[2] cursor-pointer">
                       <i className="fa-solid fa-arrow-left" alt="Previous"></i>
                     </div>
-                    <div className="custom-swiper-button-next absolute right-1 top-[41%] text-xl text-deepSlateBlue z-[2] cursor-pointer">
+                    <div className="custom-swiper-button-next absolute right-1 top-[41%] text-xl text-purpleElite z-[2] cursor-pointer">
                       <i className="fa-solid fa-arrow-right" alt="Next"></i>
                     </div>
                   </>
@@ -446,10 +446,10 @@ function TimeAndDate({
                         formatDate(selectedDate) ===
                           currentDateDisplayNotDay && (
                           <>
-                            <h2 className="text-sm text-deepSlateBlue text-center font-semibold mt-[8px]">
+                            <h2 className="text-sm text-purpleElite text-center font-semibold mt-[8px]">
                               Seçtiğiniz randevu talebi saati
                             </h2>
-                            <h2 className="text-sm text-deepSlateBlue text-center font-semibold mb-[8px] ml-auto mr-auto">
+                            <h2 className="text-sm text-purpleElite text-center font-semibold mb-[8px] ml-auto mr-auto">
                               (Lütfen aşağıdan seçiniz ! )
                             </h2>
                             <RequestTimeBox
