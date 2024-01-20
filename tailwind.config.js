@@ -10,7 +10,7 @@ module.exports = {
         lightBlue: "#4e9bfe",
         greenForTable: "#01e2b4",
         grayForTable: "#dbdada",
-        calanderAppointment: "#FF9800",
+        calanderAppointment: "#ff9800",
         appointmentRequest: "#5D3587",
         royalPurple: "hsl(330, 100%, 50%)",
         vividOrange: "hsl(48, 100%, 50%)",
@@ -24,6 +24,7 @@ module.exports = {
         orangeBg: "hsl(7, 90%, 98%)",
         purpleElite: "hsl(267, 100%, 47%)",
         grayBg: "#f1f2f6",
+        orangeForModal: "hsl(36, 100%, 50%)",
       },
       backgroundImage: {
         gradient:

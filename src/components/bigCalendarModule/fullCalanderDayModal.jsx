@@ -1,28 +1,56 @@
 import React, { useState, useEffect } from "react";
-import pp from "../../images/pp.png";
-import FullCalendarAppointmentBox from "./fullCalendarAppointmentBox";
 import FullCalanderTimeBox from "./fullCalanderTimeBox";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
 
 const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
+  function formatTurkishDate(inputDate) {
+    const months = [
+      "Ocak",
+      "Şubat",
+      "Mart",
+      "Nisan",
+      "Mayıs",
+      "Haziran",
+      "Temmuz",
+      "Ağustos",
+      "Eylül",
+      "Ekim",
+      "Kasım",
+      "Aralık",
+    ];
+
+    const days = [
+      "Pazar",
+      "Pazartesi",
+      "Salı",
+      "Çarşamba",
+      "Perşembe",
+      "Cuma",
+      "Cumartesi",
+    ];
+
+    const dateComponents = inputDate.split("-");
+    const year = parseInt(dateComponents[0]);
+    const monthIndex = parseInt(dateComponents[1]) - 1; // Months are 0-indexed in JavaScript
+    const day = parseInt(dateComponents[2]);
+
+    const formattedDate = `${day} ${months[monthIndex]} ${
+      days[new Date(year, monthIndex, day).getDay()]
+    }`;
+    return formattedDate;
+  }
   const [selectedTimes, setSelectedTimes] = useState([]);
   const [choosenTimes, setChoosenTimes] = useState([]);
   const [selectedFormDatas, setSelectedFormDatas] = useState([]);
   const [choosenFormDatas, setChoosenFormDatas] = useState([]);
+  const [cancelledTimes, setCancelledTimes] = useState([]);
+  const [completedTimes, setCompletedTimes] = useState([]);
   function convertToISODate(inputDate) {
-    // Split the input date by space or dot
     const dateComponents = inputDate.split(/\s|\./);
 
-    // Extract day, month, and year
     const day = dateComponents[0];
     const month = dateComponents[1];
     const year = dateComponents[2];
 
-    // Format the date in ISO 8601 format (YYYY-MM-DD)
     const isoFormattedDate = `${year}-${month.padStart(2, "0")}-${day.padStart(
       2,
       "0"
@@ -30,6 +58,20 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
 
     return isoFormattedDate;
   }
+
+  useEffect(() => {
+    const currentDate = new Date();
+    const formattedCurrentDate = convertToISODate(
+      currentDate.toLocaleDateString()
+    );
+
+    const completedAppointments = selectedFormDatas.filter(
+      (formData) =>
+        formData.delete &&
+        convertToISODate(formData.time) < formattedCurrentDate
+    );
+    setCompletedTimes(completedAppointments.map((formData) => formData.time));
+  });
 
   useEffect(() => {
     const storedSelectedTimes = localStorage.getItem("selectedTimes");
@@ -52,39 +94,9 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
     );
     setChoosenFormDatas(filteredFormDatas);
   });
-  const renderSwiper = (appointments) => {
-    //en fazla alt alta 2 tane randevu görüntülememizi sağlayan kod
-    const swiperSlides = [];
-    for (let i = 0; i < appointments.length; i += 2) {
-      const choosenFormDatas = appointments.slice(i, i + 2);
-      const swiperSlide = (
-        <SwiperSlide key={i}>
-          <div className="flex flex-col items-center justify-center appointmentBoxArea">
-            {choosenFormDatas.map((formData, index) => (
-              <FullCalendarAppointmentBox
-                key={index}
-                infos={formData}
-                image={pp}
-              />
-            ))}
-          </div>
-        </SwiperSlide>
-      );
-      swiperSlides.push(swiperSlide);
-    }
-    return (
-      <Swiper
-        navigation={{
-          prevEl: ".custom-swiper-button-prev1",
-          nextEl: ".custom-swiper-button-next1",
-        }}
-        modules={[Navigation]}
-        className="mySwiper"
-      >
-        {swiperSlides}
-      </Swiper>
-    );
-  };
+  const deletedTimes = choosenFormDatas
+    .filter((formData) => formData.delete)
+    .map((formData) => formData.time);
 
   const modalClass = isOpen
     ? "fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-gray-600 bg-opacity-50"
@@ -95,8 +107,8 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
         <div className="relative w-auto max-[768px]:w-[375px] p-5 bg-white rounded-2xl animate__animated animate__fadeInDown">
           <div className="flex items-center justify-center ">
             <div className="titleModal m-3">
-              <h1 className="text-center text-lg mr-auto ml-auto w-full mb-0">
-                {time} Tarihindeki Randevular
+              <h1 className="text-center text-lg mr-auto ml-auto w-full mb-0 font-semibold">
+                {formatTurkishDate(time)}
               </h1>
             </div>
             <button
@@ -120,75 +132,15 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
             </button>
           </div>
           <div className="relative">
-            {/* <div className=" flex items-center justify-center">
-              <div className="border-b-2 border-deepSlateBlue w-fit">
-                <h1 className="text-[17px]  font-semibold text-center text-deepSlateBlue">
-                  Hala Randevu alınmayan veya süresi geçmiş saatler
-                </h1>
-              </div>
-            </div>
-            <div className="flex flex-wrap items-center justify-center w-[500px] max-[768px]:w-[300px] mx-auto">
-              {choosenTimes.filter((time) => time.active === true).length >
-              0 ? (
-                choosenTimes.map((time, index) =>
-                  time.active === true ? (
-                    <React.Fragment key={index}>
-                      <FullCalanderTimeBox
-                        key={index}
-                        active={time.active}
-                        time={time.time}
-                        date={time.date}
-                        duration={time.duration}
-                      />
-                    </React.Fragment>
-                  ) : null
-                )
-              ) : (
-                <h1 className="text-center text-coral font-semibold text-lg m-3">
-                  Tüm Randevu Saatleri Dolmuştur.
-                </h1>
-              )}
-            </div>
-
-            <div className=" flex items-center justify-center">
-              <div className="border-b-2 border-deepSlateBlue w-fit">
-                <h1 className="text-[17px] font-semibold text-center text-deepSlateBlue">
-                  Randevu Alınan Saatler
-                </h1>
-              </div>
-            </div>
-            <div className="flex flex-wrap items-center justify-center w-[500px] max-[768px]:w-[300px] mx-auto">
-              {choosenTimes.filter((time) => time.active === false).length >
-              0 ? (
-                choosenTimes.map((time, index) =>
-                  time.active === false ? (
-                    <React.Fragment key={index}>
-                      <FullCalanderTimeBox
-                        key={index}
-                        active={time.active}
-                        time={time.time}
-                        date={time.date}
-                        duration={time.duration}
-                      />
-                    </React.Fragment>
-                  ) : null
-                )
-              ) : (
-                <h1 className="text-center text-coral font-semibold text-lg m-3">
-                  Henüz Randevu Alınmamıştır.
-                </h1>
-              )}
-            </div> */}
-
             <div className="colorsMean mt-[25px] mb-5 right-1 top-1 font-semibold justify-center items-center">
               <div className="">
                 <div className="flex max-[500px]:mr-2 mr-2 items-center justify-center">
                   <i class="fa-solid fa-circle text-green-500 max-[500px]:text-sm flex justify-center items-center"></i>
-                  <h1 className="max-[500px]:text-sm  ml-2 max-[500px]:text-center flex justify-center items-center">
+                  <h1 className="max-[500px]:text-sm text-[#000000a8]  ml-2 max-[500px]:text-center flex justify-center items-center">
                     Dolu Randevular
                   </h1>
                 </div>
-                <div className="flex flex-wrap items-center justify-center w-[500px] max-[768px]:w-[300px] mx-auto">
+                <div className="flex flex-wrap items-center justify-center w-[500px] max-[768px]:w-[300px] mx-auto my-1">
                   {choosenTimes.filter((time) => time.active === false).length >
                   0 ? (
                     choosenTimes.map((time, index) =>
@@ -196,7 +148,7 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
                         <React.Fragment key={index}>
                           <FullCalanderTimeBox
                             key={index}
-                            active={time.active}
+                            bg={"green"}
                             time={time.time}
                             date={time.date}
                             duration={time.duration}
@@ -205,20 +157,20 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
                       ) : null
                     )
                   ) : (
-                    <h1 className="text-center text-coral font-semibold text-lg m-3">
-                      Henüz Randevu Alınmamıştır.
+                    <h1 className="text-center text-coral font-semibold text-sm m-1">
+                      Dolu Randevu Bulunmamaktadır.
                     </h1>
                   )}
                 </div>
               </div>
               <div className="">
                 <div className="flex max-[500px]:mr-2 mr-2 items-center justify-center">
-                  <i class="fa-solid fa-circle text-calanderAppointment max-[500px]:text-sm    flex justify-center items-center"></i>
-                  <h1 className="max-[500px]:text-sm   ml-2 max-[500px]:text-center flex justify-center items-center">
+                  <i class="fa-solid fa-circle text-calanderAppointment max-[500px]:text-sm  flex justify-center items-center"></i>
+                  <h1 className="max-[500px]:text-sm  text-[#000000a8] ml-2 max-[500px]:text-center flex justify-center items-center">
                     Boş Randevular
                   </h1>
                 </div>
-                <div className="flex flex-wrap items-center justify-center w-[500px] max-[768px]:w-[300px] mx-auto">
+                <div className="flex flex-wrap items-center justify-center w-[500px] max-[768px]:w-[300px] mx-auto  my-1">
                   {choosenTimes.filter((time) => time.active === true).length >
                   0 ? (
                     choosenTimes.map((time, index) =>
@@ -226,6 +178,7 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
                         <React.Fragment key={index}>
                           <FullCalanderTimeBox
                             key={index}
+                            bg={"orange"}
                             active={time.active}
                             time={time.time}
                             date={time.date}
@@ -235,23 +188,65 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
                       ) : null
                     )
                   ) : (
-                    <h1 className="text-center text-coral font-semibold text-lg m-3">
-                      Tüm Randevu Saatleri Dolmuştur.
+                    <h1 className="text-center text-coral font-semibold text-sm m-1">
+                      Boş Randevu Bulunmamaktadır.
                     </h1>
                   )}
                 </div>
               </div>
-              <div className="flex max-[500px]:mr-2 mr-2 items-center justify-center">
-                <i class="fa-solid fa-circle text-stepBorder1 max-[500px]:text-sm   flex justify-center items-center"></i>
-                <h1 className="max-[500px]:text-sm ml-2 max-[500px]:text-center flex justify-center items-center">
-                  Tamamlanmış Randevular
-                </h1>
+              <div className="">
+                <div className="flex max-[500px]:mr-2 mr-2 items-center justify-center">
+                  <i class="fa-solid fa-circle text-stepBorder1 max-[500px]:text-sm   flex justify-center items-center"></i>
+                  <h1 className="max-[500px]:text-sm text-[#000000a8] ml-2 max-[500px]:text-center flex justify-center items-center">
+                    Tamamlanmış Randevular
+                  </h1>
+                </div>
+                <div className="flex flex-wrap items-center justify-center w-[500px] max-[768px]:w-[300px] mx-auto  my-1">
+                  {completedTimes.length > 0 ? (
+                    completedTimes.map((time, index) => (
+                      <React.Fragment key={index}>
+                        <FullCalanderTimeBox
+                          key={index}
+                          bg={"gray"}
+                          time={time.split(" ")[2]}
+                          date={time.split(" ")[0]}
+                          duration={90}
+                        />
+                      </React.Fragment>
+                    ))
+                  ) : (
+                    <h1 className="text-center text-coral font-semibold text-sm m-1">
+                      Tamamlanmış Randevu Bulunmamaktadır.
+                    </h1>
+                  )}
+                </div>
               </div>
-              <div className="flex max-[500px]:mr-2 mr-2 items-center justify-center">
-                <i class="fa-solid fa-circle text-coral max-[500px]:text-sm  flex  justify-center items-center"></i>
-                <h1 className="max-[500px]:text-sm  ml-2 max-[500px]:text-center flex justify-center items-center">
-                  İptal Edilen Randevular
-                </h1>
+              <div className="">
+                <div className="flex max-[500px]:mr-2 mr-2 items-center justify-center">
+                  <i class="fa-solid fa-circle text-coral max-[500px]:text-sm  flex  justify-center items-center"></i>
+                  <h1 className="max-[500px]:text-sm text-[#000000a8] ml-2 max-[500px]:text-center flex justify-center items-center">
+                    İptal Edilen Randevular
+                  </h1>
+                </div>
+                <div className="flex flex-wrap items-center justify-center w-[500px] max-[768px]:w-[300px] mx-auto  my-1">
+                  {deletedTimes.length > 0 ? (
+                    deletedTimes.map((time, index) => (
+                      <React.Fragment key={index}>
+                        <FullCalanderTimeBox
+                          key={index}
+                          bg={"red"}
+                          time={time.split(" ")[2]}
+                          date={time.split(" ")[0]}
+                          duration={90}
+                        />
+                      </React.Fragment>
+                    ))
+                  ) : (
+                    <h1 className="text-center text-coral font-semibold text-sm m-1">
+                      İptal Edilen Randevu Bulunmamaktadır.
+                    </h1>
+                  )}
+                </div>
               </div>
             </div>
           </div>
