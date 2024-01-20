@@ -6,6 +6,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import "../../style/fullCalendar.css";
 import "moment-timezone";
 import FullCalendarDayModal from "./fullCalanderDayModal";
+import EventModalForCalendar from "../commonModules/eventModalForBigCalendar";
 
 const localizer = momentLocalizer(moment);
 
@@ -42,7 +43,9 @@ const getSessionStorageData = (formData, setRequest) => {
     const language = formEntry.language;
     const notes = formEntry.notes;
     const service = formEntry.service;
+    const deleteStatus = formEntry.delete;
     const requestInfo = formEntry.time.split(" ")[3];
+    const appointmentNumber = formEntry.appointmentNumber;
 
     let request = false;
 
@@ -57,11 +60,13 @@ const getSessionStorageData = (formData, setRequest) => {
     return {
       requestInfo: requestInfo,
       name: name,
+      appointmentNumber: appointmentNumber,
       gender: gender,
       birthday: birthday,
       language: language,
+      delete: deleteStatus,
       notes: notes,
-      title: service + " " + (request ? "(Randevu Talebi)" : ""),
+      title: service,
       start: start,
       end: end,
     };
@@ -139,20 +144,27 @@ function FullCalendarComponent() {
     setFullDayModalOpen(false);
   };
 
+  const [selectedEvent, setSelectedEvent] = useState([]);
+
+  const onSelectEvent = (event) => {
+    setSelectedEvent(event);
+    handleFullDayModalOpen();
+  };
+
   const onSelectSlot = (slotInfo) => {
     const selectedDate = moment(slotInfo.start).format("YYYY-MM-DD");
     const isPastDate = moment(selectedDate).isBefore(moment(), "day");
 
-    if (!isPastDate) {
-      handleFullDayModalOpen();
-      const filteredTimes = selectedTimes.filter(
-        (timeObj) => timeObj.date === selectedDate
-      );
-      setSelectedDay(selectedDate);
-    }
+    // if (!isPastDate) {
+    //   handleFullDayModalOpen();
+    //   const filteredTimes = selectedTimes.filter(
+    //     (timeObj) => timeObj.date === selectedDate
+    //   );
+    //   setSelectedDay(selectedDate);
+    // }
   };
 
-  const eventPropGetter = (event, start, end, isSelected) => {
+  const eventPropGetter = (event) => {
     try {
       if (event && event.title) {
         const isPastEvent = moment(event.start).isBefore(moment(), "day");
@@ -165,11 +177,11 @@ function FullCalendarComponent() {
             },
           };
         } else {
-          if (event.requestInfo === "true") {
+          if (event.delete === true) {
             return {
-              className: "request-appointment",
+              className: "deleted-appointment",
               style: {
-                backgroundColor: "hsl(267, 100%, 47%)",
+                backgroundColor: "hsl(0, 89.87%, 60.5%)",
               },
             };
           }
@@ -220,15 +232,15 @@ function FullCalendarComponent() {
           <div className="colorsMean mt-[25px] mb-5  flex lg:flex right-1 top-1 font-semibold justify-center items-center">
             <div className="lg:flex lg:flex-col lg:justify-start">
               <div className="flex max-[500px]:mr-2 mr-2">
-                <i class="fa-solid fa-circle text-royalPurple max-[500px]:text-xs flex justify-center items-center"></i>
+                <i class="fa-solid fa-circle text-green-500 max-[500px]:text-xs flex justify-center items-center"></i>
                 <h1 className="max-[500px]:text-xs  ml-2 max-[500px]:text-center flex justify-center items-center">
-                  Randevu alınmış saatler
+                  Dolu Randevular
                 </h1>
               </div>
               <div className="flex  max-[500px]:mr-2 mr-2">
                 <i class="fa-solid fa-circle text-calanderAppointment max-[500px]:text-xs    flex justify-center items-center"></i>
                 <h1 className="max-[500px]:text-xs   ml-2 max-[500px]:text-center flex justify-center items-center">
-                  Randevu alınmamış saatler
+                  Boş Randevular
                 </h1>
               </div>
             </div>
@@ -236,13 +248,13 @@ function FullCalendarComponent() {
               <div className="flex max-[500px]:mr-2 mr-2">
                 <i class="fa-solid fa-circle text-stepBorder1 max-[500px]:text-xs   flex justify-center items-center"></i>
                 <h1 className="max-[500px]:text-xs ml-2 max-[500px]:text-center flex justify-center items-center">
-                  Geçmiş Randevular
+                  Tamamlanmış Randevular
                 </h1>
               </div>
               <div className="flex max-[500px]:mr-2 mr-2">
-                <i class="fa-solid fa-circle text-purpleElite max-[500px]:text-xs  flex  justify-center items-center"></i>
+                <i class="fa-solid fa-circle text-coral max-[500px]:text-xs  flex  justify-center items-center"></i>
                 <h1 className="max-[500px]:text-xs  ml-2 max-[500px]:text-center flex justify-center items-center">
-                  Randevu Talepleri
+                  İptal Edilen Randevular
                 </h1>
               </div>
             </div>
@@ -269,7 +281,7 @@ function FullCalendarComponent() {
                   : "60vw",
               }}
               events={eventsFromSessionStorage}
-              onSelectEvent={onSelectSlot}
+              onSelectEvent={onSelectEvent}
               defaultView={Views.WEEK}
               views={
                 isMobileForAnimation
@@ -284,11 +296,16 @@ function FullCalendarComponent() {
           </div>
         </div>
       </div>
-      <FullCalendarDayModal
+      <EventModalForCalendar
+        event={selectedEvent}
+        isOpen={isFullDayModalOpen}
+        onClose={handleFullDayModalClose}
+      />
+      {/* <FullCalendarDayModal
         isOpen={isFullDayModalOpen}
         onClose={handleFullDayModalClose}
         time={selectedDay}
-      />
+      /> */}
     </>
   );
 }

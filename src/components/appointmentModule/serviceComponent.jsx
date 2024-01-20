@@ -88,7 +88,7 @@ function ServiceComponent({ services, setReturnService }) {
       <div className="title">
         <h2 className=" text-center text-3xl font-bold p-3">Hizmet Seçiniz</h2>
       </div>
-      <div className="serviceBoxes lg:w-[33.5rem] relative  rounded-2xl shadow-xl m-3 bg-white mb-5 lg:h-[16rem] md:w-[24rem] max-[768px]:h-[35rem]">
+      <div className="serviceBoxes lg:w-[33.5rem] relative  rounded-2xl shadow-xl m-3 bg-white mb-5 lg:h-[16rem] md:w-[24rem] max-[768px]:h-[37rem]">
         {!isMobile && (
           <>
             <div className="custom-swiper-button-prev absolute left-2 text-xl text-premiumPurple top-[45%] z-[2] cursor-pointer">

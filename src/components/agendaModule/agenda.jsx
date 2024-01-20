@@ -52,7 +52,15 @@ function Agenda() {
         case "cancelled":
           return data.delete === true;
         case "past":
-          return appointmentDate < currentDateOnly && data.delete === false;
+          return (
+            (appointmentDate < currentDate ||
+              (appointmentDate.getDate() === currentDate.getDate() &&
+                new Date(`1970-01-01T${timeArray[2]}`) <
+                  new Date(
+                    `1970-01-01T${currentDate.getHours()}:${currentDate.getMinutes()}`
+                  ))) &&
+            data.delete === false
+          );
         case "today":
           return (
             isSameDay(currentDateOnly, appointmentDate) && data.delete === false
@@ -66,7 +74,11 @@ function Agenda() {
         default:
           return (
             (appointmentDate > currentDate ||
-              isSameDay(currentDate, appointmentDate)) &&
+              (appointmentDate.getDate() === currentDate.getDate() &&
+                new Date(`1970-01-01T${timeArray[2]}`) >
+                  new Date(
+                    `1970-01-01T${currentDate.getHours()}:${currentDate.getMinutes()}`
+                  ))) &&
             data.delete === false
           );
       }
@@ -198,7 +210,14 @@ function Agenda() {
           " " +
           time.split(" ")[2]
       );
-      const isPastAppointment = appointmentDate < currentDate;
+      const isPastAppointment =
+        appointmentDate < currentDate ||
+        (appointmentDate.getDate() === currentDate.getDate() &&
+          new Date(`1970-01-01T${parsedInfos[2]}`) <
+            new Date(
+              `1970-01-01T${currentDate.getHours()}:${currentDate.getMinutes()}`
+            ));
+
       const isCancelDisabled = remainingTime.remainingHours < 12;
       const actualIndex = (currentPage - 1) * itemsPerPage + index;
       const isCancelled = formEntry.delete === true;
@@ -516,7 +535,13 @@ function Agenda() {
                   time.split(" ")[2]
               );
               const isCancelDisabled = remainingTime.remainingHours < 12;
-              const isPastAppointment = appointmentDate < currentDate;
+              const isPastAppointment =
+                appointmentDate < currentDate ||
+                (appointmentDate.getDate() === currentDate.getDate() &&
+                  new Date(`1970-01-01T${parsedInfos[2]}`) <
+                    new Date(
+                      `1970-01-01T${currentDate.getHours()}:${currentDate.getMinutes()}`
+                    ));
               const name =
                 `${formEntry.firstName || ""} ${
                   formEntry.lastName || ""
@@ -598,6 +623,20 @@ function Agenda() {
         return "Yaklaşan Randevularım";
     }
   }
+  function getInfoTableHeaders() {
+    switch (filter) {
+      case "past":
+        return "Geçmiş Randevunuz";
+      case "cancelled":
+        return "İptal Edilen Randevunuz";
+      case "today":
+        return "Bugünki Randevunuz";
+      case "future":
+        return "Gelecek Randevunuz";
+      default:
+        return "Yaklaşan Randevunuz";
+    }
+  }
   const isMobileForAnimation = window.innerWidth <= 768;
   return (
     <>
@@ -609,7 +648,7 @@ function Agenda() {
         <div className="w-full shadow-xl overflow-auto max-h-600">
           <div className="flex">
             <div className="w-[33%] flex items-center justify-center"></div>
-            <h1 className=" lg:text-[1.5vw] max-[768px]:text-xl max-[768px]:w-[48%] w-[33%] text-center max-[768px]:justify:start font-semibold mt-5 sticky top-0  p-3 pb-0">
+            <h1 className=" lg:text-[1.5vw] max-[768px]:text-xl max-[768px]:w-[48%] w-[33%] text-center max-[768px]:justify:start font-semibold mt-2 max-[768px]:pt-0 sticky top-0 p-3 pb-0">
               {getTableHeaders()}
             </h1>
             <div className="flex w-[33%] max-[768px]:w-[48%] justify-end items-center mb-4 mt-6">
@@ -633,6 +672,11 @@ function Agenda() {
             </h1>
           )}
           <div className="agendaCardSwiper">
+            {paginatedFormData.length === 0 && (
+              <h1 className="text-md max-[768px]:text-sm text-coral text-center font-semibold mb-2 max-[768px]:mb-0">
+                {getInfoTableHeaders()} Bulunmamaktadır.
+              </h1>
+            )}
             {!isMobile && (
               <table className="rounded-xl w-full ">
                 <thead>

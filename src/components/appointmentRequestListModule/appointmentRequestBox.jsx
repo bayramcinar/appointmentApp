@@ -132,19 +132,18 @@ function AppointmentRequestBox({ image, infos, onDetails }) {
     <>
       <div className="bg-white myAppointmentBox lg:w-[280px] lg:scale-[0.85] xl:scale-[0.95] md:scale-[0.9] h-[205px] max-[768px]:w-[300px]  ml-auto mr-auto border-2 border-lightOrange rounded-2xl shadow-2xl">
         <div className="p-2 flex flex-col pt-0">
+          <div>
+            <h1
+              className={`flashing-text text-sm text-coral p-1 pb-0 text-center font-semibold m-1`}
+            >
+              Yeni Randevu Talebi
+            </h1>
+          </div>
           <div className="flex">
             <div className="imgArea1 w-1/3 flex items-center justify-center">
               <img src={image} className="w-20" alt="" />
             </div>
             <div className="infoArea w-2/3">
-              <div>
-                <h1
-                  className={`flashing-text text-sm text-coral p-1 text-center font-semibold m-1`}
-                >
-                  Yeni Randevu Talebi
-                </h1>
-              </div>
-
               <div className="forWho flex">
                 <i className="fa-solid fa-circle mt-[3px] text-[15px] text-premiumPurple"></i>
                 <h2 className="text-[14px]   font-bold ml-2">
@@ -188,7 +187,7 @@ function AppointmentRequestBox({ image, infos, onDetails }) {
             </button>
             <button
               onClick={() => onDetails()}
-              className="p-2 bg-deepSlateBlue text-white text-sm font-semibold rounded-lg mx-2"
+              className="p-2 bg-purpleElite text-white text-sm font-semibold rounded-lg mx-2"
             >
               Detaylar
             </button>

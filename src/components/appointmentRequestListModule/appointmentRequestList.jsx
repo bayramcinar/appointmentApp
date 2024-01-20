@@ -8,6 +8,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import pp from "../../images/pp.png";
 import RequestModal from "../appointmentModule/requestModal"; // Import the RequestModal component
 import NotAppointmentRequestBox from "./notConfirmedAppointmentBox";
+import "../../style/appointmentRequestList.css";
 
 function AppointmentRequestList() {
   const [formData, setFormData] = useState([]);
@@ -89,6 +90,7 @@ function AppointmentRequestList() {
     return endTime;
   }
 
+  const isMobile = window.innerWidth <= 768;
   const renderSwiper = (appointments) => {
     const isMobile = window.innerWidth <= 768;
     const swiperSlides = [];
@@ -128,21 +130,18 @@ function AppointmentRequestList() {
 
     return (
       <Swiper
-        pagination={{
-          dynamicBullets: true,
-        }}
+        pagination={{ clickable: true, dynamicBullets: true }}
         navigation={{
           prevEl: ".custom-swiper-button-prev4",
           nextEl: ".custom-swiper-button-next4",
         }}
-        modules={isMobile ? [Pagination] : [Navigation]}
+        modules={isMobile ? [Pagination, Navigation] : [Pagination, Navigation]}
         className="mySwiper"
       >
         {swiperSlides}
       </Swiper>
     );
   };
-
   const numberOfNewAppointments = formData.length;
   const isMobileForAnimation = window.innerWidth <= 768;
   return (
@@ -165,7 +164,7 @@ function AppointmentRequestList() {
           </>
         )}
         <div
-          className={`relative ${
+          className={`relative requestList ${
             numberOfNewAppointments === 0 ? "h-full" : ""
           }  flex items-center flex-wrap justify-center w-full max-[768px]:block bg-white rounded-xl`}
         >
@@ -202,7 +201,7 @@ function AppointmentRequestList() {
               </div>
             </>
           )}
-          {formData.length > 2 && (
+          {formData.length > 2 && !isMobile && (
             <>
               <div className="custom-swiper-button-prev4 absolute top-[50%] left-3 text-xl text-deepSlateBlue cursor-pointer z-[2]">
                 <i className="fa-solid fa-arrow-left" alt="Previous"></i>

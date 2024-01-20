@@ -422,10 +422,10 @@ function TimeAndDate({
                     >
                       {requestSelectedTime === "" && (
                         <>
-                          <p className="text-red-500 text-center text-sm">
+                          <p className="text-[#000000a8] text-center text-sm">
                             Uygun saatler bulunamadı.
                           </p>
-                          <p className="text-red-500 text-center text-sm">
+                          <p className="text-[#000000a8] text-center text-sm">
                             (İsterseniz randevu talebi oluşturabilirsiniz)
                           </p>
                         </>

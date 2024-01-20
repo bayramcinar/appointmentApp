@@ -88,18 +88,18 @@ function NotAppointmentRequestBox({ image, infos, onDetails, setFormData }) {
     <>
       <div className="bg-white myAppointmentBox lg:w-[280px] h-[205px] max-[768px]:w-[300px]  ml-auto mr-auto border-2 border-lightOrange rounded-2xl shadow-2xl">
         <div className="p-2 flex flex-col pt-0">
+          <div>
+            <h1
+              className={`flashing-text text-sm text-[#1bce92] pb-0 p-1 text-center font-semibold m-1`}
+            >
+              Yeni Randevu.
+            </h1>
+          </div>
           <div className="flex">
             <div className="imgArea1 w-1/3 flex items-center justify-center">
               <img src={image} className="w-20" alt="" />
             </div>
             <div className="infoArea w-2/3">
-              <div>
-                <h1
-                  className={`flashing-text text-sm text-[#1bce92] p-1 text-center font-semibold m-1`}
-                >
-                  Yeni Randevu.
-                </h1>
-              </div>
               <div className="forWho flex">
                 <i className="fa-solid fa-circle mt-[3px] text-[15px] text-premiumPurple"></i>
                 <h2 className="text-[14px] font-bold ml-2 ">
