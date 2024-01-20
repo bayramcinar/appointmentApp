@@ -54,7 +54,6 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
   });
   const renderSwiper = (appointments) => {
     //en fazla alt alta 2 tane randevu görüntülememizi sağlayan kod
-    console.log(appointments);
     const swiperSlides = [];
     for (let i = 0; i < appointments.length; i += 2) {
       const choosenFormDatas = appointments.slice(i, i + 2);
@@ -121,7 +120,7 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
             </button>
           </div>
           <div className="relative">
-            <div className=" flex items-center justify-center">
+            {/* <div className=" flex items-center justify-center">
               <div className="border-b-2 border-deepSlateBlue w-fit">
                 <h1 className="text-[17px]  font-semibold text-center text-deepSlateBlue">
                   Hala Randevu alınmayan veya süresi geçmiş saatler
@@ -179,38 +178,81 @@ const FullCalendarDayModal = ({ isOpen, onClose, time }) => {
                   Henüz Randevu Alınmamıştır.
                 </h1>
               )}
-            </div>
-            <div className=" flex items-center justify-center m-3 mt-0">
-              <div className="border-b-2 border-deepSlateBlue w-fit">
-                <h1 className="text-[17px] font-semibold text-center text-deepSlateBlue">
-                  Randevular
+            </div> */}
+
+            <div className="colorsMean mt-[25px] mb-5 right-1 top-1 font-semibold justify-center items-center">
+              <div className="">
+                <div className="flex max-[500px]:mr-2 mr-2 items-center justify-center">
+                  <i class="fa-solid fa-circle text-green-500 max-[500px]:text-sm flex justify-center items-center"></i>
+                  <h1 className="max-[500px]:text-sm  ml-2 max-[500px]:text-center flex justify-center items-center">
+                    Dolu Randevular
+                  </h1>
+                </div>
+                <div className="flex flex-wrap items-center justify-center w-[500px] max-[768px]:w-[300px] mx-auto">
+                  {choosenTimes.filter((time) => time.active === false).length >
+                  0 ? (
+                    choosenTimes.map((time, index) =>
+                      time.active === false ? (
+                        <React.Fragment key={index}>
+                          <FullCalanderTimeBox
+                            key={index}
+                            active={time.active}
+                            time={time.time}
+                            date={time.date}
+                            duration={time.duration}
+                          />
+                        </React.Fragment>
+                      ) : null
+                    )
+                  ) : (
+                    <h1 className="text-center text-coral font-semibold text-lg m-3">
+                      Henüz Randevu Alınmamıştır.
+                    </h1>
+                  )}
+                </div>
+              </div>
+              <div className="">
+                <div className="flex max-[500px]:mr-2 mr-2 items-center justify-center">
+                  <i class="fa-solid fa-circle text-calanderAppointment max-[500px]:text-sm    flex justify-center items-center"></i>
+                  <h1 className="max-[500px]:text-sm   ml-2 max-[500px]:text-center flex justify-center items-center">
+                    Boş Randevular
+                  </h1>
+                </div>
+                <div className="flex flex-wrap items-center justify-center w-[500px] max-[768px]:w-[300px] mx-auto">
+                  {choosenTimes.filter((time) => time.active === true).length >
+                  0 ? (
+                    choosenTimes.map((time, index) =>
+                      time.active === true ? (
+                        <React.Fragment key={index}>
+                          <FullCalanderTimeBox
+                            key={index}
+                            active={time.active}
+                            time={time.time}
+                            date={time.date}
+                            duration={time.duration}
+                          />
+                        </React.Fragment>
+                      ) : null
+                    )
+                  ) : (
+                    <h1 className="text-center text-coral font-semibold text-lg m-3">
+                      Tüm Randevu Saatleri Dolmuştur.
+                    </h1>
+                  )}
+                </div>
+              </div>
+              <div className="flex max-[500px]:mr-2 mr-2 items-center justify-center">
+                <i class="fa-solid fa-circle text-stepBorder1 max-[500px]:text-sm   flex justify-center items-center"></i>
+                <h1 className="max-[500px]:text-sm ml-2 max-[500px]:text-center flex justify-center items-center">
+                  Tamamlanmış Randevular
                 </h1>
               </div>
-            </div>
-            <div className="swipperAppointments lg:w-[35rem] lg:h-auto relative">
-              {choosenFormDatas.length > 2 ? (
-                renderSwiper(choosenFormDatas)
-              ) : (
-                <>
-                  {choosenFormDatas.map((appointmentData, index) => (
-                    <FullCalendarAppointmentBox
-                      key={index}
-                      infos={appointmentData}
-                      image={pp}
-                    />
-                  ))}
-                </>
-              )}
-              {choosenFormDatas.length > 2 && (
-                <>
-                  <div className="custom-swiper-button-prev1 absolute left-0 top-[45%] text-xl text-deepSlateBlue cursor-pointer z-[2]">
-                    <i className="fa-solid fa-arrow-left" alt="Previous"></i>
-                  </div>
-                  <div className="custom-swiper-button-next1 absolute right-0 top-[45%] text-xl text-deepSlateBlue cursor-pointer z-[2]">
-                    <i className="fa-solid fa-arrow-right" alt="Next"></i>
-                  </div>
-                </>
-              )}
+              <div className="flex max-[500px]:mr-2 mr-2 items-center justify-center">
+                <i class="fa-solid fa-circle text-coral max-[500px]:text-sm  flex  justify-center items-center"></i>
+                <h1 className="max-[500px]:text-sm  ml-2 max-[500px]:text-center flex justify-center items-center">
+                  İptal Edilen Randevular
+                </h1>
+              </div>
             </div>
           </div>
         </div>

@@ -78,6 +78,7 @@ function FullCalendarComponent() {
   const [request, setRequest] = useState(false);
   const [selectedTimes, setSelectedTimes] = useState([]);
   const [isFullDayModalOpen, setFullDayModalOpen] = useState(false);
+  const [isFullDayModalOpenEmpty, setFullDayModalOpenEmpty] = useState(false);
   const [selectedDay, setSelectedDay] = useState("");
   const [isMobile, setIsMobile] = useState(window.innerWidth < 500);
   const [isHalfMid, setHalfMid] = useState(
@@ -143,18 +144,31 @@ function FullCalendarComponent() {
   const handleFullDayModalClose = () => {
     setFullDayModalOpen(false);
   };
+  const handleFullDayEmptyModalOpen = () => {
+    setFullDayModalOpenEmpty(true);
+  };
+
+  const handleFullDayEmptyModalClose = () => {
+    setFullDayModalOpenEmpty(false);
+  };
 
   const [selectedEvent, setSelectedEvent] = useState([]);
 
   const onSelectEvent = (event) => {
-    setSelectedEvent(event);
-    handleFullDayModalOpen();
+    if (event.title === "Boş Randevu") {
+      const selectedDate = moment(event.start).format("YYYY-MM-DD");
+      setSelectedDay(selectedDate);
+      handleFullDayEmptyModalOpen();
+    } else {
+      setSelectedEvent(event);
+      handleFullDayModalOpen();
+    }
   };
 
   const onSelectSlot = (slotInfo) => {
     const selectedDate = moment(slotInfo.start).format("YYYY-MM-DD");
     const isPastDate = moment(selectedDate).isBefore(moment(), "day");
-
+    setSelectedDay(selectedDate);
     // if (!isPastDate) {
     //   handleFullDayModalOpen();
     //   const filteredTimes = selectedTimes.filter(
@@ -301,11 +315,11 @@ function FullCalendarComponent() {
         isOpen={isFullDayModalOpen}
         onClose={handleFullDayModalClose}
       />
-      {/* <FullCalendarDayModal
-        isOpen={isFullDayModalOpen}
-        onClose={handleFullDayModalClose}
+      <FullCalendarDayModal
+        isOpen={isFullDayModalOpenEmpty}
+        onClose={handleFullDayEmptyModalClose}
         time={selectedDay}
-      /> */}
+      />
     </>
   );
 }

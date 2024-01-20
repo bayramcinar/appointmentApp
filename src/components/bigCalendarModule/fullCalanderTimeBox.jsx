@@ -12,12 +12,12 @@ function FullCalanderTimeBox({ time, date, active, duration }) {
   return (
     <div>
       <div
-        className={`timeBox w-[135px] max-[768px]:w-[115px] m-3 ${
+        className={`timeBox w-[135px] max-[768px]:w-[90px] m-3 ${
           active ? "bg-purpleElite" : "bg-stepBorder1"
-        } rounded-3xl mb-[5px] p-[2px] py-[5px] max-[768px]:m-[5px]`}
+        } rounded-3xl mb-[5px] p-[2px] py-[3px] max-[768px]:m-[3px]`}
       >
         <>
-          <h4 className="text-sm text-text p-1 pb-0 text-center">
+          <h4 className="text-xs lg:text-sm text-text p-1 pb-0 text-center">
             {time} - {endTime}
           </h4>
         </>
