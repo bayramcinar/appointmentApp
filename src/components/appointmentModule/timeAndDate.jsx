@@ -332,7 +332,7 @@ function TimeAndDate({
           </h2>
         </div>
         <div className="bg-grayBg dayComponent flex flex-col md:flex-row md:h-[20rem] m-3 lg:w-[34rem] lg:h-[20rem] md:w-[25rem] sm:w-[25rem]  sm:h-[40rem]">
-          <div className="flex flex-col items-center justify-between lg:order-1  max-[768px]:order-2 lg:w-[10rem]  rounded-2xl shadow-xl lg:mr-3 bg-white rightMobile md:w-[25rem] max-[768px]:h-auto">
+          <div className="flex flex-col items-center justify-between lg:order-1  max-[768px]:order-2 lg:w-[10rem]  rounded-2xl shadow-xl md:mr-3 bg-white rightMobile md:w-[25rem] max-[768px]:h-auto">
             <div className="choosenDate h-[62px]">
               <div className="dateText m-2">
                 <h2 className="text-center  text-md font-semibold  w-[90px]">
