@@ -454,7 +454,7 @@ function Agenda() {
                             handleDelete(formEntry, isCancelDisabled)
                           }
                           className={`bg-lightGray text-black
-                  rounded-md flex text-xs xl:text-sm w-40 p-2 items-center justify-start`}
+                  rounded-md flex text-xs 2xl:text-sm w-40 p-2 items-center justify-start`}
                         >
                           <i class="fa-solid fa-ban mr-2 text-gray-600 font-semibold"></i>
                           İptal Et
@@ -466,7 +466,7 @@ function Agenda() {
                             joinMeet(formEntry, remainingTime.remainingHours)
                           }
                           className={`bg-lightGray text-black
-                   rounded-md flex text-xs xl:text-sm w-40 p-2 items-center justify-start`}
+                   rounded-md flex text-xs 2xl:text-sm w-40 p-2 items-center justify-start`}
                         >
                           <i class="fa-regular fa-user mr-2 text-gray-600 font-semibold"></i>
                           Katıl
@@ -480,7 +480,7 @@ function Agenda() {
                         <button
                           onClick={() => onAccept(timeObject)}
                           className={`bg-lightGray text-black
-                    rounded-md flex text-xs xl:text-sm w-40 p-2 items-center justify-start`}
+                    rounded-md flex text-xs 2xl:text-sm w-40 p-2 items-center justify-start`}
                         >
                           <i class="fa-solid fa-check mr-2 text-gray-600 font-semibold"></i>
                           İşleme Al
@@ -490,7 +490,7 @@ function Agenda() {
                         <button
                           onClick={() => onReject(timeObject)}
                           className={`bg-lightGray text-black
-                      rounded-md flex text-xs xl:text-sm w-40 p-2 items-center justify-start`}
+                      rounded-md flex text-xs 2xl:text-sm w-40 p-2 items-center justify-start`}
                         >
                           <i class="fa-solid fa-xmark mr-2 text-gray-600 font-semibold"></i>
                           Reddet
@@ -503,7 +503,7 @@ function Agenda() {
                     <button
                       onClick={() => handleOpenModal(formEntry)}
                       className={`bg-lightGray text-black
-                    rounded-md flex text-xs xl:text-sm w-40 p-2 items-center justify-start`}
+                    rounded-md flex text-xs 2xl:text-sm w-40 p-2 items-center justify-start`}
                     >
                       <i class="fa-solid fa-circle-info mr-2 text-gray-600 font-semibold"></i>
                       Detaylar

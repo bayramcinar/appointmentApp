@@ -113,7 +113,7 @@ function AppointmentInfos() {
     return (
       <Swiper
         pagination={{ clickable: true, dynamicBullets: true }}
-        modules={[Pagination]}
+        modules={[]}
         className="mySwiper"
       >
         {swiperSlides}
