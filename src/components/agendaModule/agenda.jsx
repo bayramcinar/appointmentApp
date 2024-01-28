@@ -376,7 +376,7 @@ function Agenda() {
               <div className="flex justify-center items-center w-[220px] border-coral border bg-lightRed rounded-lg">
                 <div className="p-1 flex">
                   <i className="fa-solid fa-circle text-coral text-[0.5rem] text-center flex items-center justify-center mx-2"></i>
-                  <h1 className="text-md text-center text-xs text-coral">
+                  <h1 className="text-center text-xs text-coral">
                     Randevu İptal Edildi
                   </h1>
                 </div>
@@ -396,7 +396,7 @@ function Agenda() {
                   <div className="flex justify-center items-center w-[220px] border-orangeTable border bg-lightOrange2 rounded-lg">
                     <div className="p-1 flex">
                       <i className="fa-solid fa-circle text-orangeTable text-[0.5rem] text-center flex items-center justify-center mx-2"></i>
-                      <h1 className="text-md text-center text-xs text-orangeTable">
+                      <h1 className="text-center text-xs text-orangeTable">
                         İşleme Alınması Bekleniyor
                       </h1>
                     </div>
@@ -416,7 +416,7 @@ function Agenda() {
                   <div className="flex justify-center items-center w-[220px] border-orangeTable border bg-lightOrange2 rounded-lg">
                     <div className="p-1 flex">
                       <i className="fa-solid fa-circle text-orangeTable text-[0.5rem] text-center flex items-center justify-center mx-2"></i>
-                      <h1 className="text-md text-center text-xs text-orangeTable">
+                      <h1 className="text-center text-xs text-orangeTable">
                         Randevu Talebi Onay Bekleniyor
                       </h1>
                     </div>
