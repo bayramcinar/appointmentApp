@@ -2,8 +2,8 @@ import React from "react";
 
 function AppointmentInfoBox({ number, title, changeRate, lastOne }) {
   return (
-    <div className="border-gray-200 border-2 rounded-md bg-white w-[12vw] m-1">
-      <div className="px-2 py-6">
+    <div className="border-gray-200 border-2 rounded-md bg-white w-[11vw] m-3">
+      <div className="px-[0.5vw] py-[1.5vw] ">
         <div className="titleArea flex justify-start">
           <h1 className="text-[0.8vw] text-deepSlateBlue font-semibold">
             {title}

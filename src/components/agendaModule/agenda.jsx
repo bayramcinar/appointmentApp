@@ -843,6 +843,46 @@ function Agenda() {
               </h1>
             )}
             <div className="flex justify-start items-center mb-4 ">
+              <div
+                onClick={() => handleFilterChange("all")}
+                className={`p-1 border-2 ${
+                  filter === "all" ? "activeCategory" : ""
+                } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
+              >
+                Yaklaşan Randevular
+              </div>
+              <div
+                onClick={() => handleFilterChange("past")}
+                className={`p-1 border-2 ${
+                  filter === "past" ? "activeCategory" : ""
+                } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
+              >
+                Geçmiş Randevular
+              </div>
+              <div
+                onClick={() => handleFilterChange("today")}
+                className={`p-1 border-2 ${
+                  filter === "today" ? "activeCategory" : ""
+                } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
+              >
+                Bugünkü Randevular
+              </div>
+              <div
+                onClick={() => handleFilterChange("future")}
+                className={`p-1 border-2 ${
+                  filter === "future" ? "activeCategory" : ""
+                } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
+              >
+                Gelecek Randevular
+              </div>
+              <div
+                onClick={() => handleFilterChange("cancelled")}
+                className={`p-1 border-2 ${
+                  filter === "cancelled" ? "activeCategory" : ""
+                } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
+              >
+                İptal Edilen Randevular
+              </div>
               <div className="dropdown-content flex">
                 <div
                   onClick={() => handleFilterChange("notConfirmed")}
@@ -851,46 +891,6 @@ function Agenda() {
                   } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
                 >
                   İşlem Bekleyen Randevular
-                </div>
-                <div
-                  onClick={() => handleFilterChange("all")}
-                  className={`p-1 border-2 ${
-                    filter === "all" ? "activeCategory" : ""
-                  } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
-                >
-                  Yaklaşan Randevular
-                </div>
-                <div
-                  onClick={() => handleFilterChange("past")}
-                  className={`p-1 border-2 ${
-                    filter === "past" ? "activeCategory" : ""
-                  } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
-                >
-                  Geçmiş Randevular
-                </div>
-                <div
-                  onClick={() => handleFilterChange("today")}
-                  className={`p-1 border-2 ${
-                    filter === "today" ? "activeCategory" : ""
-                  } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
-                >
-                  Bugünkü Randevular
-                </div>
-                <div
-                  onClick={() => handleFilterChange("future")}
-                  className={`p-1 border-2 ${
-                    filter === "future" ? "activeCategory" : ""
-                  } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
-                >
-                  Gelecek Randevular
-                </div>
-                <div
-                  onClick={() => handleFilterChange("cancelled")}
-                  className={`p-1 border-2 ${
-                    filter === "cancelled" ? "activeCategory" : ""
-                  } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
-                >
-                  İptal Edilen Randevular
                 </div>
               </div>
             </div>

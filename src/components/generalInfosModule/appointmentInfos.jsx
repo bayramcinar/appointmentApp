@@ -87,13 +87,14 @@ function AppointmentInfos() {
   ];
 
   const renderSwiper = (items) => {
-    const itemsPerSlide = 4;
+    const itemsPerSlide = isMobile ? 1 : 4;
     const swiperSlides = [];
+
     for (let i = 0; i < items.length; i += itemsPerSlide) {
       const currentTimes = items.slice(i, i + itemsPerSlide);
       const swiperSlide = (
         <SwiperSlide key={i}>
-          <div className="flex flex-wrap items-center serviceBoxArea w-[530px] ml-auto">
+          <div className="flex flex-wrap items-center">
             {currentTimes.map((box, index) => (
               <AppointmentInfoBox
                 key={index}
@@ -122,11 +123,8 @@ function AppointmentInfos() {
     } else {
       return (
         <Swiper
-          navigation={{
-            prevEl: ".custom-swiper-button-prev9",
-            nextEl: ".custom-swiper-button-next9",
-          }}
-          modules={[Navigation]}
+          pagination={{ clickable: true, dynamicBullets: true }}
+          modules={[Pagination]}
           className="mySwiper"
         >
           {swiperSlides}
@@ -147,32 +145,28 @@ function AppointmentInfos() {
 
   return (
     <div className="w-full my-4">
-      <div className="infosArea flex ">
-        {isMobile ? (
-          renderSwiper(boxes)
-        ) : (
-          <>
-            <div className="graphArea w-[73%] xl:flex items-center">
-              <div className="w-full p-4">
-                <Line
-                  data={stateDay}
-                  options={options}
-                  className="p-2 bg-white border-2 border-gray-300 rounded-md"
-                />
-              </div>
-              <div className="w-full p-4">
-                <Line
-                  data={stateMonth}
-                  options={options}
-                  className="p-2 bg-white border-2 border-gray-300 rounded-md"
-                />
-              </div>
+      <div className="infosArea flex">
+        <>
+          <div className="graphArea w-[70%] sm:flex block items-center">
+            <div className="w-full p-4">
+              <Line
+                data={stateDay}
+                options={options}
+                className="p-2 bg-white border-2 border-gray-200 rounded-md"
+              />
             </div>
-            <div className="infosArea flex items-center justify-end w-[27%]">
-              {renderSwiper(boxes)}
+            <div className="w-full p-4">
+              <Line
+                data={stateMonth}
+                options={options}
+                className="p-2 bg-white border-2 border-gray-200 rounded-md"
+              />
             </div>
-          </>
-        )}
+          </div>
+          <div className="infosArea items-center justify-end w-[30%] ">
+            {renderSwiper(boxes)}
+          </div>
+        </>
       </div>
     </div>
   );
