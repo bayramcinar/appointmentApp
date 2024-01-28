@@ -59,7 +59,8 @@ function Agenda() {
                   new Date(
                     `1970-01-01T${currentDate.getHours()}:${currentDate.getMinutes()}`
                   ))) &&
-            data.confirm === false
+            data.confirm === false &&
+            data.delete === false
           );
         case "past":
           return (
@@ -516,7 +517,27 @@ function Agenda() {
       );
     });
   }
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      // Check if the clicked element is outside the buttons area
+      const isOutsideButtonsArea =
+        event.target.closest(".buttonsArea") === null &&
+        event.target.closest(".threePoint") === null;
 
+      if (isOutsideButtonsArea) {
+        setShowButtonsArea(false);
+        setSelectedAppointment(null);
+      }
+    };
+
+    // Add event listener to document for outside clicks
+    document.addEventListener("click", handleOutsideClick);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, [setShowButtonsArea, setSelectedAppointment]);
   function getTime(start, duration) {
     const durationMinutes = parseInt(duration, 10);
     const [hours, minutes] = start.split(":").map(Number);

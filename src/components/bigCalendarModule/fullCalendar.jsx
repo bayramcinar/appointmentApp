@@ -287,12 +287,12 @@ function FullCalendarComponent() {
                   ? "600px"
                   : "35vw",
                 width: isMobile
-                  ? "90vw"
+                  ? "100%"
                   : isHalfMid
-                  ? "70vw"
+                  ? "100%"
                   : isMid
-                  ? "45vw"
-                  : "60vw",
+                  ? "100%"
+                  : "100%",
               }}
               events={eventsFromSessionStorage}
               onSelectEvent={onSelectEvent}

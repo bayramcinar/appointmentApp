@@ -4,8 +4,10 @@
   color: hsl(7, 90%, 64%);
   padding: 5px 10px;
   cursor: pointer;
-  font-size: 15px;
   font-weight: 600;
+}
+.rbc-toolbar {
+  font-size: 0.7vw;
 }
 .rbc-btn-group button:first-child {
   border-right: none;
@@ -121,7 +123,7 @@
 .deleted-appointment {
   border-color: hsl(0, 89.87%, 60.5%) !important;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1024px) {
   .rbc-event-label {
     display: none;
   }
@@ -136,8 +138,6 @@
     padding: 1px;
   }
   .rbc-btn-group button {
-    width: 44px;
-    font-size: 12px;
     padding-left: 0;
     padding-right: 0;
   }
@@ -147,5 +147,8 @@
 
   .rbc-btn-group button:last-child.rbc-active ~ .rbc-day-slot .rbc-event {
     width: 100% !important;
+  }
+  .rbc-toolbar {
+    font-size: 12px !important;
   }
 }
