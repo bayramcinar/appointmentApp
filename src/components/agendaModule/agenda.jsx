@@ -376,7 +376,7 @@ function Agenda() {
               <div className="flex justify-center items-center w-[220px] border-coral border bg-lightRed rounded-lg">
                 <div className="p-1 flex">
                   <i className="fa-solid fa-circle text-coral text-[0.5rem] text-center flex items-center justify-center mx-2"></i>
-                  <h1 className="text-center text-xs text-coral">
+                  <h1 className="text-center text-[0.65rem] lg:text-xs text-coral">
                     Randevu İptal Edildi
                   </h1>
                 </div>
@@ -385,7 +385,7 @@ function Agenda() {
               <div className="flex items-center w-[220px] justify-center border-gray-500 border bg-gray-200 rounded-lg">
                 <div className="flex p-1">
                   <i className="fa-solid fa-circle text-gray-500 text-[0.5rem] flex items-center justify-center mx-2"></i>
-                  <h1 className="text-center text-xs text-gray-500">
+                  <h1 className="text-center text-[0.65rem] lg:text-xs text-gray-500">
                     Randevu Tamamlandı
                   </h1>
                 </div>
@@ -396,7 +396,7 @@ function Agenda() {
                   <div className="flex justify-center items-center w-[220px] border-orangeTable border bg-lightOrange2 rounded-lg">
                     <div className="p-1 flex">
                       <i className="fa-solid fa-circle text-orangeTable text-[0.5rem] text-center flex items-center justify-center mx-2"></i>
-                      <h1 className="text-center text-xs text-orangeTable">
+                      <h1 className="text-center text-[0.65rem] lg:text-xs text-orangeTable">
                         İşleme Alınması Bekleniyor
                       </h1>
                     </div>
@@ -406,7 +406,7 @@ function Agenda() {
                   <div className="flex items-center w-[220px] justify-center border-greenStatus border bg-lightGreen rounded-lg">
                     <div className="flex p-1">
                       <i className="fa-solid fa-circle text-greenStatus text-[0.5rem] flex items-center justify-center mx-2"></i>
-                      <h1 className="text-center text-xs text-greenStatus">
+                      <h1 className="text-center text-[0.65rem] lg:text-xs text-greenStatus">
                         Aktif
                       </h1>
                     </div>
@@ -416,7 +416,7 @@ function Agenda() {
                   <div className="flex justify-center items-center w-[220px] border-orangeTable border bg-lightOrange2 rounded-lg">
                     <div className="p-1 flex">
                       <i className="fa-solid fa-circle text-orangeTable text-[0.5rem] text-center flex items-center justify-center mx-2"></i>
-                      <h1 className="text-center text-xs text-orangeTable">
+                      <h1 className="text-center text-[0.65rem] lg:text-xs text-orangeTable">
                         Randevu Talebi Onay Bekleniyor
                       </h1>
                     </div>
@@ -454,7 +454,7 @@ function Agenda() {
                             handleDelete(formEntry, isCancelDisabled)
                           }
                           className={`bg-lightGray text-black
-                  rounded-md flex text-sm w-40 p-2 items-center justify-start`}
+                  rounded-md flex text-xs xl:text-sm w-40 p-2 items-center justify-start`}
                         >
                           <i class="fa-solid fa-ban mr-2 text-gray-600 font-semibold"></i>
                           İptal Et
@@ -466,7 +466,7 @@ function Agenda() {
                             joinMeet(formEntry, remainingTime.remainingHours)
                           }
                           className={`bg-lightGray text-black
-                   rounded-md flex text-sm w-40 p-2 items-center justify-start`}
+                   rounded-md flex text-xs xl:text-sm w-40 p-2 items-center justify-start`}
                         >
                           <i class="fa-regular fa-user mr-2 text-gray-600 font-semibold"></i>
                           Katıl
@@ -480,7 +480,7 @@ function Agenda() {
                         <button
                           onClick={() => onAccept(timeObject)}
                           className={`bg-lightGray text-black
-                    rounded-md flex text-sm w-40 p-2 items-center justify-start`}
+                    rounded-md flex text-xs xl:text-sm w-40 p-2 items-center justify-start`}
                         >
                           <i class="fa-solid fa-check mr-2 text-gray-600 font-semibold"></i>
                           İşleme Al
@@ -490,7 +490,7 @@ function Agenda() {
                         <button
                           onClick={() => onReject(timeObject)}
                           className={`bg-lightGray text-black
-                      rounded-md flex text-sm w-40 p-2 items-center justify-start`}
+                      rounded-md flex text-xs xl:text-sm w-40 p-2 items-center justify-start`}
                         >
                           <i class="fa-solid fa-xmark mr-2 text-gray-600 font-semibold"></i>
                           Reddet
@@ -503,7 +503,7 @@ function Agenda() {
                     <button
                       onClick={() => handleOpenModal(formEntry)}
                       className={`bg-lightGray text-black
-                    rounded-md flex text-sm w-40 p-2 items-center justify-start`}
+                    rounded-md flex text-xs xl:text-sm w-40 p-2 items-center justify-start`}
                     >
                       <i class="fa-solid fa-circle-info mr-2 text-gray-600 font-semibold"></i>
                       Detaylar
@@ -824,9 +824,8 @@ function Agenda() {
         } animate__animated  rounded-xl max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 w-full flex-grow shadow-xl`}
       >
         <div className="w-full overflow-auto max-h-600">
-          <div className="flex">
-            <div className="w-[33%] flex items-center justify-center"></div>
-            <h1 className=" lg:text-[1.5vw] max-[768px]:text-xl max-[768px]:w-[48%] w-[33%] text-center max-[768px]:justify:start text-gray-600 font-semibold mt-2 max-[768px]:pt-0 sticky top-0 p-3 pb-0">
+          <div className="flex items-center justify-center">
+            <h1 className=" lg:text-[1.5vw] max-[768px]:text-xl max-[768px]:w-[48%] text-center max-[768px]:justify:start text-gray-600 font-semibold mt-2 max-[768px]:pt-0 sticky top-0 p-3 pb-0">
               {getTableHeaders()}
             </h1>
           </div>

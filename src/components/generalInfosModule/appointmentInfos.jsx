@@ -110,27 +110,15 @@ function AppointmentInfos() {
       swiperSlides.push(swiperSlide);
     }
 
-    if (isMobile) {
-      return (
-        <Swiper
-          pagination={{ clickable: true }}
-          modules={[Pagination]}
-          className="mySwiper"
-        >
-          {swiperSlides}
-        </Swiper>
-      );
-    } else {
-      return (
-        <Swiper
-          pagination={{ clickable: true, dynamicBullets: true }}
-          modules={[Pagination]}
-          className="mySwiper"
-        >
-          {swiperSlides}
-        </Swiper>
-      );
-    }
+    return (
+      <Swiper
+        pagination={{ clickable: true, dynamicBullets: true }}
+        modules={[Pagination]}
+        className="mySwiper"
+      >
+        {swiperSlides}
+      </Swiper>
+    );
   };
 
   const options = {
@@ -145,17 +133,17 @@ function AppointmentInfos() {
 
   return (
     <div className="w-full my-4">
-      <div className="infosArea flex">
+      <div className="infosArea block lg:flex">
         <>
-          <div className="graphArea w-[70%] sm:flex block items-center">
-            <div className="w-full p-4">
+          <div className="graphArea w-full lg:w-[75%] sm:flex block items-center justify-center mx-auto">
+            <div className="w-full p-2 lg:p-4 flex items-center justify-center">
               <Line
                 data={stateDay}
                 options={options}
                 className="p-2 bg-white border-2 border-gray-200 rounded-md"
               />
             </div>
-            <div className="w-full p-4">
+            <div className="w-full flex items-center justify-center p-2 lg:p-4">
               <Line
                 data={stateMonth}
                 options={options}
@@ -163,7 +151,7 @@ function AppointmentInfos() {
               />
             </div>
           </div>
-          <div className="infosArea items-center justify-end w-[30%] ">
+          <div className="infosArea flex items-center justify-end w-full lg:w-[25%] mx-auto">
             {renderSwiper(boxes)}
           </div>
         </>
