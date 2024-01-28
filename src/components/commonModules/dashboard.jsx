@@ -15,14 +15,14 @@ function Dashboard() {
         </div>
         {isMobile && (
           <div className="block lg:flex lg:mx-[3rem] items-stretch justify-center xl:text-[1rem] lg:text-[0.68rem] md:text-[0.90rem]">
-            <AppointmentRequestList />
+            {/* <AppointmentRequestList /> */}
             <Agenda />
           </div>
         )}
         {!isMobile && (
           <div className="block lg:flex lg:mx-[3rem] items-stretch justify-center xl:text-[1rem] lg:text-[0.68rem] md:text-[0.90rem]">
             <Agenda />
-            <AppointmentRequestList />
+            {/* <AppointmentRequestList /> */}
           </div>
         )}
         <div className="block lg:flex lg:mx-[3rem] pb-5 xl:text-[1rem] lg:text-[0.70rem] md:text-[0.80rem]">

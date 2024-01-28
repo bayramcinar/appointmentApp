@@ -25,6 +25,12 @@ module.exports = {
         purpleElite: "hsl(267, 100%, 47%)",
         grayBg: "#f1f2f6",
         orangeForModal: "hsl(36, 100%, 50%)",
+        lightGray: "#f8f8f8",
+        lightRed: "hsl(0, 100%, 97%)",
+        lightGreen: "hsl(100, 100%, 97%)",
+        greenStatus: "#409e77",
+        lightOrange2: "hsl(44, 100%, 97%)",
+        orangeTable: "hsl(44, 100%, 45%)",
       },
       backgroundImage: {
         gradient:

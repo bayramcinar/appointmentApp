@@ -51,6 +51,16 @@ function Agenda() {
       switch (filter) {
         case "cancelled":
           return data.delete === true;
+        case "notConfirmed":
+          return (
+            (appointmentDate > currentDate ||
+              (appointmentDate.getDate() === currentDate.getDate() &&
+                new Date(`1970-01-01T${timeArray[2]}`) <
+                  new Date(
+                    `1970-01-01T${currentDate.getHours()}:${currentDate.getMinutes()}`
+                  ))) &&
+            data.confirm === false
+          );
         case "past":
           return (
             (appointmentDate < currentDate ||
@@ -174,6 +184,20 @@ function Agenda() {
       }
     }
   };
+  const [showButtonsArea, setShowButtonsArea] = useState(false);
+
+  const [selectedAppointment, setSelectedAppointment] = useState(null);
+  const toggleButtonsArea = (formEntry) => {
+    if (
+      selectedAppointment &&
+      selectedAppointment.appointmentNumber === formEntry.appointmentNumber
+    ) {
+      setSelectedAppointment(null);
+    } else {
+      setShowButtonsArea(true);
+      setSelectedAppointment(formEntry);
+    }
+  };
 
   function convertFormDataToTable() {
     return paginatedFormData.map((formEntry, index) => {
@@ -217,7 +241,113 @@ function Agenda() {
             new Date(
               `1970-01-01T${currentDate.getHours()}:${currentDate.getMinutes()}`
             ));
+      const onAccept = async (timeObject) => {
+        // RANDEVU TALEBİNİ KABUL ETME FONKSİYONUNU request değerini false yapıyor
+        const originalObje = findObjectByTime(timeObject);
+        Swal.fire({
+          title: "Emin misiniz!",
+          text: "Randevu talebini kabul etmek istediğinize emin misiniz?",
+          icon: "question",
+          showCancelButton: true,
+          confirmButtonText: "Evet",
+          cancelButtonText: "Hayır",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            if (originalObje) {
+              const falseValue2 = originalObje.confirm;
+              const updatedValue2 = falseValue2 === false ? true : "";
 
+              const updatedObje = {
+                ...originalObje,
+                confirm: updatedValue2,
+              };
+
+              const formDataString = localStorage.getItem("formData");
+
+              if (formDataString) {
+                const formData = JSON.parse(formDataString);
+
+                const index = formData.findIndex(
+                  (obj) => obj.time === originalObje.time
+                );
+
+                if (index !== -1) {
+                  formData[index] = updatedObje;
+
+                  localStorage.setItem("formData", JSON.stringify(formData));
+                  Swal.fire({
+                    title: "Başarılı !",
+                    text: "Randevu talebi başarılı bir şekilde onaylandı ve kullanıcıya bildirildi.",
+                    icon: "success",
+                    confirmButtonText: "Kapat",
+                  });
+                  return updatedObje;
+                }
+              }
+            }
+          }
+        });
+
+        return null;
+      };
+
+      const onReject = () => {
+        // RANDEVU TALEBİNİ RED ETME FONKSİYONUNU DİREK FORMDATA DAN O ÖGEYİ SİLİYOR
+        Swal.fire({
+          title: "Emin misiniz!",
+          text: "Randevu talebini silmek istediğinize emin misiniz?",
+          icon: "question",
+          showCancelButton: true,
+          confirmButtonText: "Evet",
+          cancelButtonText: "Hayır",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            const obje = findObjectByTime(timeObject);
+
+            if (obje) {
+              const formDataString = localStorage.getItem("formData");
+
+              if (formDataString) {
+                const formData = JSON.parse(formDataString);
+
+                const index = formData.findIndex(
+                  (obj) => obj.time === obje.time
+                );
+
+                if (index !== -1) {
+                  // Set the 'delete' property to true
+                  formData[index].delete = true;
+
+                  localStorage.setItem("formData", JSON.stringify(formData));
+
+                  Swal.fire({
+                    title: "Başarılı !",
+                    text: "Randevu talebi başarılı bir şekilde reddedildi.",
+                    icon: "success",
+                    confirmButtonText: "Kapat",
+                  });
+                }
+              }
+            }
+          }
+        });
+      };
+      const findObjectByTime = (timeObject) => {
+        //TIKLADIĞIMIZ OBJEYİ ALIYORUZ
+        const formDataString = localStorage.getItem("formData");
+
+        if (!formDataString) {
+          return [];
+        }
+
+        const formData = JSON.parse(formDataString);
+
+        const foundObject = formData.find((obj) => obj.time === timeObject);
+        console.log(foundObject);
+        return foundObject || null;
+      };
+
+      const timeObject = formEntry.time;
       const isCancelDisabled = remainingTime.remainingHours < 12;
       const actualIndex = (currentPage - 1) * itemsPerPage + index;
       const isCancelled = formEntry.delete === true;
@@ -226,108 +356,76 @@ function Agenda() {
           key={actualIndex}
           className={actualIndex % 2 === 0 ? "bg-white" : "bg-white"}
         >
-          <td className="text-center border-dashed border-2 border-[#0003] border-l-0">
+          <td className="text-center p-3 text-black font-semibold">
             {actualIndex + 1}
           </td>
-          <td className="text-center border-dashed border-2 border-[#0003] ">
+          <td className="text-center p-3 text-black font-semibold">
             {formEntry.appointmentNumber}
           </td>
-          <td className="text-center border-dashed border-2 border-[#0003]">
+          <td className="text-center p-3 text-black font-semibold">
             {dateInfo}
           </td>
-          <td className="text-center border-dashed border-2 border-[#0003]">
+          <td className="text-center p-3 text-black font-semibold">
             {timeInfo}
           </td>
-          <td className="text-center border-dashed border-2 border-[#0003] ">
+          <td className="text-center p-3 text-black font-semibold">
             {service}
           </td>
-          <td className="border-dashed border-[#0003] flex items-center justify-center border-r-0 border-l-0 border-2 border-b-0 ">
-            {!isCancelled && !isPastAppointment && (
-              <div className="flex items-center justify-center">
-                <div className="m-2">
-                  <button
-                    onClick={() => handleDelete(formEntry, isCancelDisabled)}
-                    className={`p-[7px] ${
-                      isCancelDisabled
-                        ? "bg-gray-400 text-white cursor-not-allowed"
-                        : "bg-coral text-white"
-                    } font-semibold rounded-xl`}
-                  >
-                    İptal Et
-                  </button>
-                </div>
-                <div className="m-2 ml-0">
-                  <button
-                    onClick={() =>
-                      joinMeet(formEntry, remainingTime.remainingHours)
-                    }
-                    className={`p-2  text-white font-semibold rounded-xl ${
-                      remainingTime.remainingHours > 1
-                        ? "cursor-not-allowed"
-                        : ""
-                    } ${
-                      status === false
-                        ? "bg-gray-500"
-                        : remainingTime.remainingHours > 1
-                        ? "bg-gray-500"
-                        : "bg-green-600"
-                    }`}
-                  >
-                    Katıl
-                  </button>
-                </div>
-              </div>
-            )}
-            <div className="m-2 ml-0">
-              <button
-                onClick={() => handleOpenModal(formEntry)}
-                className="p-2 bg-purpleElite text-white font-semibold rounded-xl"
-              >
-                Detaylar
-              </button>
-            </div>
-          </td>
-          <td className="text-center border-dashed border-2 border-[#0003]  status ">
+          <td className="text-center status p-3 flex items-center justify-center">
             {isCancelled ? (
-              <div className="flex w-full justify-center">
-                <i className="fa-solid fa-circle text-red-500 text-center flex items-center justify-center mx-2"></i>
-                <span className="text-red-500">Randevu İptal Edildi</span>
+              <div className="flex justify-center items-center w-[220px] border-coral border bg-lightRed rounded-lg">
+                <div className="p-1 flex">
+                  <i className="fa-solid fa-circle text-coral text-[0.5rem] text-center flex items-center justify-center mx-2"></i>
+                  <h1 className="text-md text-center text-xs text-coral">
+                    Randevu İptal Edildi
+                  </h1>
+                </div>
               </div>
             ) : isPastAppointment ? (
-              <div className="flex w-full justify-center">
-                <i className="fa-solid fa-circle text-gray-500 text-center flex items-center justify-center mx-2"></i>
-                <span className="text-gray-500">Randevu Sonlandı</span>
+              <div className="flex items-center w-[220px] justify-center border-gray-500 border bg-gray-200 rounded-lg">
+                <div className="flex p-1">
+                  <i className="fa-solid fa-circle text-gray-500 text-[0.5rem] flex items-center justify-center mx-2"></i>
+                  <h1 className="text-center text-xs text-gray-500">
+                    Randevu Tamamlandı
+                  </h1>
+                </div>
               </div>
             ) : (
               <>
                 {status === false && requestStatus === "false" && (
-                  <div className="flex w-full justify-center">
-                    <i className="fa-solid fa-circle text-coral flashing-text text-center flex items-center justify-center mx-2"></i>
-                    <h1 className="text-md text-center ">
-                      İşleme Alınması Bekleniyor
-                    </h1>
+                  <div className="flex justify-center items-center w-[220px] border-orangeTable border bg-lightOrange2 rounded-lg">
+                    <div className="p-1 flex">
+                      <i className="fa-solid fa-circle text-orangeTable text-[0.5rem] text-center flex items-center justify-center mx-2"></i>
+                      <h1 className="text-md text-center text-xs text-orangeTable">
+                        İşleme Alınması Bekleniyor
+                      </h1>
+                    </div>
                   </div>
                 )}
                 {status === true && (
-                  <div className="flex items-center w-full justify-center">
-                    <i className="fa-solid fa-circle text-green-500 items-center justify-center mx-2"></i>
-                    <h1 className="text-md text-center ">Aktif</h1>
+                  <div className="flex items-center w-[220px] justify-center border-greenStatus border bg-lightGreen rounded-lg">
+                    <div className="flex p-1">
+                      <i className="fa-solid fa-circle text-greenStatus text-[0.5rem] flex items-center justify-center mx-2"></i>
+                      <h1 className="text-center text-xs text-greenStatus">
+                        Aktif
+                      </h1>
+                    </div>
                   </div>
                 )}
                 {requestStatus === "true" && status === false && (
-                  <div className="flex w-full justify-center">
-                    <i className="fa-solid fa-circle text-coral flashing-text flex items-center justify-center mx-2"></i>
-                    <h1 className="text-md text-center ">
-                      Randevu Talebi Onay Bekleniyor
-                    </h1>
+                  <div className="flex justify-center items-center w-[220px] border-orangeTable border bg-lightOrange2 rounded-lg">
+                    <div className="p-1 flex">
+                      <i className="fa-solid fa-circle text-orangeTable text-[0.5rem] text-center flex items-center justify-center mx-2"></i>
+                      <h1 className="text-md text-center text-xs text-orangeTable">
+                        Randevu Talebi Onay Bekleniyor
+                      </h1>
+                    </div>
                   </div>
                 )}
               </>
             )}
           </td>
-          <td
-            className={`text-center border-dashed border-2 border-[#0003] border-r-0 `}
-          >
+          <td className={`text-center p-3 font-semibold`}>
             <span
               className={`text-center mb-auto ${
                 fullRemainingTime === "Randevu Bitti" ? "text-coral" : ""
@@ -335,6 +433,84 @@ function Agenda() {
             >
               {fullRemainingTime}
             </span>
+          </td>
+          <td className={`text-center p-3 font-semibold `}>
+            <div
+              className="bg-lightGray rounded-full cursor-pointer threePoint"
+              onClick={() => toggleButtonsArea(formEntry)}
+            >
+              <i class="fa-solid fa-ellipsis-vertical p-1"></i>
+            </div>
+            {showButtonsArea &&
+              selectedAppointment &&
+              selectedAppointment.appointmentNumber ===
+                formEntry.appointmentNumber && (
+                <div className="absolute z-10 right-[8px] buttonsArea border-2 border-lightGray rounded-md bg-white animate__animated animate__zoomIn">
+                  {!isCancelled && !isPastAppointment && status && (
+                    <div className="items-center justify-center">
+                      <div className="m-4">
+                        <button
+                          onClick={() =>
+                            handleDelete(formEntry, isCancelDisabled)
+                          }
+                          className={`bg-lightGray text-black
+                  rounded-md flex text-sm w-40 p-2 items-center justify-start`}
+                        >
+                          <i class="fa-solid fa-ban mr-2 text-gray-600 font-semibold"></i>
+                          İptal Et
+                        </button>
+                      </div>
+                      <div className="m-4">
+                        <button
+                          onClick={() =>
+                            joinMeet(formEntry, remainingTime.remainingHours)
+                          }
+                          className={`bg-lightGray text-black
+                   rounded-md flex text-sm w-40 p-2 items-center justify-start`}
+                        >
+                          <i class="fa-regular fa-user mr-2 text-gray-600 font-semibold"></i>
+                          Katıl
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                  {status === false && !isCancelled && !isPastAppointment && (
+                    <>
+                      <div className="m-4">
+                        <button
+                          onClick={() => onAccept(timeObject)}
+                          className={`bg-lightGray text-black
+                    rounded-md flex text-sm w-40 p-2 items-center justify-start`}
+                        >
+                          <i class="fa-solid fa-check mr-2 text-gray-600 font-semibold"></i>
+                          İşleme Al
+                        </button>
+                      </div>
+                      <div className="m-4">
+                        <button
+                          onClick={() => onReject(timeObject)}
+                          className={`bg-lightGray text-black
+                      rounded-md flex text-sm w-40 p-2 items-center justify-start`}
+                        >
+                          <i class="fa-solid fa-xmark mr-2 text-gray-600 font-semibold"></i>
+                          Reddet
+                        </button>
+                      </div>
+                    </>
+                  )}
+
+                  <div className="m-4">
+                    <button
+                      onClick={() => handleOpenModal(formEntry)}
+                      className={`bg-lightGray text-black
+                    rounded-md flex text-sm w-40 p-2 items-center justify-start`}
+                    >
+                      <i class="fa-solid fa-circle-info mr-2 text-gray-600 font-semibold"></i>
+                      Detaylar
+                    </button>
+                  </div>
+                </div>
+              )}
           </td>
         </tr>
       );
@@ -627,6 +803,8 @@ function Agenda() {
     switch (filter) {
       case "past":
         return "Geçmiş Randevunuz";
+      case "notConfirmed":
+        return "İşlem Bekleyen Randevunuz";
       case "cancelled":
         return "İptal Edilen Randevunuz";
       case "today":
@@ -645,30 +823,17 @@ function Agenda() {
           isMobileForAnimation ? "" : "animate__fadeInTopLeft"
         } animate__animated  rounded-xl max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 w-full flex-grow shadow-xl`}
       >
-        <div className="w-full shadow-xl overflow-auto max-h-600">
+        <div className="w-full overflow-auto max-h-600">
           <div className="flex">
             <div className="w-[33%] flex items-center justify-center"></div>
-            <h1 className=" lg:text-[1.5vw] max-[768px]:text-xl max-[768px]:w-[48%] w-[33%] text-center max-[768px]:justify:start font-semibold mt-2 max-[768px]:pt-0 sticky top-0 p-3 pb-0">
+            <h1 className=" lg:text-[1.5vw] max-[768px]:text-xl max-[768px]:w-[48%] w-[33%] text-center max-[768px]:justify:start text-gray-600 font-semibold mt-2 max-[768px]:pt-0 sticky top-0 p-3 pb-0">
               {getTableHeaders()}
             </h1>
-            <div className="flex w-[33%] max-[768px]:w-[48%] justify-end items-center mb-4 mt-6">
-              <select
-                value={filter}
-                onChange={(e) => handleFilterChange(e.target.value)}
-                className="p-2 w-[11vw] border rounded-3xl text-sm max-[768px]:w-[120px]"
-              >
-                <option value="all">Yaklaşan Randevular</option>
-                <option value="past">Geçmiş Randevular</option>
-                <option value="today">Bugünkü Randevular</option>
-                <option value="future">Gelecek Randevular</option>
-                <option value="cancelled">İptal Edilen Randevular</option>
-              </select>
-            </div>
           </div>
           {pendingAppointments.length > 0 && (
-            <h1 className="text-md max-[768px]:text-sm text-coral text-center font-semibold flashing-text mb-2 max-[768px]:mb-0">
-              {pendingAppointments.length} İşlem bekleyen randevu lütfen kontrol
-              ediniz.
+            <h1 className="text-md max-[768px]:text-sm text-coral text-center font-semibold mb-2 max-[768px]:mb-0">
+              {pendingAppointments.length} ADET İŞLEM BEKLEYEN RANDEVUNUZ VAR
+              LÜTFEN KONTROL EDİNİZ.
             </h1>
           )}
           <div className="agendaCardSwiper">
@@ -677,18 +842,70 @@ function Agenda() {
                 {getInfoTableHeaders()} Bulunmamaktadır.
               </h1>
             )}
+            <div className="flex justify-start items-center mb-4 ">
+              <div className="dropdown-content flex">
+                <div
+                  onClick={() => handleFilterChange("notConfirmed")}
+                  className={`p-1 border-2 ${
+                    filter === "notConfirmed" ? "activeCategory" : ""
+                  } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
+                >
+                  İşlem Bekleyen Randevular
+                </div>
+                <div
+                  onClick={() => handleFilterChange("all")}
+                  className={`p-1 border-2 ${
+                    filter === "all" ? "activeCategory" : ""
+                  } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
+                >
+                  Yaklaşan Randevular
+                </div>
+                <div
+                  onClick={() => handleFilterChange("past")}
+                  className={`p-1 border-2 ${
+                    filter === "past" ? "activeCategory" : ""
+                  } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
+                >
+                  Geçmiş Randevular
+                </div>
+                <div
+                  onClick={() => handleFilterChange("today")}
+                  className={`p-1 border-2 ${
+                    filter === "today" ? "activeCategory" : ""
+                  } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
+                >
+                  Bugünkü Randevular
+                </div>
+                <div
+                  onClick={() => handleFilterChange("future")}
+                  className={`p-1 border-2 ${
+                    filter === "future" ? "activeCategory" : ""
+                  } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
+                >
+                  Gelecek Randevular
+                </div>
+                <div
+                  onClick={() => handleFilterChange("cancelled")}
+                  className={`p-1 border-2 ${
+                    filter === "cancelled" ? "activeCategory" : ""
+                  } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
+                >
+                  İptal Edilen Randevular
+                </div>
+              </div>
+            </div>
             {!isMobile && (
               <table className="rounded-xl w-full ">
                 <thead>
-                  <tr className="sticky top-0 bg-premiumPurple text-white">
+                  <tr className="sticky top-0 bg-lightGray text-gray-600">
                     <th className="p-3">Sıra</th>
                     <th className="p-3">Randevu Numarası</th>
                     <th className="p-3">Tarih</th>
                     <th className="p-3">Saat</th>
                     <th className="p-3">Randevu</th>
-                    <th className="p-3">İşlemler</th>
                     <th className="p-3">Durum</th>
                     <th className="p-3">Kalan Süre</th>
+                    <th className="p-3"></th>
                   </tr>
                 </thead>
                 <tbody>{convertFormDataToTable()}</tbody>
@@ -704,10 +921,10 @@ function Agenda() {
                 <li
                   key={page + 1}
                   onClick={() => handlePageChange(page + 1)}
-                  className={`px-3 py-2 border cursor-pointer rounded-2xl ${
+                  className={`px-3 py-2 border w-[40px] h-[40px] flex items-center justify-center cursor-pointer rounded-full ${
                     page + 1 === currentPage
-                      ? "bg-premiumPurple text-white"
-                      : "border-gray-300"
+                      ? "bg-grayBg text-gray-600 font-semibold"
+                      : "border-grayBg"
                   }`}
                 >
                   <button onClick={() => handlePageChange(page + 1)}>

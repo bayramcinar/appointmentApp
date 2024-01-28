@@ -13,7 +13,9 @@
 .agendaCardSwiper tr:first-child td {
   border-top: 0;
 }
-
+.activeCategory {
+  border-color: hsl(267, 100%, 47%);
+}
 .agendaCardSwiper tr:last-child td {
   border-bottom: 0;
 }

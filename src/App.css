@@ -1,6 +1,9 @@
 * {
   font-family: "Rubik", sans-serif;
 }
+#root {
+  background-color: #f1f2f6;
+}
 .swal2-confirm {
   background-color: #112469 !important ;
   border-radius: 30px !important;
