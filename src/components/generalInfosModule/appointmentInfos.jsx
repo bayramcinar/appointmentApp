@@ -113,7 +113,7 @@ function AppointmentInfos() {
     return (
       <Swiper
         pagination={{ clickable: true, dynamicBullets: true }}
-        modules={[]}
+        modules={[Pagination]}
         className="mySwiper"
       >
         {swiperSlides}
@@ -136,14 +136,14 @@ function AppointmentInfos() {
       <div className="infosArea block lg:flex">
         <>
           <div className="graphArea w-full lg:w-[75%] sm:flex block items-center justify-center mx-auto">
-            <div className="w-full p-2 lg:p-4 flex items-center justify-center">
+            <div className="w-full h-full flex items-center justify-center mr-1">
               <Line
                 data={stateDay}
                 options={options}
                 className="p-2 bg-white border-2 border-gray-200 rounded-md"
               />
             </div>
-            <div className="w-full flex items-center justify-center p-2 lg:p-4">
+            <div className="w-full flex items-center justify-center h-full">
               <Line
                 data={stateMonth}
                 options={options}
