@@ -862,13 +862,31 @@ function Agenda() {
         } animate__animated  rounded-xl max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 w-full flex-grow shadow-xl`}
       >
         <div className="w-full overflow-auto max-h-600">
-          <div className="flex items-center justify-center">
-            <h1 className=" lg:text-[1.5vw] max-[768px]:text-xl max-[768px]:w-[48%] text-center max-[768px]:justify:start text-gray-600 font-semibold mt-2 max-[768px]:pt-0 sticky top-0 p-3 pb-0">
+          <div className="flex items-center justify-start m-4">
+            <h1 className=" lg:text-[1.5vw] max-[768px]:text-xl max-[768px]:w-[48%] text-center max-[768px]:justify:start text-gray-600 font-semibold max-[768px]:pt-0 sticky top-0 pl-3">
               {getTableHeaders()}
             </h1>
+            <div className="relative ml-auto flex items-center justify-center">
+              <input
+                type="text"
+                placeholder="Ara..."
+                className="border rounded-md p-1 focus:outline-none "
+              />
+              <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                <i className="fas fa-search text-gray-500"></i>
+              </div>
+            </div>
           </div>
           <div className="agendaCardSwiper">
-            <div className="flex justify-start items-center mb-4 ">
+            <div className="flex justify-start items-center mb-4 ml-4">
+              <div
+                onClick={() => handleFilterChange("all")}
+                className={`p-1 border-b-2 ${
+                  filter === "all" ? "activeCategory" : ""
+                } border-gray-300 m-2 text-gray-500 cursor-pointer`}
+              >
+                Tümü
+              </div>
               <div
                 onClick={() => handleFilterChange("coming")}
                 className={`p-1 border-b-2 ${
@@ -901,14 +919,7 @@ function Agenda() {
               >
                 İptal Edilen
               </div>
-              <div
-                onClick={() => handleFilterChange("all")}
-                className={`p-1 border-b-2 ${
-                  filter === "all" ? "activeCategory" : ""
-                } border-gray-300 m-2 text-gray-500 cursor-pointer`}
-              >
-                Tümü
-              </div>
+
               <div className="dropdown-content flex">
                 <div
                   onClick={() => handleFilterChange("notConfirmed")}
@@ -917,7 +928,7 @@ function Agenda() {
                   } border-gray-300 m-2 text-gray-500 cursor-pointer flex`}
                 >
                   {pendingAppointments.length > 0 && (
-                    <i className="fa-solid fa-circle text-purpleElite text-[0.5rem] flashing-text text-center flex items-center justify-center mr-2"></i>
+                    <i className="fa-solid fa-circle text-premiumPurple text-[0.5rem] flashing-text text-center flex items-center justify-center mr-2"></i>
                   )}
                   İşlem Bekleyen
                 </div>
@@ -945,13 +956,29 @@ function Agenda() {
           </div>
         </div>
         {!isMobile && (
-          <div className="flex justify-center my-3">
+          <div className="flex justify-end m-3">
             <ul className="flex space-x-2">
+              <li
+                onClick={() => handlePageChange(currentPage - 1)}
+                className={`px-5 py-2 border w-[80px] h-[40px] flex items-center justify-center cursor-pointer rounded-xl ${
+                  currentPage === 1
+                    ? "bg-grayBg text-gray-600 font-semibold"
+                    : "border-grayBg"
+                }`}
+              >
+                <button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                >
+                  Önceki
+                </button>
+              </li>
+
               {[...Array(totalPages).keys()].map((page) => (
                 <li
                   key={page + 1}
                   onClick={() => handlePageChange(page + 1)}
-                  className={`px-3 py-2 border w-[40px] h-[40px] flex items-center justify-center cursor-pointer rounded-full ${
+                  className={`px-3 py-2 border w-[40px] h-[40px] flex items-center justify-center cursor-pointer rounded-xl ${
                     page + 1 === currentPage
                       ? "bg-grayBg text-gray-600 font-semibold"
                       : "border-grayBg"
@@ -962,6 +989,22 @@ function Agenda() {
                   </button>
                 </li>
               ))}
+
+              <li
+                onClick={() => handlePageChange(currentPage + 1)}
+                className={`px-5 py-2 border w-[80px] h-[40px] flex items-center justify-center cursor-pointer rounded-xl ${
+                  currentPage === totalPages
+                    ? "bg-grayBg text-gray-600 font-semibold"
+                    : "border-grayBg"
+                }`}
+              >
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                >
+                  Sonraki
+                </button>
+              </li>
             </ul>
           </div>
         )}

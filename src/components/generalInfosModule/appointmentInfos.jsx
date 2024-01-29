@@ -44,8 +44,8 @@ function AppointmentInfos() {
         type: "line",
         label: "Günlük Randevu Sayıları",
         data: [5, 8, 12, 3, 7, 1, 9],
-        backgroundColor: "hsl(270, 100%, 90.75%)",
-        borderColor: "hsl(270, 100%, 29.75%)",
+        backgroundColor: "hsl(7, 90%, 64%)",
+        borderColor: "hsl(7, 90%, 64%)",
       },
     ],
   };
@@ -53,14 +53,14 @@ function AppointmentInfos() {
     labels: hoursArray,
     datasets: [
       {
-        type: "line",
+        type: "bar",
         label: "Bugünkü Randevu Sayıları",
         data: [
-          5, 8, 12, 3, 7, 1, 9, 5, 8, 12, 3, 7, 1, 9, 5, 8, 12, 3, 7, 1, 9, 9,
-          3, 1,
+          0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1,
+          0,
         ],
-        backgroundColor: "hsl(270, 100%, 90.75%)",
-        borderColor: "hsl(270, 100%, 29.75%)",
+        backgroundColor: "hsl(7, 90%, 64%)",
+        borderColor: "hsl(7, 90%, 64%)",
       },
     ],
   };
@@ -68,14 +68,14 @@ function AppointmentInfos() {
     labels: hoursArray,
     datasets: [
       {
-        type: "line",
+        type: "bar",
         label: "Dünkü Randevu Sayıları",
         data: [
-          5, 8, 12, 3, 7, 1, 12, 3, 7, 1, 9, 5, 3, 7, 1, 9, 9, 3, 1, 10, 3, 7,
-          6, 6,
+          0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1,
+          0,
         ],
-        backgroundColor: "hsl(270, 100%, 90.75%)",
-        borderColor: "hsl(270, 100%, 29.75%)",
+        backgroundColor: "hsl(7, 90%, 64%)",
+        borderColor: "hsl(7, 90%, 64%)",
       },
     ],
   };
@@ -93,20 +93,35 @@ function AppointmentInfos() {
     "Kasım",
     "Aralık",
   ];
-
-  const stateMonth = {
+  const daysInMonth = new Array(31).fill().map((_, i) => i + 1);
+  const stateYearly = {
     labels: months,
     datasets: [
       {
         type: "line",
         label: "Aylık Randevu Sayıları",
         data: [135, 180, 122, 91, 178, 160, 96, 45, 169, 110, 157, 83],
-        backgroundColor: "hsl(270, 100%, 90.75%)",
-        borderColor: "hsl(270, 100%, 29.75%)",
+        backgroundColor: "hsl(7, 90%, 64%)",
+        borderColor: "hsl(7, 90%, 64%)",
       },
     ],
   };
-  const [graph, setGraph] = useState(stateMonth);
+  const stateMonthly = {
+    labels: daysInMonth,
+    datasets: [
+      {
+        type: "line",
+        label: "Bu Ayki Randevu Sayıları",
+        data: [
+          3, 4, 1, 5, 6, 7, 1, 1, 2, 3, 3, 4, 1, 5, 6, 7, 1, 1, 2, 3, 3, 4, 1,
+          5, 6, 7, 1, 1, 2, 3, 3,
+        ],
+        backgroundColor: "hsl(7, 90%, 64%)",
+        borderColor: "hsl(7, 90%, 64%)",
+      },
+    ],
+  };
+  const [graph, setGraph] = useState(stateToday);
   const boxes = [
     {
       number: 5,
@@ -146,6 +161,7 @@ function AppointmentInfos() {
       changeRate: 486,
       lastOne: "102",
       lastOne: "55",
+      graphType: "yearly",
       graph: false,
     },
     {
@@ -173,14 +189,15 @@ function AppointmentInfos() {
   const changeGraph = (dataType) => {
     if (dataType === "weekly") {
       setGraph({ ...stateDay });
-    } else if (dataType === "monthly") {
-      setGraph({ ...stateMonth });
+    } else if (dataType === "yearly") {
+      setGraph({ ...stateYearly });
     } else if (dataType === "daily") {
       setGraph({ ...stateToday });
     } else if (dataType === "yesterday") {
       setGraph({ ...stateYesterday });
+    } else if (dataType === "monthly") {
+      setGraph({ ...stateMonthly });
     }
-    console.log(`Changing graph to ${dataType} data`);
   };
   const renderSwiper = (items) => {
     const itemsPerSlide = isMobile ? 4 : 8;
@@ -223,7 +240,7 @@ function AppointmentInfos() {
     plugins: {
       legend: {
         labels: {
-          color: "hsl(270, 100%, 29.75%)",
+          color: "hsl(7, 90%, 64%)",
         },
       },
     },
