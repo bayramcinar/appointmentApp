@@ -857,7 +857,7 @@ function Agenda() {
   return (
     <>
       <div
-        className={`bg-white lg:scale-[1] md:scale-[0.9] lg:mr-[1rem] ${
+        className={`bg-white lg:scale-[1] md:scale-[0.9] ${
           isMobileForAnimation ? "" : "animate__fadeInTopLeft"
         } animate__animated  rounded-xl max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 w-full flex-grow shadow-xl`}
       >
