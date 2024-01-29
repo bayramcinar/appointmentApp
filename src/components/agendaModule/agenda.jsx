@@ -82,7 +82,7 @@ function Agenda() {
             !isSameDay(currentDate, appointmentDate) &&
             data.delete === false
           );
-        default:
+        case "coming":
           return (
             (appointmentDate > currentDate ||
               (appointmentDate.getDate() === currentDate.getDate() &&
@@ -92,6 +92,8 @@ function Agenda() {
                   ))) &&
             data.delete === false
           );
+        default:
+          return filter;
       }
     });
 
@@ -352,6 +354,7 @@ function Agenda() {
       const isCancelDisabled = remainingTime.remainingHours < 12;
       const actualIndex = (currentPage - 1) * itemsPerPage + index;
       const isCancelled = formEntry.delete === true;
+      const language = formEntry.language;
       return (
         <tr
           key={actualIndex}
@@ -372,39 +375,42 @@ function Agenda() {
           <td className="text-center p-3 text-black font-semibold">
             {service}
           </td>
+          <td className="text-center p-3 text-black font-semibold">
+            {language}
+          </td>
           <td className="text-center status p-3 flex items-center justify-center">
             {isCancelled ? (
-              <div className="flex justify-center items-center w-[220px] border-coral border bg-lightRed rounded-lg">
+              <div className="flex justify-center items-center w-[150px] border-coral border bg-lightRed rounded-lg">
                 <div className="p-1 flex">
                   <i className="fa-solid fa-circle text-coral text-[0.5rem] text-center flex items-center justify-center mx-2"></i>
                   <h1 className="text-center text-[0.65rem] lg:text-xs text-coral">
-                    Randevu İptal Edildi
+                    İptal Edildi
                   </h1>
                 </div>
               </div>
             ) : isPastAppointment ? (
-              <div className="flex items-center w-[220px] justify-center border-gray-500 border bg-gray-200 rounded-lg">
+              <div className="flex items-center w-[150px] justify-center border-gray-500 border bg-gray-200 rounded-lg">
                 <div className="flex p-1">
                   <i className="fa-solid fa-circle text-gray-500 text-[0.5rem] flex items-center justify-center mx-2"></i>
                   <h1 className="text-center text-[0.65rem] lg:text-xs text-gray-500">
-                    Randevu Tamamlandı
+                    Tamamlandı
                   </h1>
                 </div>
               </div>
             ) : (
               <>
                 {status === false && requestStatus === "false" && (
-                  <div className="flex justify-center items-center w-[220px] border-orangeTable border bg-lightOrange2 rounded-lg">
+                  <div className="flex justify-center items-center w-[150px] border-orangeTable border bg-lightOrange2 rounded-lg">
                     <div className="p-1 flex">
                       <i className="fa-solid fa-circle text-orangeTable text-[0.5rem] text-center flex items-center justify-center mx-2"></i>
                       <h1 className="text-center text-[0.65rem] lg:text-xs text-orangeTable">
-                        İşleme Alınması Bekleniyor
+                        İşlem Bekleniyor
                       </h1>
                     </div>
                   </div>
                 )}
                 {status === true && (
-                  <div className="flex items-center w-[220px] justify-center border-greenStatus border bg-lightGreen rounded-lg">
+                  <div className="flex items-center w-[150px] justify-center border-greenStatus border bg-lightGreen rounded-lg">
                     <div className="flex p-1">
                       <i className="fa-solid fa-circle text-greenStatus text-[0.5rem] flex items-center justify-center mx-2"></i>
                       <h1 className="text-center text-[0.65rem] lg:text-xs text-greenStatus">
@@ -414,11 +420,11 @@ function Agenda() {
                   </div>
                 )}
                 {requestStatus === "true" && status === false && (
-                  <div className="flex justify-center items-center w-[220px] border-orangeTable border bg-lightOrange2 rounded-lg">
+                  <div className="flex justify-center items-center w-[150px] border-orangeTable border bg-lightOrange2 rounded-lg">
                     <div className="p-1 flex">
                       <i className="fa-solid fa-circle text-orangeTable text-[0.5rem] text-center flex items-center justify-center mx-2"></i>
                       <h1 className="text-center text-[0.65rem] lg:text-xs text-orangeTable">
-                        Randevu Talebi Onay Bekleniyor
+                        Onay Bekleniyor
                       </h1>
                     </div>
                   </div>
@@ -499,7 +505,16 @@ function Agenda() {
                       </div>
                     </>
                   )}
-
+                  <div className="m-4">
+                    <button
+                      // onClick={() => handleOpenModal(formEntry)} // MESAJ SAYFASINA YÖNLENDİRECEK ALAN
+                      className={`bg-lightGray text-black
+                    rounded-md flex text-xs 2xl:text-sm w-40 p-2 items-center justify-start`}
+                    >
+                      <i class="fa-solid fa-message mr-2 text-gray-600 font-semibold"></i>
+                      Mesaj Gönder
+                    </button>
+                  </div>
                   <div className="m-4">
                     <button
                       onClick={() => handleOpenModal(formEntry)}
@@ -816,8 +831,10 @@ function Agenda() {
         return "Bugünki Randevularım";
       case "future":
         return "Gelecek Randevularım";
-      default:
+      case "coming":
         return "Yaklaşan Randevularım";
+      default:
+        return "Tüm Randevularım";
     }
   }
   function getInfoTableHeaders() {
@@ -850,67 +867,59 @@ function Agenda() {
               {getTableHeaders()}
             </h1>
           </div>
-          {pendingAppointments.length > 0 && (
-            <h1 className="text-md max-[768px]:text-sm text-coral text-center font-semibold mb-2 max-[768px]:mb-0">
-              {pendingAppointments.length} ADET İŞLEM BEKLEYEN RANDEVUNUZ VAR
-              LÜTFEN KONTROL EDİNİZ.
-            </h1>
-          )}
           <div className="agendaCardSwiper">
-            {paginatedFormData.length === 0 && (
-              <h1 className="text-md max-[768px]:text-sm text-coral text-center font-semibold mb-2 max-[768px]:mb-0">
-                {getInfoTableHeaders()} Bulunmamaktadır.
-              </h1>
-            )}
             <div className="flex justify-start items-center mb-4 ">
               <div
-                onClick={() => handleFilterChange("all")}
-                className={`p-1 border-2 ${
-                  filter === "all" ? "activeCategory" : ""
-                } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
+                onClick={() => handleFilterChange("coming")}
+                className={`p-1 border-b-2 ${
+                  filter === "coming" ? "activeCategory" : ""
+                } border-gray-300 m-2 text-gray-500 cursor-pointer`}
               >
-                Yaklaşan Randevular
+                Yaklaşan
               </div>
               <div
                 onClick={() => handleFilterChange("past")}
-                className={`p-1 border-2 ${
+                className={`p-1 border-b-2 ${
                   filter === "past" ? "activeCategory" : ""
-                } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
+                } border-gray-300 m-2 text-gray-500 cursor-pointer`}
               >
-                Geçmiş Randevular
+                Geçmiş
               </div>
               <div
                 onClick={() => handleFilterChange("today")}
-                className={`p-1 border-2 ${
+                className={`p-1 border-b-2 ${
                   filter === "today" ? "activeCategory" : ""
-                } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
+                } border-gray-300 m-2 text-gray-500 cursor-pointer`}
               >
-                Bugünkü Randevular
-              </div>
-              <div
-                onClick={() => handleFilterChange("future")}
-                className={`p-1 border-2 ${
-                  filter === "future" ? "activeCategory" : ""
-                } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
-              >
-                Gelecek Randevular
+                Bugünkü
               </div>
               <div
                 onClick={() => handleFilterChange("cancelled")}
-                className={`p-1 border-2 ${
+                className={`p-1 border-b-2 ${
                   filter === "cancelled" ? "activeCategory" : ""
-                } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
+                } border-gray-300 m-2 text-gray-500 cursor-pointer`}
               >
-                İptal Edilen Randevular
+                İptal Edilen
+              </div>
+              <div
+                onClick={() => handleFilterChange("all")}
+                className={`p-1 border-b-2 ${
+                  filter === "all" ? "activeCategory" : ""
+                } border-gray-300 m-2 text-gray-500 cursor-pointer`}
+              >
+                Tümü
               </div>
               <div className="dropdown-content flex">
                 <div
                   onClick={() => handleFilterChange("notConfirmed")}
-                  className={`p-1 border-2 ${
+                  className={`p-1 border-b-2 ${
                     filter === "notConfirmed" ? "activeCategory" : ""
-                  } border-gray-300 m-2 text-gray-500 cursor-pointer rounded-md`}
+                  } border-gray-300 m-2 text-gray-500 cursor-pointer flex`}
                 >
-                  İşlem Bekleyen Randevular
+                  {pendingAppointments.length > 0 && (
+                    <i className="fa-solid fa-circle text-purpleElite text-[0.5rem] flashing-text text-center flex items-center justify-center mr-2"></i>
+                  )}
+                  İşlem Bekleyen
                 </div>
               </div>
             </div>
@@ -923,6 +932,7 @@ function Agenda() {
                     <th className="p-3">Tarih</th>
                     <th className="p-3">Saat</th>
                     <th className="p-3">Randevu</th>
+                    <th className="p-3">Dil</th>
                     <th className="p-3">Durum</th>
                     <th className="p-3">Kalan Süre</th>
                     <th className="p-3"></th>
