@@ -10,7 +10,7 @@ function AppointmentInfoBox({
 }) {
   console.log(graph);
   return (
-    <div className="border-gray-200 border-2 rounded-md bg-white lg:w-[11.5vw] m-1 2xl:m-3 w-44">
+    <div className="border-gray-200 border-2 rounded-md bg-white lg:w-[10.5vw] m-1 2xl:m-3 w-44">
       <div
         className={`px-[0.3vw] py-[0.5vw] 2xl:px-[0.5vw] ${
           graph ? "2xl:py-[1.2vw]" : "2xl:py-[1.5vw]"

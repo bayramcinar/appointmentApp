@@ -162,7 +162,7 @@ function AppointmentInfos() {
       lastOne: "102",
       lastOne: "55",
       graphType: "yearly",
-      graph: false,
+      graph: true,
     },
     {
       number: 7,
@@ -248,18 +248,19 @@ function AppointmentInfos() {
 
   return (
     <div className="w-full my-4">
+      <div className="m-4 mb-0">
+        <h1 className="lg:text-[1.5vw] max-[768px]:text-xl font-semibold text-gray-600  pl-3">
+          İstatistikler
+        </h1>
+      </div>
       <div className="infosArea block lg:flex">
         <>
-          <div className="graphArea w-full lg:w-[45%] sm:flex block items-center justify-center mx-auto">
-            <div className="w-full h-full flex items-center justify-center mr-1">
-              <Line
-                data={graph}
-                options={options}
-                className="p-2 bg-white border-2 border-gray-200 rounded-md"
-              />
+          <div className="graphArea w-full lg:w-[50%] sm:flex block items-center justify-center mx-auto bg-white border-2 border-gray-200 rounded-md max-h-[365px] mt-3">
+            <div className="w-full h-full flex items-center justify-center mr-1 ">
+              <Line data={graph} options={options} className="p-2 " />
             </div>
           </div>
-          <div className="infosArea flex items-center justify-end w-full lg:w-[55%] mx-auto">
+          <div className="infosArea flex items-center justify-end w-full lg:w-[50%] mx-auto">
             {renderSwiper(boxes)}
           </div>
         </>

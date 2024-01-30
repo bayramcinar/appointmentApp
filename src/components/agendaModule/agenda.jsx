@@ -355,6 +355,7 @@ function Agenda() {
       const actualIndex = (currentPage - 1) * itemsPerPage + index;
       const isCancelled = formEntry.delete === true;
       const language = formEntry.language;
+      const nameSurname = formEntry.firstName + " " + formEntry.lastName;
       return (
         <tr
           key={actualIndex}
@@ -365,6 +366,9 @@ function Agenda() {
           </td>
           <td className="text-center p-3 text-black font-semibold">
             {formEntry.appointmentNumber}
+          </td>
+          <td className="text-center p-3 text-black font-semibold">
+            {nameSurname}
           </td>
           <td className="text-center p-3 text-black font-semibold">
             {dateInfo}
@@ -940,6 +944,7 @@ function Agenda() {
                   <tr className="sticky top-0 bg-lightGray text-gray-600">
                     <th className="p-3">Sıra</th>
                     <th className="p-3">Randevu Numarası</th>
+                    <th className="p-3">Ad Soyad</th>
                     <th className="p-3">Tarih</th>
                     <th className="p-3">Saat</th>
                     <th className="p-3">Randevu</th>
