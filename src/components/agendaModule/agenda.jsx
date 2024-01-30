@@ -859,7 +859,7 @@ function Agenda() {
       <div
         className={`bg-white lg:scale-[1] md:scale-[0.9] ${
           isMobileForAnimation ? "" : "animate__fadeInTopLeft"
-        } animate__animated  rounded-xl max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 w-full flex-grow shadow-xl`}
+        } animate__animated  rounded-xl max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 w-full flex-grow shadow-xl flex flex-col justify-between`}
       >
         <div className="w-full overflow-auto max-h-600">
           <div className="flex items-center justify-start m-4">
