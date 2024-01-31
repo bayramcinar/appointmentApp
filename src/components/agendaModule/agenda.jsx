@@ -947,7 +947,7 @@ function Agenda() {
             </div>
           </div>
           <div className="agendaCardSwiper">
-            <div className="flex justify-center lg:justify-start items-center mb-4 ml-4 flex-wrap">
+            <div className="flex justify-center lg:justify-start items-center mb-4 lg:ml-4 flex-wrap">
               <div
                 onClick={() => handleFilterChange("all")}
                 className={`p-1 border-b-2 ${
