@@ -3,7 +3,6 @@ import FullCalendarComponent from "../bigCalendarModule/fullCalendar";
 import SetAppointmentTime from "../settingAppointmentTimeModule/setAppointmentTime";
 import AppointmentInfos from "../generalInfosModule/appointmentInfos";
 import Agenda from "../agendaModule/agenda";
-import AppointmentRequestList from "../appointmentRequestListModule/appointmentRequestList";
 
 function Dashboard() {
   const isMobile = window.innerWidth <= 768;

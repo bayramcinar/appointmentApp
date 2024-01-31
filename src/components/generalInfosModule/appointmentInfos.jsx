@@ -255,8 +255,8 @@ function AppointmentInfos() {
       </div>
       <div className="infosArea block lg:flex">
         <>
-          <div className="graphArea w-full lg:w-[50%] sm:flex block items-center justify-center mx-auto bg-white border-2 border-gray-200 rounded-md max-h-[365px] mt-3">
-            <div className="w-full h-full flex items-center justify-center mr-1 ">
+          <div className="graphArea md:w-full lg:w-[50%] sm:flex block items-center justify-center mx-[35px] mb-2 lg:mb-0 lg:mx-auto bg-white border-2 border-gray-200 rounded-md max-h-[365px] mt-3">
+            <div className="lg:w-full h-full flex items-center justify-center mr-1 ">
               <Line data={graph} options={options} className="p-2 " />
             </div>
           </div>

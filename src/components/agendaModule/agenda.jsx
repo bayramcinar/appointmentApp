@@ -9,6 +9,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation, Pagination } from "swiper/modules";
+import CardMobile from "./cardMobile";
 
 function Agenda() {
   const [formData, setFormData] = useState([]);
@@ -730,7 +731,69 @@ function Agenda() {
   const renderSwiper = (times) => {
     const itemsPerSlide = 4;
     const swiperSlides = [];
+    const findObjectByTime = (timeObject) => {
+      //TIKLADIĞIMIZ OBJEYİ ALIYORUZ
+      const formDataString = localStorage.getItem("formData");
 
+      if (!formDataString) {
+        return [];
+      }
+
+      const formData = JSON.parse(formDataString);
+
+      const foundObject = formData.find((obj) => obj.time === timeObject);
+      console.log(foundObject);
+      return foundObject || null;
+    };
+    const onAccept = async (timeObject) => {
+      // RANDEVU TALEBİNİ KABUL ETME FONKSİYONUNU request değerini false yapıyor
+      const originalObje = findObjectByTime(timeObject);
+      Swal.fire({
+        title: "Emin misiniz!",
+        text: "Randevu talebini kabul etmek istediğinize emin misiniz?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Evet",
+        cancelButtonText: "Hayır",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          if (originalObje) {
+            const falseValue2 = originalObje.confirm;
+            const updatedValue2 = falseValue2 === false ? true : "";
+
+            const updatedObje = {
+              ...originalObje,
+              confirm: updatedValue2,
+            };
+
+            const formDataString = localStorage.getItem("formData");
+
+            if (formDataString) {
+              const formData = JSON.parse(formDataString);
+
+              const index = formData.findIndex(
+                (obj) => obj.time === originalObje.time
+              );
+
+              if (index !== -1) {
+                formData[index] = updatedObje;
+
+                localStorage.setItem("formData", JSON.stringify(formData));
+                Swal.fire({
+                  title: "Başarılı !",
+                  text: "Randevu talebi başarılı bir şekilde onaylandı ve kullanıcıya bildirildi.",
+                  icon: "success",
+                  confirmButtonText: "Kapat",
+                });
+                return updatedObje;
+              }
+            }
+          }
+        }
+      });
+
+      return null;
+    };
     for (let i = 0; i < times.length; i += itemsPerSlide) {
       const currentTimes = times.slice(i, i + itemsPerSlide);
       const swiperSlide = (
@@ -766,8 +829,9 @@ function Agenda() {
               const isToday = isSameDay(appointmentDate, currentDate);
 
               return (
-                <AgendaCard
+                <CardMobile
                   joinFunction={joinMeet}
+                  joinMeet={joinMeet}
                   formEntry={formEntry}
                   remainingHours={remainingTime.remainingHours}
                   isToday={isToday}
@@ -787,6 +851,7 @@ function Agenda() {
                   isPastAppointment={isPastAppointment}
                   requestStatus={requestStatus}
                   service={service}
+                  onAccept={onAccept}
                   status={status}
                   time={timeInfo}
                   date={dateInfo}
@@ -866,11 +931,11 @@ function Agenda() {
         } animate__animated  rounded-xl max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 w-full flex-grow shadow-xl flex flex-col justify-between`}
       >
         <div className="w-full overflow-auto max-h-600">
-          <div className="flex items-center justify-start m-4">
-            <h1 className=" lg:text-[1.5vw] max-[768px]:text-xl max-[768px]:w-[48%] text-center max-[768px]:justify:start text-gray-600 font-semibold max-[768px]:pt-0 sticky top-0 pl-3">
+          <div className="block lg:flex items-center justify-center lg:justify-start m-4">
+            <h1 className=" lg:text-[1.5vw] max-[768px]:text-xl text-center text-gray-600 font-semibold max-[768px]:pt-0 sticky top-0 pl-3">
               {getTableHeaders()}
             </h1>
-            <div className="relative ml-auto flex items-center justify-center">
+            <div className="relative ml-auto hidden lg:flex items-center justify-center">
               <input
                 type="text"
                 placeholder="Ara..."
@@ -882,7 +947,7 @@ function Agenda() {
             </div>
           </div>
           <div className="agendaCardSwiper">
-            <div className="flex justify-start items-center mb-4 ml-4">
+            <div className="flex justify-center lg:justify-start items-center mb-4 ml-4 flex-wrap">
               <div
                 onClick={() => handleFilterChange("all")}
                 className={`p-1 border-b-2 ${
