@@ -37,61 +37,73 @@ function CardMobile({
               </h1>
             </div>
           </div>
-          <div className="appointmentNumber text-gray-500 p-1 flex">
-            <i class="fa-solid fa-calendar-days text-gray-500 p-2 flex items-center justify-center"></i>
-            <div>
-              <h1 className="text-xs text-gray-500 p-1 pb-0">Randevu Durumu</h1>
-              <div className="status flex items-center justify-start ">
-                {isCancelled ? (
-                  <div className="flex justify-start items-center  ">
-                    <div className="p-1 flex">
-                      <i className="fa-solid fa-circle text-coral text-[0.5rem] text-center flex items-center justify-center mx-1"></i>
-                      <h1 className="text-center text-sm text-coral">
-                        İptal Edildi
-                      </h1>
+          <div className="flex">
+            {" "}
+            <div className="appointmentStatus text-gray-500 p-1 flex">
+              <i class="fa-solid fa-calendar-days text-gray-500 p-2 flex items-center justify-center"></i>
+              <div>
+                <h1 className="text-xs text-gray-500 p-1 pb-0">
+                  Randevu Durumu
+                </h1>
+                <div className="status flex items-center justify-start ">
+                  {isCancelled ? (
+                    <div className="flex justify-start items-center  ">
+                      <div className="p-1 flex">
+                        <i className="fa-solid fa-circle text-coral text-[0.5rem] text-center flex items-center justify-center mx-1"></i>
+                        <h1 className="text-center text-sm text-coral">
+                          İptal Edildi
+                        </h1>
+                      </div>
                     </div>
-                  </div>
-                ) : isPastAppointment ? (
-                  <div className="flex items-center justify-start ">
-                    <div className="flex p-1">
-                      <i className="fa-solid fa-circle text-gray-500 text-[0.5rem] flex items-center justify-center mx-1"></i>
-                      <h1 className="text-center text-sm">Tamamlandı</h1>
+                  ) : isPastAppointment ? (
+                    <div className="flex items-center justify-start ">
+                      <div className="flex p-1">
+                        <i className="fa-solid fa-circle text-gray-500 text-[0.5rem] flex items-center justify-center mx-1"></i>
+                        <h1 className="text-center text-sm">Tamamlandı</h1>
+                      </div>
                     </div>
-                  </div>
-                ) : (
-                  <>
-                    {status === false && requestStatus === "false" && (
-                      <div className="flex justify-start items-center ">
-                        <div className="p-1 flex">
-                          <i className="fa-solid fa-circle text-orangeTable text-[0.5rem] text-center flex items-center justify-center mx-1"></i>
-                          <h1 className="text-center text-sm text-orangeTable">
-                            İşlem Bekleniyor
-                          </h1>
+                  ) : (
+                    <>
+                      {status === false && requestStatus === "false" && (
+                        <div className="flex justify-start items-center ">
+                          <div className="p-1 flex">
+                            <i className="fa-solid fa-circle text-orangeTable text-[0.5rem] text-center flex items-center justify-center mx-1"></i>
+                            <h1 className="text-center text-sm text-orangeTable">
+                              İşlem Bekleniyor
+                            </h1>
+                          </div>
                         </div>
-                      </div>
-                    )}
-                    {status === true && (
-                      <div className="flex items-center justify-start ">
-                        <div className="flex p-1">
-                          <i className="fa-solid fa-circle text-greenStatus text-[0.5rem] flex items-center justify-center mx-1"></i>
-                          <h1 className="text-center text-sm text-greenStatus">
-                            Aktif
-                          </h1>
+                      )}
+                      {status === true && (
+                        <div className="flex items-center justify-start ">
+                          <div className="flex p-1">
+                            <i className="fa-solid fa-circle text-greenStatus text-[0.5rem] flex items-center justify-center mx-1"></i>
+                            <h1 className="text-center text-sm text-greenStatus">
+                              Aktif
+                            </h1>
+                          </div>
                         </div>
-                      </div>
-                    )}
-                    {requestStatus === "true" && status === false && (
-                      <div className="flex justify-start items-center  ">
-                        <div className="p-[2px] flex">
-                          <i className="fa-solid fa-circle text-orangeTable text-[0.5rem] text-center flex items-center justify-center mx-1"></i>
-                          <h1 className="text-center text-sm text-orangeTable">
-                            Onay Bekleniyor
-                          </h1>
+                      )}
+                      {requestStatus === "true" && status === false && (
+                        <div className="flex justify-start items-center  ">
+                          <div className="p-[2px] flex">
+                            <i className="fa-solid fa-circle text-orangeTable text-[0.5rem] text-center flex items-center justify-center mx-1"></i>
+                            <h1 className="text-center text-sm text-orangeTable">
+                              Onay Bekleniyor
+                            </h1>
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </>
-                )}
+                      )}
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="dateAndTimeArea text-gray-500 pb-0 p-1 pl-0 flex">
+              <i class="fa-solid fa-hourglass-half text-gray-500 p-2 flex items-center justify-center"></i>
+              <div>
+                <h1 className="text-xs text-gray-500 p-1 pb-0">Kalan Süre</h1>
+                <h1 className="text-sm text-gray-700 p-1">{remainingTime}</h1>
               </div>
             </div>
           </div>
