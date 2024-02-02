@@ -329,18 +329,18 @@ function AppointmentInfos() {
   };
 
   return (
-    <div className="w-full my-4 bg-white border-2 border-gray-200">
+    <div className="w-full my-4 bg-white mx-auto rounded-lg max-[768px]:max-w-[370px]">
       <div className="m-4 mb-0 flex justify-between">
-        <h1 className="lg:text-[1.5vw] max-[768px]:text-xl font-semibold text-gray-600  pl-3">
+        <h1 className="lg:text-[1.5vw] max-[768px]:text-xl font-semibold text-gray-600 pl-3 pt-4">
           İstatistikler
         </h1>
-        <h1 className="text-xs lg:text-[0.8vw] text-gray-500 font-semibold flex items-center justify-center">
+        <h1 className="text-xs lg:text-[0.8vw] text-gray-500 font-semibold flex items-center justify-center pt-4">
           Son Güncelleme : {guncelTarih}
         </h1>
       </div>
       <div className="infosArea block lg:flex  rounded-md">
         <>
-          <div className="graphArea md:w-full lg:w-[50%] sm:flex block items-center justify-center mx-[1rem] mb-2 lg:mb-0 lg:mx-auto  max-h-[365px] mt-3">
+          <div className="graphArea md:w-full lg:w-[50%] sm:flex block items-center justify-center mb-2 lg:mb-0 max-h-[365px] mt-3">
             <div className="lg:w-full h-full flex items-center justify-center mr-1 ">
               <Line data={graph} options={options} className="p-2 " />
             </div>

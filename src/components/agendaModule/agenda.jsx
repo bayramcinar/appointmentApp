@@ -488,16 +488,30 @@ function Agenda() {
                   )}
                   {status === false && !isCancelled && !isPastAppointment && (
                     <>
-                      <div className="m-4">
-                        <button
-                          onClick={() => onAccept(timeObject)}
-                          className={`bg-lightGray text-black
-                    rounded-md flex text-xs 2xl:text-sm w-40 p-2 items-center justify-start`}
-                        >
-                          <i class="fa-solid fa-check mr-2 text-gray-600 font-semibold"></i>
-                          İşleme Al
-                        </button>
-                      </div>
+                      {requestStatus === "true" && (
+                        <div className="m-4">
+                          <button
+                            onClick={() => onAccept(timeObject)}
+                            className={`bg-lightGray text-black
+                                      rounded-md flex text-xs 2xl:text-sm w-40 p-2 items-center justify-start`}
+                          >
+                            <i class="fa-solid fa-check mr-2 text-gray-600 font-semibold"></i>
+                            Onayla
+                          </button>
+                        </div>
+                      )}
+                      {requestStatus === "false" && (
+                        <div className="m-4">
+                          <button
+                            onClick={() => onAccept(timeObject)}
+                            className={`bg-lightGray text-black
+                                      rounded-md flex text-xs 2xl:text-sm w-40 p-2 items-center justify-start`}
+                          >
+                            <i class="fa-solid fa-check mr-2 text-gray-600 font-semibold"></i>
+                            İşleme Al
+                          </button>
+                        </div>
+                      )}
                       <div className="m-4">
                         <button
                           onClick={() => onReject(timeObject)}
