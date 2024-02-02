@@ -6,18 +6,12 @@ function AppointmentInfoBox({
   changeRate,
   lastOne,
   changeGraph,
-  graph,
 }) {
-  console.log(graph);
   return (
-    <div className="border-gray-200 border-2 rounded-md bg-white lg:w-[10.5vw] m-1 2xl:m-3 w-44">
-      <div
-        className={`px-[0.3vw]  2xl:px-[0.5vw] ${
-          graph ? "py-[0.5vw] 2xl:py-[1.2vw]" : "py-[2.4vw] 2xl:py-[1.5vw]"
-        } `}
-      >
+    <div className="rounded-md bg-gray-50 lg:w-[10.5vw] m-1 2xl:m-3 w-44">
+      <div className={`px-[0.3vw]  2xl:px-[0.5vw] py-[0.5vw] 2xl:py-[1.2vw] `}>
         <div className="titleArea flex justify-center m-2 ">
-          <h1 className="text-sm lg:text-[0.8vw] text-gray-500 font-semibold">
+          <h1 className="text-sm lg:text-[0.8vw] text-gray-600 font-semibold">
             {title}
           </h1>
         </div>
@@ -42,9 +36,7 @@ function AppointmentInfoBox({
         </div>
         <div className="seeReport m-1 flex items-center justify-center">
           <h1
-            className={`underline text-premiumPurple text-xs lg:text-[0.7vw] cursor-pointer ${
-              graph ? "" : "hidden"
-            }`}
+            className={`underline text-premiumPurple text-xs lg:text-[0.7vw] cursor-pointer`}
             onClick={() => changeGraph()}
           >
             Grafikte Gör

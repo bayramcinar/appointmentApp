@@ -425,10 +425,10 @@ function Agenda() {
                   </div>
                 )}
                 {requestStatus === "true" && status === false && (
-                  <div className="flex justify-center items-center w-[150px] border-orangeTable border bg-lightOrange2 rounded-lg">
+                  <div className="flex justify-center items-center w-[150px] border-purpleStatus border bg-lightPurple rounded-lg">
                     <div className="p-1 flex">
-                      <i className="fa-solid fa-circle text-orangeTable text-[0.5rem] text-center flex items-center justify-center mx-2"></i>
-                      <h1 className="text-center text-[0.65rem] lg:text-xs text-orangeTable">
+                      <i className="fa-solid fa-circle text-purpleStatus text-[0.5rem] text-center flex items-center justify-center mx-2"></i>
+                      <h1 className="text-center text-[0.65rem] lg:text-xs text-purpleStatus">
                         Onay Bekleniyor
                       </h1>
                     </div>
@@ -457,7 +457,7 @@ function Agenda() {
               selectedAppointment &&
               selectedAppointment.appointmentNumber ===
                 formEntry.appointmentNumber && (
-                <div className="absolute z-10 right-[8px] buttonsArea border-2 border-lightGray rounded-md bg-white animate__animated animate__zoomIn">
+                <div className="absolute z-20 right-[8px] buttonsArea border-2 border-lightGray rounded-md bg-white animate__animated animate__zoomIn">
                   {!isCancelled && !isPastAppointment && status && (
                     <div className="items-center justify-center">
                       <div className="m-4">

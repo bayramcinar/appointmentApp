@@ -32,6 +32,8 @@ module.exports = {
         lightGreen: "hsl(100, 100%, 97%)",
         lightGreen2: "hsl(100, 100%, 92%)",
         lightOrange3: "hsl(44, 100%, 92%)",
+        lightPurple: "hsl(230, 100%, 94%)",
+        purpleStatus: "hsl(239, 60%, 68%)",
         greenStatus: "#409e77",
         lightOrange2: "hsl(44, 100%, 97%)",
         orangeTable: "hsl(44, 100%, 45%)",

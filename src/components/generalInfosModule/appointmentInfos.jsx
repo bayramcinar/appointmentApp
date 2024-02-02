@@ -12,21 +12,21 @@ function AppointmentInfos() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
   Chart.register(...registerables);
   Chart.register(CategoryScale);
+  const [currentDate, setCurrentDate] = useState(new Date());
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1024);
-    };
-    window.addEventListener("resize", handleResize);
+  const gun = currentDate.getDate().toString().padStart(2, "0");
+  const ay = (currentDate.getMonth() + 1).toString().padStart(2, "0");
+  const yil = currentDate.getFullYear();
+  const saat = currentDate.getHours().toString().padStart(2, "0");
+  const dakika = currentDate.getMinutes().toString().padStart(2, "0");
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const guncelTarih = `${gun}.${ay}.${yil} ${saat}:${dakika}`;
+
   const hoursArray = Array.from({ length: 24 }, (_, index) => {
     const hour = index.toString().padStart(2, "0");
     return `${hour}:00`;
   });
+
   const days = [
     "Pazartesi",
     "Salı",
@@ -38,6 +38,7 @@ function AppointmentInfos() {
   ];
 
   const stateDay = {
+    //GUNLÜK RANDEVU SAYILARINI GRAFİĞE DÖNÜŞÜTRDÜĞÜMÜZ DEĞİŞKEN DATA YERİNE VERİLER GELECEK
     labels: days,
     datasets: [
       {
@@ -49,7 +50,9 @@ function AppointmentInfos() {
       },
     ],
   };
+
   const stateToday = {
+    //BUGÜNKÜ RANDEVU SAYILARINI GRAFİĞE DÖNÜŞÜTRDÜĞÜMÜZ DEĞİŞKEN DATA YERİNE VERİLER GELECEK
     labels: hoursArray,
     datasets: [
       {
@@ -64,21 +67,7 @@ function AppointmentInfos() {
       },
     ],
   };
-  const stateYesterday = {
-    labels: hoursArray,
-    datasets: [
-      {
-        type: "bar",
-        label: "Dünkü Randevu Sayıları",
-        data: [
-          0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1,
-          0,
-        ],
-        backgroundColor: "hsl(7, 90%, 64%)",
-        borderColor: "hsl(7, 90%, 64%)",
-      },
-    ],
-  };
+
   const months = [
     "Ocak",
     "Şubat",
@@ -93,8 +82,11 @@ function AppointmentInfos() {
     "Kasım",
     "Aralık",
   ];
+
   const daysInMonth = new Array(31).fill().map((_, i) => i + 1);
+
   const stateYearly = {
+    //YILLIK RANDEVU SAYILARINI GRAFİĞE DÖNÜŞÜTRDÜĞÜMÜZ DEĞİŞKEN DATA YERİNE VERİLER GELECEK
     labels: months,
     datasets: [
       {
@@ -106,6 +98,7 @@ function AppointmentInfos() {
       },
     ],
   };
+
   const stateMonthly = {
     labels: daysInMonth,
     datasets: [
@@ -119,25 +112,94 @@ function AppointmentInfos() {
         backgroundColor: "hsl(7, 90%, 64%)",
         borderColor: "hsl(7, 90%, 64%)",
       },
+      {
+        type: "line",
+        label: "Geçen Ayki Randevu Talep Sayıları",
+        data: [
+          4, 5, 1, 3, 7, 8, 3, 4, 2, 0, 3, 1, 5, 2, 3, 0, 1, 6, 3, 1, 0, 4, 1,
+          5, 2, 0, 1, 4, 3, 0, 3,
+        ],
+        backgroundColor: "hsl(239, 60%, 68%)",
+        borderColor: "hsl(239, 60%, 68%)",
+      },
+    ],
+  };
+
+  const stateRequest = {
+    //RANDEVU TALEPLERİNİ SAYILARINI GRAFİĞE DÖNÜŞÜTRDÜĞÜMÜZ DEĞİŞKEN DATA YERİNE VERİLER GELECEK
+    labels: daysInMonth,
+    datasets: [
+      {
+        type: "line",
+        label: "Bu Ayki Randevu Talep Sayıları",
+        data: [
+          3, 0, 1, 5, 6, 7, 1, 1, 2, 0, 3, 4, 1, 5, 6, 0, 1, 1, 2, 3, 0, 4, 1,
+          5, 6, 0, 1, 1, 2, 0, 3,
+        ],
+        backgroundColor: "hsl(7, 90%, 64%)",
+        borderColor: "hsl(7, 90%, 64%)",
+      },
+    ],
+  };
+  const stateCancel = {
+    // RANDEVU İPTALLERİNİ SAYILARINI GRAFİĞE DÖNÜŞÜTRDÜĞÜMÜZ DEĞİŞKEN DATA YERİNE VERİLER GELECEK
+    labels: daysInMonth,
+    datasets: [
+      {
+        type: "line",
+        label: "Bu Ayki Randevu İptal Sayıları",
+        data: [
+          0, 0, 1, 5, 0, 0, 1, 1, 2, 0, 3, 4, 1, 0, 0, 0, 1, 1, 2, 3, 0, 0, 1,
+          5, 2, 0, 1, 1, 2, 0, 3,
+        ],
+        backgroundColor: "hsl(7, 90%, 64%)",
+        borderColor: "hsl(7, 90%, 64%)",
+      },
+    ],
+  };
+  const stateConfirm = {
+    //RANDEVU ONAYI SAYILARINI GRAFİĞE DÖNÜŞÜTRDÜĞÜMÜZ DEĞİŞKEN DATA YERİNE VERİLER GELECEK
+    labels: daysInMonth,
+    datasets: [
+      {
+        type: "line",
+        label: "Bu Ayki Randevu Onay Sayıları",
+        data: [
+          5, 4, 2, 5, 3, 1, 1, 1, 2, 7, 3, 4, 1, 0, 8, 0, 1, 1, 2, 3, 4, 6, 1,
+          5, 2, 0, 1, 1, 2, 0, 3,
+        ],
+        backgroundColor: "hsl(7, 90%, 64%)",
+        borderColor: "hsl(7, 90%, 64%)",
+      },
+    ],
+  };
+  const stateTime = {
+    // RANDEVU SÜRESİ GRAFİĞE DÖNÜŞÜTRDÜĞÜMÜZ DEĞİŞKEN DATA YERİNE VERİLER GELECEK
+    labels: daysInMonth,
+    datasets: [
+      {
+        type: "line",
+        label: "Bu Ayki Ortalama Randevu Süreleri",
+        data: [
+          300, 400, 150, 530, 200, 75, 123, 170, 210, 330, 310, 400, 110, 50,
+          60, 70, 164, 198, 213, 332, 341, 401, 179, 50, 69, 79, 132, 176, 213,
+          321, 365,
+        ],
+        backgroundColor: "hsl(7, 90%, 64%)",
+        borderColor: "hsl(7, 90%, 64%)",
+      },
     ],
   };
   const [graph, setGraph] = useState(stateToday);
+
   const boxes = [
+    //İNFO KUTULARINA VERİLERİ GÖNDERDİĞİMİZ ARRAY
     {
       number: 5,
       title: "BU GÜN RANDEVU",
       changeRate: 5,
       lastOne: "3",
       graphType: "daily",
-      graph: true,
-    },
-    {
-      number: 9,
-      title: "DÜN RANDEVU",
-      changeRate: 5,
-      lastOne: "14",
-      graphType: "yesterday",
-      graph: true,
     },
     {
       number: 15,
@@ -145,7 +207,6 @@ function AppointmentInfos() {
       changeRate: 5,
       lastOne: "14",
       graphType: "weekly",
-      graph: true,
     },
     {
       number: 45,
@@ -153,7 +214,6 @@ function AppointmentInfos() {
       changeRate: -10,
       lastOne: "55",
       graphType: "monthly",
-      graph: true,
     },
     {
       number: 505,
@@ -162,30 +222,38 @@ function AppointmentInfos() {
       lastOne: "102",
       lastOne: "55",
       graphType: "yearly",
-      graph: true,
     },
     {
       number: 7,
       title: "RANDEVU TALEBİ",
       changeRate: -6,
       lastOne: "55",
-      graph: false,
+      graphType: "request",
     },
     {
       number: 8,
       title: "RANDEVU İPTALİ",
       changeRate: 2,
       lastOne: "55",
-      graph: false,
+      graphType: "cancel",
     },
     {
       number: 18,
       title: "RANDEVU ONAYI",
       changeRate: 10,
       lastOne: "55",
-      graph: false,
+      graphType: "confirm",
+    },
+
+    {
+      number: 9,
+      title: "RANDEVU SÜRESİ",
+      changeRate: 5,
+      lastOne: "14",
+      graphType: "time",
     },
   ];
+
   const changeGraph = (dataType) => {
     if (dataType === "weekly") {
       setGraph({ ...stateDay });
@@ -193,12 +261,19 @@ function AppointmentInfos() {
       setGraph({ ...stateYearly });
     } else if (dataType === "daily") {
       setGraph({ ...stateToday });
-    } else if (dataType === "yesterday") {
-      setGraph({ ...stateYesterday });
     } else if (dataType === "monthly") {
       setGraph({ ...stateMonthly });
+    } else if (dataType === "time") {
+      setGraph({ ...stateTime });
+    } else if (dataType === "request") {
+      setGraph({ ...stateRequest });
+    } else if (dataType === "cancel") {
+      setGraph({ ...stateCancel });
+    } else if (dataType === "confirm") {
+      setGraph({ ...stateConfirm });
     }
   };
+
   const renderSwiper = (items) => {
     const itemsPerSlide = isMobile ? 4 : 8;
     const swiperSlides = [];
@@ -244,18 +319,28 @@ function AppointmentInfos() {
         },
       },
     },
+    scales: {
+      y: {
+        ticks: {
+          stepSize: 1,
+        },
+      },
+    },
   };
 
   return (
-    <div className="w-full my-4">
-      <div className="m-4 mb-0">
+    <div className="w-full my-4 bg-white border-2 border-gray-200">
+      <div className="m-4 mb-0 flex justify-between">
         <h1 className="lg:text-[1.5vw] max-[768px]:text-xl font-semibold text-gray-600  pl-3">
           İstatistikler
         </h1>
+        <h1 className="text-xs lg:text-[0.8vw] text-gray-500 font-semibold flex items-center justify-center">
+          Son Güncelleme : {guncelTarih}
+        </h1>
       </div>
-      <div className="infosArea block lg:flex">
+      <div className="infosArea block lg:flex  rounded-md">
         <>
-          <div className="graphArea md:w-full lg:w-[50%] sm:flex block items-center justify-center mx-[1rem] mb-2 lg:mb-0 lg:mx-auto bg-white border-2 border-gray-200 rounded-md max-h-[365px] mt-3">
+          <div className="graphArea md:w-full lg:w-[50%] sm:flex block items-center justify-center mx-[1rem] mb-2 lg:mb-0 lg:mx-auto  max-h-[365px] mt-3">
             <div className="lg:w-full h-full flex items-center justify-center mr-1 ">
               <Line data={graph} options={options} className="p-2 " />
             </div>

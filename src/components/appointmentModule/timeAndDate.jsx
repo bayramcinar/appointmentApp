@@ -362,10 +362,10 @@ function TimeAndDate({
                 {timedRequestSelectedTime !== "" &&
                   formatDate(selectedDate) === currentDateDisplayNotDay && (
                     <>
-                      <h2 className="text-sm text-purpleElite text-center font-semibold mt-[8px]">
+                      <h2 className="text-sm text-gray-400 text-center font-semibold mt-[8px]">
                         Seçtiğiniz randevu talebi saati
                       </h2>
-                      <h2 className="text-sm text-purpleElite text-center font-semibold mb-[8px] ml-auto mr-auto">
+                      <h2 className="text-sm text-gray-400 text-center font-semibold mb-[8px] ml-auto mr-auto">
                         (Lütfen aşağıdan seçiniz ! )
                       </h2>
                       <RequestTimeBox
@@ -446,10 +446,10 @@ function TimeAndDate({
                         formatDate(selectedDate) ===
                           currentDateDisplayNotDay && (
                           <>
-                            <h2 className="text-sm text-purpleElite text-center font-semibold mt-[8px]">
+                            <h2 className="text-sm text-gray-600 text-center font-semibold mt-[8px]">
                               Seçtiğiniz randevu talebi saati
                             </h2>
-                            <h2 className="text-sm text-purpleElite text-center font-semibold mb-[8px] ml-auto mr-auto">
+                            <h2 className="text-sm text-gray-600 text-center font-semibold mb-[8px] ml-auto mr-auto">
                               (Lütfen aşağıdan seçiniz ! )
                             </h2>
                             <RequestTimeBox
