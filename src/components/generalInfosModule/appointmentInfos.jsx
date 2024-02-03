@@ -327,7 +327,6 @@ function AppointmentInfos() {
       },
     },
   };
-
   return (
     <div className="w-full my-4 bg-white mx-auto rounded-lg max-[768px]:max-w-[370px]">
       <div className="m-4 mb-0 flex justify-between">
@@ -341,7 +340,21 @@ function AppointmentInfos() {
       <div className="infosArea block lg:flex  rounded-md">
         <>
           <div className="graphArea md:w-full lg:w-[50%] sm:flex block items-center justify-center mb-2 lg:mb-0 max-h-[365px] mt-3">
-            <div className="lg:w-full h-full flex items-center justify-center mr-1 ">
+            <div className="lg:w-full h-full flex flex-col items-center justify-center mr-1 ">
+              <div className="titleArea flex justify-start items-center w-full ml-[55px] lg:mt-[15px]">
+                <h1 className="text-sm lg:text-md text-gray-500 font-semibold">
+                  {graph.datasets[0].label} :
+                </h1>
+                <h1 className="text-sm lg:text-lg text-orangeTable font-extrabold ml-1">
+                  {graph.datasets[0].data.reduce(
+                    (acc, currentValue) => acc + currentValue,
+                    0
+                  )}{" "}
+                </h1>
+                <h1 className="text-xs lg:text-sm text-gray-500 font-semibold ml-1">
+                  (Toplam)
+                </h1>
+              </div>
               <Line data={graph} options={options} className="p-2 " />
             </div>
           </div>
