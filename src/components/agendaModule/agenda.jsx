@@ -432,7 +432,7 @@ function Agenda() {
           <td className={`text-center p-3 font-medium`}>
             <span
               className={`text-center mb-auto ${
-                fullRemainingTime === "-" ? "text-coral" : ""
+                fullRemainingTime === "-" ? "" : ""
               }`}
             >
               {fullRemainingTime}
