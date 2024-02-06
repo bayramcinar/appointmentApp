@@ -362,27 +362,19 @@ function Agenda() {
           key={actualIndex}
           className={actualIndex % 2 === 0 ? "bg-white" : "bg-white"}
         >
-          <td className="text-center p-3 text-black font-semibold">
+          <td className="text-center p-3 text-black font-medium">
             {actualIndex + 1}
           </td>
-          <td className="text-center p-3 text-black font-semibold">
+          <td className="text-center p-3 text-black font-medium">
             {formEntry.appointmentNumber}
           </td>
-          <td className="text-center p-3 text-black font-semibold">
+          <td className="text-center p-3 text-black font-medium">
             {nameSurname}
           </td>
-          <td className="text-center p-3 text-black font-semibold">
-            {dateInfo}
-          </td>
-          <td className="text-center p-3 text-black font-semibold">
-            {timeInfo}
-          </td>
-          <td className="text-center p-3 text-black font-semibold">
-            {service}
-          </td>
-          <td className="text-center p-3 text-black font-semibold">
-            {language}
-          </td>
+          <td className="text-center p-3 text-black font-medium">{dateInfo}</td>
+          <td className="text-center p-3 text-black font-medium">{timeInfo}</td>
+          <td className="text-center p-3 text-black font-medium">{service}</td>
+          <td className="text-center p-3 text-black font-medium">{language}</td>
           <td className="text-center status p-3 flex items-center justify-center">
             {isCancelled ? (
               <div className="flex justify-center items-center w-[150px] border-coral border bg-lightRed rounded-lg">
@@ -437,7 +429,7 @@ function Agenda() {
               </>
             )}
           </td>
-          <td className={`text-center p-3 font-semibold`}>
+          <td className={`text-center p-3 font-medium`}>
             <span
               className={`text-center mb-auto ${
                 fullRemainingTime === "Randevu Bitti" ? "text-coral" : ""
@@ -446,7 +438,7 @@ function Agenda() {
               {fullRemainingTime}
             </span>
           </td>
-          <td className={`text-center p-3 font-semibold `}>
+          <td className={`text-center p-3 font-medium `}>
             <div
               className="bg-lightGray rounded-full cursor-pointer threePoint"
               onClick={() => toggleButtonsArea(formEntry)}
