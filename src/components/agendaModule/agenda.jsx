@@ -230,7 +230,7 @@ function Agenda() {
           ? `${remainingTime.remainingHours} saat ${remainingTime.remainingMinutes} dakika`
           : remainingTime.remainingMinutes > 0
           ? `${remainingTime.remainingMinutes} dakika`
-          : "Randevu Bitti";
+          : "-";
       const requestStatus = parsedInfos[3];
       const currentDate = new Date();
       const appointmentDate = new Date(
@@ -432,7 +432,7 @@ function Agenda() {
           <td className={`text-center p-3 font-medium`}>
             <span
               className={`text-center mb-auto ${
-                fullRemainingTime === "Randevu Bitti" ? "text-coral" : ""
+                fullRemainingTime === "-" ? "text-coral" : ""
               }`}
             >
               {fullRemainingTime}
