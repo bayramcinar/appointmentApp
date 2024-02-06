@@ -339,7 +339,7 @@ function AppointmentInfos() {
       </div>
       <div className="infosArea block lg:flex  rounded-md">
         <>
-          <div className="graphArea md:w-full lg:w-[50%] sm:flex block items-center justify-center mb-2 lg:mb-0 max-h-[365px] mt-3">
+          <div className="graphArea md:w-full lg:w-[50%] sm:flex block items-center justify-center mb-2 lg:mb-0 max-h-[345px] mt-3">
             <div className="lg:w-full h-full flex flex-col items-center justify-center mr-1 ">
               <div className="titleArea flex justify-start items-center w-full ml-[55px] lg:mt-[15px]">
                 <h1 className="text-sm lg:text-md text-gray-500 font-semibold">
