@@ -49,6 +49,22 @@ function AppointmentInfos() {
         borderColor: "hsl(7, 90%, 64%)",
       },
     ],
+    datasets: [
+      {
+        type: "line",
+        label: "Günlük Randevu Sayıları",
+        data: [5, 8, 12, 3, 7, 1, 9],
+        backgroundColor: "hsl(7, 90%, 64%)",
+        borderColor: "hsl(7, 90%, 64%)",
+      },
+      {
+        type: "line",
+        label: "Geçen Hafta Günlük Randevu Sayıları",
+        data: [3, 5, 8, 1, 6, 7, 10],
+        backgroundColor: "hsl(0, 0%, 70%)",
+        borderColor: "hsl(0, 0%, 70%)",
+      },
+    ],
   };
 
   const stateToday = {
@@ -64,6 +80,16 @@ function AppointmentInfos() {
         ],
         backgroundColor: "hsl(7, 90%, 64%)",
         borderColor: "hsl(7, 90%, 64%)",
+      },
+      {
+        type: "bar",
+        label: "Dünkü Randevu Sayıları",
+        data: [
+          0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0,
+          1,
+        ],
+        backgroundColor: "hsl(0, 0%, 70%)",
+        borderColor: "hsl(0, 0%, 70%)",
       },
     ],
   };
@@ -119,10 +145,26 @@ function AppointmentInfos() {
           4, 5, 1, 3, 7, 8, 3, 4, 2, 0, 3, 1, 5, 2, 3, 0, 1, 6, 3, 1, 0, 4, 1,
           5, 2, 0, 1, 4, 3, 0, 3,
         ],
-        backgroundColor: "hsl(239, 60%, 68%)",
-        borderColor: "hsl(239, 60%, 68%)",
+        backgroundColor: "hsl(0, 0%, 70%)",
+        borderColor: "hsl(0, 0%, 70%)",
       },
     ],
+    options: {
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: "Günler",
+          },
+        },
+        y: {
+          title: {
+            display: true,
+            text: "Randevu Sayısı",
+          },
+        },
+      },
+    },
   };
 
   const stateRequest = {
@@ -189,6 +231,22 @@ function AppointmentInfos() {
         borderColor: "hsl(7, 90%, 64%)",
       },
     ],
+    options: {
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: "Günler",
+          },
+        },
+        y: {
+          title: {
+            display: true,
+            text: "Süre (Dakika)",
+          },
+        },
+      },
+    },
   };
   const [graph, setGraph] = useState(stateToday);
 
@@ -253,24 +311,299 @@ function AppointmentInfos() {
       graphType: "time",
     },
   ];
+  const optionsToday = {
+    plugins: {
+      legend: {
+        labels: {
+          color: "#000",
+        },
+      },
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Saatler", // X ekseni başlığı
+          color: "#000", // Başlık rengi
+          font: {
+            size: 14, // Başlık yazı boyutu
+            weight: "bold", // Başlık yazı kalınlığı
+            family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
+          },
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: "Randevu Sayısı", // Y ekseni başlığı
+          color: "#000", // Başlık rengi
+          font: {
+            size: 14, // Başlık yazı boyutu
+            weight: "bold", // Başlık yazı kalınlığı
+            family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
+          },
+        },
+        ticks: {
+          stepSize: 1,
+        },
+      },
+    },
+  };
 
+  const optionsMonthly = {
+    plugins: {
+      legend: {
+        labels: {
+          color: "#000",
+        },
+      },
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Günler", // X ekseni başlığı
+          color: "#000", // Başlık rengi
+          font: {
+            size: 14, // Başlık yazı boyutu
+            weight: "bold", // Başlık yazı kalınlığı
+            family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
+          },
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: "Randevu Sayısı", // Y ekseni başlığı
+          color: "#000", // Başlık rengi
+          font: {
+            size: 14, // Başlık yazı boyutu
+            weight: "bold", // Başlık yazı kalınlığı
+            family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
+          },
+        },
+        ticks: {
+          stepSize: 1,
+        },
+      },
+    },
+  };
+  const optionsYearly = {
+    plugins: {
+      legend: {
+        labels: {
+          color: "#000",
+        },
+      },
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Aylar", // X ekseni başlığı
+          color: "#000", // Başlık rengi
+          font: {
+            size: 14, // Başlık yazı boyutu
+            weight: "bold", // Başlık yazı kalınlığı
+            family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
+          },
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: "Randevu Sayısı", // Y ekseni başlığı
+          color: "#000", // Başlık rengi
+          font: {
+            size: 14, // Başlık yazı boyutu
+            weight: "bold", // Başlık yazı kalınlığı
+            family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
+          },
+        },
+        ticks: {
+          stepSize: 1,
+        },
+      },
+    },
+  };
+  const optionsCancel = {
+    plugins: {
+      legend: {
+        labels: {
+          color: "#000",
+        },
+      },
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Aylar", // X ekseni başlığı
+          color: "#000", // Başlık rengi
+          font: {
+            size: 14, // Başlık yazı boyutu
+            weight: "bold", // Başlık yazı kalınlığı
+            family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
+          },
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: "Randevu İptal Sayısı", // Y ekseni başlığı
+          color: "#000", // Başlık rengi
+          font: {
+            size: 14, // Başlık yazı boyutu
+            weight: "bold", // Başlık yazı kalınlığı
+            family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
+          },
+        },
+        ticks: {
+          stepSize: 1,
+        },
+      },
+    },
+  };
+  const optionsRequest = {
+    plugins: {
+      legend: {
+        labels: {
+          color: "#000",
+        },
+      },
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Aylar", // X ekseni başlığı
+          color: "#000", // Başlık rengi
+          font: {
+            size: 14, // Başlık yazı boyutu
+            weight: "bold", // Başlık yazı kalınlığı
+            family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
+          },
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: "Randevu Talebi Sayısı", // Y ekseni başlığı
+          color: "#000", // Başlık rengi
+          font: {
+            size: 14, // Başlık yazı boyutu
+            weight: "bold", // Başlık yazı kalınlığı
+            family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
+          },
+        },
+        ticks: {
+          stepSize: 1,
+        },
+      },
+    },
+  };
+  const optionsConfirm = {
+    plugins: {
+      legend: {
+        labels: {
+          color: "#000",
+        },
+      },
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Aylar", // X ekseni başlığı
+          color: "#000", // Başlık rengi
+          font: {
+            size: 14, // Başlık yazı boyutu
+            weight: "bold", // Başlık yazı kalınlığı
+            family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
+          },
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: "Randevu Onay Sayısı", // Y ekseni başlığı
+          color: "#000", // Başlık rengi
+          font: {
+            size: 14, // Başlık yazı boyutu
+            weight: "bold", // Başlık yazı kalınlığı
+            family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
+          },
+        },
+        ticks: {
+          stepSize: 1,
+        },
+      },
+    },
+  };
+  const optionsTime = {
+    plugins: {
+      legend: {
+        labels: {
+          color: "#000",
+        },
+      },
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Aylar", // X ekseni başlığı
+          color: "#000", // Başlık rengi
+          font: {
+            size: 14, // Başlık yazı boyutu
+            weight: "bold", // Başlık yazı kalınlığı
+            family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
+          },
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: "Ortalama Randevu Süresi (DK)", // Y ekseni başlığı
+          color: "#000", // Başlık rengi
+          font: {
+            size: 14, // Başlık yazı boyutu
+            weight: "bold", // Başlık yazı kalınlığı
+            family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
+          },
+        },
+        ticks: {
+          stepSize: 1,
+        },
+      },
+    },
+  };
+  const [options, setOptions] = useState(optionsToday);
   const changeGraph = (dataType) => {
     if (dataType === "weekly") {
       setGraph({ ...stateDay });
+      setOptions(optionsMonthly);
     } else if (dataType === "yearly") {
       setGraph({ ...stateYearly });
+      setOptions(optionsYearly);
     } else if (dataType === "daily") {
       setGraph({ ...stateToday });
+      setOptions(optionsToday);
     } else if (dataType === "monthly") {
       setGraph({ ...stateMonthly });
+      setOptions(optionsMonthly);
     } else if (dataType === "time") {
       setGraph({ ...stateTime });
+      setOptions(optionsTime);
     } else if (dataType === "request") {
       setGraph({ ...stateRequest });
+      setOptions(optionsRequest);
     } else if (dataType === "cancel") {
       setGraph({ ...stateCancel });
+      setOptions(optionsCancel);
     } else if (dataType === "confirm") {
       setGraph({ ...stateConfirm });
+      setOptions(optionsConfirm);
     }
   };
 
@@ -311,49 +644,106 @@ function AppointmentInfos() {
     );
   };
 
-  const options = {
-    plugins: {
-      legend: {
-        labels: {
-          color: "hsl(7, 90%, 64%)",
-        },
-      },
-    },
-    scales: {
-      y: {
-        ticks: {
-          stepSize: 1,
-        },
-      },
-    },
-  };
   return (
     <div className="w-full my-4 bg-white mx-auto rounded-lg max-[768px]:max-w-[370px]">
-      <div className="m-4 mb-0 flex justify-between">
-        <h1 className="lg:text-[1.5vw] max-[768px]:text-xl font-semibold text-gray-600 pl-3 pt-4">
+      <div className="m-4 mb-0 block lg:flex items-center justify-center lg:justify-between">
+        <h1 className="lg:text-[1.5vw] max-[768px]:text-xl font-semibold text-gray-600 pl-3 pt-4 text-center">
           İstatistikler
         </h1>
-        <h1 className="text-xs lg:text-[0.8vw] text-gray-500 font-semibold flex items-center justify-center pt-4">
-          Son Güncelleme : {guncelTarih}
-        </h1>
+        <div className="block lg:flex items-center justify-center">
+          <h1 className="text-xs lg:text-[0.8vw] text-gray-500 font-semibold flex items-center justify-center pt-4">
+            Son Güncelleme : {guncelTarih}
+          </h1>
+          <button className="text-center flex items-center justify-center px-8 bg-gray-50 text-gray-600 border-2 border-gray-300 rounded-lg text-xs font-semibold lg:text-[0.8vw] h-[5vw] lg:h-[2vw] mt-4 lg:ml-5 mx-auto lg:mx-0">
+            Tüm İstatistikler
+          </button>
+        </div>
       </div>
       <div className="infosArea block lg:flex  rounded-md">
         <>
           <div className="graphArea md:w-full lg:w-[50%] sm:flex block items-center justify-center mb-2 lg:mb-0 max-h-[345px] mt-3">
-            <div className="lg:w-full h-full flex flex-col items-center justify-center mr-1 ">
-              <div className="titleArea flex justify-start items-center w-full ml-[55px] lg:mt-[15px]">
-                <h1 className="text-sm lg:text-md text-gray-500 font-semibold">
-                  {graph.datasets[0].label} :
-                </h1>
-                <h1 className="text-sm lg:text-lg text-orangeTable font-extrabold ml-1">
-                  {graph.datasets[0].data.reduce(
-                    (acc, currentValue) => acc + currentValue,
-                    0
-                  )}{" "}
-                </h1>
-                <h1 className="text-xs lg:text-sm text-gray-500 font-semibold ml-1">
-                  (Toplam)
-                </h1>
+            <div className="lg:w-full h-full flex flex-col items-center justify-center lg:justify-start mr-1 ">
+              <div className="titleArea block lg:flex mx-auto lg:mx-0 lg:ml-14 lg:justify-start items-center w-full ml-[55px] text-xs lg:text-[0.8vw] ">
+                <div className="flex">
+                  <h1 className=" text-gray-500 font-semibold">
+                    {graph.datasets[0].label} :
+                  </h1>
+                  <h1 className=" text-orangeTable font-extrabold ml-1">
+                    {graph.datasets[0].data.reduce(
+                      (acc, currentValue) => acc + currentValue,
+                      0
+                    )}{" "}
+                  </h1>
+                  <h1 className=" text-gray-500 font-semibold ml-1">
+                    (Toplam)
+                  </h1>
+                </div>
+                {graph &&
+                  graph.datasets &&
+                  graph.datasets[1] &&
+                  graph.datasets[1].label &&
+                  graph.datasets[1].data && (
+                    <>
+                      <div className="flex my-3 lg:my-0">
+                        {!isMobile && <h1 className="mx-3 text-gray-500">|</h1>}
+                        <h1 className=" text-gray-500 font-semibold">
+                          {graph.datasets[1].label} :
+                        </h1>
+                        <h1 className=" text-orangeTable font-extrabold ml-1">
+                          {graph.datasets[1].data.reduce(
+                            (acc, currentValue) => acc + currentValue,
+                            0
+                          )}{" "}
+                        </h1>
+                        <h1 className=" text-gray-500 font-semibold ml-1">
+                          (Toplam)
+                        </h1>
+                      </div>
+                    </>
+                  )}
+
+                {graph &&
+                  graph.datasets &&
+                  graph.datasets[1] &&
+                  graph.datasets[1].label &&
+                  graph.datasets[1].data && (
+                    <>
+                      <div className="flex">
+                        {!isMobile && <h1 className="mx-3 text-gray-500">|</h1>}
+                        <div className="changePercentage text-gray-500 font-semibold">
+                          Değişim Yüzdesi:{" "}
+                          {(
+                            ((graph.datasets[0].data.reduce(
+                              (acc, currentValue) => acc + currentValue,
+                              0
+                            ) -
+                              graph.datasets[1].data.reduce(
+                                (acc, currentValue) => acc + currentValue,
+                                0
+                              )) /
+                              graph.datasets[1].data.reduce(
+                                (acc, currentValue) => acc + currentValue,
+                                0
+                              )) *
+                            100
+                          ).toFixed(2)}
+                          %{" "}
+                          {graph.datasets[0].data.reduce(
+                            (acc, currentValue) => acc + currentValue,
+                            0
+                          ) >
+                          graph.datasets[1].data.reduce(
+                            (acc, currentValue) => acc + currentValue,
+                            0
+                          ) ? (
+                            <i className="fa-solid fa-arrow-up text-green-600"></i>
+                          ) : (
+                            <i className="fa-solid fa-arrow-down text-red-600"></i>
+                          )}
+                        </div>
+                      </div>
+                    </>
+                  )}
               </div>
               <Line data={graph} options={options} className="p-2 " />
             </div>
