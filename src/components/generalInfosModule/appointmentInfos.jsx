@@ -43,23 +43,14 @@ function AppointmentInfos() {
     datasets: [
       {
         type: "line",
-        label: "Günlük Randevu Sayıları",
-        data: [5, 8, 12, 3, 7, 1, 9],
-        backgroundColor: "hsl(7, 90%, 64%)",
-        borderColor: "hsl(7, 90%, 64%)",
-      },
-    ],
-    datasets: [
-      {
-        type: "line",
-        label: "Günlük Randevu Sayıları",
+        label: "Günlük Randevu",
         data: [5, 8, 12, 3, 7, 1, 9],
         backgroundColor: "hsl(7, 90%, 64%)",
         borderColor: "hsl(7, 90%, 64%)",
       },
       {
         type: "line",
-        label: "Geçen Hafta Günlük Randevu Sayıları",
+        label: "Geçen Hafta Günlük Randevu",
         data: [3, 5, 8, 1, 6, 7, 10],
         backgroundColor: "hsl(0, 0%, 70%)",
         borderColor: "hsl(0, 0%, 70%)",
@@ -73,7 +64,7 @@ function AppointmentInfos() {
     datasets: [
       {
         type: "bar",
-        label: "Bugünkü Randevu Sayıları",
+        label: "Bugünkü Randevu",
         data: [
           0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1,
           0,
@@ -83,7 +74,7 @@ function AppointmentInfos() {
       },
       {
         type: "bar",
-        label: "Dünkü Randevu Sayıları",
+        label: "Dünkü Randevu",
         data: [
           0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0,
           1,
@@ -117,7 +108,7 @@ function AppointmentInfos() {
     datasets: [
       {
         type: "line",
-        label: "Aylık Randevu Sayıları",
+        label: "Bu Yıl Randevu",
         data: [135, 180, 122, 91, 178, 160, 96, 45, 169, 110, 157, 83],
         backgroundColor: "hsl(7, 90%, 64%)",
         borderColor: "hsl(7, 90%, 64%)",
@@ -130,7 +121,7 @@ function AppointmentInfos() {
     datasets: [
       {
         type: "line",
-        label: "Bu Ayki Randevu Sayıları",
+        label: "Bu Ay Randevu",
         data: [
           3, 4, 1, 5, 6, 7, 1, 1, 2, 3, 3, 4, 1, 5, 6, 7, 1, 1, 2, 3, 3, 4, 1,
           5, 6, 7, 1, 1, 2, 3, 3,
@@ -140,7 +131,7 @@ function AppointmentInfos() {
       },
       {
         type: "line",
-        label: "Geçen Ayki Randevu Talep Sayıları",
+        label: "Geçen Ay Randevu",
         data: [
           4, 5, 1, 3, 7, 8, 3, 4, 2, 0, 3, 1, 5, 2, 3, 0, 1, 6, 3, 1, 0, 4, 1,
           5, 2, 0, 1, 4, 3, 0, 3,
@@ -173,7 +164,7 @@ function AppointmentInfos() {
     datasets: [
       {
         type: "line",
-        label: "Bu Ayki Randevu Talep Sayıları",
+        label: "Bu Ay Randevu Talebi",
         data: [
           3, 0, 1, 5, 6, 7, 1, 1, 2, 0, 3, 4, 1, 5, 6, 0, 1, 1, 2, 3, 0, 4, 1,
           5, 6, 0, 1, 1, 2, 0, 3,
@@ -189,7 +180,7 @@ function AppointmentInfos() {
     datasets: [
       {
         type: "line",
-        label: "Bu Ayki Randevu İptal Sayıları",
+        label: "Bu Ay Randevu İptali",
         data: [
           0, 0, 1, 5, 0, 0, 1, 1, 2, 0, 3, 4, 1, 0, 0, 0, 1, 1, 2, 3, 0, 0, 1,
           5, 2, 0, 1, 1, 2, 0, 3,
@@ -205,7 +196,7 @@ function AppointmentInfos() {
     datasets: [
       {
         type: "line",
-        label: "Bu Ayki Randevu Onay Sayıları",
+        label: "Bu Ay Randevu Onayı",
         data: [
           5, 4, 2, 5, 3, 1, 1, 1, 2, 7, 3, 4, 1, 0, 8, 0, 1, 1, 2, 3, 4, 6, 1,
           5, 2, 0, 1, 1, 2, 0, 3,
@@ -221,7 +212,7 @@ function AppointmentInfos() {
     datasets: [
       {
         type: "line",
-        label: "Bu Ayki Ortalama Randevu Süreleri",
+        label: "Bu Ay Randevu Süreleri",
         data: [
           300, 400, 150, 530, 200, 75, 123, 170, 210, 330, 310, 400, 110, 50,
           60, 70, 164, 198, 213, 332, 341, 401, 179, 50, 69, 79, 132, 176, 213,
@@ -305,7 +296,7 @@ function AppointmentInfos() {
 
     {
       number: 9,
-      title: "RANDEVU SÜRESİ",
+      title: "RANDEVU SÜRESİ (DK)",
       changeRate: 5,
       lastOne: "14",
       graphType: "time",
@@ -327,7 +318,7 @@ function AppointmentInfos() {
           color: "#000", // Başlık rengi
           font: {
             size: 14, // Başlık yazı boyutu
-            weight: "bold", // Başlık yazı kalınlığı
+            weight: "medium", // Başlık yazı kalınlığı
             family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
           },
         },
@@ -339,7 +330,7 @@ function AppointmentInfos() {
           color: "#000", // Başlık rengi
           font: {
             size: 14, // Başlık yazı boyutu
-            weight: "bold", // Başlık yazı kalınlığı
+            weight: "medium", // Başlık yazı kalınlığı
             family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
           },
         },
@@ -366,7 +357,7 @@ function AppointmentInfos() {
           color: "#000", // Başlık rengi
           font: {
             size: 14, // Başlık yazı boyutu
-            weight: "bold", // Başlık yazı kalınlığı
+            weight: "medium", // Başlık yazı kalınlığı
             family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
           },
         },
@@ -378,7 +369,7 @@ function AppointmentInfos() {
           color: "#000", // Başlık rengi
           font: {
             size: 14, // Başlık yazı boyutu
-            weight: "bold", // Başlık yazı kalınlığı
+            weight: "medium", // Başlık yazı kalınlığı
             family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
           },
         },
@@ -404,7 +395,7 @@ function AppointmentInfos() {
           color: "#000", // Başlık rengi
           font: {
             size: 14, // Başlık yazı boyutu
-            weight: "bold", // Başlık yazı kalınlığı
+            weight: "medium", // Başlık yazı kalınlığı
             family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
           },
         },
@@ -416,7 +407,7 @@ function AppointmentInfos() {
           color: "#000", // Başlık rengi
           font: {
             size: 14, // Başlık yazı boyutu
-            weight: "bold", // Başlık yazı kalınlığı
+            weight: "medium", // Başlık yazı kalınlığı
             family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
           },
         },
@@ -442,7 +433,7 @@ function AppointmentInfos() {
           color: "#000", // Başlık rengi
           font: {
             size: 14, // Başlık yazı boyutu
-            weight: "bold", // Başlık yazı kalınlığı
+            weight: "medium", // Başlık yazı kalınlığı
             family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
           },
         },
@@ -454,7 +445,7 @@ function AppointmentInfos() {
           color: "#000", // Başlık rengi
           font: {
             size: 14, // Başlık yazı boyutu
-            weight: "bold", // Başlık yazı kalınlığı
+            weight: "medium", // Başlık yazı kalınlığı
             family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
           },
         },
@@ -480,7 +471,7 @@ function AppointmentInfos() {
           color: "#000", // Başlık rengi
           font: {
             size: 14, // Başlık yazı boyutu
-            weight: "bold", // Başlık yazı kalınlığı
+            weight: "medium", // Başlık yazı kalınlığı
             family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
           },
         },
@@ -492,7 +483,7 @@ function AppointmentInfos() {
           color: "#000", // Başlık rengi
           font: {
             size: 14, // Başlık yazı boyutu
-            weight: "bold", // Başlık yazı kalınlığı
+            weight: "medium", // Başlık yazı kalınlığı
             family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
           },
         },
@@ -518,7 +509,7 @@ function AppointmentInfos() {
           color: "#000", // Başlık rengi
           font: {
             size: 14, // Başlık yazı boyutu
-            weight: "bold", // Başlık yazı kalınlığı
+            weight: "medium", // Başlık yazı kalınlığı
             family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
           },
         },
@@ -530,7 +521,7 @@ function AppointmentInfos() {
           color: "#000", // Başlık rengi
           font: {
             size: 14, // Başlık yazı boyutu
-            weight: "bold", // Başlık yazı kalınlığı
+            weight: "medium", // Başlık yazı kalınlığı
             family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
           },
         },
@@ -556,7 +547,7 @@ function AppointmentInfos() {
           color: "#000", // Başlık rengi
           font: {
             size: 14, // Başlık yazı boyutu
-            weight: "bold", // Başlık yazı kalınlığı
+            weight: "medium", // Başlık yazı kalınlığı
             family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
           },
         },
@@ -568,7 +559,7 @@ function AppointmentInfos() {
           color: "#000", // Başlık rengi
           font: {
             size: 14, // Başlık yazı boyutu
-            weight: "bold", // Başlık yazı kalınlığı
+            weight: "medium", // Başlık yazı kalınlığı
             family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif", // Başlık yazı tipi
           },
         },
@@ -654,7 +645,7 @@ function AppointmentInfos() {
           <h1 className="text-xs lg:text-[0.8vw] text-gray-500 font-semibold flex items-center justify-center pt-4">
             Son Güncelleme : {guncelTarih}
           </h1>
-          <button className="text-center flex items-center justify-center px-8 bg-gray-50 text-gray-600 border-2 border-gray-300 rounded-lg text-xs font-semibold lg:text-[0.8vw] h-[5vw] lg:h-[2vw] mt-4 lg:ml-5 mx-auto lg:mx-0">
+          <button className="text-center flex items-center justify-center px-8 bg-lightOrange2 text-premiumPurple border-2 border-premiumPurple rounded-lg text-xs font-semibold lg:text-[0.8vw] h-[5vw] lg:h-[2vw] mt-4 lg:ml-5 mx-auto lg:mx-0">
             Tüm İstatistikler
           </button>
         </div>
@@ -664,19 +655,37 @@ function AppointmentInfos() {
           <div className="graphArea md:w-full lg:w-[50%] sm:flex block items-center justify-center mb-2 lg:mb-0 max-h-[345px] mt-3">
             <div className="lg:w-full h-full flex flex-col items-center justify-center lg:justify-start mr-1 ">
               <div className="titleArea block lg:flex mx-auto lg:mx-0 lg:ml-14 lg:justify-start items-center w-full ml-[55px] text-xs lg:text-[0.8vw] ">
-                <div className="flex">
-                  <h1 className=" text-gray-500 font-semibold">
-                    {graph.datasets[0].label} :
-                  </h1>
-                  <h1 className=" text-orangeTable font-extrabold ml-1">
-                    {graph.datasets[0].data.reduce(
-                      (acc, currentValue) => acc + currentValue,
-                      0
-                    )}{" "}
-                  </h1>
-                  <h1 className=" text-gray-500 font-semibold ml-1">
-                    (Toplam)
-                  </h1>
+                <div className="block">
+                  <div className="flex mb-2 lg:text-[1vw]">
+                    <h1 className=" text-gray-500 font-semibold">
+                      {graph.datasets[0].label} :
+                    </h1>
+                    <h1 className=" text-black font-extrabold ml-1">
+                      {graph.datasets[0].data.reduce(
+                        (acc, currentValue) => acc + currentValue,
+                        0
+                      )}{" "}
+                    </h1>
+                  </div>
+                  {graph &&
+                    graph.datasets &&
+                    graph.datasets[1] &&
+                    graph.datasets[1].label &&
+                    graph.datasets[1].data && (
+                      <>
+                        <div className="flex my-3 lg:my-0">
+                          <h1 className=" text-gray-500 font-semibold">
+                            {graph.datasets[1].label} :
+                          </h1>
+                          <h1 className=" text-black font-extrabold ml-1">
+                            {graph.datasets[1].data.reduce(
+                              (acc, currentValue) => acc + currentValue,
+                              0
+                            )}{" "}
+                          </h1>
+                        </div>
+                      </>
+                    )}
                 </div>
                 {graph &&
                   graph.datasets &&
@@ -684,34 +693,9 @@ function AppointmentInfos() {
                   graph.datasets[1].label &&
                   graph.datasets[1].data && (
                     <>
-                      <div className="flex my-3 lg:my-0">
-                        {!isMobile && <h1 className="mx-3 text-gray-500">|</h1>}
-                        <h1 className=" text-gray-500 font-semibold">
-                          {graph.datasets[1].label} :
-                        </h1>
-                        <h1 className=" text-orangeTable font-extrabold ml-1">
-                          {graph.datasets[1].data.reduce(
-                            (acc, currentValue) => acc + currentValue,
-                            0
-                          )}{" "}
-                        </h1>
-                        <h1 className=" text-gray-500 font-semibold ml-1">
-                          (Toplam)
-                        </h1>
-                      </div>
-                    </>
-                  )}
-
-                {graph &&
-                  graph.datasets &&
-                  graph.datasets[1] &&
-                  graph.datasets[1].label &&
-                  graph.datasets[1].data && (
-                    <>
-                      <div className="flex">
-                        {!isMobile && <h1 className="mx-3 text-gray-500">|</h1>}
-                        <div className="changePercentage text-gray-500 font-semibold">
-                          Değişim Yüzdesi:{" "}
+                      <div className="flex ml-5">
+                        <div className="changePercentage text-gray-500 font-semibold flex items-center justify-center">
+                          {" "}
                           {(
                             ((graph.datasets[0].data.reduce(
                               (acc, currentValue) => acc + currentValue,
@@ -736,16 +720,16 @@ function AppointmentInfos() {
                             (acc, currentValue) => acc + currentValue,
                             0
                           ) ? (
-                            <i className="fa-solid fa-arrow-up text-green-600"></i>
+                            <i className="fa-solid fa-up-long text-green-600 text-2xl ml-3 font-bold"></i>
                           ) : (
-                            <i className="fa-solid fa-arrow-down text-red-600"></i>
+                            <i className="fa-solid fa-down-long text-red-600 text-2xl ml-3"></i>
                           )}
                         </div>
                       </div>
                     </>
                   )}
               </div>
-              <Line data={graph} options={options} className="p-2 " />
+              <Line data={graph} options={options} className="py-5" />
             </div>
           </div>
           <div className="infosArea flex items-center justify-end w-full lg:w-[50%] mx-auto">

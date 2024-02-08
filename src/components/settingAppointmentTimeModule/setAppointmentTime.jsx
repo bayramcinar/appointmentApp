@@ -380,7 +380,7 @@ function SetAppointmentTime() {
             </div>
           </div>
         </div>
-        <h2 className=" text-[1.3vw] max-[768px]:text-xl m-3 font-semibold mb-0">
+        <h2 className=" text-[1.3vw] max-[768px]:text-xl m-3 font-semibold mb-0 text-gray-600">
           Randevu Zamanı Belirle
         </h2>
         <div className="chooseSavedTimes flex items-center justify-center mt-5">
@@ -390,8 +390,8 @@ function SetAppointmentTime() {
               savedTimes === true ? "selected" : ""
             } ${
               savedTimes === true
-                ? "bg-premiumPurple text-white "
-                : "bg-white border-premiumPurple border-2 text-premiumPurple"
+                ? " bg-gray-400  text-gray-100"
+                : " bg-gray-100 text-gray-600"
             }`}
           >
             Kayıtlı Saatler
@@ -402,8 +402,8 @@ function SetAppointmentTime() {
               savedTimes === false ? "selected" : ""
             } ${
               savedTimes === false
-                ? "bg-premiumPurple text-white"
-                : "bg-white border-premiumPurple border-2 text-premiumPurple"
+                ? " bg-gray-400  text-gray-100 "
+                : "bg-gray-100 text-gray-600"
             }`}
           >
             Saat Ekle
@@ -507,13 +507,13 @@ function SetAppointmentTime() {
                 </>
               )}
               {savedTimes === true && (
-                <div className="w-full flex items-center justify-center">
+                <div className="w-full flex items-center justify-center mt-5">
                   <button
                     type="submit"
-                    className="bg-premiumPurple rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
+                    className="bg-gray-400 text-gray-100 rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
                   >
                     <h4 className="text-text p-2 px-6 text-sm tracking-wider">
-                      Zamanı ve Tarihi Ayarla
+                      Ekle
                     </h4>
                   </button>
                 </div>
@@ -522,7 +522,7 @@ function SetAppointmentTime() {
                 <div className="w-full flex items-center justify-center mt-5">
                   <button
                     type="submit"
-                    className="bg-premiumPurple rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
+                    className="bg-gray-400 text-gray-100 rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
                   >
                     <h4 className="text-text p-2 px-6 text-sm tracking-wider">
                       Kayıt Et

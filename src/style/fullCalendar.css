@@ -1,13 +1,17 @@
 .rbc-btn-group button {
-  background-color: white;
-  border: hsl(7, 90%, 64%) 2px solid;
-  color: hsl(7, 90%, 64%);
+  background-color: hsl(228, 22%, 90%);
+  border: hsl(228, 22%, 90%) 2px solid;
+  color: hsl(0, 0%, 15%);
   padding: 5px 10px;
   cursor: pointer;
   font-weight: 600;
 }
 .rbc-toolbar {
   font-size: 0.7vw;
+}
+.myCustomHeight {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 .rbc-btn-group button:first-child {
   border-right: none;
@@ -17,14 +21,14 @@
 }
 
 .rbc-btn-group button:hover {
-  background-color: hsl(7, 90%, 64%);
-  border: hsl(7, 90%, 64%) 2px solid;
-  color: white;
+  background-color: hsl(0, 0%, 35%);
+  border: hsl(228, 22%, 90%) 2px solid;
+  color: hsl(228, 22%, 90%);
 }
 .rbc-active {
-  background-color: hsl(7, 90%, 64%) !important;
-  border: hsl(7, 90%, 64%) 2px solid !important;
-  color: white !important;
+  background-color: hsl(0, 0%, 35%) !important;
+  border: hsl(228, 22%, 90%) 2px solid !important;
+  color: hsl(228, 22%, 90%) !important;
 }
 .rbc-day-bg {
   position: relative;
@@ -97,6 +101,7 @@
 }
 .rbc-toolbar-label {
   width: min-content;
+  font-size: 1.05rem;
 }
 .myCustomHeight {
   display: flex;

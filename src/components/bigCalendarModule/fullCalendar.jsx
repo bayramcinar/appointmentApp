@@ -240,11 +240,11 @@ function FullCalendarComponent() {
         }`}
       >
         <div className="mx-auto relative w-full max-[500px]:w-[360px] p-2 lg:p-5">
-          <h1 className=" text-[1.5vw] max-[768px]:text-xl m-6 max-[500px]:m-3 mt-1 font-semibold text-center">
+          <h1 className=" text-[1.5vw] max-[768px]:text-xl m-6 mb-2 ml-5 max-[500px]:m-3 mt-1 text-gray-600 font-semibold text-center flex justify-start">
             Randevu Takvimi
           </h1>
-          <div className="colorsMean mt-[25px] mb-5  flex lg:flex right-1 top-1 font-semibold justify-center items-center">
-            <div className="lg:flex lg:flex-col lg:justify-start">
+          <div className="colorsMean mb-5  flex right-1 ml-5 top-1 font-semibold justify-start items-center text-gray-600">
+            <div className="lg:flex lg:flex-row lg:justify-start">
               <div className="flex max-[500px]:mr-2 mr-2">
                 <i class="fa-solid fa-circle text-green-500 max-[500px]:text-xs flex justify-center items-center"></i>
                 <h1 className="max-[500px]:text-xs  ml-2 max-[500px]:text-center flex justify-center items-center">
@@ -258,7 +258,7 @@ function FullCalendarComponent() {
                 </h1>
               </div>
             </div>
-            <div className="lg:flex lg:flex-col lg:justify-start">
+            <div className="lg:flex lg:flex-row lg:justify-start">
               <div className="flex max-[500px]:mr-2 mr-2">
                 <i class="fa-solid fa-circle text-stepBorder1 max-[500px]:text-xs   flex justify-center items-center"></i>
                 <h1 className="max-[500px]:text-xs ml-2 max-[500px]:text-center flex justify-center items-center">
