@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import { Navigation, Pagination } from "swiper/modules";
 import { Line } from "react-chartjs-2";
 import { CategoryScale, Chart, registerables } from "chart.js";
+import AllDetails from "./allDetails";
 
 function AppointmentInfos() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
@@ -634,38 +635,66 @@ function AppointmentInfos() {
       </Swiper>
     );
   };
+  const [isAllDetailsOpen, setIsAllDetailsOpen] = useState(false);
 
+  const toggleAllDetailsModal = () => {
+    setIsAllDetailsOpen(!isAllDetailsOpen);
+  };
   return (
-    <div className="w-full my-4 bg-white mx-auto rounded-lg max-[768px]:max-w-[370px]">
-      <div className="m-4 mb-0 block lg:flex items-center justify-center lg:justify-between">
-        <h1 className="lg:text-[1.5vw] max-[768px]:text-xl font-semibold text-gray-600 pl-3 pt-4 text-center">
-          İstatistikler
-        </h1>
-        <div className="block lg:flex items-center justify-center">
-          <h1 className="text-xs lg:text-[0.8vw] text-gray-500 font-semibold flex items-center justify-center pt-4">
-            Son Güncelleme : {guncelTarih}
+    <>
+      <div className="w-full my-4 bg-white mx-auto rounded-lg max-[768px]:max-w-[370px]">
+        <div className="m-4 mb-0 block lg:flex items-center justify-center lg:justify-between">
+          <h1 className="lg:text-[1.5vw] max-[768px]:text-xl font-semibold text-gray-600 pl-3 pt-4 text-center">
+            İstatistikler
           </h1>
-          <button className="text-center flex items-center justify-center px-8 bg-lightOrange2 text-premiumPurple border-2 border-premiumPurple rounded-lg text-xs font-semibold lg:text-[0.8vw] h-[5vw] lg:h-[2vw] mt-4 lg:ml-5 mx-auto lg:mx-0">
-            Tüm İstatistikler
-          </button>
+          <div className="block lg:flex items-center justify-center">
+            <h1 className="text-xs lg:text-[0.8vw] text-gray-500 font-semibold flex items-center justify-center pt-4">
+              Son Güncelleme : {guncelTarih}
+            </h1>
+            <button
+              onClick={toggleAllDetailsModal}
+              className="text-center flex items-center justify-center px-8 bg-lightOrange2 text-premiumPurple border-2 border-premiumPurple rounded-lg text-xs font-semibold lg:text-[0.8vw] h-[5vw] lg:h-[2vw] mt-4 lg:ml-5 mx-auto lg:mx-0"
+            >
+              Tüm İstatistikler
+            </button>
+          </div>
         </div>
-      </div>
-      <div className="infosArea block lg:flex  rounded-md">
-        <>
-          <div className="graphArea md:w-full lg:w-[50%] sm:flex block items-center justify-center mb-2 lg:mb-0 max-h-[345px] mt-3">
-            <div className="lg:w-full h-full flex flex-col items-center justify-center lg:justify-start mr-1 ">
-              <div className="titleArea block lg:flex mx-auto lg:mx-0 lg:ml-14 lg:justify-start items-center w-full ml-[55px] text-xs lg:text-[0.8vw] ">
-                <div className="block">
-                  <div className="flex mb-2 lg:text-[1vw]">
-                    <h1 className=" text-gray-500 font-semibold">
-                      {graph.datasets[0].label} :
-                    </h1>
-                    <h1 className=" text-black font-extrabold ml-1">
-                      {graph.datasets[0].data.reduce(
-                        (acc, currentValue) => acc + currentValue,
-                        0
-                      )}{" "}
-                    </h1>
+        <div className="infosArea block lg:flex  rounded-md">
+          <>
+            <div className="graphArea md:w-full lg:w-[50%] sm:flex block items-center justify-center mb-2 lg:mb-0 max-h-[345px] mt-3">
+              <div className="lg:w-full h-full flex flex-col items-center justify-center lg:justify-start mr-1 ">
+                <div className="titleArea block lg:flex mx-auto lg:mx-0 lg:ml-14 lg:justify-start items-center w-full ml-[55px] text-xs lg:text-[0.8vw] ">
+                  <div className="block">
+                    <div className="flex mb-2 lg:text-[1vw]">
+                      <h1 className=" text-gray-500 font-semibold">
+                        {graph.datasets[0].label} :
+                      </h1>
+                      <h1 className=" text-black font-extrabold ml-1">
+                        {graph.datasets[0].data.reduce(
+                          (acc, currentValue) => acc + currentValue,
+                          0
+                        )}{" "}
+                      </h1>
+                    </div>
+                    {graph &&
+                      graph.datasets &&
+                      graph.datasets[1] &&
+                      graph.datasets[1].label &&
+                      graph.datasets[1].data && (
+                        <>
+                          <div className="flex my-3 lg:my-0">
+                            <h1 className=" text-gray-500 font-semibold">
+                              {graph.datasets[1].label} :
+                            </h1>
+                            <h1 className=" text-black font-extrabold ml-1">
+                              {graph.datasets[1].data.reduce(
+                                (acc, currentValue) => acc + currentValue,
+                                0
+                              )}{" "}
+                            </h1>
+                          </div>
+                        </>
+                      )}
                   </div>
                   {graph &&
                     graph.datasets &&
@@ -673,71 +702,53 @@ function AppointmentInfos() {
                     graph.datasets[1].label &&
                     graph.datasets[1].data && (
                       <>
-                        <div className="flex my-3 lg:my-0">
-                          <h1 className=" text-gray-500 font-semibold">
-                            {graph.datasets[1].label} :
-                          </h1>
-                          <h1 className=" text-black font-extrabold ml-1">
-                            {graph.datasets[1].data.reduce(
+                        <div className="flex ml-5">
+                          <div className="changePercentage text-gray-500 font-semibold flex items-center justify-center">
+                            {" "}
+                            {(
+                              ((graph.datasets[0].data.reduce(
+                                (acc, currentValue) => acc + currentValue,
+                                0
+                              ) -
+                                graph.datasets[1].data.reduce(
+                                  (acc, currentValue) => acc + currentValue,
+                                  0
+                                )) /
+                                graph.datasets[1].data.reduce(
+                                  (acc, currentValue) => acc + currentValue,
+                                  0
+                                )) *
+                              100
+                            ).toFixed(2)}
+                            %{" "}
+                            {graph.datasets[0].data.reduce(
                               (acc, currentValue) => acc + currentValue,
                               0
-                            )}{" "}
-                          </h1>
+                            ) >
+                            graph.datasets[1].data.reduce(
+                              (acc, currentValue) => acc + currentValue,
+                              0
+                            ) ? (
+                              <i className="fa-solid fa-up-long text-green-600 text-2xl ml-3 font-bold"></i>
+                            ) : (
+                              <i className="fa-solid fa-down-long text-red-600 text-2xl ml-3"></i>
+                            )}
+                          </div>
                         </div>
                       </>
                     )}
                 </div>
-                {graph &&
-                  graph.datasets &&
-                  graph.datasets[1] &&
-                  graph.datasets[1].label &&
-                  graph.datasets[1].data && (
-                    <>
-                      <div className="flex ml-5">
-                        <div className="changePercentage text-gray-500 font-semibold flex items-center justify-center">
-                          {" "}
-                          {(
-                            ((graph.datasets[0].data.reduce(
-                              (acc, currentValue) => acc + currentValue,
-                              0
-                            ) -
-                              graph.datasets[1].data.reduce(
-                                (acc, currentValue) => acc + currentValue,
-                                0
-                              )) /
-                              graph.datasets[1].data.reduce(
-                                (acc, currentValue) => acc + currentValue,
-                                0
-                              )) *
-                            100
-                          ).toFixed(2)}
-                          %{" "}
-                          {graph.datasets[0].data.reduce(
-                            (acc, currentValue) => acc + currentValue,
-                            0
-                          ) >
-                          graph.datasets[1].data.reduce(
-                            (acc, currentValue) => acc + currentValue,
-                            0
-                          ) ? (
-                            <i className="fa-solid fa-up-long text-green-600 text-2xl ml-3 font-bold"></i>
-                          ) : (
-                            <i className="fa-solid fa-down-long text-red-600 text-2xl ml-3"></i>
-                          )}
-                        </div>
-                      </div>
-                    </>
-                  )}
+                <Line data={graph} options={options} className="py-5" />
               </div>
-              <Line data={graph} options={options} className="py-5" />
             </div>
-          </div>
-          <div className="infosArea flex items-center justify-end w-full lg:w-[50%] mx-auto">
-            {renderSwiper(boxes)}
-          </div>
-        </>
+            <div className="infosArea flex items-center justify-end w-full lg:w-[50%] mx-auto">
+              {renderSwiper(boxes)}
+            </div>
+          </>
+        </div>
       </div>
-    </div>
+      <AllDetails isOpen={isAllDetailsOpen} onClose={toggleAllDetailsModal} />
+    </>
   );
 }
 
