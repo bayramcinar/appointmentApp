@@ -663,7 +663,7 @@ function AppointmentInfos() {
           <>
             <div className="graphArea md:w-full lg:w-[50%] sm:flex block items-center justify-center mb-2 lg:mb-0 max-h-[345px] mt-3">
               <div className="lg:w-full h-full flex flex-col items-center justify-center lg:justify-start mr-1 ">
-                <div className="titleArea block lg:flex mx-auto lg:mx-0 lg:ml-14 lg:justify-start items-center w-full ml-[55px] text-xs lg:text-[0.8vw] ">
+                <div className="titleArea ml-5 flex lg:mx-0 lg:ml-14 lg:justify-start items-center w-full text-xs lg:text-[0.8vw] ">
                   <div className="block">
                     <div className="flex mb-2 lg:text-[1vw]">
                       <h1 className=" text-gray-500 font-semibold">
@@ -738,7 +738,7 @@ function AppointmentInfos() {
                       </>
                     )}
                 </div>
-                <Line data={graph} options={options} className="py-5" />
+                <Line data={graph} options={options} className="lg:py-5" />
               </div>
             </div>
             <div className="infosArea flex items-center justify-end w-full lg:w-[50%] mx-auto">

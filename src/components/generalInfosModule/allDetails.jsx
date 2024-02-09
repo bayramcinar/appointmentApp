@@ -221,8 +221,8 @@ function AllDetails({ isOpen, onClose }) {
             </button>
           </div>
           <div className="block md:flex text-sm md:text-[1.2vw] lg:text-[1.1vw] xl:text-[1vw]">
-            <div className="generalDiv">
-              <div className="graphArea flex items-center justify-center mb-5 lg:mb-0 lg:h-[15vw] lg:w-[15vw] md:h-[25vw] md:w-[25vw] h-[30vw] w-[30vw] p-8">
+            <div className="generalDiv flex items-center justify-center">
+              <div className="graphArea  mb-5 lg:mb-0 lg:h-[15vw] lg:w-[15vw] md:h-[25vw] md:w-[25vw] h-[40vw] w-[40vw] p-4 lg:p-8">
                 <Doughnut
                   data={
                     selectedGraph === "appointmentDetails"
