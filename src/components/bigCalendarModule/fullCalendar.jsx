@@ -239,7 +239,7 @@ function FullCalendarComponent() {
           isMobileForAnimation ? "" : "animate__fadeInBottomLeft"
         }`}
       >
-        <div className="mx-auto relative w-full max-[500px]:w-[360px] p-2 lg:p-5">
+        <div className="lg:mx-auto relative w-full max-[500px]:w-[360px] p-2 lg:p-5">
           <h1 className=" text-[1.5vw] max-[768px]:text-xl m-6 mb-2 ml-5 max-[500px]:m-3 mt-1 text-gray-600 font-semibold text-center flex justify-center lg:justify-start">
             Randevu Takvimi
           </h1>
