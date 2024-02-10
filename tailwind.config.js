@@ -10,12 +10,12 @@ module.exports = {
         lightBlue: "#4e9bfe",
         greenForTable: "#01e2b4",
         grayForTable: "#dbdada",
-        calanderAppointment: "#ff9800",
+        calanderAppointment: "hsl(36, 100%, 80%)",
         appointmentRequest: "#5D3587",
         royalPurple: "hsl(330, 100%, 50%)",
         vividOrange: "hsl(48, 100%, 50%)",
         deepSlateBlue: "hsl(270, 100%, 29.75%)",
-        coral: "hsl(0, 89.87%, 60.5%)",
+        coral: "hsl(0, 89.87%, 75%)",
         mistikBlue: "#314C93",
         lightMistikBlue: "#0091CC",
         premiumPurple: "hsl(7, 90%, 64%)",
@@ -37,6 +37,8 @@ module.exports = {
         greenStatus: "#409e77",
         lightOrange2: "hsl(44, 100%, 97%)",
         orangeTable: "hsl(44, 100%, 45%)",
+        greenCalendar: "hsl(155, 42%, 60%)",
+        grayCalendar: "hsl(0, 0%, 75%)",
       },
       backgroundImage: {
         gradient:

@@ -17,7 +17,7 @@ function Agenda() {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [filter, setFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(6);
+  const [itemsPerPage, setItemsPerPage] = useState(6);
   const isMobile = window.innerWidth <= 768;
   const handleOpenModal = (event) => {
     setSelectedEvent({
@@ -928,6 +928,9 @@ function Agenda() {
         return "Yaklaşan Randevunuz";
     }
   }
+  const handlePageNumberChange = (event) => {
+    setItemsPerPage(event.target.value);
+  };
   const isMobileForAnimation = window.innerWidth <= 768;
   return (
     <>
@@ -1032,7 +1035,27 @@ function Agenda() {
           </div>
         </div>
         {!isMobile && (
-          <div className="flex justify-end m-3">
+          <div className="flex justify-between m-3">
+            <div>
+              <select
+                id="pageNumberSelect"
+                className="px-5 py-2 font-medium rounded-lg bg-grayBg text-gray-600"
+                onChange={handlePageNumberChange}
+              >
+                <option value="">Sayfa Sayısını Seçin</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+              </select>
+            </div>
             <ul className="flex space-x-2">
               <li
                 onClick={() => handlePageChange(currentPage - 1)}

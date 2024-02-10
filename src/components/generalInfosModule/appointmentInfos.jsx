@@ -8,7 +8,8 @@ import { Navigation, Pagination } from "swiper/modules";
 import { Line } from "react-chartjs-2";
 import { CategoryScale, Chart, registerables } from "chart.js";
 import AllDetails from "./allDetails";
-
+import { FaArrowTrendUp } from "react-icons/fa6";
+import { FaArrowTrendDown } from "react-icons/fa6";
 function AppointmentInfos() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
   Chart.register(...registerables);
@@ -114,6 +115,13 @@ function AppointmentInfos() {
         backgroundColor: "hsl(7, 90%, 64%)",
         borderColor: "hsl(7, 90%, 64%)",
       },
+      {
+        type: "line",
+        label: "Geçen Yıl Randevu",
+        data: [165, 120, 182, 191, 118, 160, 196, 145, 129, 70, 127, 43],
+        backgroundColor: "hsl(0, 0%, 70%)",
+        borderColor: "hsl(0, 0%, 70%)",
+      },
     ],
   };
 
@@ -173,6 +181,16 @@ function AppointmentInfos() {
         backgroundColor: "hsl(7, 90%, 64%)",
         borderColor: "hsl(7, 90%, 64%)",
       },
+      {
+        type: "line",
+        label: "Geçen Ay Randevu Talebi",
+        data: [
+          3, 0, 12, 5, 6, 0, 1, 1, 2, 0, 6, 4, 1, 5, 6, 0, 1, 5, 2, 3, 1, 4, 1,
+          5, 7, 0, 1, 1, 2, 5, 3,
+        ],
+        backgroundColor: "hsl(0, 0%, 70%)",
+        borderColor: "hsl(0, 0%, 70%)",
+      },
     ],
   };
   const stateCancel = {
@@ -188,6 +206,16 @@ function AppointmentInfos() {
         ],
         backgroundColor: "hsl(7, 90%, 64%)",
         borderColor: "hsl(7, 90%, 64%)",
+      },
+      {
+        type: "line",
+        label: "Geçen Ay Randevu İptali",
+        data: [
+          0, 2, 1, 3, 0, 4, 1, 1, 4, 0, 3, 5, 1, 0, 7, 0, 1, 2, 2, 6, 0, 5, 1,
+          5, 2, 1, 1, 1, 9, 0, 3,
+        ],
+        backgroundColor: "hsl(0, 0%, 70%)",
+        borderColor: "hsl(0, 0%, 70%)",
       },
     ],
   };
@@ -205,6 +233,16 @@ function AppointmentInfos() {
         backgroundColor: "hsl(7, 90%, 64%)",
         borderColor: "hsl(7, 90%, 64%)",
       },
+      {
+        type: "line",
+        label: "Geçen Ay Randevu Onayı",
+        data: [
+          1, 4, 2, 3, 3, 1, 1, 1, 9, 7, 4, 4, 1, 0, 4, 0, 1, 1, 6, 3, 4, 7, 1,
+          5, 2, 8, 1, 1, 10, 0, 4,
+        ],
+        backgroundColor: "hsl(0, 0%, 70%)",
+        borderColor: "hsl(0, 0%, 70%)",
+      },
     ],
   };
   const stateTime = {
@@ -221,6 +259,17 @@ function AppointmentInfos() {
         ],
         backgroundColor: "hsl(7, 90%, 64%)",
         borderColor: "hsl(7, 90%, 64%)",
+      },
+      {
+        type: "line",
+        label: "Geçen Ay Randevu Süreleri",
+        data: [
+          300, 555, 150, 640, 200, 75, 123, 120, 210, 330, 310, 90, 110, 50, 60,
+          70, 164, 198, 356, 332, 341, 400, 179, 40, 69, 79, 123, 176, 213, 453,
+          462,
+        ],
+        backgroundColor: "hsl(0, 0%, 70%)",
+        borderColor: "hsl(0, 0%, 70%)",
       },
     ],
     options: {
@@ -250,6 +299,7 @@ function AppointmentInfos() {
       changeRate: 5,
       lastOne: "3",
       graphType: "daily",
+      description: "Bu günkü toplam randevuları ve saatlik dağılımı gösterir.",
     },
     {
       number: 15,
@@ -257,6 +307,7 @@ function AppointmentInfos() {
       changeRate: 5,
       lastOne: "14",
       graphType: "weekly",
+      description: "Bu haftaki toplam randevuları ve günlük dağılımı gösterir.",
     },
     {
       number: 45,
@@ -264,6 +315,7 @@ function AppointmentInfos() {
       changeRate: -10,
       lastOne: "55",
       graphType: "monthly",
+      description: "Bu ayki toplam randevuları ve günlük dağılımı gösterir.",
     },
     {
       number: 505,
@@ -272,6 +324,7 @@ function AppointmentInfos() {
       lastOne: "102",
       lastOne: "55",
       graphType: "yearly",
+      description: "Bu yılki toplam randevuları ve aylık dağılımı gösterir.",
     },
     {
       number: 7,
@@ -279,6 +332,8 @@ function AppointmentInfos() {
       changeRate: -6,
       lastOne: "55",
       graphType: "request",
+      description:
+        "Bu ayki toplam randevu taleplerini ve aylık dağılımı gösterir.",
     },
     {
       number: 8,
@@ -286,6 +341,8 @@ function AppointmentInfos() {
       changeRate: 2,
       lastOne: "55",
       graphType: "cancel",
+      description:
+        "Bu ayki toplam randevu iptalleri ve aylık dağılımı gösterir.",
     },
     {
       number: 18,
@@ -293,6 +350,8 @@ function AppointmentInfos() {
       changeRate: 10,
       lastOne: "55",
       graphType: "confirm",
+      description:
+        "Bu ayki toplam randevu onayları ve aylık dağılımı gösterir.",
     },
 
     {
@@ -301,14 +360,14 @@ function AppointmentInfos() {
       changeRate: 5,
       lastOne: "14",
       graphType: "time",
+      description:
+        "Bu ayki toplam randevu süreleri ve aylık dağılımı gösterir.",
     },
   ];
   const optionsToday = {
     plugins: {
       legend: {
-        labels: {
-          color: "#000",
-        },
+        display: false, // Burada legend'i gizliyoruz
       },
     },
     scales: {
@@ -345,9 +404,7 @@ function AppointmentInfos() {
   const optionsMonthly = {
     plugins: {
       legend: {
-        labels: {
-          color: "#000",
-        },
+        display: false, // Burada legend'i gizliyoruz
       },
     },
     scales: {
@@ -383,9 +440,7 @@ function AppointmentInfos() {
   const optionsYearly = {
     plugins: {
       legend: {
-        labels: {
-          color: "#000",
-        },
+        display: false, // Burada legend'i gizliyoruz
       },
     },
     scales: {
@@ -421,9 +476,7 @@ function AppointmentInfos() {
   const optionsCancel = {
     plugins: {
       legend: {
-        labels: {
-          color: "#000",
-        },
+        display: false, // Burada legend'i gizliyoruz
       },
     },
     scales: {
@@ -459,9 +512,7 @@ function AppointmentInfos() {
   const optionsRequest = {
     plugins: {
       legend: {
-        labels: {
-          color: "#000",
-        },
+        display: false, // Burada legend'i gizliyoruz
       },
     },
     scales: {
@@ -497,9 +548,7 @@ function AppointmentInfos() {
   const optionsConfirm = {
     plugins: {
       legend: {
-        labels: {
-          color: "#000",
-        },
+        display: false, // Burada legend'i gizliyoruz
       },
     },
     scales: {
@@ -535,9 +584,7 @@ function AppointmentInfos() {
   const optionsTime = {
     plugins: {
       legend: {
-        labels: {
-          color: "#000",
-        },
+        display: false, // Burada legend'i gizliyoruz
       },
     },
     scales: {
@@ -616,6 +663,7 @@ function AppointmentInfos() {
                 changeRate={box.changeRate}
                 lastOne={box.lastOne}
                 graph={box.graph}
+                description={box.description}
                 changeGraph={() => changeGraph(box.graphType)}
               />
             ))}
@@ -640,6 +688,7 @@ function AppointmentInfos() {
   const toggleAllDetailsModal = () => {
     setIsAllDetailsOpen(!isAllDetailsOpen);
   };
+  console.log(graph.datasets[0]);
   return (
     <>
       <div className="w-full my-4 bg-white mx-auto rounded-lg max-[768px]:max-w-[370px]">
@@ -653,7 +702,7 @@ function AppointmentInfos() {
             </h1>
             <button
               onClick={toggleAllDetailsModal}
-              className="text-center flex items-center justify-center px-8 bg-lightOrange2 text-premiumPurple border-2 border-premiumPurple rounded-lg text-xs font-semibold lg:text-[0.8vw] h-[5vw] lg:h-[2vw] mt-4 lg:ml-5 mx-auto lg:mx-0"
+              className="text-center flex items-center justify-center px-8 bg-white hover:bg-premiumPurple hover:text-white text-premiumPurple border-2 border-premiumPurple rounded-lg text-xs font-semibold lg:text-[0.8vw] h-[5vw] lg:h-[2vw] mt-4 lg:ml-5 mx-auto lg:mx-0 transition duration-[400ms]"
             >
               Tüm İstatistikler
             </button>
@@ -664,81 +713,109 @@ function AppointmentInfos() {
             <div className="graphArea md:w-full lg:w-[50%] sm:flex block items-center justify-center mb-2 lg:mb-0 max-h-[345px] mt-3">
               <div className="lg:w-full h-full flex flex-col items-center justify-center lg:justify-start mr-1 ">
                 <div className="titleArea ml-5 flex lg:mx-0 lg:ml-14 lg:justify-start items-center w-full text-xs lg:text-[0.8vw] ">
-                  <div className="block">
-                    <div className="flex mb-2 lg:text-[1vw]">
+                  <div className="flex justify-between w-full">
+                    <div className="block mb-2 lg:text-[1vw] items-center justify-center my-auto">
                       <h1 className=" text-gray-500 font-semibold">
                         {graph.datasets[0].label} :
                       </h1>
-                      <h1 className=" text-black font-extrabold ml-1">
-                        {graph.datasets[0].data.reduce(
-                          (acc, currentValue) => acc + currentValue,
-                          0
-                        )}{" "}
-                      </h1>
+                      <div className="flex">
+                        <h1 className=" text-premiumPurple text font-semibold mt-2 text-xl">
+                          {graph.datasets[0].data.reduce(
+                            (acc, currentValue) => acc + currentValue,
+                            0
+                          )}{" "}
+                        </h1>
+                        {graph &&
+                          graph.datasets &&
+                          graph.datasets[1] &&
+                          graph.datasets[1].label &&
+                          graph.datasets[1].data && (
+                            <>
+                              <div className="flex ml-5 mt-2 ">
+                                <div className="changePercentage text-gray-500 font-semibold flex items-center justify-center ">
+                                  {" "}
+                                  {(
+                                    ((graph.datasets[0].data.reduce(
+                                      (acc, currentValue) => acc + currentValue,
+                                      0
+                                    ) -
+                                      graph.datasets[1].data.reduce(
+                                        (acc, currentValue) =>
+                                          acc + currentValue,
+                                        0
+                                      )) /
+                                      graph.datasets[1].data.reduce(
+                                        (acc, currentValue) =>
+                                          acc + currentValue,
+                                        0
+                                      )) *
+                                    100
+                                  ).toFixed(2)}
+                                  %{" "}
+                                  {graph.datasets[0].data.reduce(
+                                    (acc, currentValue) => acc + currentValue,
+                                    0
+                                  ) >
+                                  graph.datasets[1].data.reduce(
+                                    (acc, currentValue) => acc + currentValue,
+                                    0
+                                  ) ? (
+                                    <FaArrowTrendUp className=" text-green-600 text-2xl ml-3 font-bold " />
+                                  ) : (
+                                    <FaArrowTrendDown className=" text-red-600 text-2xl ml-3 font-bold " />
+                                  )}
+                                </div>
+                              </div>
+                            </>
+                          )}
+                      </div>
                     </div>
-                    {graph &&
-                      graph.datasets &&
-                      graph.datasets[1] &&
-                      graph.datasets[1].label &&
-                      graph.datasets[1].data && (
-                        <>
-                          <div className="flex my-3 lg:my-0">
-                            <h1 className=" text-gray-500 font-semibold">
-                              {graph.datasets[1].label} :
-                            </h1>
-                            <h1 className=" text-black font-extrabold ml-1">
-                              {graph.datasets[1].data.reduce(
-                                (acc, currentValue) => acc + currentValue,
-                                0
-                              )}{" "}
-                            </h1>
-                          </div>
-                        </>
-                      )}
-                  </div>
-                  {graph &&
-                    graph.datasets &&
-                    graph.datasets[1] &&
-                    graph.datasets[1].label &&
-                    graph.datasets[1].data && (
-                      <>
-                        <div className="flex ml-5">
-                          <div className="changePercentage text-gray-500 font-semibold flex items-center justify-center">
-                            {" "}
-                            {(
-                              ((graph.datasets[0].data.reduce(
-                                (acc, currentValue) => acc + currentValue,
-                                0
-                              ) -
-                                graph.datasets[1].data.reduce(
+                    <div className="flex flex-col justify-between mr-4 my-auto">
+                      {graph &&
+                        graph.datasets &&
+                        graph.datasets[1] &&
+                        graph.datasets[1].label &&
+                        graph.datasets[1].data && (
+                          <>
+                            <div className="flex  oldValues lg:text-[0.9vw]">
+                              <h1 className=" text-gray-500 font-semibold">
+                                {graph.datasets[1].label} :
+                              </h1>
+                              <h1 className=" text-black font-extrabold ml-1">
+                                {graph.datasets[1].data.reduce(
                                   (acc, currentValue) => acc + currentValue,
                                   0
-                                )) /
-                                graph.datasets[1].data.reduce(
-                                  (acc, currentValue) => acc + currentValue,
-                                  0
-                                )) *
-                              100
-                            ).toFixed(2)}
-                            %{" "}
-                            {graph.datasets[0].data.reduce(
-                              (acc, currentValue) => acc + currentValue,
-                              0
-                            ) >
-                            graph.datasets[1].data.reduce(
-                              (acc, currentValue) => acc + currentValue,
-                              0
-                            ) ? (
-                              <i className="fa-solid fa-up-long text-green-600 text-2xl ml-3 font-bold"></i>
-                            ) : (
-                              <i className="fa-solid fa-down-long text-red-600 text-2xl ml-3"></i>
-                            )}
-                          </div>
+                                )}{" "}
+                              </h1>
+                            </div>
+                          </>
+                        )}
+                      <div className="lg:text-[0.7vw]">
+                        <div className="firstOne flex my-1">
+                          <div className="lg:w-[0.7vw] lg:h-[0.7vw] w-[2.7vw] h-[2.7vw] bg-premiumPurple my-auto flex items-center justify-center rounded-full mr-2"></div>
+                          <h1 className=" text-premiumPurple font-semibold text-center flex items-center justify-center ">
+                            {graph.datasets[0].label}
+                          </h1>
                         </div>
-                      </>
-                    )}
+                        <div className="secondOne flex">
+                          {graph &&
+                            graph.datasets &&
+                            graph.datasets[1] &&
+                            graph.datasets[1].label &&
+                            graph.datasets[1].data && (
+                              <>
+                                <div className="lg:w-[0.7vw] lg:h-[0.7vw] w-[2.7vw] h-[2.7vw] bg-gray-500 flex my-auto items-center justify-center rounded-full mr-2"></div>
+                                <h1 className=" text-gray-500 font-semibold text-center flex items-center justify-center ">
+                                  {graph.datasets[1].label}
+                                </h1>
+                              </>
+                            )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <Line data={graph} options={options} className="lg:py-5" />
+                <Line data={graph} options={options} className="lg:pb-10" />
               </div>
             </div>
             <div className="infosArea flex items-center justify-end w-full lg:w-[50%] mx-auto">

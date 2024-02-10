@@ -53,6 +53,24 @@ function AllDetails({ isOpen, onClose }) {
       },
     ],
   };
+  const appointmentCancelled = {
+    labels: ["Depresyon", "Kaygı", "Fitness", "Futbol"],
+    datasets: [
+      {
+        data: [4, 9, 7, 13],
+        backgroundColor: ["#FFCE56", "#4BC0C0", "#36A2EB", "#FFCE90"],
+      },
+    ],
+  };
+  const whyAppointmentCancelled = {
+    labels: ["Müşterinin İptal Ettiği", "Benim İptal Ettiği", "Diğer"],
+    datasets: [
+      {
+        data: [3, 5, 1],
+        backgroundColor: ["#FFCE56", "#4BC0C0", "#36A2EB"],
+      },
+    ],
+  };
   const appointmentCategories = {
     labels: [
       "İlişki Terapisi",
@@ -111,7 +129,7 @@ function AllDetails({ isOpen, onClose }) {
   return (
     <div className={modalClass}>
       <div className="absolute w-full h-full flex items-center justify-center">
-        <div className="relative mx-[3rem] p-5 bg-white rounded-2xl animate__animated animate__fadeInDown">
+        <div className="relative mx-[3rem] p-5 bg-white rounded-2xl animate__animated animate__fadeInDown max-w-[1200px]">
           <div className="flex items-center justify-center relative">
             <div className="titleModal m-3">
               <h1 className="text-center mr-auto ml-auto w-full mb-0 text-md md:text-[1.5vw] lg:text-[1.4vw] xl:text-[1.3vw]">
@@ -125,6 +143,10 @@ function AllDetails({ isOpen, onClose }) {
                   ? "Randevu Yaş Dağılımı"
                   : selectedGraph === "appointmentLanguage"
                   ? "Randevu Dil Dağılımı"
+                  : selectedGraph === "appointmentCancelled"
+                  ? "İptal Edilen Randevu Kategorileri"
+                  : selectedGraph === "whyAppointmentCancelled"
+                  ? "İptal Edilme Nedenleri"
                   : "Randevu Talepleri"}
               </h1>
             </div>
@@ -178,6 +200,26 @@ function AllDetails({ isOpen, onClose }) {
               onClick={() => handleTabChange("appointmentCategories")}
             >
               Randevu Kategorileri
+            </button>
+            <button
+              className={`px-4 py-2 mx-2 ${
+                selectedGraph === "appointmentCancelled"
+                  ? "text-premiumPurple border-b-2 border-premiumPurple"
+                  : "text-gray-400  border-b-2 border-gray-300"
+              }`}
+              onClick={() => handleTabChange("appointmentCancelled")}
+            >
+              İptal Edilen Randevu Kategorileri
+            </button>
+            <button
+              className={`px-4 py-2 mx-2 ${
+                selectedGraph === "whyAppointmentCancelled"
+                  ? "text-premiumPurple border-b-2 border-premiumPurple"
+                  : "text-gray-400  border-b-2 border-gray-300"
+              }`}
+              onClick={() => handleTabChange("whyAppointmentCancelled")}
+            >
+              İptal Edilme Nedenleri
             </button>
             <button
               className={`px-4 py-2 mx-2 ${
@@ -235,6 +277,10 @@ function AllDetails({ isOpen, onClose }) {
                       ? appointmentAgeRate
                       : selectedGraph === "appointmentLanguage"
                       ? appointmentLanguage
+                      : selectedGraph === "appointmentCancelled"
+                      ? appointmentCancelled
+                      : selectedGraph === "whyAppointmentCancelled"
+                      ? whyAppointmentCancelled
                       : appointmentRequest
                   }
                   options={options}
@@ -397,6 +443,64 @@ function AllDetails({ isOpen, onClose }) {
                           </td>
                         </tr>
                       ))
+                    : selectedGraph === "appointmentCancelled"
+                    ? appointmentCancelled.labels.map((label, index) => (
+                        <tr key={index} className="border-b">
+                          <td style={{ padding: "12px 0" }}>
+                            <span
+                              className="mr-2"
+                              style={{
+                                display: "inline-block",
+                                width: "10px",
+                                height: "10px",
+                                backgroundColor:
+                                  appointmentCancelled.datasets[0]
+                                    .backgroundColor[index],
+                              }}
+                            ></span>
+                            {label}
+                          </td>
+                          <td style={{ padding: "12px 0" }}>
+                            {appointmentCancelled.datasets[0].data[index]}
+                          </td>
+                          <td style={{ padding: "12px 0" }}>
+                            {calculatePercentage(
+                              appointmentCancelled.datasets[0].data[index],
+                              total
+                            )}
+                            %
+                          </td>
+                        </tr>
+                      ))
+                    : selectedGraph === "whyAppointmentCancelled"
+                    ? whyAppointmentCancelled.labels.map((label, index) => (
+                        <tr key={index} className="border-b">
+                          <td style={{ padding: "12px 0" }}>
+                            <span
+                              className="mr-2"
+                              style={{
+                                display: "inline-block",
+                                width: "10px",
+                                height: "10px",
+                                backgroundColor:
+                                  whyAppointmentCancelled.datasets[0]
+                                    .backgroundColor[index],
+                              }}
+                            ></span>
+                            {label}
+                          </td>
+                          <td style={{ padding: "12px 0" }}>
+                            {whyAppointmentCancelled.datasets[0].data[index]}
+                          </td>
+                          <td style={{ padding: "12px 0" }}>
+                            {calculatePercentage(
+                              whyAppointmentCancelled.datasets[0].data[index],
+                              total
+                            )}
+                            %
+                          </td>
+                        </tr>
+                      ))
                     : appointmentRequest.labels.map((label, index) => (
                         <tr key={index} className="border-b">
                           <td style={{ padding: "12px 0" }}>
@@ -427,7 +531,7 @@ function AllDetails({ isOpen, onClose }) {
                       ))}
                 </tbody>
                 <tfoot>
-                  <tr>
+                  <tr className="font-semibold">
                     <td style={{ padding: "12px 0" }}>Toplam</td>
                     <td style={{ padding: "12px 0" }}>{total}</td>
                     <td style={{ padding: "12px 0" }}>100%</td>

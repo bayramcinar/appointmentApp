@@ -187,7 +187,7 @@ function FullCalendarComponent() {
           return {
             className: "past-event",
             style: {
-              backgroundColor: "gray",
+              backgroundColor: "hsl(0, 0%, 75%)",
             },
           };
         } else {
@@ -195,7 +195,7 @@ function FullCalendarComponent() {
             return {
               className: "deleted-appointment",
               style: {
-                backgroundColor: "hsl(0, 89.87%, 60.5%)",
+                backgroundColor: "hsl(0, 89.87%, 75%)",
               },
             };
           }
@@ -203,7 +203,7 @@ function FullCalendarComponent() {
             return {
               className: "empty-appointment",
               style: {
-                backgroundColor: "#FF9800",
+                backgroundColor: "hsl(36, 100%, 75%)",
               },
             };
           }
@@ -246,7 +246,7 @@ function FullCalendarComponent() {
           <div className="colorsMean mb-5  flex right-1 ml-5 top-1 font-semibold justify-start items-center text-gray-600">
             <div className="lg:flex lg:flex-row lg:justify-start">
               <div className="flex max-[500px]:mr-2 mr-2">
-                <i class="fa-solid fa-circle text-green-500 max-[500px]:text-xs flex justify-center items-center"></i>
+                <i class="fa-solid fa-circle text-greenCalendar max-[500px]:text-xs flex justify-center items-center"></i>
                 <h1 className="max-[500px]:text-xs  ml-2 max-[500px]:text-center flex justify-center items-center">
                   Dolu Randevular
                 </h1>
@@ -260,7 +260,7 @@ function FullCalendarComponent() {
             </div>
             <div className="lg:flex lg:flex-row lg:justify-start">
               <div className="flex max-[500px]:mr-2 mr-2">
-                <i class="fa-solid fa-circle text-stepBorder1 max-[500px]:text-xs   flex justify-center items-center"></i>
+                <i class="fa-solid fa-circle text-grayCalendar max-[500px]:text-xs   flex justify-center items-center"></i>
                 <h1 className="max-[500px]:text-xs ml-2 max-[500px]:text-center flex justify-center items-center">
                   Tamamlanmış Randevular
                 </h1>

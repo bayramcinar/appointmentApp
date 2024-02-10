@@ -333,7 +333,6 @@ function SetAppointmentTime() {
   };
   const handleInfoIconHover = () => {
     const tooltip = document.querySelector(".tooltip");
-    console.log(tooltip);
     tooltip.style.display = "block";
   };
 
@@ -356,7 +355,7 @@ function SetAppointmentTime() {
             onMouseEnter={handleInfoIconHover}
             onMouseLeave={handleInfoIconLeave}
           >
-            <i className="fa-solid fa-circle-info text-xl text-deepSlateBlue"></i>
+            <i className="fa-solid fa-circle-info text-xl text-premiumPurple"></i>
           </div>
           <div className="tooltip z-[3] hidden bg-white border border-gray-300 p-2 rounded-xl shadow-lg absolute transform -translate-x-0 right-[2px] transition duration-300 w-[200px]">
             <h1 className="text-xs font-semibold text-center text-coral">
@@ -386,11 +385,11 @@ function SetAppointmentTime() {
         <div className="chooseSavedTimes flex items-center justify-center mt-5">
           <button
             onClick={() => handleOptionChange(true)}
-            className={`p-1 text-sm rounded-3xl m-3 mb-0 px-7 ${
+            className={`p-1 text-sm hover:bg-premiumPurple hover:text-white transition duration-[400ms] rounded-3xl m-3 mb-0 px-7 ${
               savedTimes === true ? "selected" : ""
             } ${
               savedTimes === true
-                ? " bg-gray-400  text-gray-100"
+                ? " bg-premiumPurple  text-gray-100"
                 : " bg-gray-100 text-gray-600"
             }`}
           >
@@ -398,11 +397,11 @@ function SetAppointmentTime() {
           </button>
           <button
             onClick={() => handleOptionChange(false)}
-            className={` p-1  text-sm rounded-3xl m-3 mb-0 px-7 ${
+            className={` p-1  text-sm hover:bg-premiumPurple hover:text-white transition duration-[400ms] rounded-3xl m-3 mb-0 px-7 ${
               savedTimes === false ? "selected" : ""
             } ${
               savedTimes === false
-                ? " bg-gray-400  text-gray-100 "
+                ? " bg-premiumPurple  text-gray-100 "
                 : "bg-gray-100 text-gray-600"
             }`}
           >
@@ -510,10 +509,10 @@ function SetAppointmentTime() {
                 <div className="w-full flex items-center justify-center mt-5">
                   <button
                     type="submit"
-                    className="bg-gray-400 text-gray-100 rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
+                    className="bg-gray-400 hover:bg-premiumPurple hover:text-white text-gray-100 rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4 transition duration-[400ms]"
                   >
                     <h4 className="text-text p-2 px-6 text-sm tracking-wider">
-                      Ekle
+                      Oluştur
                     </h4>
                   </button>
                 </div>

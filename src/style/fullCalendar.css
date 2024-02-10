@@ -1,10 +1,11 @@
 .rbc-btn-group button {
-  background-color: hsl(228, 22%, 90%);
-  border: hsl(228, 22%, 90%) 2px solid;
-  color: hsl(0, 0%, 15%);
+  background-color: hsl(7, 90%, 64%);
+  border: hsl(7, 90%, 64%) 2px solid;
+  color: white;
   padding: 5px 10px;
   cursor: pointer;
   font-weight: 600;
+  transition: 400ms;
 }
 .rbc-toolbar {
   font-size: 0.7vw;
@@ -21,14 +22,14 @@
 }
 
 .rbc-btn-group button:hover {
-  background-color: hsl(0, 0%, 35%);
-  border: hsl(228, 22%, 90%) 2px solid;
-  color: hsl(228, 22%, 90%);
+  background-color: white;
+  border: hsl(7, 90%, 64%) 2px solid;
+  color: hsl(7, 90%, 64%);
 }
 .rbc-active {
-  background-color: hsl(0, 0%, 35%) !important;
-  border: hsl(228, 22%, 90%) 2px solid !important;
-  color: hsl(228, 22%, 90%) !important;
+  background-color: white !important;
+  border: hsl(7, 90%, 64%) 2px solid !important;
+  color: hsl(7, 90%, 64%) !important;
 }
 .rbc-day-bg {
   position: relative;
@@ -101,7 +102,8 @@
 }
 .rbc-toolbar-label {
   width: min-content;
-  font-size: 1.05rem;
+  font-size: 1.15rem;
+  font-weight: 600;
 }
 .myCustomHeight {
   display: flex;
@@ -109,7 +111,7 @@
   justify-content: center;
 }
 .rbc-event {
-  background-color: rgb(34 197 94);
+  background-color: hsl(155, 42%, 60%);
 }
 .rbc-show-more {
   background-color: rgba(255, 255, 255, 0);
@@ -120,13 +122,13 @@
   color: hsl(267, 100%, 47%);
 }
 .past-event {
-  border-color: gray !important;
+  border-color: hsl(0, 0%, 75%) !important;
 }
 .empty-appointment {
-  border-color: #ff9800 !important;
+  border-color: hsl(36, 100%, 80%) !important;
 }
 .deleted-appointment {
-  border-color: hsl(0, 89.87%, 60.5%) !important;
+  border-color: hsl(0, 89.87%, 75%) !important;
 }
 @media only screen and (max-width: 1024px) {
   .rbc-event-label {
