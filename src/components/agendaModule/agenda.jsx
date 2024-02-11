@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import EventModal from "../commonModules/eventModal";
 import "../../style/agenda.css";
 import Swal from "sweetalert2";
-import AgendaCard from "./agendaCard";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -16,9 +14,11 @@ function Agenda() {
   const [openModal, setOpenModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [filter, setFilter] = useState("all");
+  const [alphabetic, setAlphabetic] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(6);
   const isMobile = window.innerWidth <= 768;
+  const [showTooltip, setShowTooltip] = useState(false);
   const handleOpenModal = (event) => {
     setSelectedEvent({
       ...event,
@@ -34,8 +34,11 @@ function Agenda() {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
-
-  const filterFormData = (formData, filter) => {
+  const handleFilter = (selectedFilter) => {
+    setAlphabetic(selectedFilter);
+  };
+  const filterFormData = (formData, filter, alphabetic) => {
+    console.log(alphabetic);
     const currentDate = new Date();
     const filteredData = formData.filter((data) => {
       const timeArray = data.time.split(" ");
@@ -48,7 +51,6 @@ function Agenda() {
         currentDate.getMonth(),
         currentDate.getDate()
       );
-
       switch (filter) {
         case "cancelled":
           return data.delete === true;
@@ -94,7 +96,7 @@ function Agenda() {
             data.delete === false
           );
         default:
-          return filter;
+          return true;
       }
     });
 
@@ -111,28 +113,74 @@ function Agenda() {
 
     if (storedFormData) {
       const parsedFormData = JSON.parse(storedFormData);
-      const filteredFormData = filterFormData(parsedFormData, filter);
+      const filteredFormData = filterFormData(
+        parsedFormData,
+        filter,
+        alphabetic
+      );
 
       if (filteredFormData) {
-        const sortedFormData = filteredFormData.sort((a, b) => {
-          const dateA = new Date(
-            a.time.split(" ")[0].split(".").reverse().join("-") +
-              " " +
-              a.time.split(" ")[2]
-          );
-          const dateB = new Date(
-            b.time.split(" ")[0].split(".").reverse().join("-") +
-              " " +
-              b.time.split(" ")[2]
-          );
+        let sortedFormData;
 
-          return dateA - dateB;
-        });
+        if (alphabetic === "az") {
+          sortedFormData = filteredFormData.sort((a, b) =>
+            a.firstName.toLowerCase().localeCompare(b.firstName.toLowerCase())
+          );
+        } else if (alphabetic === "za") {
+          sortedFormData = filteredFormData.sort((a, b) =>
+            b.firstName.toLowerCase().localeCompare(a.firstName.toLowerCase())
+          );
+        } else if (alphabetic === "new") {
+          sortedFormData = filteredFormData.sort((a, b) => {
+            const dateA = new Date(
+              a.time.split(" ")[0].split(".").reverse().join("-") +
+                " " +
+                a.time.split(" ")[2]
+            );
+            const dateB = new Date(
+              b.time.split(" ")[0].split(".").reverse().join("-") +
+                " " +
+                b.time.split(" ")[2]
+            );
+
+            return dateA - dateB;
+          });
+        } else if (alphabetic === "old") {
+          sortedFormData = filteredFormData.sort((a, b) => {
+            const dateA = new Date(
+              a.time.split(" ")[0].split(".").reverse().join("-") +
+                " " +
+                a.time.split(" ")[2]
+            );
+            const dateB = new Date(
+              b.time.split(" ")[0].split(".").reverse().join("-") +
+                " " +
+                b.time.split(" ")[2]
+            );
+
+            return dateB - dateA;
+          });
+        } else {
+          sortedFormData = filteredFormData.sort((a, b) => {
+            const dateA = new Date(
+              a.time.split(" ")[0].split(".").reverse().join("-") +
+                " " +
+                a.time.split(" ")[2]
+            );
+            const dateB = new Date(
+              b.time.split(" ")[0].split(".").reverse().join("-") +
+                " " +
+                b.time.split(" ")[2]
+            );
+
+            return dateA - dateB;
+          });
+        }
 
         setFormData(sortedFormData);
       }
     }
-  }, [formData]);
+  }, [formData, alphabetic]);
 
   useEffect(() => {
     const buttons = document.querySelectorAll(".rbc-button-link");
@@ -545,7 +593,23 @@ function Agenda() {
   }
   useEffect(() => {
     const handleOutsideClick = (event) => {
-      // Check if the clicked element is outside the buttons area
+      const isOutsideButtonsArea =
+        event.target.closest(".filters") === null &&
+        event.target.closest(".filterArea") === null;
+
+      if (isOutsideButtonsArea) {
+        setShowTooltip(false);
+      }
+    };
+
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, [setShowTooltip]);
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
       const isOutsideButtonsArea =
         event.target.closest(".buttonsArea") === null &&
         event.target.closest(".threePoint") === null;
@@ -556,10 +620,8 @@ function Agenda() {
       }
     };
 
-    // Add event listener to document for outside clicks
     document.addEventListener("click", handleOutsideClick);
 
-    // Clean up the event listener on component unmount
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
@@ -912,26 +974,16 @@ function Agenda() {
         return "Tüm Randevularım";
     }
   }
-  function getInfoTableHeaders() {
-    switch (filter) {
-      case "past":
-        return "Geçmiş Randevunuz";
-      case "notConfirmed":
-        return "İşlem Bekleyen Randevunuz";
-      case "cancelled":
-        return "İptal Edilen Randevunuz";
-      case "today":
-        return "Bugünki Randevunuz";
-      case "future":
-        return "Gelecek Randevunuz";
-      default:
-        return "Yaklaşan Randevunuz";
-    }
-  }
+
   const handlePageNumberChange = (event) => {
     setItemsPerPage(event.target.value);
   };
   const isMobileForAnimation = window.innerWidth <= 768;
+
+  const handleOpenFilter = () => {
+    setShowTooltip(!showTooltip);
+  };
+
   return (
     <>
       <div
@@ -940,18 +992,71 @@ function Agenda() {
         } animate__animated  rounded-xl max-[768px]:mx-auto max-[768px]:w-[23rem] mb-5 w-full flex-grow shadow-xl flex flex-col justify-between relative z-[2]`}
       >
         <div className="w-full overflow-auto max-h-600">
-          <div className="block lg:flex items-center justify-center lg:justify-start m-4">
+          <div className="block lg:flex items-center justify-center lg:justify-between m-4">
             <h1 className=" lg:text-[1.5vw] max-[768px]:text-xl text-center text-gray-600 font-semibold max-[768px]:pt-0 sticky top-0 pl-3">
               {getTableHeaders()}
             </h1>
-            <div className="relative ml-auto hidden lg:flex items-center justify-center">
-              <input
-                type="text"
-                placeholder="Ara..."
-                className="border rounded-md p-1 focus:outline-none "
-              />
-              <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                <i className="fas fa-search text-gray-500"></i>
+            <div className="flex justify-center mt-2 lg:mt-0 lg:justify-end items-center">
+              <div className="filterArea mr-2">
+                <button
+                  onClick={handleOpenFilter}
+                  className="py-2 px-4 bg-gray-100 text-gray-500 rounded-lg"
+                >
+                  <i class="fa-solid fa-filter text-premiumPurple"></i> Filtrele
+                </button>
+                {showTooltip && (
+                  <div className="tooltip filters animate__animated animate__zoomIn z-[3] bg-white border border-gray-300 p-2 rounded-xl shadow-lg absolute transform -translate-x-0 lg:top-16 lg:right-56 transition duration-300 md:text-[1vw] lg:text-[0.8vw] top-24 text-xs">
+                    <h1 className="font-semibold text-center text-gray-600">
+                      Filtreler
+                    </h1>
+                    <div className="">
+                      <div className="az my-3">
+                        <button
+                          className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full"
+                          onClick={() => handleFilter("az")}
+                        >
+                          <i class="fa-solid fa-arrow-up-a-z mr-2"></i>A-Z
+                        </button>
+                      </div>
+                      <div className="za">
+                        <button
+                          className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full"
+                          onClick={() => handleFilter("za")}
+                        >
+                          <i class="fa-solid fa-arrow-down-z-a mr-2"></i>Z-A
+                        </button>
+                      </div>
+                      <div className="new my-3">
+                        <button
+                          className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full"
+                          onClick={() => handleFilter("old")}
+                        >
+                          <i class="fa-solid fa-arrow-up-wide-short mr-2"></i>
+                          Tarih (Yeni - Eski)
+                        </button>
+                      </div>
+                      <div className="old my-3">
+                        <button
+                          className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full"
+                          onClick={() => handleFilter("new")}
+                        >
+                          <i class="fa-solid fa-arrow-down-short-wide mr-2"></i>
+                          Tarih (Eski - Yeni)
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div className="relative ml-auto hidden lg:flex items-center justify-center">
+                <input
+                  type="text"
+                  placeholder="Ara..."
+                  className="border rounded-md p-1 focus:outline-none "
+                />
+                <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                  <i className="fas fa-search text-gray-500"></i>
+                </div>
               </div>
             </div>
           </div>
