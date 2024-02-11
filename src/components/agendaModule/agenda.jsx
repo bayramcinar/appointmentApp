@@ -1146,7 +1146,7 @@ function Agenda() {
             <div className="flex items-center justify-center">
               <select
                 id="pageNumberSelect"
-                className="px-5 py-1 text-sm font-medium rounded-lg bg-white border-2 border-gray-200 text-gray-600"
+                className="px-2 py-1 text-sm font-medium rounded-lg bg-white border-2 border-gray-200 text-gray-600"
                 onChange={handlePageNumberChange}
               >
                 <option value="">Sayfa Sayısı</option>
