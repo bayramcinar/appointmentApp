@@ -770,7 +770,7 @@ function AppointmentInfos() {
                           )}
                       </div>
                     </div>
-                    <div className="flex flex-col justify-between mr-4 my-auto">
+                    <div className="flex flex-col justify-between mr-5 my-auto">
                       {graph &&
                         graph.datasets &&
                         graph.datasets[1] &&

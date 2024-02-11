@@ -63,7 +63,11 @@ function AllDetails({ isOpen, onClose }) {
     ],
   };
   const whyAppointmentCancelled = {
-    labels: ["Müşterinin İptal Ettiği", "Benim İptal Ettiği", "Diğer"],
+    labels: [
+      "Müşterinin İptal Ettiği",
+      "Benim İptal Ettiği",
+      "Ofistik Tarafından İptal Edilen",
+    ],
     datasets: [
       {
         data: [3, 5, 1],
@@ -134,7 +138,7 @@ function AllDetails({ isOpen, onClose }) {
             <div className="titleModal m-3">
               <h1 className="text-center mr-auto ml-auto w-full mb-0 text-md md:text-[1.5vw] lg:text-[1.4vw] xl:text-[1.3vw]">
                 {selectedGraph === "appointmentDetails"
-                  ? "Randevu İstatistikleri"
+                  ? "Randevu Statüleri"
                   : selectedGraph === "appointmentGender"
                   ? "Randevu Cinsiyet Dağılımı"
                   : selectedGraph === "appointmentCategories"
@@ -292,7 +296,7 @@ function AllDetails({ isOpen, onClose }) {
                 <thead className="border-b">
                   <tr>
                     <th className="text-start">Durum</th>
-                    <th className="text-start">Değer</th>
+                    <th className="text-start">Adet</th>
                     <th className="text-start">Yüzde</th>
                   </tr>
                 </thead>

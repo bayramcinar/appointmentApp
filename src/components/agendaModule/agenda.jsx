@@ -1002,12 +1002,12 @@ function Agenda() {
                   onClick={handleOpenFilter}
                   className="py-2 px-4 bg-gray-100 text-gray-500 rounded-lg"
                 >
-                  <i class="fa-solid fa-filter text-premiumPurple"></i> Filtrele
+                  <i class="fa-solid fa-filter text-premiumPurple"></i> Sırala
                 </button>
                 {showTooltip && (
                   <div className="tooltip filters animate__animated animate__zoomIn z-[3] bg-white border border-gray-300 p-2 rounded-xl shadow-lg absolute transform -translate-x-0 lg:top-16 lg:right-56 transition duration-300 md:text-[1vw] lg:text-[0.8vw] top-24 text-xs">
                     <h1 className="font-semibold text-center text-gray-600">
-                      Filtreler
+                      Sırala
                     </h1>
                     <div className="">
                       <div className="az my-3">
@@ -1015,7 +1015,8 @@ function Agenda() {
                           className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full"
                           onClick={() => handleFilter("az")}
                         >
-                          <i class="fa-solid fa-arrow-up-a-z mr-2"></i>A-Z
+                          <i class="fa-solid fa-arrow-up-a-z mr-2"></i>Ad Soyad
+                          (A-Z)
                         </button>
                       </div>
                       <div className="za">
@@ -1023,7 +1024,8 @@ function Agenda() {
                           className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full"
                           onClick={() => handleFilter("za")}
                         >
-                          <i class="fa-solid fa-arrow-down-z-a mr-2"></i>Z-A
+                          <i class="fa-solid fa-arrow-down-z-a mr-2"></i>Ad
+                          Soyad (Z-A)
                         </button>
                       </div>
                       <div className="new my-3">
@@ -1141,13 +1143,13 @@ function Agenda() {
         </div>
         {!isMobile && (
           <div className="flex justify-between m-3">
-            <div>
+            <div className="flex items-center justify-center">
               <select
                 id="pageNumberSelect"
-                className="px-5 py-2 font-medium rounded-lg bg-grayBg text-gray-600"
+                className="px-5 py-1 text-sm font-medium rounded-lg bg-white border-2 border-gray-200 text-gray-600"
                 onChange={handlePageNumberChange}
               >
-                <option value="">Sayfa Sayısını Seçin</option>
+                <option value="">Sayfa Sayısı</option>
                 <option value="5">5</option>
                 <option value="6">6</option>
                 <option value="7">7</option>
@@ -1160,6 +1162,9 @@ function Agenda() {
                 <option value="14">14</option>
                 <option value="15">15</option>
               </select>
+              <h1 className="text-sm text-gray-500 ml-2">
+                Şuanda Gösterilen Sayı {itemsPerPage}
+              </h1>
             </div>
             <ul className="flex space-x-2">
               <li
@@ -1193,7 +1198,6 @@ function Agenda() {
                   </button>
                 </li>
               ))}
-
               <li
                 onClick={() => handlePageChange(currentPage + 1)}
                 className={`px-5 py-2 border w-[80px] h-[40px] flex items-center justify-center cursor-pointer rounded-xl ${

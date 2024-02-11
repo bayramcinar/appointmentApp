@@ -1,10 +1,10 @@
 .rbc-btn-group button {
-  background-color: hsl(7, 90%, 64%);
+  background-color: white;
   border: hsl(7, 90%, 64%) 2px solid;
-  color: white;
+  color: hsl(7, 90%, 64%);
   padding: 5px 10px;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 500;
   transition: 400ms;
 }
 .rbc-toolbar {
@@ -22,14 +22,14 @@
 }
 
 .rbc-btn-group button:hover {
-  background-color: white;
+  background-color: hsl(7, 90%, 64%);
   border: hsl(7, 90%, 64%) 2px solid;
-  color: hsl(7, 90%, 64%);
+  color: white;
 }
 .rbc-active {
-  background-color: white !important;
+  background-color: hsl(7, 90%, 64%) !important;
   border: hsl(7, 90%, 64%) 2px solid !important;
-  color: hsl(7, 90%, 64%) !important;
+  color: white !important;
 }
 .rbc-day-bg {
   position: relative;

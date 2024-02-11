@@ -349,29 +349,29 @@ function SetAppointmentTime() {
       } `}
     >
       <div className=" bg-white  setAppointmentTime flex items-center justify-center flex-col relative rounded-xl max-[768px]:w-[370px]">
-        <div className="infoIcon absolute right-2 top-4">
+        <div className="infoIcon absolute right-2 top-5">
           <div
             className="infoIcon relative inline-block cursor-pointer"
             onMouseEnter={handleInfoIconHover}
             onMouseLeave={handleInfoIconLeave}
           >
-            <i className="fa-solid fa-circle-info text-xl text-premiumPurple"></i>
+            <i className="fa-solid fa-circle-info text-md text-premiumPurple"></i>
           </div>
           <div className="tooltip z-[3] hidden bg-white border border-gray-300 p-2 rounded-xl shadow-lg absolute transform -translate-x-0 right-[2px] transition duration-300 w-[200px]">
-            <h1 className="text-xs font-semibold text-center text-coral">
+            <h1 className="text-xs font-semibold text-center text-gray-500">
               Randevu süresi {appointmentDuration} dakika, randevu ücreti{" "}
-              {appointmentPrice} ₺ olarak ayarlıdır. Dilerseniz bu bilgileri
-              profilinizden güncelleyebilirsiniz.
+              {appointmentPrice} ₺ olarak ayarlıdır.Hizmet vermek istediginiz
+              tarih ve saatleri seçerek randevu defterinizi oluşturabilirsiniz.
             </h1>
             <div className=" my-1 flex items-center justify-center">
               <div className="flex mr-5">
-                <i class="fa-solid fa-clock text-deepSlateBlue flex items-center justify-center mr-2"></i>
+                <i class="fa-solid fa-clock text-premiumPurple flex items-center justify-center mr-2"></i>
                 <h1 className="text-xs font-semibold text-center mb-[2px]">
                   {appointmentDuration} Dakika
                 </h1>
               </div>
               <div className="flex">
-                <i class="fa-solid fa-money-bill-1-wave text-deepSlateBlue flex items-center justify-center mr-2"></i>
+                <i class="fa-solid fa-money-bill-1-wave text-premiumPurple flex items-center justify-center mr-2"></i>
                 <h1 className="text-xs font-semibold text-center  mb-[2px]">
                   {appointmentPrice} ₺
                 </h1>
@@ -509,7 +509,11 @@ function SetAppointmentTime() {
                 <div className="w-full flex items-center justify-center mt-5">
                   <button
                     type="submit"
-                    className="bg-gray-400 hover:bg-premiumPurple hover:text-white text-gray-100 rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4 transition duration-[400ms]"
+                    className={` hover:bg-premiumPurple ${
+                      selectedTimes.length > 0
+                        ? "bg-premiumPurple"
+                        : "bg-gray-400"
+                    } hover:text-white text-gray-100 rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4 transition duration-[400ms]`}
                   >
                     <h4 className="text-text p-2 px-6 text-sm tracking-wider">
                       Oluştur
@@ -524,7 +528,7 @@ function SetAppointmentTime() {
                     className="bg-gray-400 text-gray-100 rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
                   >
                     <h4 className="text-text p-2 px-6 text-sm tracking-wider">
-                      Kayıt Et
+                      Kaydet
                     </h4>
                   </button>
                 </div>

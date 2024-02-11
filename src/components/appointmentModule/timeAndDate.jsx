@@ -348,7 +348,7 @@ function TimeAndDate({
                       Size uyan bir saat yoksa randevu talebi oluşturabilirsiniz
                     </h1>
                     <button
-                      className="bg-deepSlateBlue rounded-2xl p-1 px-6 text-white text-sm mt-[5px] mb-[10px]"
+                      className="bg-gray-100 rounded-2xl p-1 px-6 text-gray-600 text-sm mt-[5px] mb-[10px]"
                       onClick={() => {
                         setRequest(true);
                         setAppointmentRequest(true);
@@ -422,17 +422,17 @@ function TimeAndDate({
                     >
                       {requestSelectedTime === "" && (
                         <>
-                          <p className="text-[#000000a8] text-center text-sm">
+                          <p className="text-gray-800 text-center text-sm">
                             Uygun saatler bulunamadı.
                           </p>
-                          <p className="text-[#000000a8] text-center text-sm">
+                          <p className="text-gray-800 text-center text-sm">
                             (İsterseniz randevu talebi oluşturabilirsiniz)
                           </p>
                         </>
                       )}
                       {requestSelectedTime === "" && (
                         <button
-                          className="bg-deepSlateBlue rounded-2xl p-1 px-6 text-white text-sm my-[15px]"
+                          className="bg-gray-100 rounded-2xl p-1 px-6 text-gray-600 text-sm my-[15px]"
                           onClick={() => {
                             setAppointmentRequestNormal(true);
                             setRequest(true);
@@ -468,7 +468,7 @@ function TimeAndDate({
                           <div className="flex items-center justify-center">
                             <button
                               onClick={() => setAppointmentRequest(true)}
-                              className="bg-premiumPurple font-semibold text-sm text-white p-1 px-6 rounded-2xl"
+                              className="bg-gray-100 font-semibold text-sm text-gray-600 p-1 px-6 rounded-2xl"
                             >
                               <i class="fa-solid fa-file-pen"></i> Düzenle
                             </button>
