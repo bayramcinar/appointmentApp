@@ -80,7 +80,7 @@ function ContactForm({
                     as="textarea"
                     rows="4"
                     cols="50"
-                    className="lg:w-[30rem] max-[768px]:w-[22rem] p-3 outline-none border-lightOrange border-2 rounded-xl"
+                    className="lg:w-[30rem] max-[768px]:w-[22rem] p-3 outline-none border-gray-100 border-2 rounded-xl"
                     placeholder="Notlar (Size daha iyi bir hizmet verebilmemiz için lütfen almak istediğiniz hizmetin içeriğini birkaç cümleyle açıklayınız.)"
                     name="notes"
                   />
@@ -141,7 +141,7 @@ function ContactForm({
               >
                 <div className="m-3">
                   <Field
-                    className="lg:w-[30rem] max-[768px]:w-[22rem] p-3  outline-none border-lightOrange border-2 rounded-xl"
+                    className="lg:w-[30rem] max-[768px]:w-[22rem] p-3  outline-none border-gray-100 border-2 rounded-xl"
                     type="text"
                     placeholder="İsim"
                     name="firstName"
@@ -149,7 +149,7 @@ function ContactForm({
                 </div>
                 <div className="m-3">
                   <Field
-                    className="lg:w-[30rem] max-[768px]:w-[22rem] p-3  outline-none border-lightOrange border-2 rounded-xl"
+                    className="lg:w-[30rem] max-[768px]:w-[22rem] p-3  outline-none border-gray-100 border-2 rounded-xl"
                     type="text"
                     placeholder="Soyisim"
                     name="lastName"
@@ -181,7 +181,7 @@ function ContactForm({
                   <Field
                     id="birthdaypicker"
                     type="date"
-                    className={` before:content-'Doğum Tarihi:' before:mr-1 before:text-gray-600 p-3  outline-none text-stepBorder1 lg:w-[30rem] max-[768px]:w-[22rem] border-lightOrange border-2 rounded-xl `}
+                    className={` before:content-'Doğum Tarihi:' before:mr-1 before:text-gray-600 p-3  outline-none text-stepBorder1 lg:w-[30rem] max-[768px]:w-[22rem] border-gray-100 border-2 rounded-xl `}
                     name="dateOfBirth"
                   />
                 </div>
@@ -190,7 +190,7 @@ function ContactForm({
                     as="textarea"
                     rows="4"
                     cols="50"
-                    className="p-3  outline-none lg:w-[30rem] max-[768px]:w-[22rem] border-lightOrange border-2 rounded-xl"
+                    className="p-3  outline-none lg:w-[30rem] max-[768px]:w-[22rem] border-gray-100 border-2 rounded-xl"
                     placeholder="Notlar (Size daha iyi bir hizmet verebilmemiz için lütfen almak istediğiniz hizmetin içeriğini birkaç cümleyle açıklayınız.)"
                     name="notes"
                   />

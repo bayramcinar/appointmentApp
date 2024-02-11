@@ -13,19 +13,17 @@ function ServiceBox({ title, selectedService, onServiceClick, image }) {
   return (
     <div>
       <div
-        className="service max-[768px]:m-[13px] cursor-pointer flex rounded-2xl w-[14.5rem] max-[768px]:w-[16rem] m-[5px]"
+        className="service max-[768px]:m-[13px] cursor-pointer flex rounded-2xl w-[14.5rem] max-[768px]:w-[16rem] m-[7px]"
         onClick={handleServiceClick}
       >
         <div
           className={`textArea md:rounded-r-3xl  ${
-            isSelected
-              ? " bg-premiumPurple"
-              : " bg-purpleBg border-2 border-premiumPurple"
-          } w-80 p-2 rounded-3xl flex items-center justify-center max-[768px]:rounded-2xl`}
+            isSelected ? " bg-premiumPurple" : " bg-gray-100"
+          } w-80 p-2 rounded-3xl flex hover:bg-premiumPurple hover:text-white text-gray-500 items-center justify-center max-[768px]:rounded-2xl`}
         >
           <h3
-            className={`text-sm max-[768px]:text-base ${
-              isSelected ? "text-white" : " text-premiumPurple"
+            className={`text-sm max-[768px]:text-base  ${
+              isSelected ? "text-gray-100" : " "
             } text-center`}
           >
             {title}
