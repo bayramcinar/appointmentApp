@@ -56,60 +56,32 @@ const EventModalForCalendar = ({ isOpen, onClose, event }) => {
             </div>
           </div>
           <div>
-            <div className="m-3">
+            <div className="m-3 mt-0">
               <div className="appointmentNotes">
                 <div className="flex">
                   <div className="imgArea w-[120px] p-2">
                     <img src={pp} alt="" />
                   </div>
-                  <div className="forSomeone flex mt-3 flex-wrap items-center justify-center">
+                  <div className="forSomeone flex flex-wrap items-center justify-center">
                     <div className="generalNameAreaSomeOne mr-5">
-                      <div className="nameAreaSomeone flex">
-                        <i class="fa-solid fa-user text-premiumPurple flex items-center justify-center"></i>
-                        <h2 className="text-sm font-bold ml-[8px] text-center">
-                          İsim Soyisim
-                        </h2>
-                      </div>
-                      <div>
-                        <h1 className="text-sm">{event.name}</h1>
-                      </div>
-                    </div>
-                    <div className="generalGenderAreaSomeOne mr-5">
-                      <div className="genderAreaSomeone flex">
-                        <i class="fa-solid fa-venus-mars text-premiumPurple flex items-center justify-center"></i>
-                        <h2 className="text-sm font-bold ml-[8px] text-center">
-                          Cinsiyet
-                        </h2>
-                      </div>
-                      <div>
-                        <h2 className="text-sm text-center">{event.gender}</h2>
-                      </div>
-                    </div>
-                    <div className="flex">
-                      <div className="generalBirthdayAreaSomeOne mr-5 mt-3">
-                        <div className="birthdayAreaSomeone flex">
-                          <i class="fa-solid fa-cake-candles text-premiumPurple flex items-center justify-center"></i>
-                          <h2 className="text-sm font-bold ml-[8px] text-center">
-                            Doğum Tarihi
-                          </h2>
+                      <div className="flex flex-col justify-start items-start ml-2">
+                        <div className="flex">
+                          <i class="fa-solid fa-circle text-premiumPurple flex text-xs items-center justify-center mr-2"></i>
+                          <h1 className="text-md font-semibold my-1 text-gray-600">
+                            {event.name} ({event.gender.toUpperCase()})
+                          </h1>
                         </div>
-                        <div>
-                          <h2 className="text-sm text-center">
-                            {event.birthday}
-                          </h2>
+                        <div className="flex">
+                          <i class="fa-solid fa-circle text-premiumPurple flex text-xs items-center justify-center mr-2"></i>
+                          <h1 className="text-md font-semibold my-1 text-gray-600">
+                            {event.title}
+                          </h1>
                         </div>
-                      </div>
-                      <div className="generalAppointmentTime mr-5 mt-3">
-                        <div className="appointmentTimeArea flex">
-                          <i class="fa-regular fa-calendar-check text-premiumPurple flex items-center justify-center"></i>
-                          <h2 className="text-sm font-bold ml-[8px] text-center">
-                            Randevu Tarihi
-                          </h2>
-                        </div>
-                        <div className="flex items-center justify-center">
-                          <h2 className="text-sm text-center w-[110px]">
+                        <div className="flex">
+                          <i class="fa-solid fa-circle text-premiumPurple flex text-xs items-center justify-center mr-2"></i>
+                          <h1 className="text-md my-1 text-gray-600">
                             {formatTimeInterval(event.start, event.end)}
-                          </h2>
+                          </h1>
                         </div>
                       </div>
                     </div>
@@ -118,47 +90,49 @@ const EventModalForCalendar = ({ isOpen, onClose, event }) => {
                 <div className="flex w-full mt-5 justify-around">
                   <div className="serviceNameArea">
                     <div className="service flex">
-                      <i class="fa-solid fa-user text-premiumPurple flex items-center justify-center"></i>
-                      <h2 className="text-sm font-bold ml-[8px] text-center">
-                        Hizmet
+                      <i class="fa-solid fa-cake-candles text-premiumPurple flex items-center justify-center"></i>
+                      <h2 className="text-sm font-bold ml-[8px] text-center text-gray-600">
+                        Doğum Tarihi
                       </h2>
                     </div>
                     <div>
-                      <h1 className="text-sm w-[100px]">{event.title}</h1>
+                      <h2 className="text-sm text-center mb-1 text-gray-600">
+                        {event.birthday}
+                      </h2>
                     </div>
                   </div>
                   <div className="languageArea">
                     <div className="textLogoArea flex">
                       <i class="fa-solid fa-earth-americas text-premiumPurple flex items-center justify-center"></i>
-                      <h5 className="text-sm font-semibold ml-[8px] mt-auto mb-auto text-center">
+                      <h5 className="text-sm font-semibold ml-[8px] mt-auto mb-auto text-center text-gray-600">
                         Dil
                       </h5>
                     </div>
                     <div className="appointmentLanguage">
-                      <h1 className="text-sm">{event.language}</h1>
+                      <h1 className="text-sm text-gray-600">
+                        {event.language}
+                      </h1>
                     </div>
                   </div>
                   <div className="generalAppointmentNumber">
                     <div className="birthdayAreaSomeone flex">
                       <i class="fa-solid fa-calendar-check text-premiumPurple flex items-center justify-center"></i>
-                      <h2 className="text-sm font-bold ml-[8px] text-center">
+                      <h2 className="text-sm font-bold ml-[8px] text-center text-gray-600">
                         Randevu Numarası
                       </h2>
                     </div>
                     <div>
-                      <h2 className="text-sm text-center">
+                      <h2 className="text-sm text-center text-gray-600">
                         {event.appointmentNumber}
                       </h2>
                     </div>
                   </div>
                 </div>
-                <div className="notesArea mt-[8px] border-2 border-premiumPurple rounded-xl">
+                <div className="notesArea mt-[8px] border-2 border-gray-300 rounded-xl">
                   <div className="p-3">
                     <div className="flex">
                       <i className="fa-solid fa-book text-xl text-premiumPurple"></i>
-                      <h2 className="text-xl ml-2 text-premiumPurple">
-                        Notlar
-                      </h2>
+                      <h2 className="text-xl ml-2 text-gray-600">Notlar</h2>
                     </div>
                     <p className="text-sm">{event.notes}</p>
                   </div>
