@@ -68,7 +68,7 @@ const EventModalForCalendar = ({ isOpen, onClose, event }) => {
                         <div className="flex">
                           <i class="fa-solid fa-circle text-premiumPurple flex text-xs items-center justify-center mr-2"></i>
                           <h1 className="text-md font-semibold my-1 text-gray-600">
-                            {event.name} ({event.gender.toUpperCase()})
+                            {event.name} ({event.gender})
                           </h1>
                         </div>
                         <div className="flex">
