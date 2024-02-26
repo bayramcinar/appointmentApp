@@ -408,7 +408,11 @@ function Agenda() {
       return (
         <tr
           key={actualIndex}
-          className={actualIndex % 2 === 0 ? "bg-white" : "bg-white"}
+          className={
+            actualIndex % 2 === 0
+              ? "bg-white md:text-[1.2vw] lg:text-[1vw] xl:text-[0.9vw]"
+              : "bg-white md:text-[1.2vw] lg:text-[1vw] xl:text-[0.9vw]"
+          }
         >
           <td className="text-center p-3 text-black font-medium">
             {actualIndex + 1}
@@ -996,7 +1000,7 @@ function Agenda() {
             <h1 className=" lg:text-[1.5vw] max-[768px]:text-xl text-center text-gray-600 font-semibold max-[768px]:pt-0 sticky top-0 pl-3">
               {getTableHeaders()}
             </h1>
-            <div className="flex justify-center mt-2 lg:mt-0 lg:justify-end items-center">
+            <div className="flex justify-center mt-2 lg:mt-0 lg:justify-end items-center text-xs md:text-[1.2vw] lg:text-[1vw] xl:text-[0.9vw]">
               <div className="filterArea mr-2">
                 <button
                   onClick={handleOpenFilter}
@@ -1005,14 +1009,14 @@ function Agenda() {
                   <i class="fa-solid fa-filter text-premiumPurple"></i> Sırala
                 </button>
                 {showTooltip && (
-                  <div className="tooltip filters animate__animated animate__zoomIn z-[3] bg-white border border-gray-300 p-2 rounded-xl shadow-lg absolute transform -translate-x-0 lg:top-16 lg:right-56 transition duration-300 md:text-[1vw] lg:text-[0.8vw] top-24 text-xs">
+                  <div className="tooltip filters animate__animated animate__zoomIn z-[3] bg-white border border-gray-300 p-2 rounded-xl shadow-lg absolute transform -translate-x-0 lg:top-16 lg:right-56 transition duration-300 top-24 ">
                     <h1 className="font-semibold text-center text-gray-600">
                       Sırala
                     </h1>
                     <div className="">
                       <div className="az my-3">
                         <button
-                          className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full"
+                          className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full flex justify-start"
                           onClick={() => handleFilter("az")}
                         >
                           <i class="fa-solid fa-arrow-up-a-z mr-2"></i>Ad Soyad
@@ -1021,7 +1025,7 @@ function Agenda() {
                       </div>
                       <div className="za">
                         <button
-                          className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full"
+                          className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full  flex justify-start"
                           onClick={() => handleFilter("za")}
                         >
                           <i class="fa-solid fa-arrow-down-z-a mr-2"></i>Ad
@@ -1030,7 +1034,7 @@ function Agenda() {
                       </div>
                       <div className="new my-3">
                         <button
-                          className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full"
+                          className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full  flex justify-start"
                           onClick={() => handleFilter("old")}
                         >
                           <i class="fa-solid fa-arrow-up-wide-short mr-2"></i>
@@ -1039,7 +1043,7 @@ function Agenda() {
                       </div>
                       <div className="old my-3">
                         <button
-                          className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full"
+                          className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full  flex justify-start"
                           onClick={() => handleFilter("new")}
                         >
                           <i class="fa-solid fa-arrow-down-short-wide mr-2"></i>
@@ -1063,7 +1067,7 @@ function Agenda() {
             </div>
           </div>
           <div className="agendaCardSwiper">
-            <div className="flex justify-center lg:justify-start items-center mb-4 lg:ml-4 flex-wrap">
+            <div className="flex justify-center lg:justify-start items-center mb-4 lg:ml-4 flex-wrap md:text-[1.2vw] lg:text-[1vw] xl:text-[0.9vw]">
               <div
                 onClick={() => handleFilterChange("all")}
                 className={`p-1 border-b-2 ${
@@ -1122,7 +1126,7 @@ function Agenda() {
             {!isMobile && (
               <table className="rounded-xl w-full ">
                 <thead>
-                  <tr className="sticky top-0 bg-lightGray text-gray-600">
+                  <tr className="sticky top-0 bg-lightGray text-gray-600 md:text-[1.2vw] lg:text-[1vw] xl:text-[0.9vw]">
                     <th className="p-3">Sıra</th>
                     <th className="p-3">Randevu Numarası</th>
                     <th className="p-3">Ad Soyad</th>
@@ -1142,11 +1146,11 @@ function Agenda() {
           </div>
         </div>
         {!isMobile && (
-          <div className="flex justify-between m-3">
+          <div className="flex justify-between m-3 text-sm md:text-[1.2vw] lg:text-[1vw] xl:text-[0.9vw]">
             <div className="flex items-center justify-center">
               <select
                 id="pageNumberSelect"
-                className="px-2 py-1 text-sm font-medium rounded-lg bg-white border-2 border-gray-200 text-gray-600"
+                className="px-2 py-1  font-medium rounded-lg bg-white border-2 border-gray-200 text-gray-600"
                 onChange={handlePageNumberChange}
               >
                 <option value="">Sayfa Sayısı</option>
@@ -1162,7 +1166,7 @@ function Agenda() {
                 <option value="14">14</option>
                 <option value="15">15</option>
               </select>
-              <h1 className="text-sm text-gray-500 ml-2">
+              <h1 className=" text-gray-500 ml-2">
                 Şuanda Gösterilen Sayı {itemsPerPage}
               </h1>
             </div>

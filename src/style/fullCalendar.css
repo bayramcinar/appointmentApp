@@ -102,7 +102,7 @@
 }
 .rbc-toolbar-label {
   width: min-content;
-  font-size: 1.15rem;
+  font-size: 1.4vw;
   font-weight: 600;
 }
 .myCustomHeight {
@@ -134,6 +134,10 @@
   .myCustomHeight {
     margin-left: 0rem;
     margin-right: 0rem;
+  }
+  .rbc-toolbar-label {
+    font-size: 0.75rem;
+    line-height: 1rem;
   }
   .rbc-event-label {
     display: none;

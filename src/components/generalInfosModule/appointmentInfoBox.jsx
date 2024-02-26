@@ -24,7 +24,7 @@ function AppointmentInfoBox({
         <i
           onMouseOver={handleInfoIconHover}
           onMouseLeave={handleInfoIconLeave}
-          className="fa-solid fa-circle-info text-lg text-gray-500 absolute right-1 top-1 cursor-pointer"
+          className="fa-solid fa-circle-info text-xs md:text-[1.1vw] lg:text-[0.9vw] xl:text-[0.8vw] text-gray-500 absolute right-1 top-1 cursor-pointer"
         ></i>
         {showTooltip && (
           <div className="tooltip z-[3] bg-white border border-gray-300 p-2 rounded-xl shadow-lg absolute transform -translate-x-0 top-7 right-[2px] transition duration-300 w-[150px]">

@@ -344,7 +344,7 @@ function SetAppointmentTime() {
   const emptyOrNot = savedTimesArray.length;
   return (
     <div
-      className={`flex items-center bg-white w-[auto] max-[768px]:p-1 max-[768px]:max-w-[380px] mx-auto max-[768px]:mt-10 ml-auto mr-auto lg:h-auto sm:h-auto lg:min-h-[35vw]  shadow-xl rounded-xl lg:scale-[1] md:scale-[0.9] justify-center animate__animated ${
+      className={`flex items-center bg-white w-[auto] max-[768px]:p-1 max-[768px]:max-w-[380px] mx-auto max-[768px]:mt-10 ml-auto mr-auto lg:h-auto sm:h-auto lg:min-h-[35vw]  shadow-xl rounded-xl lg:scale-[1] md:scale-[0.9] justify-center animate__animated text-sm md:text-[1.2vw] lg:text-[1vw] xl:text-[0.9vw] ${
         isMobileForAnimation ? "" : "animate__fadeInBottomRight"
       } `}
     >
@@ -355,10 +355,10 @@ function SetAppointmentTime() {
             onMouseEnter={handleInfoIconHover}
             onMouseLeave={handleInfoIconLeave}
           >
-            <i className="fa-solid fa-circle-info text-md text-premiumPurple"></i>
+            <i className="fa-solid fa-circle-info text-premiumPurple"></i>
           </div>
           <div className="tooltip z-[3] hidden bg-white border border-gray-300 p-2 rounded-xl shadow-lg absolute transform -translate-x-0 right-[2px] transition duration-300 w-[200px]">
-            <h1 className="text-xs font-semibold text-center text-gray-500">
+            <h1 className=" font-semibold text-center text-gray-500">
               Randevu süresi {appointmentDuration} dakika, randevu ücreti{" "}
               {appointmentPrice} ₺ olarak ayarlıdır.Hizmet vermek istediginiz
               tarih ve saatleri seçerek randevu defterinizi oluşturabilirsiniz.
@@ -366,26 +366,26 @@ function SetAppointmentTime() {
             <div className=" my-1 flex items-center justify-center">
               <div className="flex mr-5">
                 <i class="fa-solid fa-clock text-premiumPurple flex items-center justify-center mr-2"></i>
-                <h1 className="text-xs font-semibold text-center mb-[2px]">
+                <h1 className=" font-semibold text-center mb-[2px]">
                   {appointmentDuration} Dakika
                 </h1>
               </div>
               <div className="flex">
                 <i class="fa-solid fa-money-bill-1-wave text-premiumPurple flex items-center justify-center mr-2"></i>
-                <h1 className="text-xs font-semibold text-center  mb-[2px]">
+                <h1 className=" font-semibold text-center  mb-[2px]">
                   {appointmentPrice} ₺
                 </h1>
               </div>
             </div>
           </div>
         </div>
-        <h2 className=" text-[1.3vw] max-[768px]:text-xl m-3 font-semibold mb-0 text-gray-600">
+        <h2 className=" m-3 font-semibold mb-0 text-gray-600 md:text-[1.5vw] lg:text-[1.4vw] xl:text-[1.3vw] text-lg">
           Randevu Zamanı Belirle
         </h2>
         <div className="chooseSavedTimes flex items-center justify-center mt-5">
           <button
             onClick={() => handleOptionChange(true)}
-            className={`p-1 text-sm hover:bg-premiumPurple hover:text-white transition duration-[400ms] rounded-3xl m-3 mb-0 px-7 ${
+            className={`p-1  hover:bg-premiumPurple hover:text-white transition duration-[400ms] rounded-3xl m-3 mb-0 px-7 ${
               savedTimes === true ? "selected" : ""
             } ${
               savedTimes === true
@@ -397,7 +397,7 @@ function SetAppointmentTime() {
           </button>
           <button
             onClick={() => handleOptionChange(false)}
-            className={` p-1  text-sm hover:bg-premiumPurple hover:text-white transition duration-[400ms] rounded-3xl m-3 mb-0 px-7 ${
+            className={` p-1 hover:bg-premiumPurple hover:text-white transition duration-[400ms] rounded-3xl m-3 mb-0 px-7 ${
               savedTimes === false ? "selected" : ""
             } ${
               savedTimes === false
@@ -425,7 +425,7 @@ function SetAppointmentTime() {
               </div>
               {savedTimes === false && (
                 <>
-                  <h2 className="text-sm text-[#000000a8] text-center font-semibold m-8">
+                  <h2 className=" text-[#000000a8] text-center font-semibold m-8">
                     Aşağıdan Kaydetmek istediğiniz saati seçiniz
                   </h2>
                   <div className="m-8 field-container lg:w-[21rem] mx-auto flex items-center justify-center">
@@ -446,20 +446,20 @@ function SetAppointmentTime() {
                         renderSwiper(savedTimesArray)}
 
                       {savedTimesArray.length === 0 && (
-                        <h2 className="text-sm text-coral text-center font-semibold m-5 w-full">
+                        <h2 className=" text-coral text-center font-semibold m-5 w-full">
                           Kayıtlı saat bulunmamaktadır
                         </h2>
                       )}
 
                       {savedTimesArray.length > 0 && !isMobile && (
                         <>
-                          <div className="custom-swiper-button-prev8 absolute left-2 text-xl text-deepSlateBlue top-[45%] z-[2] cursor-pointer">
+                          <div className="custom-swiper-button-prev8 absolute left-2  text-deepSlateBlue top-[45%] z-[2] cursor-pointer">
                             <i
                               className="fa-solid fa-arrow-left"
                               alt="Previous"
                             ></i>
                           </div>
-                          <div className="custom-swiper-button-next8 top-[45%] absolute right-2 text-xl text-deepSlateBlue z-[2] cursor-pointer">
+                          <div className="custom-swiper-button-next8 top-[45%] absolute right-2 text-deepSlateBlue z-[2] cursor-pointer">
                             <i
                               className="fa-solid fa-arrow-right"
                               alt="Next"
@@ -481,19 +481,19 @@ function SetAppointmentTime() {
                     >
                       {renderSwiper2(savedTimesArray, formikProps)}
                       {savedTimesArray.length === 0 && (
-                        <h1 className="text-center text-sm text-coral font-semibold mx-auto">
+                        <h1 className="text-center text-coral font-semibold mx-auto">
                           Kayıtlı saat bulunmamaktadır.
                         </h1>
                       )}
                       {savedTimesArray.length > 6 && !isMobile && (
                         <>
-                          <div className="custom-swiper-button-prev9 absolute left-2 text-xl text-deepSlateBlue top-[40%] z-[2] cursor-pointer">
+                          <div className="custom-swiper-button-prev9 absolute left-2  text-deepSlateBlue top-[40%] z-[2] cursor-pointer">
                             <i
                               className="fa-solid fa-arrow-left"
                               alt="Previous"
                             ></i>
                           </div>
-                          <div className="custom-swiper-button-next9 top-[40%] absolute right-2 text-xl text-deepSlateBlue z-[2] cursor-pointer">
+                          <div className="custom-swiper-button-next9 top-[40%] absolute right-2 text-deepSlateBlue z-[2] cursor-pointer">
                             <i
                               className="fa-solid fa-arrow-right"
                               alt="Next"
@@ -506,7 +506,7 @@ function SetAppointmentTime() {
                 </>
               )}
               {savedTimes === true && (
-                <div className="w-full flex items-center justify-center mt-5">
+                <div className="w-full flex items-center justify-center">
                   <button
                     type="submit"
                     className={` hover:bg-premiumPurple ${
@@ -515,7 +515,7 @@ function SetAppointmentTime() {
                         : "bg-gray-400"
                     } hover:text-white text-gray-100 rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4 transition duration-[400ms]`}
                   >
-                    <h4 className="text-text p-2 px-6 text-sm tracking-wider">
+                    <h4 className="text-text p-2 px-6 tracking-wider">
                       Oluştur
                     </h4>
                   </button>
@@ -527,7 +527,7 @@ function SetAppointmentTime() {
                     type="submit"
                     className="bg-gray-400 text-gray-100 rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
                   >
-                    <h4 className="text-text p-2 px-6 text-sm tracking-wider">
+                    <h4 className="text-text p-2 px-6 tracking-wider">
                       Kaydet
                     </h4>
                   </button>

@@ -10,13 +10,13 @@ function SavedTimes({ time, onTimeClick, selectedTime }) {
   return (
     <div>
       <div
-        className={`timeBox w-[115px] max-[768px]:w-[115px] ${
+        className={`timeBox text-sm md:text-[1.2vw] lg:text-[1vw] xl:text-[0.9vw] w-[115px] max-[768px]:w-[115px] ${
           selectedTime ? "bg-premiumPurple" : " bg-gray-100 "
         } rounded-3xl m-[5px] hover:bg-premiumPurple p-[5px] max-[768px]:m-[5px] cursor-pointer`}
         onClick={handleTimeClick}
       >
         <h4
-          className={`text-sm  p-1 pb-0 hover:text-white text-center ${
+          className={` p-1 pb-0 hover:text-white text-center ${
             selectedTime ? "text-gray-100" : " text-gray-500 font-bold"
           }`}
         >
