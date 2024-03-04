@@ -18,7 +18,9 @@ function ServiceBox({ title, selectedService, onServiceClick, image }) {
       >
         <div
           className={`textArea md:rounded-r-3xl  ${
-            isSelected ? " bg-premiumPurple" : " bg-gray-100"
+            isSelected
+              ? " bg-premiumPurple transition duration-500"
+              : " bg-gray-100 transition duration-500"
           } w-80 p-2 rounded-3xl flex hover:bg-premiumPurple hover:text-white text-gray-500 items-center justify-center max-[768px]:rounded-2xl`}
         >
           <h3
