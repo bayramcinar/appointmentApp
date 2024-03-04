@@ -348,7 +348,7 @@ function TimeAndDate({
                       Size uyan bir saat yoksa randevu talebi oluşturabilirsiniz
                     </h1>
                     <button
-                      className="bg-gray-100 rounded-2xl p-1 px-6 text-gray-600 text-sm mt-[5px] mb-[10px]"
+                      className="bg-gray-100 rounded-lg p-1 px-6 text-gray-600 text-sm mt-[5px] mb-[10px]"
                       onClick={() => {
                         setRequest(true);
                         setAppointmentRequest(true);
@@ -432,7 +432,7 @@ function TimeAndDate({
                       )}
                       {requestSelectedTime === "" && (
                         <button
-                          className="bg-gray-100 rounded-2xl p-1 px-6 text-gray-600 text-sm my-[15px]"
+                          className="bg-gray-100 rounded-lg p-1 px-6 text-gray-600 text-sm my-[15px]"
                           onClick={() => {
                             setAppointmentRequestNormal(true);
                             setRequest(true);
@@ -468,7 +468,7 @@ function TimeAndDate({
                           <div className="flex items-center justify-center">
                             <button
                               onClick={() => setAppointmentRequest(true)}
-                              className="bg-gray-100 font-semibold text-sm text-gray-600 p-1 px-6 rounded-2xl"
+                              className="bg-gray-100 font-semibold text-sm text-gray-600 p-1 px-6 rounded-lg"
                             >
                               <i class="fa-solid fa-file-pen"></i> Düzenle
                             </button>

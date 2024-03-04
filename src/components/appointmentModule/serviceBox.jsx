@@ -13,15 +13,15 @@ function ServiceBox({ title, selectedService, onServiceClick, image }) {
   return (
     <div>
       <div
-        className="service max-[768px]:m-[13px] cursor-pointer flex rounded-2xl w-[14.5rem] max-[768px]:w-[16rem] m-[7px]"
+        className="service max-[768px]:m-[13px] cursor-pointer flex rounded-lg w-[14.5rem] max-[768px]:w-[16rem] m-[7px]"
         onClick={handleServiceClick}
       >
         <div
-          className={`textArea md:rounded-r-3xl  ${
+          className={`textArea md:rounded-r-lg  ${
             isSelected
               ? " bg-premiumPurple transition duration-500"
               : " bg-gray-100 transition duration-500"
-          } w-80 p-2 rounded-3xl flex hover:bg-premiumPurple hover:text-white text-gray-500 items-center justify-center max-[768px]:rounded-2xl`}
+          } w-80 p-2 rounded-lg flex hover:bg-premiumPurple hover:text-white text-gray-500 items-center justify-center`}
         >
           <h3
             className={`text-sm max-[768px]:text-base  ${

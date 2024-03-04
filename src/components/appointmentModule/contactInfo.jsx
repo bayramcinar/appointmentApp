@@ -26,7 +26,7 @@ function ContactForm({
         <div className="choosePerson">
           <button
             onClick={() => handleOptionChange(true)}
-            className={` p-2  tex-sm rounded-3xl m-3 px-7 ${
+            className={` p-2  tex-sm rounded-lg m-3 px-7 ${
               isOwn === true ? "selected" : ""
             } ${
               isOwn === true
@@ -38,7 +38,7 @@ function ContactForm({
           </button>
           <button
             onClick={() => handleOptionChange(false)}
-            className={` p-2  tex-sm rounded-3xl m-3 px-7 ${
+            className={` p-2  tex-sm rounded-lg m-3 px-7 ${
               isOwn === false ? "selected" : ""
             } ${
               isOwn === false

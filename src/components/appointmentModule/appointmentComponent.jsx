@@ -341,7 +341,7 @@ function AppointmentComponent() {
               <div className="nextStep flex items-center justify-center m-3 mb-5">
                 <button
                   onClick={handleBack}
-                  className="border-premiumPurple bg-white border-2 rounded-3xl flex items-center justify-center w-[9rem] buttons"
+                  className="border-premiumPurple bg-white border-2 rounded-lg flex items-center justify-center w-[9rem] buttons"
                 >
                   <h4 className="text-premiumPurple p-2 text-md tracking-wider">
                     <i className="mr-2 fa-solid fa-chevron-left"></i> Geri
@@ -354,7 +354,7 @@ function AppointmentComponent() {
                 <div className="nextStep flex items-center justify-center m-3 mb-5">
                   <button
                     onClick={handleNext}
-                    className="bg-premiumPurple rounded-3xl flex items-center justify-center w-[9rem] buttons"
+                    className="bg-premiumPurple rounded-lg flex items-center justify-center w-[9rem] buttons"
                   >
                     <h4 className="text-text p-2 text-md tracking-wider">
                       İleri <i className="ml-2 fa-solid fa-chevron-right"></i>
@@ -367,7 +367,7 @@ function AppointmentComponent() {
               <div className="nextStep flex items-center justify-center m-3 mb-5">
                 <button
                   onClick={handleNext}
-                  className="bg-premiumPurple rounded-3xl flex items-center justify-center w-[9rem] buttons"
+                  className="bg-premiumPurple rounded-lg flex items-center justify-center w-[9rem] buttons"
                 >
                   <h4 className="text-text p-2 text-md tracking-wider">
                     İleri<i className="ml-2 fa-solid fa-chevron-right"></i>
@@ -382,7 +382,7 @@ function AppointmentComponent() {
                     value="Submit"
                     form="myform"
                     type="submit"
-                    className="bg-premiumPurple rounded-3xl flex items-center justify-center w-[9rem] buttons"
+                    className="bg-premiumPurple rounded-lg flex items-center justify-center w-[9rem] buttons"
                   >
                     <h4 className="text-text p-2 text-md tracking-wider">
                       Bitir<i className="ml-2 fa-solid fa-check"></i>

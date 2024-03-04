@@ -44,7 +44,7 @@ function SetAppointmentTime() {
 
   const handleSetTime = (values, { resetForm }) => {
     // RANDEVU SAATİ EKLEMEMİZİ SAĞLAYAN FONKSİYON
-
+    console.log(values);
     setSelectedDuration(appointmentDuration);
 
     if (savedTimes === true) {
@@ -430,10 +430,10 @@ function SetAppointmentTime() {
                   </h2>
                   <div className="m-8 field-container lg:w-[21rem] mx-auto flex items-center justify-center">
                     <Field
-                      name="time"
                       type="time"
                       className={`p-3 lg:w-[21rem] max-[768px]:w-[20rem] focus:border-none outline-none bg-gray-100 mx-auto`}
                       placeholder="Saat"
+                      name="time"
                     />
                   </div>
                   <div className="w-full justify-center flex items-center mt-10">
@@ -525,7 +525,11 @@ function SetAppointmentTime() {
                 <div className="w-full flex items-center justify-center mt-5">
                   <button
                     type="submit"
-                    className="bg-gray-400 text-gray-100 rounded-lg flex items-center justify-center w-56 buttons mt-4 mb-4"
+                    className={`${
+                      formikProps.values.time
+                        ? "bg-premiumPurple text-white"
+                        : "bg-gray-400 text-gray-100"
+                    } rounded-lg flex items-center justify-center w-56 buttons mt-4 mb-4`}
                   >
                     <h4 className="text-text p-2 px-6 tracking-wider">
                       Kaydet

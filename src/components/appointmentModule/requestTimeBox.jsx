@@ -17,7 +17,7 @@ function RequestTimeBox({ time, date, selectedTime, onTimeClick, isMobile }) {
           isSelected
             ? " bg-premiumPurple text-white"
             : "bg-white text-premiumPurple border-premiumPurple border-2"
-        } rounded-3xl mb-[5px] p-[2px] max-[768px]:m-[5px] cursor-pointer`}
+        } rounded-lg mb-[5px] p-[2px] max-[768px]:m-[5px] cursor-pointer`}
         onClick={handleTimeClick}
       >
         {isMobile === true && (

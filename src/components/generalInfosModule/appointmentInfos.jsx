@@ -714,60 +714,65 @@ function AppointmentInfos() {
               <div className="lg:w-full h-full flex flex-col items-center justify-center lg:justify-start mr-1 ">
                 <div className="titleArea ml-5 flex lg:mx-0 lg:ml-14 lg:justify-start items-center w-full text-xs lg:text-[0.8vw] ">
                   <div className="flex justify-between w-full">
-                    <div className="block mb-2 lg:text-[1vw] items-center justify-center my-auto">
-                      <h1 className=" text-gray-500 font-semibold">
-                        {graph.datasets[0].label} :
-                      </h1>
-                      <div className="flex">
-                        <h1 className=" text-premiumPurple text font-semibold mt-2 text-xl">
+                    <div className="flex mb-2 lg:text-[1vw] items-center justify-center my-auto">
+                      <div className="block">
+                        <h1 className=" text-gray-500 font-semibold flex items-center justify-center">
+                          {graph.datasets[0].label} :
+                        </h1>
+                        <div className="flex">
+                          {graph &&
+                            graph.datasets &&
+                            graph.datasets[1] &&
+                            graph.datasets[1].label &&
+                            graph.datasets[1].data && (
+                              <>
+                                <div className="flex mt-2 ">
+                                  <div className="changePercentage text-gray-500 font-semibold flex items-center justify-center ">
+                                    {" "}
+                                    {(
+                                      ((graph.datasets[0].data.reduce(
+                                        (acc, currentValue) =>
+                                          acc + currentValue,
+                                        0
+                                      ) -
+                                        graph.datasets[1].data.reduce(
+                                          (acc, currentValue) =>
+                                            acc + currentValue,
+                                          0
+                                        )) /
+                                        graph.datasets[1].data.reduce(
+                                          (acc, currentValue) =>
+                                            acc + currentValue,
+                                          0
+                                        )) *
+                                      100
+                                    ).toFixed(2)}
+                                    %{" "}
+                                    {graph.datasets[0].data.reduce(
+                                      (acc, currentValue) => acc + currentValue,
+                                      0
+                                    ) >
+                                    graph.datasets[1].data.reduce(
+                                      (acc, currentValue) => acc + currentValue,
+                                      0
+                                    ) ? (
+                                      <FaArrowTrendUp className=" text-green-600 text-2xl ml-3 font-bold " />
+                                    ) : (
+                                      <FaArrowTrendDown className=" text-red-600 text-2xl ml-3 font-bold " />
+                                    )}
+                                  </div>
+                                </div>
+                              </>
+                            )}
+                        </div>
+                      </div>
+                      <div className="h-full mb-auto">
+                        <h1 className=" text-premiumPurple text font-semibold ml-3 text-3xl">
                           {graph.datasets[0].data.reduce(
                             (acc, currentValue) => acc + currentValue,
                             0
                           )}{" "}
                         </h1>
-                        {graph &&
-                          graph.datasets &&
-                          graph.datasets[1] &&
-                          graph.datasets[1].label &&
-                          graph.datasets[1].data && (
-                            <>
-                              <div className="flex ml-5 mt-2 ">
-                                <div className="changePercentage text-gray-500 font-semibold flex items-center justify-center ">
-                                  {" "}
-                                  {(
-                                    ((graph.datasets[0].data.reduce(
-                                      (acc, currentValue) => acc + currentValue,
-                                      0
-                                    ) -
-                                      graph.datasets[1].data.reduce(
-                                        (acc, currentValue) =>
-                                          acc + currentValue,
-                                        0
-                                      )) /
-                                      graph.datasets[1].data.reduce(
-                                        (acc, currentValue) =>
-                                          acc + currentValue,
-                                        0
-                                      )) *
-                                    100
-                                  ).toFixed(2)}
-                                  %{" "}
-                                  {graph.datasets[0].data.reduce(
-                                    (acc, currentValue) => acc + currentValue,
-                                    0
-                                  ) >
-                                  graph.datasets[1].data.reduce(
-                                    (acc, currentValue) => acc + currentValue,
-                                    0
-                                  ) ? (
-                                    <FaArrowTrendUp className=" text-green-600 text-2xl ml-3 font-bold " />
-                                  ) : (
-                                    <FaArrowTrendDown className=" text-red-600 text-2xl ml-3 font-bold " />
-                                  )}
-                                </div>
-                              </div>
-                            </>
-                          )}
                       </div>
                     </div>
                     <div className="flex flex-col justify-between mr-5 my-auto">
