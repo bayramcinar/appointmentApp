@@ -298,7 +298,7 @@ function FullCalendarComponent() {
           <h1 className=" text-[1.5vw] max-[768px]:text-xl m-6 mb-2 ml-5 max-[500px]:m-3 mt-1 text-gray-600 font-semibold text-center flex justify-center lg:justify-start">
             Randevu Takvimi
           </h1>
-          <div className="colorsMean mb-5  flex right-1 ml-5 top-1 font-semibold justify-start items-center text-gray-600">
+          <div className="colorsMean mb-5  flex right-1 ml-5 top-1 font-semibold justify-start items-center text-gray-600 md:text-[1.2vw] lg:text-[1vw] xl:text-[0.9vw]">
             <div className="lg:flex lg:flex-row lg:justify-start">
               <div className="flex max-[500px]:mr-2 mr-2">
                 <i class="fa-solid fa-circle text-greenCalendar max-[500px]:text-xs flex justify-center items-center"></i>

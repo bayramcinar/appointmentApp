@@ -12,7 +12,7 @@ function SavedTimes({ time, onTimeClick, selectedTime }) {
       <div
         className={`timeBox text-sm md:text-[1.2vw] lg:text-[1vw] xl:text-[0.9vw] w-[115px] max-[768px]:w-[115px] ${
           selectedTime ? "bg-premiumPurple" : " bg-gray-100 "
-        } rounded-3xl m-[5px] hover:bg-premiumPurple p-[5px] max-[768px]:m-[5px] cursor-pointer`}
+        } rounded-lg m-[5px] hover:bg-premiumPurple p-[5px] max-[768px]:m-[5px] cursor-pointer`}
         onClick={handleTimeClick}
       >
         <h4

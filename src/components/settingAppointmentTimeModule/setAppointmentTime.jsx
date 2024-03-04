@@ -349,7 +349,7 @@ function SetAppointmentTime() {
       } `}
     >
       <div className=" bg-white  setAppointmentTime flex items-center justify-center flex-col relative rounded-xl max-[768px]:w-[370px]">
-        <div className="infoIcon absolute right-2 top-5">
+        <div className="infoIcon absolute right-2 top-4">
           <div
             className="infoIcon relative inline-block cursor-pointer"
             onMouseEnter={handleInfoIconHover}
@@ -385,7 +385,7 @@ function SetAppointmentTime() {
         <div className="chooseSavedTimes flex items-center justify-center mt-5">
           <button
             onClick={() => handleOptionChange(true)}
-            className={`p-1  hover:bg-premiumPurple hover:text-white transition duration-[400ms] rounded-3xl m-3 mb-0 px-7 ${
+            className={`p-1  hover:bg-premiumPurple hover:text-white transition duration-[400ms] rounded-lg m-3 mb-0 px-7 ${
               savedTimes === true ? "selected" : ""
             } ${
               savedTimes === true
@@ -397,7 +397,7 @@ function SetAppointmentTime() {
           </button>
           <button
             onClick={() => handleOptionChange(false)}
-            className={` p-1 hover:bg-premiumPurple hover:text-white transition duration-[400ms] rounded-3xl m-3 mb-0 px-7 ${
+            className={` p-1 hover:bg-premiumPurple hover:text-white transition duration-[400ms] rounded-lg m-3 mb-0 px-7 ${
               savedTimes === false ? "selected" : ""
             } ${
               savedTimes === false
@@ -513,7 +513,7 @@ function SetAppointmentTime() {
                       selectedTimes.length > 0
                         ? "bg-premiumPurple"
                         : "bg-gray-400"
-                    } hover:text-white text-gray-100 rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4 transition duration-[400ms]`}
+                    } hover:text-white text-gray-100 rounded-lg flex items-center justify-center w-56 buttons mt-4 mb-4 transition duration-[400ms]`}
                   >
                     <h4 className="text-text p-2 px-6 tracking-wider">
                       Oluştur
@@ -525,7 +525,7 @@ function SetAppointmentTime() {
                 <div className="w-full flex items-center justify-center mt-5">
                   <button
                     type="submit"
-                    className="bg-gray-400 text-gray-100 rounded-3xl flex items-center justify-center w-56 buttons mt-4 mb-4"
+                    className="bg-gray-400 text-gray-100 rounded-lg flex items-center justify-center w-56 buttons mt-4 mb-4"
                   >
                     <h4 className="text-text p-2 px-6 tracking-wider">
                       Kaydet
