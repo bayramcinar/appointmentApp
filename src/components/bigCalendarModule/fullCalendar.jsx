@@ -7,7 +7,7 @@ import "../../style/fullCalendar.css";
 import "moment-timezone";
 import FullCalendarDayModal from "./fullCalanderDayModal";
 import EventModalForCalendar from "../commonModules/eventModalForBigCalendar";
-
+import Swal from "sweetalert2";
 const localizer = momentLocalizer(moment);
 
 const convertToISOFormat = (inputDate, onRequestChange) => {
@@ -153,29 +153,84 @@ function FullCalendarComponent() {
   };
 
   const [selectedEvent, setSelectedEvent] = useState([]);
+  const parseDateAndTime = (dateTimeString) => {
+    // Örnek dateTimeString: "Thu Mar 07 2024 11:00:00 GMT+0300 (GMT+03:00)"
+    // Verilen stringi boşluklara göre parçalara ayırma
+    const parts = String(dateTimeString).split(" ");
+    console.log(parts);
+    // Gün, Ay ve Yıl bilgisini alarak düzgün bir string oluşturma
+    const dateString = `${parts[3]}-${getMonthNumber(parts[1])}-${parts[2]}`;
 
+    // Saat ve Dakika bilgisini alarak düzgün bir string oluşturma
+    const timeString = parts[4];
+    const realTİmeString = timeString.split(":");
+    const realTime = realTİmeString[0] + ":" + realTİmeString[1];
+    // Oluşturulan stringleri bir araya getirerek sonuç oluşturma
+    const result = {
+      date: dateString,
+      time: realTime,
+    };
+    console.log(result);
+    return result;
+  };
+
+  // Ay isimlerinden ayın numarasını almak için bir yardımcı fonksiyon
+  const getMonthNumber = (monthName) => {
+    const months = {
+      Jan: "01",
+      Feb: "02",
+      Mar: "03",
+      Apr: "04",
+      May: "05",
+      Jun: "06",
+      Jul: "07",
+      Aug: "08",
+      Sep: "09",
+      Oct: "10",
+      Nov: "11",
+      Dec: "12",
+    };
+    return months[monthName];
+  };
+  const deleteSelectedTime = (date, time) => {
+    console.log(date);
+    console.log(time);
+    const updatedSelectedTimes = selectedTimes.filter(
+      (timeObj) => !(timeObj.date === date && timeObj.time === time)
+    );
+    setSelectedTimes(updatedSelectedTimes);
+    localStorage.setItem("selectedTimes", JSON.stringify(updatedSelectedTimes));
+  };
   const onSelectEvent = (event) => {
     if (event.title === "Boş Randevu") {
+      parseDateAndTime(event.start);
       const selectedDate = moment(event.start).format("YYYY-MM-DD");
       setSelectedDay(selectedDate);
-      handleFullDayEmptyModalOpen();
+      Swal.fire({
+        title: "Emin misiniz!",
+        text: "Boş randevuyu silmek istediğinize emin misiniz?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Evet",
+        cancelButtonText: "Hayır",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          deleteSelectedTime(
+            parseDateAndTime(event.start).date,
+            parseDateAndTime(event.start).time
+          );
+          Swal.fire({
+            title: "Başarılı !",
+            text: "Boş randevu başarılı bir şekilde silindi.",
+            icon: "success",
+            confirmButtonText: "Kapat",
+          });
+        }
+      });
     } else {
       setSelectedEvent(event);
       handleFullDayModalOpen();
     }
-  };
-
-  const onSelectSlot = (slotInfo) => {
-    const selectedDate = moment(slotInfo.start).format("YYYY-MM-DD");
-    const isPastDate = moment(selectedDate).isBefore(moment(), "day");
-    setSelectedDay(selectedDate);
-    // if (!isPastDate) {
-    //   handleFullDayModalOpen();
-    //   const filteredTimes = selectedTimes.filter(
-    //     (timeObj) => timeObj.date === selectedDate
-    //   );
-    //   setSelectedDay(selectedDate);
-    // }
   };
 
   const eventPropGetter = (event) => {

@@ -130,6 +130,7 @@
 .deleted-appointment {
   border-color: hsl(0, 89.87%, 75%) !important;
 }
+
 @media only screen and (max-width: 1024px) {
   .myCustomHeight {
     margin-left: 0rem;

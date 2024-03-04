@@ -16,7 +16,7 @@ function SavedTimes({ time, onTimeClick, selectedTime }) {
         onClick={handleTimeClick}
       >
         <h4
-          className={` p-1 pb-0 hover:text-white text-center ${
+          className={` px-1 hover:text-white text-center ${
             selectedTime ? "text-gray-100" : " text-gray-500 font-bold"
           }`}
         >

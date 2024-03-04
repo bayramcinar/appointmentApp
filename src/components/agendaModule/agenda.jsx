@@ -38,7 +38,6 @@ function Agenda() {
     setAlphabetic(selectedFilter);
   };
   const filterFormData = (formData, filter, alphabetic) => {
-    console.log(alphabetic);
     const currentDate = new Date();
     const filteredData = formData.filter((data) => {
       const timeArray = data.time.split(" ");
