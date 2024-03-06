@@ -1129,7 +1129,7 @@ function Agenda() {
                 <select
                   onChange={(e) => handleFilterChange(e.target.value)}
                   value={filter}
-                  className="p-1 border-b-2 border-gray-300 m-2 text-gray-500 cursor-pointer w-[80%]"
+                  className="p-1 border-b-2 border-gray-100 outline-none m-2 text-gray-500 cursor-pointer w-[80%]"
                 >
                   <option value="all">Tümü</option>
                   <option value="coming">Yaklaşan</option>

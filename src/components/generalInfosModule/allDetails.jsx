@@ -275,7 +275,7 @@ function AllDetails({ isOpen, onClose }) {
               <select
                 onChange={(e) => handleTabChange(e.target.value)}
                 value={selectedGraph}
-                className="p-1 border-b-2 border-gray-300 m-2 text-gray-500 cursor-pointer w-[100%]"
+                className="p-1 border-b-2 border-gray-100 outline-none m-2 text-gray-500 cursor-pointer w-[100%]"
               >
                 <option value="appointmentDetails">
                   Randevu İstatistikleri
