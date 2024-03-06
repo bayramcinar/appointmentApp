@@ -30,7 +30,7 @@ function ContactForm({
               isOwn === true ? "selected" : ""
             } ${
               isOwn === true
-                ? " bg-premiumPurple text-white"
+                ? " bg-premiumOrange text-white"
                 : "bg-gray-200  text-gray-600"
             }`}
           >
@@ -42,7 +42,7 @@ function ContactForm({
               isOwn === false ? "selected" : ""
             } ${
               isOwn === false
-                ? "bg-premiumPurple text-white"
+                ? "bg-premiumOrange text-white"
                 : "bg-gray-200  text-gray-600"
             }`}
           >

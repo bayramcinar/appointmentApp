@@ -5,10 +5,11 @@ import { CategoryScale, Chart, registerables } from "chart.js";
 function AllDetails({ isOpen, onClose }) {
   Chart.register(...registerables);
   Chart.register(CategoryScale);
-
+  const isMobile = window.innerWidth <= 768;
   const [selectedGraph, setSelectedGraph] = useState("appointmentDetails");
 
   const appointmentDetails = {
+    //RANDEVU
     labels: ["Aktif", "Pasif", "Tamamlanmış", "İptal"],
     datasets: [
       {
@@ -184,88 +185,117 @@ function AllDetails({ isOpen, onClose }) {
               </svg>
             </div>
           </div>
-          <div className="flex justify-center my-5 flex-wrap text-sm md:text-[1.2vw] lg:text-[1.1vw] xl:text-[1vw]">
-            <button
-              className={`px-4 py-1 mx-2 ${
-                selectedGraph === "appointmentDetails"
-                  ? " text-premiumPurple border-b-2 border-premiumPurple"
-                  : " text-gray-400  border-b-2 border-gray-300"
-              }`}
-              onClick={() => handleTabChange("appointmentDetails")}
-            >
-              Randevu İstatistikleri
-            </button>
-            <button
-              className={`px-4 py-2 mx-2 ${
-                selectedGraph === "appointmentCategories"
-                  ? "text-premiumPurple border-b-2 border-premiumPurple"
-                  : "text-gray-400  border-b-2 border-gray-300"
-              }`}
-              onClick={() => handleTabChange("appointmentCategories")}
-            >
-              Randevu Kategorileri
-            </button>
-            <button
-              className={`px-4 py-2 mx-2 ${
-                selectedGraph === "appointmentCancelled"
-                  ? "text-premiumPurple border-b-2 border-premiumPurple"
-                  : "text-gray-400  border-b-2 border-gray-300"
-              }`}
-              onClick={() => handleTabChange("appointmentCancelled")}
-            >
-              İptal Edilen Randevu Kategorileri
-            </button>
-            <button
-              className={`px-4 py-2 mx-2 ${
-                selectedGraph === "whyAppointmentCancelled"
-                  ? "text-premiumPurple border-b-2 border-premiumPurple"
-                  : "text-gray-400  border-b-2 border-gray-300"
-              }`}
-              onClick={() => handleTabChange("whyAppointmentCancelled")}
-            >
-              İptal Edilme Nedenleri
-            </button>
-            <button
-              className={`px-4 py-2 mx-2 ${
-                selectedGraph === "appointmentGender"
-                  ? "text-premiumPurple border-b-2 border-premiumPurple"
-                  : "text-gray-400  border-b-2 border-gray-300"
-              }`}
-              onClick={() => handleTabChange("appointmentGender")}
-            >
-              Cinsiyet Dağılımı
-            </button>
-            <button
-              className={`px-4 py-2 mx-2 ${
-                selectedGraph === "appointmentAgeRate"
-                  ? "text-premiumPurple border-b-2 border-premiumPurple"
-                  : "text-gray-400  border-b-2 border-gray-300"
-              }`}
-              onClick={() => handleTabChange("appointmentAgeRate")}
-            >
-              Yaş Dağılımı
-            </button>
-            <button
-              className={`px-4 py-2 mx-2 ${
-                selectedGraph === "appointmentLanguage"
-                  ? "text-premiumPurple border-b-2 border-premiumPurple"
-                  : "text-gray-400  border-b-2 border-gray-300"
-              }`}
-              onClick={() => handleTabChange("appointmentLanguage")}
-            >
-              Dil Dağılımı
-            </button>
-            <button
-              className={`px-4 py-2 mx-2 ${
-                selectedGraph === "appointmentRequest"
-                  ? "text-premiumPurple border-b-2 border-premiumPurple"
-                  : "text-gray-400  border-b-2 border-gray-300"
-              }`}
-              onClick={() => handleTabChange("appointmentRequest")}
-            >
-              Talepler
-            </button>
-          </div>
+          {!isMobile && (
+            <div className="flex justify-center my-5 flex-wrap text-sm md:text-[1.2vw] lg:text-[1.1vw] xl:text-[1vw]">
+              <button
+                className={`px-4 py-1 mx-2 ${
+                  selectedGraph === "appointmentDetails"
+                    ? " text-premiumOrange border-b-2 border-premiumOrange"
+                    : " text-gray-400  border-b-2 border-gray-300"
+                }`}
+                onClick={() => handleTabChange("appointmentDetails")}
+              >
+                Randevu İstatistikleri
+              </button>
+              <button
+                className={`px-4 py-2 mx-2 ${
+                  selectedGraph === "appointmentCategories"
+                    ? "text-premiumOrange border-b-2 border-premiumOrange"
+                    : "text-gray-400  border-b-2 border-gray-300"
+                }`}
+                onClick={() => handleTabChange("appointmentCategories")}
+              >
+                Randevu Kategorileri
+              </button>
+              <button
+                className={`px-4 py-2 mx-2 ${
+                  selectedGraph === "appointmentCancelled"
+                    ? "text-premiumOrange border-b-2 border-premiumOrange"
+                    : "text-gray-400  border-b-2 border-gray-300"
+                }`}
+                onClick={() => handleTabChange("appointmentCancelled")}
+              >
+                İptal Edilen Randevu Kategorileri
+              </button>
+              <button
+                className={`px-4 py-2 mx-2 ${
+                  selectedGraph === "whyAppointmentCancelled"
+                    ? "text-premiumOrange border-b-2 border-premiumOrange"
+                    : "text-gray-400  border-b-2 border-gray-300"
+                }`}
+                onClick={() => handleTabChange("whyAppointmentCancelled")}
+              >
+                İptal Edilme Nedenleri
+              </button>
+              <button
+                className={`px-4 py-2 mx-2 ${
+                  selectedGraph === "appointmentGender"
+                    ? "text-premiumOrange border-b-2 border-premiumOrange"
+                    : "text-gray-400  border-b-2 border-gray-300"
+                }`}
+                onClick={() => handleTabChange("appointmentGender")}
+              >
+                Cinsiyet Dağılımı
+              </button>
+              <button
+                className={`px-4 py-2 mx-2 ${
+                  selectedGraph === "appointmentAgeRate"
+                    ? "text-premiumOrange border-b-2 border-premiumOrange"
+                    : "text-gray-400  border-b-2 border-gray-300"
+                }`}
+                onClick={() => handleTabChange("appointmentAgeRate")}
+              >
+                Yaş Dağılımı
+              </button>
+              <button
+                className={`px-4 py-2 mx-2 ${
+                  selectedGraph === "appointmentLanguage"
+                    ? "text-premiumOrange border-b-2 border-premiumOrange"
+                    : "text-gray-400  border-b-2 border-gray-300"
+                }`}
+                onClick={() => handleTabChange("appointmentLanguage")}
+              >
+                Dil Dağılımı
+              </button>
+              <button
+                className={`px-4 py-2 mx-2 ${
+                  selectedGraph === "appointmentRequest"
+                    ? "text-premiumOrange border-b-2 border-premiumOrange"
+                    : "text-gray-400  border-b-2 border-gray-300"
+                }`}
+                onClick={() => handleTabChange("appointmentRequest")}
+              >
+                Talepler
+              </button>
+            </div>
+          )}
+
+          {isMobile && (
+            <div className="flex justify-center items-center text-sm w-full ">
+              <select
+                onChange={(e) => handleTabChange(e.target.value)}
+                value={selectedGraph}
+                className="p-1 border-b-2 border-gray-300 m-2 text-gray-500 cursor-pointer w-[100%]"
+              >
+                <option value="appointmentDetails">
+                  Randevu İstatistikleri
+                </option>
+                <option value="appointmentCategories">
+                  Randevu Kategorileri
+                </option>
+                <option value="appointmentCancelled">
+                  İptal Edilen Randevu Kategorileri
+                </option>
+                <option value="whyAppointmentCancelled">
+                  İptal Edilme Nedenleri
+                </option>
+                <option value="appointmentGender">Cinsiyet Dağılımı</option>
+                <option value="appointmentAgeRate">Yaş Dağılımı</option>
+                <option value="appointmentLanguage">Dil Dağılımı</option>
+                <option value="appointmentRequest">Talepler</option>
+              </select>
+            </div>
+          )}
           <div className="block md:flex text-sm md:text-[1.2vw] lg:text-[1.1vw] xl:text-[1vw]">
             <div className="generalDiv flex items-center justify-center">
               <div className="graphArea  mb-5 lg:mb-0 lg:h-[15vw] lg:w-[15vw] md:h-[25vw] md:w-[25vw] h-[40vw] w-[40vw] p-4 lg:p-8">

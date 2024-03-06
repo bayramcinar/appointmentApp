@@ -61,7 +61,7 @@ function AppointmentInfoBox({
         </div>
         <div className="seeReport m-1 flex items-center justify-center">
           <h1
-            className={`underline text-premiumPurple text-xs lg:text-[0.7vw] cursor-pointer`}
+            className={`underline text-premiumOrange text-xs lg:text-[0.7vw] cursor-pointer`}
             onClick={() => changeGraph()}
           >
             Grafikte Gör

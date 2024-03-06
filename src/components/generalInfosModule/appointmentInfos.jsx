@@ -696,17 +696,32 @@ function AppointmentInfos() {
           <h1 className="lg:text-[1.5vw] max-[768px]:text-xl font-semibold text-gray-600 pl-3 pt-4 text-center">
             İstatistikler
           </h1>
-          <div className="block lg:flex items-center justify-center">
-            <h1 className="text-xs lg:text-[0.8vw] text-gray-500 font-semibold flex items-center justify-center pt-4">
-              Son Güncelleme : {guncelTarih}
-            </h1>
-            <button
-              onClick={toggleAllDetailsModal}
-              className="text-center flex items-center justify-center px-8 bg-white hover:bg-premiumPurple hover:text-white text-premiumPurple border-2 border-premiumPurple rounded-lg text-xs font-semibold lg:text-[0.8vw] h-[5vw] lg:h-[2vw] mt-4 lg:ml-5 mx-auto lg:mx-0 transition duration-[400ms]"
-            >
-              Tüm İstatistikler
-            </button>
-          </div>
+          {!isMobile && (
+            <div className="block lg:flex items-center justify-center">
+              <h1 className="text-xs lg:text-[0.8vw] text-gray-500 font-semibold flex items-center justify-center pt-4">
+                Son Güncelleme : {guncelTarih}
+              </h1>
+              <button
+                onClick={toggleAllDetailsModal}
+                className="text-center flex items-center justify-center px-8 bg-white hover:bg-premiumOrange hover:text-white text-premiumOrange border-2 border-premiumOrange rounded-lg text-xs font-semibold lg:text-[0.8vw] h-[5vw] lg:h-[2vw] mt-4 lg:ml-5 mx-auto lg:mx-0 transition duration-[400ms]"
+              >
+                Tüm İstatistikler
+              </button>
+            </div>
+          )}
+          {isMobile && (
+            <div className="block lg:flex items-center justify-center">
+              <button
+                onClick={toggleAllDetailsModal}
+                className="text-center flex items-center justify-center px-8 bg-white hover:bg-premiumOrange hover:text-white text-premiumOrange border-2 border-premiumOrange rounded-lg text-xs font-semibold h-[5vw] mt-2 mx-auto  transition duration-[400ms]"
+              >
+                Tüm İstatistikler
+              </button>
+              <h1 className="text-xs lg:text-[0.8vw] text-gray-500 font-semibold flex items-center justify-center pt-2">
+                Son Güncelleme : {guncelTarih}
+              </h1>
+            </div>
+          )}
         </div>
         <div className="infosArea block lg:flex  rounded-md">
           <>
@@ -767,7 +782,7 @@ function AppointmentInfos() {
                         </div>
                       </div>
                       <div className="h-full mb-auto">
-                        <h1 className=" text-premiumPurple text font-semibold ml-3 text-3xl">
+                        <h1 className=" text-premiumOrange text font-semibold ml-3 text-3xl">
                           {graph.datasets[0].data.reduce(
                             (acc, currentValue) => acc + currentValue,
                             0
@@ -797,8 +812,8 @@ function AppointmentInfos() {
                         )}
                       <div className="lg:text-[0.7vw]">
                         <div className="firstOne flex my-1">
-                          <div className="lg:w-[0.7vw] lg:h-[0.7vw] w-[2.7vw] h-[2.7vw] bg-premiumPurple my-auto flex items-center justify-center rounded-full mr-2"></div>
-                          <h1 className=" text-premiumPurple font-semibold text-center flex items-center justify-center ">
+                          <div className="lg:w-[0.7vw] lg:h-[0.7vw] w-[2.7vw] h-[2.7vw] bg-premiumOrange my-auto flex items-center justify-center rounded-full mr-2"></div>
+                          <h1 className=" text-premiumOrange font-semibold text-center flex items-center justify-center ">
                             {graph.datasets[0].label}
                           </h1>
                         </div>

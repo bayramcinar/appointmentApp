@@ -31,7 +31,7 @@ function SavedTimesForDeletion({ time }) {
   return (
     <div>
       <div
-        className={`timeBox w-[95px] max-[768px]:w-[95px] text-sm  md:text-[1.2vw] lg:text-[1vw] xl:text-[0.9vw] hover:bg-premiumPurple text-gray-500 hover:text-white bg-gray-100 rounded-lg m-[5px] p-[1px] max-[768px]:m-[5px] cursor-pointer flex`}
+        className={`timeBox w-[95px] max-[768px]:w-[95px] text-sm  md:text-[1.2vw] lg:text-[1vw] xl:text-[0.9vw] hover:bg-premiumOrange text-gray-500 hover:text-white bg-gray-100 rounded-lg m-[5px] p-[1px] max-[768px]:m-[5px] cursor-pointer flex`}
       >
         <h4 className={`  font-bold ml-[7px] mt-[7px] pb-0 text-center `}>
           {time}

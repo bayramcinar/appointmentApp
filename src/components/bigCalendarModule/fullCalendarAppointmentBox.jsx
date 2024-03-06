@@ -45,7 +45,7 @@ function FullCalendarAppointmentBox({ image, infos, onDelete }) {
   };
 
   return (
-    <div className="bg-white myAppointmentBox lg:w-[500px] max-[768px]:w-[320px] mb-5 ml-auto mr-auto border-2 border-premiumPurple rounded-2xl shadow-2xl">
+    <div className="bg-white myAppointmentBox lg:w-[500px] max-[768px]:w-[320px] mb-5 ml-auto mr-auto border-2 border-premiumOrange rounded-2xl shadow-2xl">
       <div className="p-2 flex">
         <div className="imgArea1 w-1/3 flex items-center justify-center">
           <img src={image} className="w-20" alt="" />
@@ -58,13 +58,13 @@ function FullCalendarAppointmentBox({ image, infos, onDelete }) {
               </h1>
             )}
             <div className="forWho flex">
-              <i class="fa-solid fa-circle mt-[3px] text-[15px] text-premiumPurple"></i>
+              <i class="fa-solid fa-circle mt-[3px] text-[15px] text-premiumOrange"></i>
               <h2 className="text-[14px] font-bold ml-2">
                 {infos["kimIçin"]} İçin
               </h2>
             </div>
             <div className="flex ">
-              <i class="fa-regular fa-clock mt-[9px] text-premiumPurple text-[15px]"></i>
+              <i class="fa-regular fa-clock mt-[9px] text-premiumOrange text-[15px]"></i>
               <h1 className="text-xs  p-1 text-left font-semibold m-1">
                 {extractTimeFromDate(infos["time"])} - {endTime}
               </h1>
@@ -73,7 +73,7 @@ function FullCalendarAppointmentBox({ image, infos, onDelete }) {
               </h1>
             </div>
             <div className="flex">
-              <i class="fa-solid fa-hospital-user  mt-[9px] text-premiumPurple text-[15px]"></i>
+              <i class="fa-solid fa-hospital-user  mt-[9px] text-premiumOrange text-[15px]"></i>
               <h1 className="text-xs  p-1 text-left font-semibold m-1">
                 {infos["service"]}
               </h1>
@@ -83,13 +83,13 @@ function FullCalendarAppointmentBox({ image, infos, onDelete }) {
         {infos["kimIçin"] === "Başkası" && (
           <div className="infoAreaForSomeOne w-2/3">
             <div className="forWho flex">
-              <i class="fa-solid fa-circle mt-[3px] text-[15px] text-premiumPurple"></i>
+              <i class="fa-solid fa-circle mt-[3px] text-[15px] text-premiumOrange"></i>
               <h2 className="text-[14px] font-bold ml-2">
                 {infos["kimIçin"]} İçin
               </h2>
             </div>
             <div className="personalInfo flex">
-              <i class="fa-solid fa-user mt-[8px] text-[15px] text-premiumPurple"></i>
+              <i class="fa-solid fa-user mt-[8px] text-[15px] text-premiumOrange"></i>
               <h1 className="text-xs  p-1 text-left font-semibold m-1">
                 {infos["firstName"]} {infos["lastName"]} ({infos["gender"]})
                 (Doğum Tarihi :{infos["dateOfBirth"]})
@@ -97,7 +97,7 @@ function FullCalendarAppointmentBox({ image, infos, onDelete }) {
             </div>
 
             <div className="flex">
-              <i class="fa-regular fa-clock mt-[9px] text-premiumPurple text-[15px]"></i>
+              <i class="fa-regular fa-clock mt-[9px] text-premiumOrange text-[15px]"></i>
               <h1 className="text-xs  p-1 text-left font-semibold m-1">
                 {extractTimeFromDate(infos["time"])} - {endTime}
               </h1>
@@ -106,7 +106,7 @@ function FullCalendarAppointmentBox({ image, infos, onDelete }) {
               </h1>
             </div>
             <div className="flex">
-              <i class="fa-solid fa-hospital-user  mt-[9px] text-premiumPurple text-[15px]"></i>
+              <i class="fa-solid fa-hospital-user  mt-[9px] text-premiumOrange text-[15px]"></i>
               <h1 className="text-xs  p-1 text-left font-semibold m-1">
                 {infos["service"]}
               </h1>
@@ -114,11 +114,11 @@ function FullCalendarAppointmentBox({ image, infos, onDelete }) {
           </div>
         )}
       </div>
-      <div className="notesArea mt-[8px] border-2 border-premiumPurple rounded-xl mx-8 my-3">
+      <div className="notesArea mt-[8px] border-2 border-premiumOrange rounded-xl mx-8 my-3">
         <div className="p-3">
           <div className="flex">
-            <i className="fa-solid fa-book text-xl text-premiumPurple"></i>
-            <h2 className="text-xl ml-2 text-premiumPurple font-semibold">
+            <i className="fa-solid fa-book text-xl text-premiumOrange"></i>
+            <h2 className="text-xl ml-2 text-premiumOrange font-semibold">
               Notlar
             </h2>
           </div>

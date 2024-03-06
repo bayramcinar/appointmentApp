@@ -5,7 +5,6 @@ import "moment/locale/tr";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "../../style/fullCalendar.css";
 import "moment-timezone";
-import FullCalendarDayModal from "./fullCalanderDayModal";
 import EventModalForCalendar from "../commonModules/eventModalForBigCalendar";
 import Swal from "sweetalert2";
 const localizer = momentLocalizer(moment);
@@ -78,7 +77,6 @@ function FullCalendarComponent() {
   const [request, setRequest] = useState(false);
   const [selectedTimes, setSelectedTimes] = useState([]);
   const [isFullDayModalOpen, setFullDayModalOpen] = useState(false);
-  const [isFullDayModalOpenEmpty, setFullDayModalOpenEmpty] = useState(false);
   const [selectedDay, setSelectedDay] = useState("");
   const [isMobile, setIsMobile] = useState(window.innerWidth < 500);
   const [isHalfMid, setHalfMid] = useState(
@@ -143,13 +141,6 @@ function FullCalendarComponent() {
 
   const handleFullDayModalClose = () => {
     setFullDayModalOpen(false);
-  };
-  const handleFullDayEmptyModalOpen = () => {
-    setFullDayModalOpenEmpty(true);
-  };
-
-  const handleFullDayEmptyModalClose = () => {
-    setFullDayModalOpenEmpty(false);
   };
 
   const [selectedEvent, setSelectedEvent] = useState([]);
@@ -369,11 +360,6 @@ function FullCalendarComponent() {
         event={selectedEvent}
         isOpen={isFullDayModalOpen}
         onClose={handleFullDayModalClose}
-      />
-      <FullCalendarDayModal
-        isOpen={isFullDayModalOpenEmpty}
-        onClose={handleFullDayEmptyModalClose}
-        time={selectedDay}
       />
     </>
   );

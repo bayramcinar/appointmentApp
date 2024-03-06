@@ -31,10 +31,10 @@ function AppointmentBox({
     <div
       className={`timeBox w-[145px] max-[768px]:w-[100px] ${
         isSelected
-          ? "bg-purpleBg border-2 border-premiumPurple text-premiumPurple"
-          : "bg-premiumPurple"
+          ? "bg-white border-2 border-premiumOrange text-premiumOrange"
+          : "bg-premiumOrange"
       } ${
-        active ? "bg-premiumPurple " : "bg-stepBorder1"
+        active ? "bg-premiumOrange " : "bg-stepBorder1"
       }  rounded-lg mb-[5px] p-[2px] max-[768px]:m-[5px] cursor-pointer`}
       onClick={handleTimeClick}
     >
@@ -42,7 +42,7 @@ function AppointmentBox({
         <>
           <h4
             className={`text-sm ${
-              isSelected ? "text-premiumPurple" : "text-white"
+              isSelected ? "text-premiumOrange" : "text-white"
             } p-1 pb-0 text-center`}
           >
             {time}
@@ -53,7 +53,7 @@ function AppointmentBox({
         <>
           <h4
             className={`text-sm ${
-              isSelected ? "text-premiumPurple" : "text-white"
+              isSelected ? "text-premiumOrange" : "text-white"
             } p-1 text-center`}
           >
             {time}

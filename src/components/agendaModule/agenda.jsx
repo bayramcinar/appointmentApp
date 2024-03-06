@@ -1005,7 +1005,7 @@ function Agenda() {
                   onClick={handleOpenFilter}
                   className="py-2 px-4 bg-gray-100 text-gray-500 rounded-lg"
                 >
-                  <i class="fa-solid fa-filter text-premiumPurple"></i> Sırala
+                  <i class="fa-solid fa-filter text-premiumOrange"></i> Sırala
                 </button>
                 {showTooltip && (
                   <div className="tooltip filters animate__animated animate__zoomIn z-[3] bg-white border border-gray-300 p-2 rounded-xl shadow-lg absolute transform -translate-x-0 lg:top-16 lg:right-56 transition duration-300 top-24 ">
@@ -1066,62 +1066,83 @@ function Agenda() {
             </div>
           </div>
           <div className="agendaCardSwiper">
-            <div className="flex justify-center lg:justify-start items-center mb-4 lg:ml-4 flex-wrap md:text-[1.2vw] lg:text-[1vw] xl:text-[0.9vw]">
-              <div
-                onClick={() => handleFilterChange("all")}
-                className={`p-1 border-b-2 ${
-                  filter === "all" ? "activeCategory" : ""
-                } border-gray-300 m-2 text-gray-500 cursor-pointer`}
-              >
-                Tümü
-              </div>
-              <div
-                onClick={() => handleFilterChange("coming")}
-                className={`p-1 border-b-2 ${
-                  filter === "coming" ? "activeCategory" : ""
-                } border-gray-300 m-2 text-gray-500 cursor-pointer`}
-              >
-                Yaklaşan
-              </div>
-              <div
-                onClick={() => handleFilterChange("past")}
-                className={`p-1 border-b-2 ${
-                  filter === "past" ? "activeCategory" : ""
-                } border-gray-300 m-2 text-gray-500 cursor-pointer`}
-              >
-                Geçmiş
-              </div>
-              <div
-                onClick={() => handleFilterChange("today")}
-                className={`p-1 border-b-2 ${
-                  filter === "today" ? "activeCategory" : ""
-                } border-gray-300 m-2 text-gray-500 cursor-pointer`}
-              >
-                Bugünkü
-              </div>
-              <div
-                onClick={() => handleFilterChange("cancelled")}
-                className={`p-1 border-b-2 ${
-                  filter === "cancelled" ? "activeCategory" : ""
-                } border-gray-300 m-2 text-gray-500 cursor-pointer`}
-              >
-                İptal Edilen
-              </div>
-
-              <div className="dropdown-content flex">
+            {!isMobile && (
+              <div className="flex justify-center lg:justify-start items-center mb-4 lg:ml-4 flex-wrap md:text-[1.2vw] lg:text-[1vw] xl:text-[0.9vw]">
                 <div
-                  onClick={() => handleFilterChange("notConfirmed")}
+                  onClick={() => handleFilterChange("all")}
                   className={`p-1 border-b-2 ${
-                    filter === "notConfirmed" ? "activeCategory" : ""
-                  } border-gray-300 m-2 text-gray-500 cursor-pointer flex`}
+                    filter === "all" ? "activeCategory" : ""
+                  } border-gray-300 m-2 text-gray-500 cursor-pointer`}
                 >
-                  {pendingAppointments.length > 0 && (
-                    <i className="fa-solid fa-circle text-premiumPurple text-[0.5rem] flashing-text text-center flex items-center justify-center mr-2"></i>
-                  )}
-                  İşlem Bekleyen
+                  Tümü
+                </div>
+                <div
+                  onClick={() => handleFilterChange("coming")}
+                  className={`p-1 border-b-2 ${
+                    filter === "coming" ? "activeCategory" : ""
+                  } border-gray-300 m-2 text-gray-500 cursor-pointer`}
+                >
+                  Yaklaşan
+                </div>
+                <div
+                  onClick={() => handleFilterChange("past")}
+                  className={`p-1 border-b-2 ${
+                    filter === "past" ? "activeCategory" : ""
+                  } border-gray-300 m-2 text-gray-500 cursor-pointer`}
+                >
+                  Geçmiş
+                </div>
+                <div
+                  onClick={() => handleFilterChange("today")}
+                  className={`p-1 border-b-2 ${
+                    filter === "today" ? "activeCategory" : ""
+                  } border-gray-300 m-2 text-gray-500 cursor-pointer`}
+                >
+                  Bugünkü
+                </div>
+                <div
+                  onClick={() => handleFilterChange("cancelled")}
+                  className={`p-1 border-b-2 ${
+                    filter === "cancelled" ? "activeCategory" : ""
+                  } border-gray-300 m-2 text-gray-500 cursor-pointer`}
+                >
+                  İptal Edilen
+                </div>
+
+                <div className="dropdown-content flex">
+                  <div
+                    onClick={() => handleFilterChange("notConfirmed")}
+                    className={`p-1 border-b-2 ${
+                      filter === "notConfirmed" ? "activeCategory" : ""
+                    } border-gray-300 m-2 text-gray-500 cursor-pointer flex`}
+                  >
+                    {pendingAppointments.length > 0 && (
+                      <i className="fa-solid fa-circle text-premiumOrange text-[0.5rem] flashing-text text-center flex items-center justify-center mr-2"></i>
+                    )}
+                    İşlem Bekleyen
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
+            {isMobile && (
+              <div className="flex justify-center items-center text-sm w-full ">
+                <select
+                  onChange={(e) => handleFilterChange(e.target.value)}
+                  value={filter}
+                  className="p-1 border-b-2 border-gray-300 m-2 text-gray-500 cursor-pointer w-[80%]"
+                >
+                  <option value="all">Tümü</option>
+                  <option value="coming">Yaklaşan</option>
+                  <option value="past">Geçmiş</option>
+                  <option value="today">Bugünkü</option>
+                  <option value="cancelled">İptal Edilen</option>
+                  <option value="notConfirmed">İşlem Bekleyen</option>
+                </select>
+                {pendingAppointments.length > 0 && (
+                  <i className="fa-solid fa-circle text-premiumOrange text-[0.5rem] flashing-text text-center flex items-center justify-center mr-2"></i>
+                )}
+              </div>
+            )}
             {!isMobile && (
               <table className="rounded-xl w-full ">
                 <thead>

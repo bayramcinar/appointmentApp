@@ -15,8 +15,8 @@ function RequestTimeBox({ time, date, selectedTime, onTimeClick, isMobile }) {
       <div
         className={`timeBox w-[145px] max-[768px]:w-[115px] ${
           isSelected
-            ? " bg-premiumPurple text-white"
-            : "bg-white text-premiumPurple border-premiumPurple border-2"
+            ? " bg-premiumOrange text-white"
+            : "bg-white text-premiumOrange border-premiumOrange border-2"
         } rounded-lg mb-[5px] p-[2px] max-[768px]:m-[5px] cursor-pointer`}
         onClick={handleTimeClick}
       >

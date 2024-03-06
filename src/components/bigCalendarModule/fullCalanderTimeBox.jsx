@@ -25,7 +25,7 @@ function FullCalanderTimeBox({ time, active, duration, bg }) {
         } rounded-3xl mb-[5px] p-[2px] py-[3px] max-[768px]:m-[3px]`}
       >
         <>
-          <h4 className="text-xs lg:text-sm text-text p-1 text-center">
+          <h4 className="text-xs lg:text-sm text-white p-1 text-center">
             {time} - {endTime}
           </h4>
         </>

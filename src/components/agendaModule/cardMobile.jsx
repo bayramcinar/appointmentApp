@@ -1,5 +1,4 @@
 import React from "react";
-import pp from "../../images/pp.png";
 function CardMobile({
   appointmentNumber,
   name,
@@ -144,7 +143,7 @@ function CardMobile({
             )}
             <button
               onClick={() => showDetails()}
-              className="bg-lightOrange3 text-premiumPurple py-2 px-1 text-xs  rounded-lg mx-1 w-full"
+              className="bg-lightOrange3 text-premiumOrange py-2 px-1 text-xs  rounded-lg mx-1 w-full"
             >
               Mesaj
             </button>

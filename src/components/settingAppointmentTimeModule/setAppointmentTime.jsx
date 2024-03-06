@@ -44,12 +44,9 @@ function SetAppointmentTime() {
 
   const handleSetTime = (values, { resetForm }) => {
     // RANDEVU SAATİ EKLEMEMİZİ SAĞLAYAN FONKSİYON
-    console.log(values);
     setSelectedDuration(appointmentDuration);
-
     if (savedTimes === true) {
       const duration = selectedDuration;
-
       if (!selectedTimes.length || !datesData.length || !duration) {
         Swal.fire({
           title: "Hata !",
@@ -59,23 +56,19 @@ function SetAppointmentTime() {
         });
         return;
       }
-
       const existingTimes =
         JSON.parse(localStorage.getItem("selectedTimes")) || []; // DATABASE DEN RANDEVU SAATLERİNİ ALACAĞIZ (selectedTimes) BEN BURDA DİREK LOCAL DEN ALDIM
-
       // Check for conflicts
       const conflictingAppointments = existingTimes.some((item) => {
         const existingStartDateTime = moment(`${item.date} ${item.time}`);
         const existingEndDateTime = existingStartDateTime
           .clone()
           .add(item.duration, "minutes");
-
         return selectedTimes.some((selectedTime) => {
           const selectedDateTime = moment(`${datesData[0]} ${selectedTime}`);
           const selectedEndDateTime = selectedDateTime
             .clone()
             .add(duration, "minutes");
-
           return (
             (selectedDateTime.isSameOrAfter(existingStartDateTime) &&
               selectedDateTime.isBefore(existingEndDateTime)) ||
@@ -84,7 +77,6 @@ function SetAppointmentTime() {
           );
         });
       });
-
       if (conflictingAppointments) {
         Swal.fire({
           title: "Hata !",
@@ -94,7 +86,6 @@ function SetAppointmentTime() {
         });
         return;
       }
-
       // Continue with adding the appointment if no conflicts
       datesData.forEach((selectedDate) => {
         selectedTimes.forEach((selectedTime) => {
@@ -104,16 +95,12 @@ function SetAppointmentTime() {
             duration: duration,
             active: true,
           };
-
           existingTimes.push(dateTimeObject);
         });
       });
-
       localStorage.setItem("selectedTimes", JSON.stringify(existingTimes)); //DATABASE E GÜNCELLENMİŞ RANDEVU SAATLERİNİ GÖNDERECEĞİMİZ YER
-
       resetForm();
       setSelectedTimes([]);
-
       Swal.fire({
         title: "Başarılı",
         text: "Randevu saatleri başarılı bir şekilde eklenmiştir.",
@@ -122,7 +109,6 @@ function SetAppointmentTime() {
       });
     } else {
       const { time, duration } = values;
-
       if (!time || !datesData.length || !duration) {
         Swal.fire({
           title: "Hata !",
@@ -132,21 +118,17 @@ function SetAppointmentTime() {
         });
         return;
       }
-
       const existingTimes =
         JSON.parse(localStorage.getItem("selectedTimes")) || []; // DATABASE DEN RANDEVU SAATLERİNİ ALACAĞIZ (selectedTimes) BEN BURDA DİREK LOCAL DEN ALDIM
-
       // Her bir tarihi, seçilen saatle birlikte ekleyin
       datesData.forEach((chosenDate) => {
         const [hour, minute] = time.split(":");
         const selectedTime = `${hour}:${minute}`;
         const selectedDateTime = `${chosenDate} ${selectedTime}`;
-
         const isDuplicate = existingTimes.some((item) => {
           const existingDateTime = `${item.date} ${item.time}`;
           return existingDateTime === selectedDateTime;
         });
-
         if (!isDuplicate) {
           const dateTimeObject = {
             time: selectedTime,
@@ -154,15 +136,11 @@ function SetAppointmentTime() {
             duration: duration,
             active: true,
           };
-
           existingTimes.push(dateTimeObject);
         }
       });
-
       localStorage.setItem("selectedTimes", JSON.stringify(existingTimes)); //DATABASE E GÜNCELLENMİŞ RANDEVU SAATLERİNİ GÖNDERECEĞİMİZ YER
-
       resetForm();
-
       Swal.fire({
         title: "Başarılı",
         text: "Randevu saatleri başarılı bir şekilde eklenmiştir.",
@@ -293,7 +271,6 @@ function SetAppointmentTime() {
 
   const handleSaveTime = (values) => {
     const { time } = values;
-
     if (!time) {
       Swal.fire({
         title: "Hata !",
@@ -303,14 +280,11 @@ function SetAppointmentTime() {
       });
       return;
     }
-
     const existingSavedTimes =
       JSON.parse(localStorage.getItem("savedTimes")) || []; //DATABASE DEN savedTime TABLOSUNU OKUYACAĞIMIZ YER BEN BURDA DİREK LOCAL DEN ALDIM
-
     const isDuplicate = existingSavedTimes.some(
       (savedTime) => savedTime === time
     );
-
     if (isDuplicate) {
       Swal.fire({
         title: "Hata !",
@@ -320,10 +294,8 @@ function SetAppointmentTime() {
       });
       return;
     }
-
     existingSavedTimes.push(time);
     localStorage.setItem("savedTimes", JSON.stringify(existingSavedTimes)); // GÜNCELLEMİŞ SAATLERİ DATABASE E GÖNDERECEĞİMİZ YER BEN BURDA DİREK LOCAL A GÖNDERDİM
-
     Swal.fire({
       title: "Başarılı !",
       text: "Zaman başarıyla kaydedildi.",
@@ -355,7 +327,7 @@ function SetAppointmentTime() {
             onMouseEnter={handleInfoIconHover}
             onMouseLeave={handleInfoIconLeave}
           >
-            <i className="fa-solid fa-circle-info text-premiumPurple"></i>
+            <i className="fa-solid fa-circle-info text-premiumOrange"></i>
           </div>
           <div className="tooltip z-[3] hidden bg-white border border-gray-300 p-2 rounded-xl shadow-lg absolute transform -translate-x-0 right-[2px] transition duration-300 w-[200px]">
             <h1 className=" font-semibold text-center text-gray-500">
@@ -365,13 +337,13 @@ function SetAppointmentTime() {
             </h1>
             <div className=" my-1 flex items-center justify-center">
               <div className="flex mr-5">
-                <i class="fa-solid fa-clock text-premiumPurple flex items-center justify-center mr-2"></i>
+                <i class="fa-solid fa-clock text-premiumOrange flex items-center justify-center mr-2"></i>
                 <h1 className=" font-semibold text-center mb-[2px]">
                   {appointmentDuration} Dakika
                 </h1>
               </div>
               <div className="flex">
-                <i class="fa-solid fa-money-bill-1-wave text-premiumPurple flex items-center justify-center mr-2"></i>
+                <i class="fa-solid fa-money-bill-1-wave text-premiumOrange flex items-center justify-center mr-2"></i>
                 <h1 className=" font-semibold text-center  mb-[2px]">
                   {appointmentPrice} ₺
                 </h1>
@@ -385,11 +357,11 @@ function SetAppointmentTime() {
         <div className="chooseSavedTimes flex items-center justify-center mt-5">
           <button
             onClick={() => handleOptionChange(true)}
-            className={`p-1  hover:bg-premiumPurple hover:text-white transition duration-[400ms] rounded-lg m-3 mb-0 px-7 ${
+            className={`p-1  hover:bg-premiumOrange hover:text-white transition duration-[400ms] rounded-lg m-3 mb-0 px-7 ${
               savedTimes === true ? "selected" : ""
             } ${
               savedTimes === true
-                ? " bg-premiumPurple  text-gray-100"
+                ? " bg-premiumOrange  text-gray-100"
                 : " bg-gray-100 text-gray-600"
             }`}
           >
@@ -397,11 +369,11 @@ function SetAppointmentTime() {
           </button>
           <button
             onClick={() => handleOptionChange(false)}
-            className={` p-1 hover:bg-premiumPurple hover:text-white transition duration-[400ms] rounded-lg m-3 mb-0 px-7 ${
+            className={` p-1 hover:bg-premiumOrange hover:text-white transition duration-[400ms] rounded-lg m-3 mb-0 px-7 ${
               savedTimes === false ? "selected" : ""
             } ${
               savedTimes === false
-                ? " bg-premiumPurple  text-gray-100 "
+                ? " bg-premiumOrange  text-gray-100 "
                 : "bg-gray-100 text-gray-600"
             }`}
           >
@@ -509,13 +481,13 @@ function SetAppointmentTime() {
                 <div className="w-full flex items-center justify-center">
                   <button
                     type="submit"
-                    className={` hover:bg-premiumPurple ${
+                    className={` hover:bg-premiumOrange ${
                       selectedTimes.length > 0
-                        ? "bg-premiumPurple"
+                        ? "bg-premiumOrange"
                         : "bg-gray-400"
                     } hover:text-white text-gray-100 rounded-lg flex items-center justify-center w-56 buttons mt-4 mb-4 transition duration-[400ms]`}
                   >
-                    <h4 className="text-text p-2 px-6 tracking-wider">
+                    <h4 className="text-white p-2 px-6 tracking-wider">
                       Oluştur
                     </h4>
                   </button>
@@ -527,11 +499,11 @@ function SetAppointmentTime() {
                     type="submit"
                     className={`${
                       formikProps.values.time
-                        ? "bg-premiumPurple text-white"
+                        ? "bg-premiumOrange text-white"
                         : "bg-gray-400 text-gray-100"
                     } rounded-lg flex items-center justify-center w-56 buttons mt-4 mb-4`}
                   >
-                    <h4 className="text-text p-2 px-6 tracking-wider">
+                    <h4 className="text-white p-2 px-6 tracking-wider">
                       Kaydet
                     </h4>
                   </button>

@@ -327,7 +327,7 @@ function TimeAndDate({
           <h2 className=" text-center text-3xl font-bold p-3">
             Tarih ve Zaman Seçiniz
           </h2>
-          <h2 className="text-premiumPurple text-center text-md font-bold">
+          <h2 className="text-premiumOrange text-center text-md font-bold">
             Ortalama randevu süresi {appoinmentDuration} dakikadır
           </h2>
         </div>
@@ -384,7 +384,7 @@ function TimeAndDate({
                     <div className="flex items-center justify-center">
                       <button
                         onClick={() => setAppointmentRequest(true)}
-                        className="bg-premiumPurple font-semibold text-sm text-white p-1 px-6 rounded-2xl"
+                        className="bg-premiumOrange font-semibold text-sm text-white p-1 px-6 rounded-2xl"
                       >
                         <i class="fa-solid fa-file-pen"></i> Düzenle
                       </button>
