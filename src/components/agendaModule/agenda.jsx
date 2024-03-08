@@ -800,7 +800,7 @@ function Agenda() {
     return appointmentDate > currentDate;
   }
   const renderSwiper = (times) => {
-    const itemsPerSlide = 4;
+    const itemsPerSlide = 2;
     const swiperSlides = [];
     const findObjectByTime = (timeObject) => {
       //TIKLADIĞIMIZ OBJEYİ ALIYORUZ
@@ -1000,59 +1000,61 @@ function Agenda() {
               {getTableHeaders()}
             </h1>
             <div className="flex justify-center mt-2 lg:mt-0 lg:justify-end items-center text-xs md:text-[1.2vw] lg:text-[1vw] xl:text-[0.9vw]">
-              <div className="filterArea mr-2">
-                <button
-                  onClick={handleOpenFilter}
-                  className="py-2 px-4 bg-gray-100 text-gray-500 rounded-lg"
-                >
-                  <i class="fa-solid fa-filter text-premiumOrange"></i> Sırala
-                </button>
-                {showTooltip && (
-                  <div className="tooltip filters animate__animated animate__zoomIn z-[3] bg-white border border-gray-300 p-2 rounded-xl shadow-lg absolute transform -translate-x-0 lg:top-16 lg:right-56 transition duration-300 top-24 ">
-                    <h1 className="font-semibold text-center text-gray-600">
-                      Sırala
-                    </h1>
-                    <div className="">
-                      <div className="az my-3">
-                        <button
-                          className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full flex justify-start"
-                          onClick={() => handleFilter("az")}
-                        >
-                          <i class="fa-solid fa-arrow-up-a-z mr-2"></i>Ad Soyad
-                          (A-Z)
-                        </button>
-                      </div>
-                      <div className="za">
-                        <button
-                          className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full  flex justify-start"
-                          onClick={() => handleFilter("za")}
-                        >
-                          <i class="fa-solid fa-arrow-down-z-a mr-2"></i>Ad
-                          Soyad (Z-A)
-                        </button>
-                      </div>
-                      <div className="new my-3">
-                        <button
-                          className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full  flex justify-start"
-                          onClick={() => handleFilter("old")}
-                        >
-                          <i class="fa-solid fa-arrow-up-wide-short mr-2"></i>
-                          Tarih (Yeni - Eski)
-                        </button>
-                      </div>
-                      <div className="old my-3">
-                        <button
-                          className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full  flex justify-start"
-                          onClick={() => handleFilter("new")}
-                        >
-                          <i class="fa-solid fa-arrow-down-short-wide mr-2"></i>
-                          Tarih (Eski - Yeni)
-                        </button>
+              {!isMobile && (
+                <div className="filterArea mr-2">
+                  <button
+                    onClick={handleOpenFilter}
+                    className="py-2 px-4 bg-gray-100 text-gray-500 rounded-lg"
+                  >
+                    <i class="fa-solid fa-filter text-premiumOrange"></i> Sırala
+                  </button>
+                  {showTooltip && (
+                    <div className="tooltip filters animate__animated animate__zoomIn z-[3] bg-white border border-gray-300 p-2 rounded-xl shadow-lg absolute transform -translate-x-0 lg:top-16 lg:right-56 transition duration-300 top-24 ">
+                      <h1 className="font-semibold text-center text-gray-600">
+                        Sırala
+                      </h1>
+                      <div className="">
+                        <div className="az my-3">
+                          <button
+                            className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full flex justify-start"
+                            onClick={() => handleFilter("az")}
+                          >
+                            <i class="fa-solid fa-arrow-up-a-z mr-2"></i>Ad
+                            Soyad (A-Z)
+                          </button>
+                        </div>
+                        <div className="za">
+                          <button
+                            className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full  flex justify-start"
+                            onClick={() => handleFilter("za")}
+                          >
+                            <i class="fa-solid fa-arrow-down-z-a mr-2"></i>Ad
+                            Soyad (Z-A)
+                          </button>
+                        </div>
+                        <div className="new my-3">
+                          <button
+                            className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full  flex justify-start"
+                            onClick={() => handleFilter("old")}
+                          >
+                            <i class="fa-solid fa-arrow-up-wide-short mr-2"></i>
+                            Tarih (Yeni - Eski)
+                          </button>
+                        </div>
+                        <div className="old my-3">
+                          <button
+                            className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full  flex justify-start"
+                            onClick={() => handleFilter("new")}
+                          >
+                            <i class="fa-solid fa-arrow-down-short-wide mr-2"></i>
+                            Tarih (Eski - Yeni)
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )}
-              </div>
+                  )}
+                </div>
+              )}
               <div className="relative ml-auto hidden lg:flex items-center justify-center">
                 <input
                   type="text"
@@ -1066,80 +1068,82 @@ function Agenda() {
             </div>
           </div>
           <div className="agendaCardSwiper">
-            {!isMobile && (
-              <div className="flex justify-center lg:justify-start items-center mb-4 lg:ml-4 flex-wrap md:text-[1.2vw] lg:text-[1vw] xl:text-[0.9vw]">
-                <div
-                  onClick={() => handleFilterChange("all")}
-                  className={`p-1 border-b-2 ${
-                    filter === "all" ? "activeCategory" : ""
-                  } border-gray-300 m-2 text-gray-500 cursor-pointer`}
-                >
-                  Tümü
-                </div>
-                <div
-                  onClick={() => handleFilterChange("coming")}
-                  className={`p-1 border-b-2 ${
-                    filter === "coming" ? "activeCategory" : ""
-                  } border-gray-300 m-2 text-gray-500 cursor-pointer`}
-                >
-                  Yaklaşan
-                </div>
-                <div
-                  onClick={() => handleFilterChange("past")}
-                  className={`p-1 border-b-2 ${
-                    filter === "past" ? "activeCategory" : ""
-                  } border-gray-300 m-2 text-gray-500 cursor-pointer`}
-                >
-                  Geçmiş
-                </div>
-                <div
-                  onClick={() => handleFilterChange("today")}
-                  className={`p-1 border-b-2 ${
-                    filter === "today" ? "activeCategory" : ""
-                  } border-gray-300 m-2 text-gray-500 cursor-pointer`}
-                >
-                  Bugünkü
-                </div>
-                <div
-                  onClick={() => handleFilterChange("cancelled")}
-                  className={`p-1 border-b-2 ${
-                    filter === "cancelled" ? "activeCategory" : ""
-                  } border-gray-300 m-2 text-gray-500 cursor-pointer`}
-                >
-                  İptal Edilen
-                </div>
-
-                <div className="dropdown-content flex">
-                  <div
-                    onClick={() => handleFilterChange("notConfirmed")}
-                    className={`p-1 border-b-2 ${
-                      filter === "notConfirmed" ? "activeCategory" : ""
-                    } border-gray-300 m-2 text-gray-500 cursor-pointer flex`}
-                  >
+            {isMobile && (
+              <div className="flex flex-row">
+                {isMobile && (
+                  <div className="flex justify-center items-center text-sm w-full ">
+                    <select
+                      onChange={(e) => handleFilterChange(e.target.value)}
+                      value={filter}
+                      className="p-1 border-b-2 border-gray-100 outline-none m-2 text-gray-500 cursor-pointer w-[50%]"
+                    >
+                      <option value="all">Tümü</option>
+                      <option value="coming">Yaklaşan</option>
+                      <option value="past">Geçmiş</option>
+                      <option value="today">Bugünkü</option>
+                      <option value="cancelled">İptal Edilen</option>
+                      <option value="notConfirmed">İşlem Bekleyen</option>
+                    </select>
                     {pendingAppointments.length > 0 && (
                       <i className="fa-solid fa-circle text-premiumOrange text-[0.5rem] flashing-text text-center flex items-center justify-center mr-2"></i>
                     )}
-                    İşlem Bekleyen
+                    {isMobile && (
+                      <div className="filterArea ml-3">
+                        <button
+                          onClick={handleOpenFilter}
+                          className="py-2 px-4 bg-gray-100 text-gray-500 rounded-lg"
+                        >
+                          <i class="fa-solid fa-filter text-premiumOrange"></i>{" "}
+                          Sırala
+                        </button>
+                        {showTooltip && (
+                          <div className="tooltip filters animate__animated animate__zoomIn z-[3] bg-white border border-gray-300 p-2 rounded-xl shadow-lg absolute transform -translate-x-0 transition duration-300 top-28 right-5">
+                            <h1 className="font-semibold text-center text-gray-600">
+                              Sırala
+                            </h1>
+                            <div className="">
+                              <div className="az my-3">
+                                <button
+                                  className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full flex justify-start"
+                                  onClick={() => handleFilter("az")}
+                                >
+                                  <i class="fa-solid fa-arrow-up-a-z mr-2"></i>
+                                  Ad Soyad (A-Z)
+                                </button>
+                              </div>
+                              <div className="za">
+                                <button
+                                  className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full  flex justify-start"
+                                  onClick={() => handleFilter("za")}
+                                >
+                                  <i class="fa-solid fa-arrow-down-z-a mr-2"></i>
+                                  Ad Soyad (Z-A)
+                                </button>
+                              </div>
+                              <div className="new my-3">
+                                <button
+                                  className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full  flex justify-start"
+                                  onClick={() => handleFilter("old")}
+                                >
+                                  <i class="fa-solid fa-arrow-up-wide-short mr-2"></i>
+                                  Tarih (Yeni - Eski)
+                                </button>
+                              </div>
+                              <div className="old my-3">
+                                <button
+                                  className="bg-gray-100 text-gray-600 py-2 px-8 rounded-lg w-full  flex justify-start"
+                                  onClick={() => handleFilter("new")}
+                                >
+                                  <i class="fa-solid fa-arrow-down-short-wide mr-2"></i>
+                                  Tarih (Eski - Yeni)
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
-                </div>
-              </div>
-            )}
-            {isMobile && (
-              <div className="flex justify-center items-center text-sm w-full ">
-                <select
-                  onChange={(e) => handleFilterChange(e.target.value)}
-                  value={filter}
-                  className="p-1 border-b-2 border-gray-100 outline-none m-2 text-gray-500 cursor-pointer w-[80%]"
-                >
-                  <option value="all">Tümü</option>
-                  <option value="coming">Yaklaşan</option>
-                  <option value="past">Geçmiş</option>
-                  <option value="today">Bugünkü</option>
-                  <option value="cancelled">İptal Edilen</option>
-                  <option value="notConfirmed">İşlem Bekleyen</option>
-                </select>
-                {pendingAppointments.length > 0 && (
-                  <i className="fa-solid fa-circle text-premiumOrange text-[0.5rem] flashing-text text-center flex items-center justify-center mr-2"></i>
                 )}
               </div>
             )}

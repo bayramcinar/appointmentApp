@@ -709,19 +709,6 @@ function AppointmentInfos() {
               </button>
             </div>
           )}
-          {isMobile && (
-            <div className="block lg:flex items-center justify-center">
-              <button
-                onClick={toggleAllDetailsModal}
-                className="text-center flex items-center justify-center px-8 bg-white hover:bg-premiumOrange hover:text-white text-premiumOrange border-2 border-premiumOrange rounded-lg text-xs font-semibold h-[5vw] mt-2 mx-auto  transition duration-[400ms]"
-              >
-                Tüm İstatistikler
-              </button>
-              <h1 className="text-xs lg:text-[0.8vw] text-gray-500 font-semibold flex items-center justify-center pt-2">
-                Son Güncelleme : {guncelTarih}
-              </h1>
-            </div>
-          )}
         </div>
         <div className="infosArea block lg:flex  rounded-md">
           <>
@@ -838,6 +825,26 @@ function AppointmentInfos() {
                 <Line data={graph} options={options} className="lg:pb-10" />
               </div>
             </div>
+            {isMobile && (
+              <div className="flex items-center justify-center">
+                <div className="flex flex-col justify-center items-center mx-auto w-1/2">
+                  <h1 className="text-xs lg:text-[0.8vw] text-gray-500 font-semibold flex items-center justify-center pt-2">
+                    Son Güncelleme
+                  </h1>
+                  <h1 className="text-xs lg:text-[0.8vw] text-gray-500 font-semibold flex items-center justify-center">
+                    {guncelTarih}
+                  </h1>
+                </div>
+                <div className="w-1/2">
+                  <button
+                    onClick={toggleAllDetailsModal}
+                    className="text-center flex items-center justify-center px-8 bg-white hover:bg-premiumOrange hover:text-white text-premiumOrange border-2 border-premiumOrange rounded-lg text-xs font-semibold h-[7vw] mt-2 mx-auto  transition duration-[400ms] "
+                  >
+                    Tüm İstatistikler
+                  </button>
+                </div>
+              </div>
+            )}
             <div className="infosArea flex items-center justify-end w-full lg:w-[50%] mx-auto">
               {renderSwiper(boxes)}
             </div>
