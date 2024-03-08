@@ -1068,6 +1068,64 @@ function Agenda() {
             </div>
           </div>
           <div className="agendaCardSwiper">
+            {!isMobile && (
+              <div className="flex justify-center lg:justify-start items-center mb-4 lg:ml-4 flex-wrap md:text-[1.2vw] lg:text-[1vw] xl:text-[0.9vw]">
+                <div
+                  onClick={() => handleFilterChange("all")}
+                  className={`p-1 border-b-2 ${
+                    filter === "all" ? "activeCategory" : ""
+                  } border-gray-300 m-2 text-gray-500 cursor-pointer`}
+                >
+                  Tümü
+                </div>
+                <div
+                  onClick={() => handleFilterChange("coming")}
+                  className={`p-1 border-b-2 ${
+                    filter === "coming" ? "activeCategory" : ""
+                  } border-gray-300 m-2 text-gray-500 cursor-pointer`}
+                >
+                  Yaklaşan
+                </div>
+                <div
+                  onClick={() => handleFilterChange("past")}
+                  className={`p-1 border-b-2 ${
+                    filter === "past" ? "activeCategory" : ""
+                  } border-gray-300 m-2 text-gray-500 cursor-pointer`}
+                >
+                  Geçmiş
+                </div>
+                <div
+                  onClick={() => handleFilterChange("today")}
+                  className={`p-1 border-b-2 ${
+                    filter === "today" ? "activeCategory" : ""
+                  } border-gray-300 m-2 text-gray-500 cursor-pointer`}
+                >
+                  Bugünkü
+                </div>
+                <div
+                  onClick={() => handleFilterChange("cancelled")}
+                  className={`p-1 border-b-2 ${
+                    filter === "cancelled" ? "activeCategory" : ""
+                  } border-gray-300 m-2 text-gray-500 cursor-pointer`}
+                >
+                  İptal Edilen
+                </div>
+
+                <div className="dropdown-content flex">
+                  <div
+                    onClick={() => handleFilterChange("notConfirmed")}
+                    className={`p-1 border-b-2 ${
+                      filter === "notConfirmed" ? "activeCategory" : ""
+                    } border-gray-300 m-2 text-gray-500 cursor-pointer flex`}
+                  >
+                    {pendingAppointments.length > 0 && (
+                      <i className="fa-solid fa-circle text-premiumOrange text-[0.5rem] flashing-text text-center flex items-center justify-center mr-2"></i>
+                    )}
+                    İşlem Bekleyen
+                  </div>
+                </div>
+              </div>
+            )}
             {isMobile && (
               <div className="flex flex-row">
                 {isMobile && (
