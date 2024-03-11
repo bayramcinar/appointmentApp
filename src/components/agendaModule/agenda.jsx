@@ -61,6 +61,8 @@ function Agenda() {
         currentDate.getDate()
       );
       switch (filter) {
+        case "all":
+          return true;
         case "cancelled":
           return data.delete === true;
         case "notConfirmed":
@@ -104,8 +106,7 @@ function Agenda() {
                   ))) &&
             data.delete === false
           );
-        case "all":
-          return true;
+
         default:
           if (pendingAppointments.length > 0) {
             return (
@@ -405,11 +406,10 @@ function Agenda() {
                 const formData = JSON.parse(formDataString);
 
                 const index = formData.findIndex(
-                  (obj) => obj.time === obje.time
+                  (obj) => obj.appointmentNumber === obje.appointmentNumber
                 );
 
                 if (index !== -1) {
-                  // Set the 'delete' property to true
                   formData[index].delete = true;
 
                   localStorage.setItem("formData", JSON.stringify(formData));
