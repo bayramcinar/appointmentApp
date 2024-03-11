@@ -20,6 +20,7 @@ function Agenda() {
   const isMobile = window.innerWidth <= 768;
   const [showTooltip, setShowTooltip] = useState(false);
   const [pendingAppointments, setPendingAppointments] = useState([]);
+  const [comingAppointments, setComingAppointments] = useState([]);
 
   const handleOpenModal = (event) => {
     setSelectedEvent({
@@ -44,6 +45,14 @@ function Agenda() {
       formData.filter(
         (formEntry) =>
           formEntry.confirm === false &&
+          isFutureAppointment(formEntry.time) &&
+          formEntry.delete === false
+      )
+    );
+    setComingAppointments(
+      formData.filter(
+        (formEntry) =>
+          formEntry.confirm === true &&
           isFutureAppointment(formEntry.time) &&
           formEntry.delete === false
       )
@@ -119,6 +128,16 @@ function Agenda() {
               data.confirm === false &&
               data.delete === false
             );
+          } else if (comingAppointments.length > 0) {
+            return (
+              (appointmentDate > currentDate ||
+                (appointmentDate.getDate() === currentDate.getDate() &&
+                  new Date(`1970-01-01T${timeArray[2]}`) >
+                    new Date(
+                      `1970-01-01T${currentDate.getHours()}:${currentDate.getMinutes()}`
+                    ))) &&
+              data.delete === false
+            );
           } else if (pendingAppointments.length === 0) {
             return true;
           }
@@ -141,6 +160,14 @@ function Agenda() {
           formEntry.delete === false
       )
     );
+    setComingAppointments(
+      formData.filter(
+        (formEntry) =>
+          formEntry.confirm === true &&
+          isFutureAppointment(formEntry.time) &&
+          formEntry.delete === false
+      )
+    );
   }, [formData]); // formData değiştiğinde tekrar çalışacak
   useEffect(() => {
     // localStorage'dan formData'yı al
@@ -153,7 +180,14 @@ function Agenda() {
           formEntry.delete === false
       )
     );
-
+    setComingAppointments(
+      formData.filter(
+        (formEntry) =>
+          formEntry.confirm === true &&
+          isFutureAppointment(formEntry.time) &&
+          formEntry.delete === false
+      )
+    );
     if (storedFormData) {
       const parsedFormData = JSON.parse(storedFormData);
       const filteredFormData = filterFormData(
@@ -1014,6 +1048,8 @@ function Agenda() {
       default:
         if (pendingAppointments.length > 0) {
           return "İşlem Bekleyen Randevularım";
+        } else if (comingAppointments.length > 0) {
+          return "Yaklaşan Randevularım";
         } else if (pendingAppointments.length === 0) {
           return "Tüm Randevularım";
         }

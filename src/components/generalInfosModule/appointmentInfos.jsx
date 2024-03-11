@@ -688,7 +688,6 @@ function AppointmentInfos() {
   const toggleAllDetailsModal = () => {
     setIsAllDetailsOpen(!isAllDetailsOpen);
   };
-  console.log(graph.datasets[0]);
   return (
     <>
       <div className="w-full my-4 bg-white mx-auto rounded-lg max-[768px]:max-w-[370px]">
