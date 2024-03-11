@@ -13,6 +13,7 @@ function CardMobile({
   isPastAppointment,
   isCancelDisabled,
   isCancelled,
+  reject,
   joinFunction,
   formEntry,
   remainingHours,
@@ -134,7 +135,7 @@ function CardMobile({
                   İşleme Al
                 </button>
                 <button
-                  onClick={() => deleteFunction()}
+                  onClick={() => reject()}
                   className="bg-lightRed2 text-red-500 py-2 px-1 text-xs  rounded-lg mx-1 w-full"
                 >
                   Reddet

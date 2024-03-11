@@ -330,20 +330,6 @@ function Agenda() {
 
   function convertFormDataToTable() {
     return paginatedFormData.map((formEntry, index) => {
-      const last12Hours = (remainingTime) => {
-        try {
-          const hourAndMin = remainingTime.split(" ");
-
-          const hour = parseInt(hourAndMin[0]);
-          const min = parseInt(hourAndMin[2]);
-
-          const totalHours = hour + min / 60;
-
-          const isLast12Hours = totalHours < 12;
-
-          return isLast12Hours;
-        } catch (err) {}
-      };
       const status = formEntry.confirm;
       const { time, duration, service } = formEntry;
       const parsedInfos = time.split(/\s+/);
@@ -470,11 +456,13 @@ function Agenda() {
 
         const formData = JSON.parse(formDataString);
 
-        const foundObject = formData.find((obj) => obj.time === timeObject);
+        const foundObject = formData.find(
+          (obj) => obj.appointmentNumber === timeObject
+        );
         return foundObject || null;
       };
 
-      const timeObject = formEntry.time;
+      const timeObject = formEntry.appointmentNumber;
       const isCancelDisabled = remainingTime.remainingHours < 12;
       const actualIndex = (currentPage - 1) * itemsPerPage + index;
       const isCancelled = formEntry.delete === true;
@@ -871,21 +859,20 @@ function Agenda() {
   const renderSwiper = (times) => {
     const itemsPerSlide = 2;
     const swiperSlides = [];
-    const findObjectByTime = (timeObject) => {
-      //TIKLADIĞIMIZ OBJEYİ ALIYORUZ
-      const formDataString = localStorage.getItem("formData");
 
+    const findObjectByTime = (timeObject) => {
+      const formDataString = localStorage.getItem("formData");
       if (!formDataString) {
         return [];
       }
-
       const formData = JSON.parse(formDataString);
-
-      const foundObject = formData.find((obj) => obj.time === timeObject);
+      const foundObject = formData.find(
+        (obj) => obj.appointmentNumber === timeObject
+      );
       return foundObject || null;
     };
+
     const onAccept = async (timeObject) => {
-      // RANDEVU TALEBİNİ KABUL ETME FONKSİYONUNU request değerini false yapıyor
       const originalObje = findObjectByTime(timeObject);
       Swal.fire({
         title: "Emin misiniz!",
@@ -899,24 +886,18 @@ function Agenda() {
           if (originalObje) {
             const falseValue2 = originalObje.confirm;
             const updatedValue2 = falseValue2 === false ? true : "";
-
             const updatedObje = {
               ...originalObje,
               confirm: updatedValue2,
             };
-
             const formDataString = localStorage.getItem("formData");
-
             if (formDataString) {
               const formData = JSON.parse(formDataString);
-
               const index = formData.findIndex(
                 (obj) => obj.time === originalObje.time
               );
-
               if (index !== -1) {
                 formData[index] = updatedObje;
-
                 localStorage.setItem("formData", JSON.stringify(formData));
                 Swal.fire({
                   title: "Başarılı !",
@@ -930,9 +911,43 @@ function Agenda() {
           }
         }
       });
-
       return null;
     };
+
+    const onReject = (timeObject) => {
+      const obje = findObjectByTime(timeObject);
+      Swal.fire({
+        title: "Emin misiniz!",
+        text: "Randevu talebini silmek istediğinize emin misiniz?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Evet",
+        cancelButtonText: "Hayır",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          if (obje) {
+            const formDataString = localStorage.getItem("formData");
+            if (formDataString) {
+              const formData = JSON.parse(formDataString);
+              const index = formData.findIndex(
+                (obj) => obj.appointmentNumber === obje.appointmentNumber
+              );
+              if (index !== -1) {
+                formData[index].delete = true;
+                localStorage.setItem("formData", JSON.stringify(formData));
+                Swal.fire({
+                  title: "Başarılı !",
+                  text: "Randevu talebi başarılı bir şekilde reddedildi.",
+                  icon: "success",
+                  confirmButtonText: "Kapat",
+                });
+              }
+            }
+          }
+        }
+      });
+    };
+
     for (let i = 0; i < times.length; i += itemsPerSlide) {
       const currentTimes = times.slice(i, i + itemsPerSlide);
       const swiperSlide = (
@@ -952,6 +967,7 @@ function Agenda() {
                   " " +
                   time.split(" ")[2]
               );
+              const timeObject = formEntry.appointmentNumber;
               const isCancelDisabled = remainingTime.remainingHours < 12;
               const isPastAppointment =
                 appointmentDate < currentDate ||
@@ -971,6 +987,7 @@ function Agenda() {
                 <CardMobile
                   joinFunction={joinMeet}
                   joinMeet={joinMeet}
+                  reject={() => onReject(timeObject)}
                   formEntry={formEntry}
                   remainingHours={remainingTime.remainingHours}
                   isToday={isToday}
@@ -990,7 +1007,7 @@ function Agenda() {
                   isPastAppointment={isPastAppointment}
                   requestStatus={requestStatus}
                   service={service}
-                  onAccept={onAccept}
+                  onAccept={() => onAccept(timeObject)}
                   status={status}
                   time={timeInfo}
                   date={dateInfo}
@@ -1223,16 +1240,28 @@ function Agenda() {
                           <option value="cancelled">İptal Edilen</option>
                         </>
                       )}
-                      {pendingAppointments.length === 0 && (
-                        <>
-                          <option value="all">Tümü</option>
-                          <option value="coming">Yaklaşan</option>
-                          <option value="past">Geçmiş</option>
-                          <option value="today">Bugünkü</option>
-                          <option value="cancelled">İptal Edilen</option>
-                          <option value="notConfirmed">İşlem Bekleyen</option>
-                        </>
-                      )}
+                      {pendingAppointments.length === 0 &&
+                        comingAppointments.length > 0 && (
+                          <>
+                            <option value="coming">Yaklaşan</option>
+                            <option value="all">Tümü</option>
+                            <option value="past">Geçmiş</option>
+                            <option value="today">Bugünkü</option>
+                            <option value="cancelled">İptal Edilen</option>
+                            <option value="notConfirmed">İşlem Bekleyen</option>
+                          </>
+                        )}
+                      {pendingAppointments.length === 0 &&
+                        comingAppointments.length === 0 && (
+                          <>
+                            <option value="all">Tümü</option>
+                            <option value="coming">Yaklaşan</option>
+                            <option value="past">Geçmiş</option>
+                            <option value="today">Bugünkü</option>
+                            <option value="cancelled">İptal Edilen</option>
+                            <option value="notConfirmed">İşlem Bekleyen</option>
+                          </>
+                        )}
                     </select>
                     {pendingAppointments.length > 0 && (
                       <i className="fa-solid fa-circle text-premiumOrange text-[0.5rem] flashing-text text-center flex items-center justify-center mr-2"></i>
